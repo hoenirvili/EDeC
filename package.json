@@ -1,0 +1,29 @@
+{
+  "name": "EDeC",
+  "version": "1.0.0",
+  "description": "Ethic Decisions for Consummers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoenirvili/EDeC.git"
+  },
+  "author": "hoenir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoenirvili/EDeC/issues"
+  },
+  "homepage": "https://github.com/hoenirvili/EDeC",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express": "^1.4.1",
+    "grunt-express-server": "^0.4.19"
+  }
+}

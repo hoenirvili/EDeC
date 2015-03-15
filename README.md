@@ -1,2 +1,2 @@
 # EDeC
-Ethic Decisions for Consummers
+Ethic Decisions for Consummers Web Application

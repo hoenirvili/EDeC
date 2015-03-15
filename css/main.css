@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+body {
+  background-color: #ece8e5;
+  font-family: sans-serif; }
+
+.wrapper-main-page {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  background-color: #b0e0e6Wls; }
+
+.head-wrapper {
+  height: 35em;
+  width: 100%; }
+
+.bg-header {
+  width: 100%;
+  height: 100%; }
+
+.icon-logo {
+  height: 5em;
+  width: 5em;
+  background-image: url(../img/icons/rocket61.svg) no-repeat; }
+
+nav ul {
+  background-color: #43a286;
+  overflow: hidden;
+  color: white;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: max-height 0.4s;
+  -ms-transition: max-height 0.4s;
+  -moz-transition: max-height 0.4s;
+  -o-transition: max-height 0.4s;
+  transition: max-height 0.4s; }
+
+nav ul li {
+  display: inline-block;
+  padding: 20px; }
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff; }
+
+nav ul li:hover {
+  background-color: #399077; }
+
+section {
+  line-height: 1.5em;
+  font-size: 0.9em;
+  padding: 40px;
+  width: 75%;
+  margin: 0 auto; }
+
+.handle {
+  width: 100%;
+  background-color: #005c48;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 15px 10px;
+  cursor: pointer;
+  color: white;
+  display: none; }
+
+.menu-icon {
+  fill: #fff; }
+
+/*loader icon */
+.no-js #loader {
+  display: none; }
+
+.js #loader {
+  display: block;
+  position: absolute;
+  left: 100px;
+  top: 0; }
+
+.util-pie {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30%;
+  z-index: 9999; }
+
+footer {
+  width: 100%;
+  background-color: #34495e;
+  height: 7em; }
+
+footer h5 {
+  padding-top: 3.5em;
+  padding-left: 40px 0;
+  color: white;
+  text-align: center; }
+
+@media screen and (max-width: 600px) {
+  nav ul {
+    max-height: 0; }
+
+  .showing {
+    max-height: 20em; }
+
+  nav ul li {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    text-align: left; }
+
+  .handle {
+    display: block; } }
+#login {
+  margin-right: auto;
+  margin-left: auto;
+  width: 40%;
+  background-color: blue; }
+
+#register {
+  top: 300px;
+  width: 90%;
+  padding: 20px 7% 20px 7%;
+  margin: 0 0 35px 0;
+  background: #f7f7f7;
+  border: 1px solid rgba(147, 184, 189, 0.8);
+  box-shadow: 0pt 2px 5px rgba(105, 108, 109, 0.7), 0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+  border-radius: 5px; }
+
+/*# sourceMappingURL=main.css.map */

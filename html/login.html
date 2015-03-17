@@ -9,11 +9,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-
-	<div class="wrapper-main-page">
-		<header>
-		
-		<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-pie">
+	<!-- Loading animation svg -->
+	<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="util-pie">
         <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
         <path d="M0 50A50 50 0 0 1 50 0L50 50L0 50" fill="#0073eb" opacity="0.5">
           <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="0.8s" repeatCount="indefinite"></animateTransform>
@@ -28,6 +25,8 @@
           <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="3.2s" repeatCount="indefinite"></animateTransform>
         </path>
        </svg>
+		
+	<!-- main body content -->
 		<div id="login" class="animate form">
 		<form  action="login.php" autocomplete="on"> 
 			<h1>Log in</h1> 
@@ -50,10 +49,13 @@
 		</form>
 	</div>
 		
+
+	<!-- main footer content -->
 		<footer>
 		  	<h5>&copy;Copyright 2015 Content by Jan,Anca,Cornelius,Totolica</h5> 
 		</footer>
 	</div>
+<!--script end tags -->
 <script src="../js/main.js"></script>
 </body>
 </html>

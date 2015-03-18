@@ -15,7 +15,9 @@ body {
 
 .head-wrapper {
   height: 35em;
-  width: 100%; }
+  width: 100%;
+  background: url(../img/backgrounds/background_hear.jpg) 50% 50% no-repeat;
+  background-size: cover; }
 
 .bg-header {
   width: 100%;
@@ -28,6 +30,7 @@ body {
 
 nav ul {
   background-color: #43a286;
+  opacity: 0.3;
   overflow: hidden;
   color: white;
   text-align: right;
@@ -37,7 +40,9 @@ nav ul {
   -ms-transition: max-height 0.4s;
   -moz-transition: max-height 0.4s;
   -o-transition: max-height 0.4s;
-  transition: max-height 0.4s; }
+  transition: max-height 0.4s;
+  position: relative;
+  top: -40.5em; }
 
 nav ul li {
   display: inline-block;

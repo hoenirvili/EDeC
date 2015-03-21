@@ -24,9 +24,13 @@ body {
 	height: 100%; 
 }
 .icon-logo {
-	height: 5em;
-	width: 5em;
-	background-image: url(../img/icons/rocket61.svg) no-repeat; 
+	height: 3em;
+	width: 3em;
+	background: url(../img/icons/rocket61.svg) 50% 50% no-repeat;
+	background-size: 2em; 
+	background-color: blue;
+	position: relative;
+	top:20px;
 }
 nav ul {
 	background-color: #43a286;
@@ -41,8 +45,8 @@ nav ul {
 	-moz-transition: max-height 0.4s;
 	-o-transition: max-height 0.4s;
 	transition: max-height 0.4s;
-	position: relative;
-	top: -40.5em; 
+	/*position: relative;*/
+	/*top: -40.5em;*/ 
 }
 nav ul li {
 	display: inline-block;
@@ -53,7 +57,8 @@ text-decoration: none;
 color: #fff;
 }
 nav ul li:hover {
-	background-color: #399077; }
+	background-color: #399077; 
+}
 section {
 	line-height: 1.5em;
 	font-size: 0.9em;

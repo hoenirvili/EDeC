@@ -134,11 +134,22 @@ h1,h2,h3,h4,h5,h6{
 	font-size: 1.2em;
 
 }
-.container-fluid{
+.continer{
 
-	padding:0;
 }
-
+/* header */
+.jumbotron{
+	height: 38em;
+	background-image: url("../img/backgrounds/banner5.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.jumbotron > h1,
+.jumbotron > p {
+	color: #fff;
+	margin-top: 1.7em;
+}
+/*footer*/
 .login-avatar {
 	width: 100%;
 	margin: auto;

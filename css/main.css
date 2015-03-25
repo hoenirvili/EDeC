@@ -23,9 +23,13 @@
 	color: inherit;
 	text-decoration: none;
 }
+.navbar {
+    border-width: 0;
+}
 body{
 	/*padding-top: 70px;*/
 	padding-bottom: 7em;
+	padding-top: 3.5em;
 }
 p{
 	font-family: 'Open Sans', sans-serif;
@@ -64,9 +68,12 @@ h1,h2,h3,h4,h5,h6{
 	color: #18BC9C;
 	background: transparent;
 }
+
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus{
+.navbar-default .navbar-nav > .open > a:focus
+.dropdown .dropdown-toggle
+{
 	background: #1A242F;
 	color: #fff;
 }

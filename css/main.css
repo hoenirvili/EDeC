@@ -28,7 +28,7 @@
 }
 body{
 	/*padding-top: 70px;*/
-	padding-bottom: 7em;
+	//padding-bottom: 7em;
 	padding-top: 3.5em;
 }
 p{
@@ -197,6 +197,12 @@ h1,h2,h3,h4,h5,h6{
 
 
 /*footer*/
+
+.navbar .navbar-inverse .bottom-footer
+{
+		display: block;
+		bottom: 0px;
+}
 
 .login-avatar {
 	width: 100%;

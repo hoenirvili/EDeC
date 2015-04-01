@@ -24,7 +24,7 @@ module.exports = function(grunt){
 				tasks: ['concat'],
 			},
 			options:{
-				livereload:true
+				//livereload:true
 			}
 		},
 		express:{
@@ -34,7 +34,7 @@ module.exports = function(grunt){
 					port: 9000, // server at port 9000
 					hostname: 'localhost',
 					bases: ['html','css','js','php','.'],
-					livereload:true
+				//	livereload:true
 				}
 			}
 		}

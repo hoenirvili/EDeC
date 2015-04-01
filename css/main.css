@@ -38,12 +38,12 @@ h1,h2,h3,h4,h5,h6{
 	font-family: 'Oswald', sans-serif;
 }
 
-
 .navbar-default{
 	background: #2C3E50;
 	border-color: #FFF;
-	color: #FFFFFF;
+	/*color: #FFFFFF;*/
 }
+/*logo style*/
 .navbar-default .navbar-brand{
 	color: #fff;
 }
@@ -57,12 +57,15 @@ h1,h2,h3,h4,h5,h6{
 .navbar-default .navbar-nav > li > a {
 	color: #FFF;
 }
+
+/*style focus button ,*/
 .navbar-default .navbar-nav > .active >a,
 .navbar-default .navbar-nav > .active >a:hover,
 .navbar-default .navbar-nav > .active >a:focus {
 	color : #fff;
 	background: #1A242F;
 }
+
 .navbar-default .navbar-nav > li a:hover,
 .navbar-default .navbar-nav > li a:focus{
 	color: #18BC9C;
@@ -72,11 +75,11 @@ h1,h2,h3,h4,h5,h6{
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus
-.dropdown .dropdown-toggle
 {
 	background: #1A242F;
 	color: #fff;
 }
+
 
 .btn-primary{
 	background: #2C3E50;
@@ -94,7 +97,19 @@ h1,h2,h3,h4,h5,h6{
 	border-color: #161F29;
 }
 
+.navbar-default .navbar-nav
+.open .dropdown-menu > li > a
+{
+	color: #fff;
+}
 
+
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form
+{
+  border-style: none
+} /* remove the tiny line from the dropdown menu*/
 
 .btn-success{
 	background: #18BC9C;
@@ -113,7 +128,6 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
-
 .btn-default{
 	background: #95A5A6;
 	border-color: #95A5A6;
@@ -129,9 +143,27 @@ h1,h2,h3,h4,h5,h6{
 	background: #7F9293;
 	border-color: #74898A;
 }
+
+
+.dropdown-menu
+{
+		background: #2C3E50;
+		border-width: 0;
+}
+.dropdown-header
+{
+	color : #ECF0F1;
+	font-style: italic;
+
+}
+.dropdown-menu >li > a
+{
+		color: #fff;
+}
+
 .fa-anchor{
 	position: relative;
-	bottom: 0.25em;	
+	bottom: 0.25em;
 }
 .logo-effect{
 	font-family: 'Pacifico', cursive;
@@ -139,11 +171,8 @@ h1,h2,h3,h4,h5,h6{
 	bottom: 0.50em;
 	left: 0.70em;
 	font-size: 1.2em;
-
 }
-.continer{
 
-}
 /* header */
 .jumbotron{
 	height: 38em;
@@ -156,7 +185,19 @@ h1,h2,h3,h4,h5,h6{
 	color: #fff;
 	margin-top: 1.7em;
 }
+
+/*
+	hover on dropdown menu
+*/
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus
+{
+	color : #18BC9C;
+}
+
+
 /*footer*/
+
 .login-avatar {
 	width: 100%;
 	margin: auto;

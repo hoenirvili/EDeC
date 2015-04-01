@@ -1,7 +1,5 @@
 /*custom css style aside from BOOTSTRAP */
 
-
-
 /*loader icon */
 .no-js #loader {
 	display: none;
@@ -102,7 +100,6 @@ h1,h2,h3,h4,h5,h6{
 .open .dropdown-menu > li > a{
 	color: #fff;
 }
-
 
 
 .navbar-default .navbar-collapse,
@@ -210,14 +207,14 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .section-one{
-	background-color: #8e44ad;
+	background-color: #3498db;
 
 }
 .section-two{
-	background-color: #f39c12;
+	background-color: #f1c40f;
 }
 .section-three{
-	background-color: red;
+	background-color: #bdc3c7;
 }
 .footer-style {
 	-webkit-border-radius: 0 !important;
@@ -226,11 +223,17 @@ h1,h2,h3,h4,h5,h6{
 			-ms-border-radius: 0 !important;
 			-o-border-radius:  0 !important;
 }
-.section-empty{
-	height: 20em;
+.section-empty1{
+	height: 25em;
 	background-image: url(../img/meteor.gif);
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+.section-empty2{
+    height: 25em;
+    background-image:  url(../img/giphy.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /*big white space correction*/
 .header-style{

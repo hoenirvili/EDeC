@@ -1,12 +1,10 @@
 <?php
-
-    class login
+    class Login
     {
-      public functon __construct
-      {
+        public function __construct()
+        {
 
-      }
+        }
     }
 
-
-?>
+echo 'test';

@@ -1,5 +1,7 @@
 /*custom css style aside from BOOTSTRAP */
 
+
+
 /*loader icon */
 .no-js #loader {
 	display: none;
@@ -28,8 +30,8 @@
 }
 body{
 	/*padding-top: 70px;*/
-	//padding-bottom: 7em;
 	padding-top: 3.5em;
+
 }
 p{
 	font-family: 'Open Sans', sans-serif;
@@ -74,8 +76,7 @@ h1,h2,h3,h4,h5,h6{
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus
-{
+.navbar-default .navbar-nav > .open > a:focus{
 	background: #1A242F;
 	color: #fff;
 }
@@ -98,16 +99,14 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .navbar-default .navbar-nav
-.open .dropdown-menu > li > a
-{
+.open .dropdown-menu > li > a{
 	color: #fff;
 }
 
 
 
 .navbar-default .navbar-collapse,
-.navbar-default .navbar-form
-{
+.navbar-default .navbar-form{
   border-style: none
 } /* remove the tiny line from the dropdown menu*/
 
@@ -145,19 +144,16 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
-.dropdown-menu
-{
+.dropdown-menu{
 		background: #2C3E50;
 		border-width: 0;
 }
-.dropdown-header
-{
+.dropdown-header{
 	color : #ECF0F1;
 	font-style: italic;
 
 }
-.dropdown-menu >li > a
-{
+.dropdown-menu >li > a{
 		color: #fff;
 }
 
@@ -179,9 +175,15 @@ h1,h2,h3,h4,h5,h6{
 	background-image: url("../img/backgrounds/banner5.png");
 	background-repeat: no-repeat;
 	background-size: cover;
+	border-style: none;
+	-webkit-border-radius: 0 !important;
+	   -moz-border-radius: 0 !important;
+	        border-radius: 0 !important;
+			-ms-border-radius: 0 !important;
+			-o-border-radius:  0 !important;
 }
 .jumbotron > h1,
-.jumbotron > p {
+.jumbotron > p{
 	color: #fff;
 	margin-top: 1.7em;
 }
@@ -190,16 +192,51 @@ h1,h2,h3,h4,h5,h6{
 	hover on dropdown menu
 */
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus
-{
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus{
 	color : #18BC9C;
 }
 
 
 /*footer*/
-
-.navbar .navbar-inverse .bottom-footer
-{
+.bottom-footer{
 		display: block;
-		bottom: 0px;
+		margin-bottom: 0;
+		border-style: none;
+
+}
+.section-row{
+	padding-bottom: 15em;
+	padding-top: 15em;
+
+}
+.section-one{
+	background-color: #8e44ad;
+
+}
+.section-two{
+	background-color: #f39c12;
+}
+.section-three{
+	background-color: red;
+}
+.footer-style {
+	-webkit-border-radius: 0 !important;
+		-moz-border-radius: 0 !important;
+					border-radius: 0 !important;
+			-ms-border-radius: 0 !important;
+			-o-border-radius:  0 !important;
+}
+.section-empty{
+	height: 20em;
+	background-image: url(../img/meteor.gif);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+/*big white space correction*/
+.header-style{
+	height: 38em;
+
+}
+.fa1{
+	font-size: 7em;
 }

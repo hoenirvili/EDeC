@@ -2,7 +2,6 @@ module.exports = function(grunt){
 	grunt.initConfig({
 
 		pkg:grunt.file.readJSON('package.json'),
-			// concat
 			concat:{
 				css:{
 					src:['css/index.css','css/login.css','register.css'],
@@ -24,17 +23,17 @@ module.exports = function(grunt){
 				tasks: ['concat'],
 			},
 			options:{
-				//livereload:true
+				livereload:true
 			}
 		},
 		express:{
 
 			all:{
 					options:{
-					port: 9000, // server at port 9000
-					hostname: 'localhost',
-					bases: ['html','css','js','php','.'],
-				//	livereload:true
+					    port: 9000,
+					    hostname: 'localhost',
+					    bases: ['html','css','js','php','.'],
+					    livereload:true
 				}
 			}
 		}

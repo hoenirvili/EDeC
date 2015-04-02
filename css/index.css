@@ -235,6 +235,36 @@ h1,h2,h3,h4,h5,h6{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.pull-right > a{
+    display: block;
+    margin: 1.3em;
+    color: #fff;
+}
+.pull-right > a:hover,
+.pull-right > a:focus {
+    color: #18BC9C;
+}
+
+.footer-title {
+    font-size: 1.4em;
+
+}
+.pull-right a > i {
+    margin-right: 0.3em;
+}
+.copy{
+    display: block;
+    color: #fff;
+    margin: 1.3em;
+}
+.pull-left >p {
+   font-size: 10px;
+   color: #9bddbf;
+   margin-left: 2.7em;
+}
+.pull-left {
+    margin: 1.3em 1.3em 1.3em 2.7em;
+}
 /*big white space correction*/
 .header-style{
 	height: 38em;

@@ -259,7 +259,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .pull-left >p {
    font-size: 10px;
-   color: #9bddbf;
+   color: #fff;
    margin-left: 2.7em;
 }
 .pull-left {
@@ -273,3 +273,14 @@ h1,h2,h3,h4,h5,h6{
 .fa1{
 	font-size: 7em;
 }
+
+.container-header {
+        position: relative;
+        top: 8em;
+        color: #fff;
+}
+
+
+
+
+

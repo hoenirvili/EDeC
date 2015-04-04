@@ -252,15 +252,17 @@ h1,h2,h3,h4,h5,h6{
 .pull-left a > i {
     margin-right: 0.3em;
 }
+
+
 .copy{
     display: block;
     color: #fff;
     margin: 1.4em;
 }
 .pull-right >p {
-   font-size: 10px;
-   color: #fff;
-   margin-right: 2.7em;
+    font-size: 10px;
+    color: #fff;
+    margin-left: 20px;
 }
 /*big white space correction*/
 .header-style{
@@ -293,13 +295,71 @@ h1,h2,h3,h4,h5,h6{
     color: #18BC9C;
     margin-top: 40px;
 }
-
+.middle-flag{
+    width: 150px;
+    height: 50px;
+    background-image: url(../img/icons/uaicIcon.png);
+    background-size: 40% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    position: absolute;
+    left: 48%;
+    bottom: 2em;
+}
+.middle-flag >a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding-left: 60px;
+    
+}
 /*media queries*/
 @media only screen and (max-width:320px) {
-    .start-button{
-        font-size: 1.2em;
-        padding: 12px 20px 12px 20px;
-    }
+        .start-button{
+            font-size: 1.2em;
+            padding: 12px 20px 12px 20px;
+        }
+
+}
+@media only screen and (max-width:540px){
+        .pull-left{
+            font-size: 0.7em;    
+            margin-top: 10px;
+            margin-left: 0px;
+        }
+        .pull-right{
+            font-size: 0.7em;
+        }
+        .pull-right >p{
+            margin-right: 0px;
+        }
+
+}
+@media only screen and (max-width:425px){
+        .pull-left{
+            font-size: 6px;    
+            margin-top: 10px;
+            margin-left: 0px;
+        }
+        .pull-right{
+            font-size: 0.4em;
+        }
+        .pull-right >p{
+            margin-right: 0px;
+            font-size: 7px;
+        }
+}
+@media only screen and (max-width:700px){
+        .middle-flag{
+            display: inline-block;
+            background-size: 40% 70%;
+            background-position: 0px -1px;
+            position: static;
+            margin-left: 48%;
+        }
+        .middle-flag >a {
+            font-size: 0.8em;
+        }
 }
 
 .login-avatar {

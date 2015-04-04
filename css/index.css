@@ -81,7 +81,7 @@ h1,h2,h3,h4,h5,h6{
 
 
 .btn-primary{
-	background: #2C3E50;
+    background: #2C3E50;
 	border-color: #2C3E50;
 	color: #fff;
 }
@@ -169,15 +169,15 @@ h1,h2,h3,h4,h5,h6{
 /* header */
 .jumbotron{
 	height: 38em;
-	background-image: url("../img/backgrounds/banner5.png");
+	background-image: url("../img/backgrounds/banner1.jpg");
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 	border-style: none;
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;
 	        border-radius: 0 !important;
-			-ms-border-radius: 0 !important;
-			-o-border-radius:  0 !important;
+        -ms-border-radius: 0 !important;
+         -o-border-radius: 0 !important;
 }
 .jumbotron > h1,
 .jumbotron > p{
@@ -235,13 +235,13 @@ h1,h2,h3,h4,h5,h6{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.pull-right > a{
+.pull-left > a{
     display: block;
     margin: 1.3em;
     color: #fff;
 }
-.pull-right > a:hover,
-.pull-right > a:focus {
+.pull-left > a:hover,
+.pull- left> a:focus {
     color: #18BC9C;
 }
 
@@ -249,30 +249,24 @@ h1,h2,h3,h4,h5,h6{
     font-size: 1.4em;
 
 }
-.pull-right a > i {
+.pull-left a > i {
     margin-right: 0.3em;
 }
 .copy{
     display: block;
     color: #fff;
-    margin: 1.3em;
+    margin: 1.4em;
 }
-.pull-left >p {
+.pull-right >p {
    font-size: 10px;
    color: #fff;
-   margin-left: 2.7em;
-}
-.pull-left {
-    margin: 1.3em 1.3em 1.3em 2.7em;
+   margin-right: 2.7em;
 }
 /*big white space correction*/
 .header-style{
 	height: 38em;
+}
 
-}
-.fa1{
-	font-size: 7em;
-}
 
 .container-header {
         position: relative;
@@ -281,6 +275,29 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
+/*star now button*/
+.start-button {
+    border-radius: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    border-style: none;    
+    padding: 13px 16px;
+    text-transform: none;
+    padding: 17px 30px 17px 30px;
+    margin-top: 40px;
+}
+.start-button:hover,
+.start-button:focus,
+.start-button:active{    
+    color: #18BC9C;
+    margin-top: 40px;
+}
 
-
-
+/*media queries*/
+@media only screen and (max-width:320px) {
+    .start-button{
+        font-size: 1.2em;
+        padding: 12px 20px 12px 20px;
+    }
+}

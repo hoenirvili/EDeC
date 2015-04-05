@@ -4,7 +4,7 @@ module.exports = function(grunt){
 		pkg:grunt.file.readJSON('package.json'),
 			concat:{
 				css:{
-					src:['css/index.css','css/login.css','register.css'],
+					src:['css/index.css','css/login.css','css/register.css','css/media-queries.css'],
 					dest: 'css/main.css',
 				},
 

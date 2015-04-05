@@ -295,24 +295,52 @@ h1,h2,h3,h4,h5,h6{
     color: #18BC9C;
     margin-top: 40px;
 }
+
+
+
+/*FII ICON*/
+
+.middle-flag-anchor{
+    text-decoration: none;
+    color: #fff;   
+}
+.middle-flag-anchor:hover,
+.middle-flag-anchor:focus,
+.middle-flag-anchor:active{
+    color: #18BC9C;
+}
+
 .middle-flag{
-    width: 150px;
-    height: 50px;
+    display: inline-block;
+    position: relative;
+    width: 140px;
+    height: 60px;
     background-image: url(../img/icons/uaicIcon.png);
     background-size: 40% 100%;
     background-repeat: no-repeat;
-    background-position: left;
-    position: absolute;
-    left: 48%;
-    bottom: 2em;
+    background-position: 0px;
+    margin-left: -5px;
 }
-.middle-flag >a {
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    padding-left: 60px;
-    
+
+.login-avatar {
+	width: 100%;
+	margin: auto;
+	width: 65px;
+	border-radius: 100px;
+	height: 65px;
+	background: #448ed3 ;
+	position: relative;
+	bottom: -15px;
 }
+.login-avatar-img {
+	width: 55px;
+	height: 55px;
+	border-radius: 100px;
+	margin: auto;
+	border:3px solid #fff;
+	display: block;
+}
+
 /*media queries*/
 @media only screen and (max-width:320px) {
         .start-button{
@@ -347,36 +375,10 @@ h1,h2,h3,h4,h5,h6{
         .pull-right >p{
             margin-right: 0px;
             font-size: 7px;
-        }
-}
-@media only screen and (max-width:700px){
-        .middle-flag{
-            display: inline-block;
-            background-size: 40% 70%;
-            background-position: 0px -1px;
-            position: static;
-            margin-left: 48%;
-        }
-        .middle-flag >a {
-            font-size: 0.8em;
-        }
+        }    
+    
 }
 
-.login-avatar {
-	width: 100%;
-	margin: auto;
-	width: 65px;
-	border-radius: 100px;
-	height: 65px;
-	background: #448ed3 ;
-	position: relative;
-	bottom: -15px;
-}
-.login-avatar-img {
-	width: 55px;
-	height: 55px;
-	border-radius: 100px;
-	margin: auto;
-	border:3px solid #fff;
-	display: block;
+@media only screen and (max-width:700px){
+
 }

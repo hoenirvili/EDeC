@@ -20,184 +20,51 @@
     <![endif]-->
 
 </head>
-<body>
-
-<!--navigation menu-->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-
-    <div class="container-fluid">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="navbar-brand" href="index.html"><i class="fa fa-anchor fa-2x"></i><span class="logo-effect">EDeC</span></a>
-
-            </div>
-
-            <div class="navbar-collapse collapse">
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li >
-                        <a href="index.html">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>
-
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">Client</li>
-                            <li class="active"><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="#">Search</a></li>
-                            <li class="dropdown-header">Administrator</li>
-                            <li><a href="#">Control Pannel</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li>
-                        <a href="#contact" data-toggle="modal">Contact</a>
-                    </li>
-                </ul>
-
-            </div> <!--navbar collapse-->
-        </div> <!--small container for the navigation bar-->
-    </div> <!--container to center all the pices together-->
-</div> <!-- the big continaer that includes fixed positon and orientation-->
-
-
-        
-<!-- main body content -->
-<div class="container">
-<div class="login-form-section">
-    <div class="login-content  animated bounceIn" data-animation="bounceIn">
-    <form>
-       
-        <div class="section-title">
-        <h3>LogIn into your Account</h3>
-        </div>
-        
-        <div class="textbox-wrap focused">
-            <div class="input-group">
-                <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
-                <input type="text" required="required" class="form-control" placeholder="Username">
-            </div>
-        </div>
-            <div class="textbox-wrap">
-                <div class="input-group">
-                    <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
-                    <input type="password" required="required" class="form-control " placeholder="Password">
+<body class="body-background">
+    
+    <div class="container">
+        <div class="row">
+           <p><br></p>
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="page-header">
+                            <h3> Login page</h3><small> Log in to be able to use the app </small>
+                        </div>
+                    
+                        <form>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="username" class="form-control" id="exampleInputUsername" placeholder="Enter username">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                          <div class="checkbox">
+                            <label for="remeberInputPassword">
+                              <input type="checkbox"> Remeber me
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                              <label for="logMeAutomatically">
+                                  <input type="checkbox">Log autocatically
+                              </label>
+                          </div>
+                          <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    
+                    
+                    
+                    
+                    </div>    
                 </div>
-            </div>
-        <div class="login-form-action clearfix">
-            <div class="checkbox pull-left">
-                <div class="custom-checkbox">
-                    <div class="icheckbox_square-blue checked" >
-                    <input type="checkbox" checked="" name="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                    <ins class="iCheck-helper" >
-                    </ins>
-                    </div>
-                </div>
-                <span class="checkbox-text pull-left">&nbsp;Remember Me</span>
-            </div>
-            <button type="submit" class="btn btn-success pull-right green-btn">LogIn &nbsp; <i class="icon-chevron-right"></i></button>
-        </div>
-    </form>
-    </div>
-    <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s" style="-webkit-animation-delay: 0.2s;">
-        <h4 class="blue">Don't have an Account?</h4>
-        <span>No worry</span>
-        <a href="" class="blue">Click Here</a>
-        <span>to Register</span>
-    </div>
-    <div class="login-form-links link2  animated fadeInRightBig" data-animation="fadeInRightBig" data-animation-delay=".4s" style="-webkit-animation-delay: 0.4s;">
-        <h4 class="green">Forget your Password?</h4>
-        <span>Dont worry</span>
-        <a href="" class="green">Click Here</a>
-        <span>to Get New One</span>
-    </div>
-</div>
-</div>		
-	
-
-<!--footer -->
-<!--navbar-fixed-bottom -->
-<div class="navbar navbar-inverse bottom-footer footer-style" role="navigation">
-	<div class="container-fluid">
-        <div class="container">
-            <div class="navbar-text pull-right">
-                <div class="copy">&copy Copyright 2015</div>
-                <div class="copy"> Main developers: </div>
-                <p> Giulitti Salvatore Elio</p>
-                <p> Dorneanu Anca
-                <p> Calara Ionut</p>
-                <p> Tutuianu Cornealiu</p>
-            </div> 
-            <div class="navbar-text pull-left">
-                <a href="index.html"><p class="footer-title">Ethical decision for consumers</p></a>
-                <a href="#"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="#"><i class="fa fa-github-square fa-2x"></i>www.github.com/hoenirvili</a>
-                <a href="#"><i class="fa fa-linux fa-2x"></i>www.linkukernel.com</a>
-	            <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea de informatica</a>
+                 
+            </div> <!-- col-md-4 -->
             
-            </div>
         </div>
-	</div><!--small container-->
-</div><!--the big container that includes fixed position and orientation-->
-
-<!--POP UP CONTACT ME-->
-<div class="modal fade" id="contact" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-
-
-			<form class="form-horizontal" role="form">
-				<div class="modal-header">
-					<h4>contact me mothercufker</h4>
-				</div>
-				<div class="modal-body">
-
-					<div class="form-group">
-						<label for="contact-name" class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="contact-name" placeholder="First &Lans Name">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="contact-email" class="col-sm-2 control-label">Email</label>
-						<div class="col-sm-10">
-							<input type="email" class="form-control" id="contact-email" placeholder="example@domain.com">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="contact-message" class="col-sm-2 control-label">Message</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" rows="4"></textarea>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">Send</button>
-					<a class="btn btn-default" data-dismiss="modal">Close</a>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!--pop UP-->
+    </div>
 
 	<!-- Loading animation svg -->
 	<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="util-pie">
@@ -219,118 +86,5 @@
 <script src="../js/jquery-2.1.3.js"></script>
 <script src="../css/bootstrap-3.3.4/js/bootstrap.js"></script>
 <script src="../js/main.js"></script>
-
-<script src="../js/jquery-1.9.1.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/respond.src.js"></script>
-<script src="../js/jquery.icheck.js"></script>
-<script src="../js/placeholders.min.js"></script>
-<script src="../js/waypoints.min.js"></script>
-<script src="../js/jquery.panelSnap.js"></script>
-<script type="text/javascript">
-        $(function () {
-            $("input").iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                increaseArea: '20%' // optional
-            });
-            $(".dark input").iCheck({
-                checkboxClass: 'icheckbox_polaris',
-                increaseArea: '20%' // optional
-            });
-            $(".form-control").focus(function () {
-                $(this).closest(".textbox-wrap").addClass("focused");
-            }).blur(function () {
-                $(this).closest(".textbox-wrap").removeClass("focused");
-            });
-
-            //On Scroll Animations
-
-
-            if ($(window).width() >= 968 && !Modernizr.touch && Modernizr.cssanimations) {
-
-                $("body").addClass("scroll-animations-activated");
-                $('[data-animation-delay]').each(function () {
-                    var animationDelay = $(this).data("animation-delay");
-                    $(this).css({
-                        "-webkit-animation-delay": animationDelay,
-                        "-moz-animation-delay": animationDelay,
-                        "-o-animation-delay": animationDelay,
-                        "-ms-animation-delay": animationDelay,
-                        "animation-delay": animationDelay
-                    });
-
-                });
-                $('[data-animation]').waypoint(function (direction) {
-                    if (direction == "down") {
-                        $(this).addClass("animated " + $(this).data("animation"));
-
-                    }
-                }, {
-                    offset: '90%'
-                }).waypoint(function (direction) {
-                    if (direction == "up") {
-                        $(this).removeClass("animated " + $(this).data("animation"));
-
-                    }
-                }, {
-                    offset: $(window).height() + 1
-                });
-            }
-
-            //End On Scroll Animations
-
-
-            $(".main-nav a[href]").click(function () {
-                var scrollElm = $(this).attr("href");
-
-                $("html,body").animate({ scrollTop: $(scrollElm).offset().top }, 500);
-
-                $(".main-nav a[href]").removeClass("active");
-                $(this).addClass("active");
-            });
-
-
-
-
-            if ($(window).width() > 1000 && !Modernizr.touch) {
-                var options = {
-                    $menu: ".main-nav",
-                    menuSelector: 'a',
-                    panelSelector: 'section',
-                    namespace: '.panelSnap',
-                    onSnapStart: function () { },
-                    onSnapFinish: function ($target) {
-                        $target.find('input:first').focus();
-                    },
-                    directionThreshold: 50,
-                    slideSpeed: 200
-                };
-                $('body').panelSnap(options);
-
-            }
-
-            $(".colorBg a[href]").click(function () {
-                var scrollElm = $(this).attr("href");
-
-                $("html,body").animate({ scrollTop: $(scrollElm).offset().top }, 500);
-
-                return false;
-            });
-
-
-           
-
-        });
-    </script>
-<script>
-                        $(document).ready(function(){
-                                function fix_height(){
-                                        var h = $("#tray").height();   
-                                        $("#preview").attr("height", (($(window).height()) - h) + "px");
-                                }
-                                $(window).resize(function(){ fix_height(); }).resize();
-                                //$("#preview").contentWindow.focus();
-                        });
-                </script>
 </body>
 </html>

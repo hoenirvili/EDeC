@@ -328,8 +328,8 @@ h1,h2,h3,h4,h5,h6{
 .body-background {
     background-image: url("../img/backgrounds/login-flat.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
-    
+    background-attachment: fixed;
+    background-size: 100% 100%;    
 }
 
 

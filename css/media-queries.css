@@ -23,6 +23,11 @@
             width: 20px;
             height: 20px;
         }
+        .jumbotron{
+            background-image: url("../img/backgrounds/banner2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
 }
 @media only screen and (max-width:425px){
@@ -39,4 +44,11 @@
             font-size: 7px;
         }    
     
+}
+@media only screen and (max-width: 700px){
+        .jumbotron{
+            background-image: url("../img/backgrounds/banner3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 }

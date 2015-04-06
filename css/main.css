@@ -207,8 +207,12 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .section-one{
-	background-color: #3498db;
-
+	background-image: url("../img/backgrounds/bluey.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    font-size: 1em;
+    
 }
 .section-two{
 	background-color: #f1c40f;
@@ -224,10 +228,11 @@ h1,h2,h3,h4,h5,h6{
 			-o-border-radius:  0 !important;
 }
 .section-empty1{
-	height: 25em;
+	height: 35em;
 	background-image: url(../img/meteor.gif);
 	background-repeat: no-repeat;
 	background-size: cover;
+    z-index: -1;
 }
 .section-empty2{
     height: 25em;
@@ -316,24 +321,10 @@ h1,h2,h3,h4,h5,h6{
       background-size: cover;
 
 }
-.login-avatar {
-	width: 100%;
-	margin: auto;
-	width: 65px;
-	border-radius: 100px;
-	height: 65px;
-	background: #448ed3 ;
-	position: relative;
-	bottom: -15px;
+.row .container > .col-md-4 > p{
+    margin: 35px;
 }
-.login-avatar-img {
-	width: 55px;
-	height: 55px;
-	border-radius: 100px;
-	margin: auto;
-	border:3px solid #fff;
-	display: block;
-}
+
 
 /*media queries*/
 @media only screen and (max-width:320px) {
@@ -360,6 +351,11 @@ h1,h2,h3,h4,h5,h6{
             width: 20px;
             height: 20px;
         }
+        .jumbotron{
+            background-image: url("../img/backgrounds/banner2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
 }
 @media only screen and (max-width:425px){
@@ -376,4 +372,11 @@ h1,h2,h3,h4,h5,h6{
             font-size: 7px;
         }    
     
+}
+@media only screen and (max-width: 700px){
+        .jumbotron{
+            background-image: url("../img/backgrounds/banner3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 }

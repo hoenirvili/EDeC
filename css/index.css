@@ -207,8 +207,12 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .section-one{
-	background-color: #3498db;
-
+	background-image: url("../img/backgrounds/bluey.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    font-size: 1em;
+    
 }
 .section-two{
 	background-color: #f1c40f;
@@ -224,10 +228,11 @@ h1,h2,h3,h4,h5,h6{
 			-o-border-radius:  0 !important;
 }
 .section-empty1{
-	height: 25em;
+	height: 35em;
 	background-image: url(../img/meteor.gif);
 	background-repeat: no-repeat;
 	background-size: cover;
+    z-index: -1;
 }
 .section-empty2{
     height: 25em;
@@ -315,4 +320,7 @@ h1,h2,h3,h4,h5,h6{
       background-repeat: no-repeat;
       background-size: cover;
 
+}
+.row .container > .col-md-4 > p{
+    margin: 35px;
 }

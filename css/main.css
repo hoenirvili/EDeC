@@ -295,33 +295,27 @@ h1,h2,h3,h4,h5,h6{
     color: #18BC9C;
     margin-top: 40px;
 }
-
-
-
 /*FII ICON*/
-
 .middle-flag-anchor{
     text-decoration: none;
-    color: #fff;   
+    color: #fff;
+    font-size: 0.8em;
 }
 .middle-flag-anchor:hover,
 .middle-flag-anchor:focus,
 .middle-flag-anchor:active{
     color: #18BC9C;
 }
-
 .middle-flag{
-    display: inline-block;
-    position: relative;
-    width: 140px;
-    height: 60px;
-    background-image: url(../img/icons/uaicIcon.png);
-    background-size: 40% 100%;
-    background-repeat: no-repeat;
-    background-position: 0px;
-    margin-left: -5px;
-}
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      transform: translate(0, 0);
+      background-image: url(../img/icons/uaicIcon.png);
+      background-repeat: no-repeat;
+      background-size: cover;
 
+}
 .login-avatar {
 	width: 100%;
 	margin: auto;
@@ -361,6 +355,11 @@ h1,h2,h3,h4,h5,h6{
         .pull-right >p{
             margin-right: 0px;
         }
+        
+        .middle-flag{
+            width: 20px;
+            height: 20px;
+        }
 
 }
 @media only screen and (max-width:425px){
@@ -377,8 +376,4 @@ h1,h2,h3,h4,h5,h6{
             font-size: 7px;
         }    
     
-}
-
-@media only screen and (max-width:700px){
-
 }

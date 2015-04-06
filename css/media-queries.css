@@ -18,6 +18,11 @@
         .pull-right >p{
             margin-right: 0px;
         }
+        
+        .middle-flag{
+            width: 20px;
+            height: 20px;
+        }
 
 }
 @media only screen and (max-width:425px){
@@ -34,8 +39,4 @@
             font-size: 7px;
         }    
     
-}
-
-@media only screen and (max-width:700px){
-
 }

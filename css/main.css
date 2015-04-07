@@ -232,7 +232,7 @@ h1,h2,h3,h4,h5,h6{
 	background-image: url(../img/meteor.gif);
 	background-repeat: no-repeat;
 	background-size: cover;
-    z-index: -1;
+    //z-index: -1;
 }
 .section-empty2{
     height: 25em;
@@ -289,7 +289,6 @@ h1,h2,h3,h4,h5,h6{
     font-size: 1.5em;
     letter-spacing: 1px;
     border-style: none;    
-    padding: 13px 16px;
     text-transform: none;
     padding: 17px 30px 17px 30px;
     margin-top: 40px;
@@ -319,7 +318,9 @@ h1,h2,h3,h4,h5,h6{
       background-image: url(../img/icons/uaicIcon.png);
       background-repeat: no-repeat;
       background-size: cover;
-
+      -webkit-background-size: cover;
+      -o-background-size: cover;
+      -moz-background-size: cover;
 }
 .row .container > .col-md-4 > p{
     margin: 35px;
@@ -329,7 +330,79 @@ h1,h2,h3,h4,h5,h6{
     background-image: url("../img/backgrounds/login-flat.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;    
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+}
+.login-pannel{
+    opacity: 0.95;
+    border-style: none;
+    border-radius: 0;
+}
+
+/*
+start-button {
+    border-radius: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    border-style: none;    
+    text-transform: none;
+    padding: 17px 30px 17px 30px;
+    margin-top: 40px;
+}
+.start-button:hover,
+.start-button:focus,
+.start-button:active{    
+    color: #18BC9C;
+    margin-top: 40px;
+}
+
+*/
+
+.login-button {
+    border-radius: 0;
+    border-style:none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    letter-spacing: 1px;
+    padding: 8px 15px;
+    text-transform: none;
+    margin-top: 1px
+}
+.login-button:hover,
+.login-button:focus,
+.login-button:active{
+    color: #18BC9C;
+    margin-top: 1px;
+}
+
+.singup-button {
+    border-style: none;
+    border-radius: 0;
+    margin-left: 2.5em;
+    border-style:none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    letter-spacing: 1px;
+    padding: 8px 15px;
+    text-transform: none;    
+    margin-top: 1px;
+}
+.singup-button:hover,
+.singup-button:focus,
+.singup-button:active{
+    color: #18BC9C;
+    margin-top: 1px;
+}
+
+
+.form-control{
+    border-style: none;
+    border-radius: 0px;
+    background-color: #EBEBEB;   
+    color: #000;
 }
 
 

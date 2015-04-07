@@ -232,7 +232,7 @@ h1,h2,h3,h4,h5,h6{
 	background-image: url(../img/meteor.gif);
 	background-repeat: no-repeat;
 	background-size: cover;
-    z-index: -1;
+    //z-index: -1;
 }
 .section-empty2{
     height: 25em;
@@ -289,7 +289,6 @@ h1,h2,h3,h4,h5,h6{
     font-size: 1.5em;
     letter-spacing: 1px;
     border-style: none;    
-    padding: 13px 16px;
     text-transform: none;
     padding: 17px 30px 17px 30px;
     margin-top: 40px;
@@ -319,7 +318,9 @@ h1,h2,h3,h4,h5,h6{
       background-image: url(../img/icons/uaicIcon.png);
       background-repeat: no-repeat;
       background-size: cover;
-
+      -webkit-background-size: cover;
+      -o-background-size: cover;
+      -moz-background-size: cover;
 }
 .row .container > .col-md-4 > p{
     margin: 35px;

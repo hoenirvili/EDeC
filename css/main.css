@@ -27,7 +27,6 @@
     border-width: 0;
 }
 body{
-	/*padding-top: 70px;*/
 	padding-top: 3.5em;
 
 }
@@ -170,8 +169,12 @@ h1,h2,h3,h4,h5,h6{
 .jumbotron{
 	height: 38em;
 	background-image: url("../img/backgrounds/banner1.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    
 	border-style: none;
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;
@@ -209,7 +212,10 @@ h1,h2,h3,h4,h5,h6{
 .section-one{
 	background-image: url("../img/backgrounds/bluey.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
     color: #fff;
     font-size: 1em;
     
@@ -230,15 +236,22 @@ h1,h2,h3,h4,h5,h6{
 .section-empty1{
 	height: 35em;
 	background-image: url(../img/meteor.gif);
-	background-repeat: no-repeat;
-	background-size: cover;
-    //z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
 }
 .section-empty2{
-    height: 25em;
+    height: 35em;
     background-image:  url(../img/giphy.gif);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
 }
 .pull-left > a{
     display: block;
@@ -340,27 +353,6 @@ h1,h2,h3,h4,h5,h6{
     border-style: none;
     border-radius: 0;
 }
-
-/*
-start-button {
-    border-radius: 0;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.5em;
-    letter-spacing: 1px;
-    border-style: none;    
-    text-transform: none;
-    padding: 17px 30px 17px 30px;
-    margin-top: 40px;
-}
-.start-button:hover,
-.start-button:focus,
-.start-button:active{    
-    color: #18BC9C;
-    margin-top: 40px;
-}
-
-*/
-
 .login-button {
     border-radius: 0;
     border-style:none;
@@ -369,7 +361,7 @@ start-button {
     letter-spacing: 1px;
     padding: 8px 15px;
     text-transform: none;
-    margin-top: 1px
+    margin-top: 1px;
 }
 .login-button:hover,
 .login-button:focus,
@@ -403,6 +395,28 @@ start-button {
     border-radius: 0px;
     background-color: #EBEBEB;   
     color: #000;
+}
+
+.input-group-addon {
+    border-style: none;
+    border-radius: 0px;
+    opacity: 0.95;
+}
+
+#errors {
+    border-left: 5px solid #a94442;
+    padding-left: 15px;    
+}
+#errors li {
+    list-style-type: none;
+}
+#errors li:before {
+    content: '\b7\a0';
+}
+
+#loginForm .form-control-feedback {
+    position: static;
+    display: inline-block;
 }
 
 

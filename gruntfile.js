@@ -9,7 +9,7 @@ module.exports = function(grunt){
 				},
 
 				js:{
-					src:['js/index.js'],
+					src:['js/index.js','js/login.js'],
 					dest:'js/main.js',
 				}
 			},

@@ -27,7 +27,6 @@
     border-width: 0;
 }
 body{
-	/*padding-top: 70px;*/
 	padding-top: 3.5em;
 
 }
@@ -170,8 +169,12 @@ h1,h2,h3,h4,h5,h6{
 .jumbotron{
 	height: 38em;
 	background-image: url("../img/backgrounds/banner1.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    
 	border-style: none;
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;
@@ -209,7 +212,10 @@ h1,h2,h3,h4,h5,h6{
 .section-one{
 	background-image: url("../img/backgrounds/bluey.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
     color: #fff;
     font-size: 1em;
     
@@ -230,15 +236,22 @@ h1,h2,h3,h4,h5,h6{
 .section-empty1{
 	height: 35em;
 	background-image: url(../img/meteor.gif);
-	background-repeat: no-repeat;
-	background-size: cover;
-    //z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
 }
 .section-empty2{
-    height: 25em;
+    height: 35em;
     background-image:  url(../img/giphy.gif);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
 }
 .pull-left > a{
     display: block;

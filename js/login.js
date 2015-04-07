@@ -1,13 +1,10 @@
-$(window).load(function(){
-	$(".util-pie").fadeOut("slow");
-});
 $(document).ready(function(){
     
  $('#loginForm').on('init.field.fv',function(e,data){
      var $parent = data.element.parents('.form-group'),
          $icon = data.element.data('fv.icon'),
          $label = $parent.find('label');
-     
+       /* ERROR*/  
      $icon.insertAfter($label);
  }).formValidation({
         framework: 'bootstrap',

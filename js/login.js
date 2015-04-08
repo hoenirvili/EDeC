@@ -1,35 +1,46 @@
 $(document).ready(function(){
-    
- $('#loginForm').on('init.field.fv',function(e,data){
-     var $parent = data.element.parents('.form-group'),
-         $icon = data.element.data('fv.icon'),
-         $label = $parent.find('label');
-       /* ERROR*/  
-     $icon.insertAfter($label);
- }).formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields:{
-            Username: {
-                validators:{
-                    notEmpty: {
-                        message: 'The username is required'
-                    }
-                }//validators
-            },//username
-        
-            Password: {
-                validators:{
-                    notEmpty:{
-                        message: 'The Password is required'
-                    }
-                }//validators
-            }//password
-        }//fields
-  
-  });
+	$("#loginForm").formValidation({
+		//only for bootstrap form
+		framework: 'bootstrap',
+
+		//Icons that will shown
+
+		icon:
+		{
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+
+		},
+
+		fields:
+		{
+			username:
+			{
+				validators:
+				{
+					notEmpty:
+					{
+						message: 'The username is required and connot be empty'
+					},
+					stringLength:
+					{
+						min: 5,
+						max: 30,
+						message: 'The username must be more than 5 and less than 30 characters long'
+					}
+				}
+			},
+			password:
+			{
+				validators:
+				{
+					notEmpty:
+					{
+						message: 'The password is required and connot be empty'
+					}
+				}
+			}
+		}//filds
+	});
 });

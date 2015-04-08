@@ -22,11 +22,12 @@ module.exports = function(grunt){
 				files: ['js/*.js'],
 				tasks: ['concat'],
 			},
-			//options:{
-			//	livereload:true
-			//}
+			options:{
+				livereload:true
+			}
 		},
-		/*express:{
+		//}
+		express:{
 
 			all:{
 					options:{
@@ -36,11 +37,11 @@ module.exports = function(grunt){
 					    livereload:true
 				}
 			}
-		}*/
+		}
 	});
 		grunt.loadNpmTasks('grunt-contrib-watch');
 		grunt.loadNpmTasks('grunt-contrib-concat');
 		grunt.loadNpmTasks('grunt-express');
-		//grunt.registerTask('live',['express','watch']);
-        grunt.registerTask('live',['watch']);
+		grunt.registerTask('live',['express','watch']);
+        	//grunt.registerTask('live',['watch']);
 }

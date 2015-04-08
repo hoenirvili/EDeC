@@ -4,26 +4,32 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" type="text/css" href=" ../css/bootstrap-3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href=" ../css/bootstrap-3.3.4/css/bootstrap-theme.css">
-	<link rel="stylesheet" type="text/css" href="../img/font-awesome-4.3.0/css/font-awesome.css">
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+	<!--css bootstrap , formvalidation font-awsome-->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.3.4/css/bootstrap-theme.css"> 
+    <link rel="stylesheet" type="text/css" href="../img/font-awesome-4.3.0/css/font-awesome.css"> 
+    <link rel="stylesheet" href="../css/formValidation/formValidation.css" type="text/css">
+    <!--fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Oswald" rel='stylesheet' type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Pacifico" rel='stylesheet' type="text/css">
-	<link rel="stylesheet" type="text/css" href=" ../css/main.css">
-
+	<!--main style -->
+    <link rel="stylesheet" type="text/css" href=" ../css/main.css">
 	<title>Ethic Decisions for Consummers</title>
-
+    <!-- pop for people who disabled javascript -->
+    <noscript>
+    For full functionality of this site it is necessary to enable JavaScript.
+    Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+    instructions how to enable JavaScript in your web browser</a>.
+    </noscript>
 	 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body class="body-background">
-    <div class="container">
+    <div class="container"> 
         <div class="row">
-           <p><br></p>
             <div class="col-sm-8"></div>
             <div class="col-sm-4">
                 <div class="panel panel-default login-pannel">
@@ -31,57 +37,43 @@
                         <div class="page-header">
                            <h2> Login Page</h2>
                         </div>
-                       <!-- form -->
-                        <form id="loginForm">
+                        <!-- form -->
+                        <form id="loginForm" class="form-group" action="" role="form">
                           <!-- Username -->
                           <div class="form-group">
-                            
-                            <label for="exampleInputEmail1" class="control-label" >Username</label>
+                            <label for="InputUsername" class="control-label" >Username</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
-                                </span>
-                                <input type="username" class="form-control" id="InputUsername" placeholder="Enter username" name="username">
+                                </span>    
+                                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
                             </div>
                           </div>
                           <!--Password -->
                           <div class="form-group">
-                           
                             <label for="exampleInputPassword1" class="control-label" >Password</label>
-                            <div class="input-group">    
+                                <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </span>
-                                <input type="password" class="form-control" id="InputPassword" placeholder="Password" name="Password">
+                                <input type="password" class="form-control" id="password" placeholder="Password" name="password"> 
                             </div>
                           </div>
+                          
                           <!--checkbox -->
                           <div class="checkbox">
                             <label for="remeberInputPassword">
                               <input type="checkbox"> Remeber me
                             </label>
                           </div>
-                          
-                            <div class="form-group">
-                                <ul id="errors"></ul>
-                            </div>
-                          
                           <button type="submit" class="btn btn-primary btn-lg login-button">Sing in</button>
                           <a href="register.html" class=" btn btn-primary btn-lg singup-button">Sign up</a>
-                        </form>
-                    
-                    
-                    
-                    
-                    </div>    
-                </div>
-                 
+                        </form><!--form -->                   
+                    </div> <!--pannel body-->    
+                </div> <!--pannel pannel-deafult login-pannel -->
             </div> <!-- col-md-4 -->
-            
        </div> <!-- row -->
     </div>
-    
-
 	<!-- Loading animation svg -->
 	<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="util-pie">
         <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
@@ -98,9 +90,16 @@
           <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="3.2s" repeatCount="indefinite"></animateTransform>
         </path>
       </svg>
-<script src="../js/jquery-1.11.2.js"></script>
-<script src="../js/jquery-2.1.3.js"></script>
+
+<!--jquery-->
+<script src="../js/jquery/jquery-1.11.2.js"></script>
+<script src="../js/jquery/jquery-2.1.3.js"></script>
+<!--bootstrap javascript -->
 <script src="../css/bootstrap-3.3.4/js/bootstrap.js"></script>
+<!--form validation plugin -->
+<script src="../js/formValidation/formValidation.js"></script>
+<script src="../js/formValidation/bootstrap.js"></script>
+<!--main js--> 
 <script src="../js/main.js"></script>
 </body>
 </html>

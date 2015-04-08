@@ -3,7 +3,7 @@ $(document).ready(function(){
 		//only for bootstrap form
 		framework: 'bootstrap',
 
-		//Icons that will shown
+		//Icons that will show
 
 		icon:
 		{

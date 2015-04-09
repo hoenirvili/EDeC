@@ -58,5 +58,6 @@ function primaryValidate(event)
 
 
 }
+/*i know global variable in javascript it's kind of risky but i think it's ok for now*/
 var formListener = document.getElementById("loginForm");
 formListener.addEventListener("submit",primaryValidate);

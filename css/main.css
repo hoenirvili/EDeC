@@ -353,7 +353,7 @@ h1,h2,h3,h4,h5,h6{
     border-style: none;
     border-radius: 0;
 }
-.login-button {
+.singin-button {
     border-radius: 0;
     border-style:none;
     font-family: 'Oswald', sans-serif;
@@ -363,9 +363,9 @@ h1,h2,h3,h4,h5,h6{
     text-transform: none;
     margin-top: 1px;
 }
-.login-button:hover,
-.login-button:focus,
-.login-button:active{
+.singin-button:hover,
+.singin-button:focus,
+.singin-button:active{
     color: #18BC9C;
     margin-top: 1px;
 }
@@ -403,21 +403,14 @@ h1,h2,h3,h4,h5,h6{
     opacity: 0.95;
 }
 
-#errors {
-    border-left: 5px solid #a94442;
-    padding-left: 15px;    
-}
-#errors li {
-    list-style-type: none;
-}
-#errors li:before {
-    content: '\b7\a0';
+
+.errors{
+    font-size: 0.8em;
+    color: red;
+    visibility: hidden;
+    display: none;
 }
 
-#loginForm .form-control-feedback {
-    position: static;
-    display: inline-block;
-}
 
 /*media queries*/
 @media only screen and (max-width:320px) {

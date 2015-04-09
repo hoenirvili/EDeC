@@ -38,7 +38,9 @@
                            <h2> Login Page</h2>
                         </div>
                         <!-- form -->
-                        <form id="loginForm" class="form-group" action="" role="form">
+                        <form id="loginForm" class="form-group" role="form" action="../php/login.php" method="post"> <!-- role form helps improve accessibility for people using screen readers -->
+                          <p class="errors" id="error1">Username field empty please fill up with a valid username</p>
+                          <p class="errors" id="error3">Empty fields , please fill up the form</p>
                           <!-- Username -->
                           <div class="form-group">
                             <label for="InputUsername" class="control-label" >Username</label>
@@ -46,17 +48,18 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </span>    
-                                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                                <input type="text" class="form-control" id="username" placeholder="Enter username">
                             </div>
                           </div>
                           <!--Password -->
+                          <p class="errors" id="error2">Password field empty please fill up with a valid password</p>
                           <div class="form-group">
                             <label for="exampleInputPassword1" class="control-label" >Password</label>
                                 <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </span>
-                                <input type="password" class="form-control" id="password" placeholder="Password" name="password"> 
+                                <input type="password" class="form-control" id="password" placeholder="Password"> 
                             </div>
                           </div>
                           
@@ -66,7 +69,7 @@
                               <input type="checkbox"> Remeber me
                             </label>
                           </div>
-                          <button type="submit" class="btn btn-primary btn-lg login-button">Sing in</button>
+                          <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in">
                           <a href="register.html" class=" btn btn-primary btn-lg singup-button">Sign up</a>
                         </form><!--form -->                   
                     </div> <!--pannel body-->    
@@ -90,7 +93,6 @@
           <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="3.2s" repeatCount="indefinite"></animateTransform>
         </path>
       </svg>
-
 <!--jquery-->
 <script src="../js/jquery/jquery-1.11.2.js"></script>
 <script src="../js/jquery/jquery-2.1.3.js"></script>

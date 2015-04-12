@@ -173,8 +173,14 @@ h1,h2,h3,h4,h5,h6{
     background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
+    -ms-background-size: 100$ 100$;
     -o-background-size: 100% 100%;
-    
+    /*background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;*/
+	
 	border-style: none;
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;

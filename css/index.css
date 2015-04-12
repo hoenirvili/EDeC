@@ -175,12 +175,6 @@ h1,h2,h3,h4,h5,h6{
     -moz-background-size: 100% 100%;
     -ms-background-size: 100$ 100$;
     -o-background-size: 100% 100%;
-    /*background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-ms-background-size: cover;
-	-o-background-size: cover;*/
-	
 	border-style: none;
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;
@@ -216,21 +210,61 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .section-one{
-	background-image: url("../img/backgrounds/bluey.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    color: #fff;
+	background-color :#fff no-repeat;
+    color: #999;
     font-size: 1em;
     
+}
+.star{
+	display: block;
+	height: 100px;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url("../img/icons/star.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
 }
 .section-two{
 	background-color: #f1c40f;
 }
+.search{
+	display: block;
+	height: 100px;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url("../img/icons/search.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms- background-size: cover;
+	-o- background-size: cover;
+}
 .section-three{
 	background-color: #bdc3c7;
+}
+.diamond{
+	display: block;
+	height: 100px;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url("../img/icons/diamond.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms- background-size: cover;
+	-o- background-size: cover;
 }
 .footer-style {
 	-webkit-border-radius: 0 !important;
@@ -248,6 +282,7 @@ h1,h2,h3,h4,h5,h6{
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
 }
 .section-empty2{
     height: 35em;
@@ -258,6 +293,7 @@ h1,h2,h3,h4,h5,h6{
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
 }
 .pull-left > a{
     display: block;
@@ -338,7 +374,45 @@ h1,h2,h3,h4,h5,h6{
       -webkit-background-size: cover;
       -o-background-size: cover;
       -moz-background-size: cover;
+      -ms-background-size: cover;
 }
 .row .container > .col-md-4 > p{
     margin: 35px;
+}
+/*el1 el2 el3 anim*/
+#el1,
+#el2,
+#el3{
+	position: relative;
+}
+#el2{
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.animate{
+	transition: 2s ease-in-out;
+	-webkit-transition : 2s ease-in-out;
+	-moz-transition : 2s ease-in-out;
+	-ms-transition : 2s ease-in-out;
+	-o-transition : 2s ease-in-out;
+
+}
+#el1.animate{
+	transform: translate(3em,0);
+	-webkit-transform: translate(3em,0);
+	-moz-transform: translate(3em,0);
+	-ms-transform: translate(3em,0);
+	-o-transform: translate(3em,0);
+}
+
+#el3.animate{
+	transform: translate(-4em,0);
+	-webkit-transform: translate(-4em,0);
+	-moz-transform: translate(-4em,0);
+	-ms-transform: translate(-4em,0);
+	-o-transform: translate(-4em,0);
+}
+.big{
+	font-size: 1.3em;
+	font-family: 'Oswald', sans-serif;
 }

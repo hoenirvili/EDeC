@@ -107,7 +107,7 @@ DROP TABLE users cascade constraints;
 CREATE TABLE users (
     id integer  NOT NULL,
     username varchar2(300)  NOT NULL,
-    password varchar2(500)  NOT NULL,
+    pass varchar2(500)  NOT NULL,
     email varchar2(200)  NOT NULL,
     avatar integer  NOT NULL,
     tip smallint  NOT NULL,

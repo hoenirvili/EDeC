@@ -110,10 +110,10 @@ CREATE TABLE users (
     pass varchar2(500)  NOT NULL,
     email varchar2(200)  NOT NULL,
     avatar integer  NOT NULL,
-    tip smallint  NOT NULL,
+    tip integer  NOT NULL, 
     data_nasterii date  NOT NULL,
     sex varchar2(1)  NOT NULL,
-    CONSTRAINT check_1 CHECK (tip IN ('M','F')),
+    CONSTRAINT check_1 CHECK (sex IN ('M','F')),
     CONSTRAINT users_pk PRIMARY KEY (id)
 ) ;
 

@@ -27,18 +27,17 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="register-background">
     <div class="container"> 
         <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-            <div class="pannel pannel-default">
+            <div class="col-sm-12">
+            <div class="panel panel-default register-panel">
             <div class="panel-body">
             	<div class="page-header">
             		<h2>Register Page</h2>
             	</div>
+              <!-- form -->
             	<form id="registerForm" class="form-group" role="form" action"../php/register.php" method="post">
-            	<fieldset>
             		<div class="form-group">
             			<label for="username" class="control-label">Username</label>
             			<input type="text" class="form-control" id="username" placeholder="Username">
@@ -63,18 +62,11 @@
             			 <p class="help-block">Please confirm password</p>
             		</div>
             		
-            		<div class="control-group">
-				      <!-- Button -->
-				      <div class="controls">
-				        <button class="btn btn-primary btn-lg">Register</button>
-				      </div>
-				    </div>
-				</fieldset>
-            	</form>
-            </div>
-			</div> <!-- pannel pannel default -->
-            </div> <!-- col-md-4 -->
-            <div class="col-md-4"></div>      
+            		<input type="submit" class="btn btn-primary btn-lg register-button" value="Register">
+            	</form><!-- form -->
+            </div> <!-- panl body -->
+			      </div> <!-- pannel pannel default -->
+            </div> <!-- col-md-12 -->      
        </div> <!-- row -->
     </div>
 	<!-- Loading animation svg -->

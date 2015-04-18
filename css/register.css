@@ -1,0 +1,30 @@
+.register-background{
+	background-image: url("../img/backgrounds/register-flat.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
+}
+.register-panel{
+	opacity: 0.95;
+	border-style: none;
+	border-radius: 0;
+}
+.register-button{
+    border-radius: 0;
+    border-style:none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    letter-spacing: 1px;
+    padding: 8px 15px;
+    text-transform: none;
+    margin-top: 1px;
+}
+.register-button:hover,
+.register-button:focus,
+.register-button:active{
+	color: #18BC9C;
+	margin-top: 1px;
+}

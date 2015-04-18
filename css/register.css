@@ -11,6 +11,7 @@
 	opacity: 0.95;
 	border-style: none;
 	border-radius: 0;
+	width: 65%;
 }
 .register-button{
     border-radius: 0;
@@ -18,9 +19,10 @@
     font-family: 'Oswald', sans-serif;
     font-size: 1em;
     letter-spacing: 1px;
-    padding: 8px 15px;
+    width: 98%;
     text-transform: none;
-    margin-top: 1px;
+    display: block;
+    margin: 0 auto;
 }
 .register-button:hover,
 .register-button:focus,

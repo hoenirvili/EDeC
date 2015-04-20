@@ -1,6 +1,6 @@
 Edec
 ===================
-
+[view HTML](https://github.com/hoenirvili/EDeC/blob/master/Project%20Architecture.html)
 Etical decisions for consumers.
 
 ----------

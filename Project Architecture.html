@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Users/Ionut/Downloads/Project%20Architecture.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Architecture</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css">
+<script type="text/javascript" src="./Project Architecture_files/MathJax.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.MathJax_Preview .MJXc-math {color: inherit!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXc-script {font-size: .8em}
+.MJXc-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXc-bold {font-weight: bold}
+.MJXc-italic {font-style: italic}
+.MJXc-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-largeop {font-size: 150%}
+.MJXc-largeop.MJXc-int {vertical-align: -.2em}
+.MJXc-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXc-display {display: block; text-align: center; margin: 1em 0}
+.MJXc-math span {display: inline-block}
+.MJXc-box {display: block!important; text-align: center}
+.MJXc-box:after {content: " "}
+.MJXc-rule {display: block!important; margin-top: .1em}
+.MJXc-char {display: block!important}
+.MJXc-mo {margin: 0 .15em}
+.MJXc-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXc-denom {display: inline-table!important; width: 100%}
+.MJXc-denom > * {display: table-row!important}
+.MJXc-surd {vertical-align: top}
+.MJXc-surd > * {display: block!important}
+.MJXc-script-box > *  {display: table!important; height: 50%}
+.MJXc-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXc-script-box > *:last-child > * {vertical-align: bottom}
+.MJXc-script-box > * > * > * {display: block!important}
+.MJXc-mphantom {visibility: hidden}
+.MJXc-munderover {display: inline-table!important}
+.MJXc-over {display: inline-block!important; text-align: center}
+.MJXc-over > * {display: block!important}
+.MJXc-munderover > * {display: table-row!important}
+.MJXc-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXc-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXc-mtr {display: table-row!important}
+.MJXc-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXc-mtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-mlabeledtr {display: table-row!important}
+.MJXc-mlabeledtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mlabeledtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXc-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXc-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXc-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXc-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXc-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXc-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXc-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXc-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXc-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXc-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_CHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div><div class="container"><h1 id="edec">Edec</h1>
+
+<p>Etical decisions for consumers.</p>
+
+<hr>
+
+
+
+<h2 id="descrierea-proiectului">Descrierea proiectului</h2>
+
+<p>Edec isi propune sa ofere userilor o metoda simpla de a gasi produse care indeplinesc toate conditiile necesare</p>
+
+<blockquote>
+  <p><strong>Cum functioneaza:</strong></p>
+  
+  <ul>
+  <li>Edec dispune de o baza de date in care produsele contin informatii legate de substantele folosite, locul de provenienta, si ideologiile companiilor producatoare.</li>
+  <li>Userii isi fac cont, si pot sa seteze ce substante trebuie sa aiba un produs, in ce localitati trebuie sa fi fost produs , sau ce ideologii trebuie sa aiba compania care le produce. Pot sa seteze si ce nu trebuie sa aiba produsul sau orasele din care nu trebuie sa provina produsele . </li>
+  <li>Dupa ce au fost setate preferintele userul va vizualiza doar produsele care corespund. </li>
+  </ul>
+</blockquote>
+
+<hr>
+
+
+
+<h2 id="entitati-componente">Entitati Componente</h2>
+
+<p>In principiul Edec este compus din produse, si caracteristicile care le definesc, dar si din preferintele userilor, care sunt folosite pentru a crea statistici referitoare la trendurile anumitor caracteristici.</p>
+
+<blockquote>
+  <p><strong>Useri:</strong></p>
+  
+  <ul>
+  <li>admin</li>
+  <li>user standard <br>
+  – avatar <br>
+  – nume <br>
+  – email <br>
+  – caracteristici</li>
+  </ul>
+  
+  <p><strong>Produse:</strong></p>
+  
+  <ul>
+  <li>produs <br>
+  –nume produs <br>
+  –imagine <br>
+  –caracteristici</li>
+  <li>statistici caracterisi <br>
+  – cele mai dezirabile <br>
+  – cele mai indezirabile</li>
+  </ul>
+</blockquote>
+
+<hr>
+
+
+
+<h2 id="user-flow">User flow</h2>
+
+<p>Procesul incepe cu inregistrarea userului pe pagina de register.</p>
+
+
+
+<div class="flow-chart"><svg height="852.046875" version="1.1" width="257.36328125" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: -0.234375px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock33-obj14" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj15" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj16" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj17" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj19" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj21" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj22" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="0" y="0" width="48.609375" height="39" rx="20" ry="20" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="st" transform="matrix(1,0,0,1,104.7969,35.1309)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="stt" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,104.7969,35.1309)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">User</tspan></text><rect x="0" y="0" width="92.9375" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op" transform="matrix(1,0,0,1,82.6328,159.2617)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="opt" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,82.6328,159.2617)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Inregistrare</tspan></text><rect x="0" y="0" width="54.875" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op1" transform="matrix(1,0,0,1,101.6641,283.3926)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op1t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,101.6641,283.3926)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Login</tspan></text><path fill="#ffffff" stroke="#000000" d="M50.630859375,25.3154296875L0,50.630859375L101.26171875,101.26171875L202.5234375,50.630859375L101.26171875,0L0,50.630859375" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,27.8398,376.3926)"></path><text x="55.630859375" y="50.630859375" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="condt" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,27.8398,376.3926)"><tspan dy="5.498046875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Logat cu succes?</tspan></text><rect x="0" y="0" width="97.4375" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op2" transform="matrix(1,0,0,1,80.3828,562.7852)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,80.3828,562.7852)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Setare profil</tspan></text><rect x="0" y="0" width="250.203125" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op3" transform="matrix(1,0,0,1,4,686.916)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op3t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,4,686.916)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Vizualizare produse pe baza setarilor</tspan></text><rect x="0" y="0" width="76.515625" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="en" transform="matrix(1,0,0,1,90.8438,811.0469)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="ent" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,90.8438,811.0469)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Delogare</tspan></text><path fill="none" stroke="#000000" d="M129.1015625,74.130859375C129.1015625,74.130859375,129.1015625,141.14045042684302,129.1015625,156.25687184576464" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj14)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M129.1015625,198.26171875C129.1015625,198.26171875,129.1015625,265.271309801843,129.1015625,280.38773122076464" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj15)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M129.1015625,322.392578125C129.1015625,322.392578125,129.1015625,362.04667806625366,129.1015625,373.39301720960066" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj16)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M129.1015625,477.654296875C129.1015625,477.654296875,129.1015625,544.663887926843,129.1015625,559.7803093457646" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj17)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="134.1015625" y="487.654296875" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.505859375" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M230.36328125,427.0234375C230.36328125,427.0234375,255.36328125,427.0234375,255.36328125,427.0234375C255.36328125,427.0234375,255.36328125,134.26171875,255.36328125,134.26171875C255.36328125,134.26171875,129.1015625,134.26171875,129.1015625,134.26171875C129.1015625,134.26171875,129.1015625,149.63516330718994,129.1015625,156.27096652425826" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj19)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="235.36328125" y="417.0234375" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">no</tspan></text><path fill="none" stroke="#000000" d="M129.1015625,601.78515625C129.1015625,601.78515625,129.1015625,668.794747301843,129.1015625,683.9111687207646" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj21)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M129.1015625,725.916015625C129.1015625,725.916015625,129.1015625,792.925606676843,129.1015625,808.0420280957646" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj22)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path></svg></div>
+
+
+
+<h2 id="pagini">Pagini</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Url</th>
+  <th>Titlu</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>home</td>
+  <td>Homepage</td>
+</tr>
+<tr>
+  <td>access</td>
+  <td>Login &amp; Register</td>
+</tr>
+<tr>
+  <td>myprofile</td>
+  <td>User Profile</td>
+</tr>
+<tr>
+  <td>product?id</td>
+  <td>Product page</td>
+</tr>
+<tr>
+  <td>products</td>
+  <td>Product list / Search</td>
+</tr>
+<tr>
+  <td>stats</td>
+  <td>Statistici</td>
+</tr>
+<tr>
+  <td>users</td>
+  <td>Admin users list</td>
+</tr>
+<tr>
+  <td>user_add</td>
+  <td>Admin add user</td>
+</tr>
+<tr>
+  <td>user_edit</td>
+  <td>Admin edit user</td>
+</tr>
+<tr>
+  <td>a_products</td>
+  <td>Admin products list</td>
+</tr>
+<tr>
+  <td>product_add</td>
+  <td>Admin add product</td>
+</tr>
+<tr>
+  <td>product_edit</td>
+  <td>Admin edit product</td>
+</tr>
+<tr>
+  <td>404</td>
+  <td>Not found page</td>
+</tr>
+</tbody></table>
+
+
+<hr>
+
+
+
+<h2 id="etape-implementare">Etape implementare</h2>
+
+<ol>
+<li>Schite/Design/Arhitectura</li>
+<li>Modelare baza de date</li>
+<li>Creare pagini frontend</li>
+<li>Design backend</li>
+<li>Design clase php</li>
+<li>Design proceduri oracle</li>
+<li>Design &amp; implementare arhitectura MVC, links rewrite</li>
+<li>Implementare proceduri oracle</li>
+<li>Implementare clase php</li>
+<li>Implementarea view-urilor pe baza html&amp;css&amp;javascript</li>
+<li>Adaugare functionalitati ajax (optional)</li>
+<li>Testing</li>
+<li>Deployment</li>
+</ol>
+
+<hr>
+
+
+
+<h2 id="cuprins">Cuprins</h2>
+
+<p></p><div class="toc">
+<ul>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#edec">Edec</a><ul>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#descrierea-proiectului">Descrierea proiectului</a></li>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#entitati-componente">Entitati Componente</a></li>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#user-flow">User flow</a></li>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#pagini">Pagini</a></li>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#etape-implementare">Etape implementare</a></li>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#cuprins">Cuprins</a></li>
+<li><a href="file:///C:/Users/Ionut/Downloads/Project%20Architecture.html#componenta-echipa">Componenta echipa</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></p>
+
+
+
+<h2 id="componenta-echipa">Componenta echipa</h2>
+
+<blockquote>
+  <p><strong>Componenti echipei in ordine alfabetica:</strong></p>
+  
+  <ul>
+  <li>Calara Ionut Lucian</li>
+  <li>Dorneanu Anca</li>
+  <li>Salvatore Giulliti</li>
+  <li>Tutuianu Corneliu</li>
+  </ul>
+</blockquote></div>
+</body></html>

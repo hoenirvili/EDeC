@@ -15,5 +15,5 @@ inregistrat](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#2-pro
 utilizate](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#1-tehnologii-utilizate)
  - 
 [Servicii](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#servicii)
- - [Componente 
+ - [Componenta 
 echipa](https://github.com/hoenirvili/EDeC/blob/master/Project%20Architecture.md#componenta-echipa)

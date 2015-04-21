@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDeC Raport</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="eedec-ethic-decisions-for-consummers">EEDeC (Ethic Decisions for Consummers)</h1>
+
+<hr>
+
+
+
+<h2 id="1descriere-proiect"> 1.Descriere Proiect</h2>
+
+<p>E necesar un instrument Web pentru a oferi asistenta consumatorilor privind deciziile de achitie a unor bunuri/servicii intr-un mod etic. Sistemul va putea stoca si folosi reguli simple de forma “daca are loc  atunci ” – in cazul nostru, de pilda “nu voi cumpara/folosi produsul P deoarece include/utilizeaza substanta S” ori “voi alege produsul P in loc de Q pe baza motivului M (e.g., mobilitate scazuta ori pret nejustificat de ridicat)” – in vederea oferirii de sugestii referitoare la resurse de interes personal sau la nivel de grup. Aplicatia va oferi, de asemenea, statistici privind cele mai (in)dezirabile resurse, utilizatorii cu cele mai multe/putine restrictii, persoanele avand preferinte similare etc. Ca inspiratie, a se studia Buycott.</p>
+
+<hr>
+
+<h2 id="2-etapele-dezvoltarii-proiectului">2. Etapele dezvoltarii proiectului</h2>
+
+<ol>
+<li>Schite/Design/Arhitectura</li>
+<li>Modelare baza de date</li>
+<li>Creare pagini frontend</li>
+<li>Design backend</li>
+<li>Design clase php</li>
+<li>Design proceduri oracle</li>
+<li>Design &amp; implementare arhitectura MVC, links rewrite</li>
+<li>Implementare proceduri oracle</li>
+<li>Implementare clase php</li>
+<li>Implementarea view-urilor pe baza html&amp;css&amp;javascript</li>
+<li>Adaugare functionalitati ajax (optional)</li>
+<li>Testing</li>
+<li>Deployment</li>
+</ol>
+
+<hr>
+
+<h2 id="2-progresul-inregistrat">2. Progresul inregistrat</h2>
+
+<blockquote>
+  <p><strong>Front-end</strong></p>
+  
+  <ul>
+  <li>Pagini create <br>
+  – HomePage-ul ;</li>
+  </ul>
+</blockquote>
+
+<p>In prima parte a indexului in tagul head am folosit meta taguri pentru a stabili encodingul la html metatag pentru a pune internet explorer in edge mod e folosit pentru compatibilitate pe mai multe browsere, sa rendeze websiteul conform anumitor standarde, si alt meta pentru a oferi functionalitate de responsive la website/aplicatie in asa fel incat pe orice device se va vedea conform regurilor scrie in css mai precis media-querys.De asemenea in head am linkuit toate librariile si fisierele de tip css externe pentru extra flexibilitate, + font-uri integrate din goolge fonts.La un momentdat in headul nostru avem un tag noscript care va executa o urmatoare instructiune de compatibiliatate daca aplicatia noastra e viziualizata in internet explorer 9 in continuare tot in cazul problemelor de compatibilitate si afunctiilor.., in bodyul din primul fisier index(home page) avem un navigation bar care va fi centrat fix cu un logo cu posibilitate de resize in functie de ecran si modularea meniului respectiv de point and click sau touch in cazul device-urilor de tip telefon/tableta etc. La fel avem si cu footerul pe baza width-ului ecranului acesta se va micsora si formata scrisul conform dispozitivului care e utilizat pentru a folosi/vizualiza aplicatia.In mijlocul documentului avem un container fluid si un container normal care acesta fa fi wrapperul pe intreg continutul paginii centrand elementera pentru a fi mai usor de vizualizat si focusat.</p>
+
+<blockquote>
+  <p>– Pagina de logare;</p>
+</blockquote>
+
+<p>Pagina de login consta intr-un wrapper mare in care e dat o clasa externa pentru formatarea lui gen background etc, nu contine un sistem de navigare ci doar un formular asezat in dreapta transparent cu informatii minimale ce date ar trebui introduse in panoul respectiv pentru a realza conectarea , la baza e o validare standard javascript care in caz ca utilizatorul introduce date incorecte sau uita sa introduca parola/username va instiintat cu anumite texte de tip warrning rosu in momentul cand va da submit.</p>
+
+<blockquote>
+  <p>– Pagina de inregistrare.</p>
+</blockquote>
+
+<p>Pagina de register e inca la nivel de schema , nu s-a facut prea mult in acest sens, deoarece concentrarea a fost mai mare pe partea de design a functionalitatii din spate si nu din partea de design urmand ca colaboratorii proiectului sa inceapa sa schiteze foarte bine si partea de design si partea de de view de iteractionare cu clientul/utilizatorul aplicatiei pentru a o face cat mai intuitiva si usor de inteles tot odata cu un aspect placut.</p>
+
+<blockquote>
+  <ul>
+  <li>Back-end</li>
+  </ul>
+</blockquote>
+
+<p>Pe partea de backend s-au inregistrat progrese doar in ceea ce priveste baza de date, aceasta fiind modelata, facandu-se scripturile de creeare tabele, populare cu ajutorul pachetelor si a blocurilor PL\SQL, creeandu-se trigere si indecsi si adaugandu-se fisiere csv cu inregistrari din tabele.</p>
+
+<h2 id="1-tehnologii-utilizate">1. Tehnologii utilizate</h2>
+
+
+
+<h3 id="1-jquery">1. jQuery</h3>
+
+<p>jQuery este o platforma de dezvoltare JavaScript, conceputa pentru a usura si imbunatati procese precum traversarea arborelui DOM in HTML, managementul inter-browser al evenimentelor, animatii si cereri tip AJAX. jQuery a fost gandit sa fie cat mai mic posibil, disponibil in toate versiunile de browsere importante existente, si sa respecte filosofia “Unobtrusive JavaScript”.</p>
+
+<p>jQuery se poate folosi pentru a rezolva urmatoarele probleme specifice programarii web:</p>
+
+<ol>
+<li>1.selectii de elemente in arborele DOM folosind propriul motor de selectii open source Sizzle, un proiect nascut din jQuery;</li>
+<li>2.parcurgere si modificarea arborelui DOM (incluzand suport pentru selectori CSS 3 si XPath simpli);</li>
+<li>3.inregistrarea si modificarea evenimentelor din browserÃ‚Â</li>
+<li>4.manipularea elementelor CSS;</li>
+<li>5.efecte si animatii;</li>
+<li>6.cereri tip AJAX;</li>
+<li>7.extensii ;</li>
+<li>8.utilitati - versiunea browser-ului, functia each.</li>
+</ol>
+
+<h3 id="2-bootstrap">2. Bootstrap</h3>
+
+<p>Bootstrap este o colectie gratis, open-source de tool-uri folosita pentru a crea website-uri si aplicatii web. Contine template-uri de design HTML si CSS pentru tipografie, formulare, butoane, navigatie si alte componente de interfata, precum si extensii optionale de JavaScript. Framework-ul Bootstrap isi pune ca scop usurarea dezvoltarii web.</p>
+
+<p>Bootstrap se afla pe partea de front end, asta insemnand ca este o interfata intre utilizator si codul de pe partea de server sau back end. Este si un framework de aplicatie web, un software framework care este creat  sa suporte dezvoltarea website-urilor si aplicatiilor web.</p>
+
+<p>Bootstrap ajuta la layout si design usor si totodata responsive pe orice platforma  folosindu-se de clase si functii predeclarate in fisiere externe cum ar fi booststrap.js bostrap.css.  Bootstrapul poate la randul lui sa fie formatat de fiserele css care prin cascading va da overwrite la anumite atribute si functii facand aplicatia web pe placul tau dar fara sa mai fie nevoie sa scri tot codul de la 0 cand te apuci de o noua aplicatie</p>
+
+<hr>
+
+<h2 id="servicii">Servicii</h2>
+
+
+
+<h3 id="1-github">1. Github</h3>
+
+<p>GitHub este un serviciu de gazduire web pentru proiecte de dezvoltare a software-ului care utilizeaza sistemul de control al versiunilor Git. GitHub ofera planuri tarifare pentru depozite private, si conturi gratuite pentru proiecte open source.</p>
+
+<p><a href="https://github.com/hoenirvili/EDeC">Github repository</a></p>
+
+
+
+<h3 id="2google-spreadsheet">2.Google spreadsheet</h3>
+
+<p>Pentru o organizare a taskuri-lor am creat un spreadsheet.</p>
+
+<p><a href="https://docs.google.com/spreadsheets/d/1aSD-UlUJ1J87Xt5B11S6B8PxRxyz-A5sQaJck6xez-s/edit#gid=1616345261">SpreadSheet</a></p>
+
+<hr>
+
+
+
+<h2 id="cuprins">Cuprins</h2>
+
+<p><div class="toc">
+<ul>
+<li><a href="#eedec-ethic-decisions-for-consummers">EEDeC (Ethic Decisions for Consummers)</a><ul>
+<li><a href="#1descriere-proiect"> 1.Descriere Proiect</a></li>
+<li><a href="#2-etapele-dezvoltarii-proiectului">2. Etapele dezvoltarii proiectului</a></li>
+<li><a href="#2-progresul-inregistrat">2. Progresul inregistrat</a></li>
+<li><a href="#1-tehnologii-utilizate">1. Tehnologii utilizate</a><ul>
+<li><a href="#1-jquery">1. jQuery</a></li>
+<li><a href="#2-bootstrap">2. Bootstrap</a></li>
+</ul>
+</li>
+<li><a href="#servicii">Servicii</a><ul>
+<li><a href="#1-github">1. Github</a></li>
+<li><a href="#2google-spreadsheet">2.Google spreadsheet</a></li>
+</ul>
+</li>
+<li><a href="#cuprins">Cuprins</a></li>
+<li><a href="#componenta-echipa">Componenta echipa</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
+
+
+
+<h2 id="componenta-echipa">Componenta echipa</h2>
+
+<blockquote>
+  <p><strong>Componenti echipei in ordine alfabetica:</strong></p>
+  
+  <ul>
+  <li>Calara Ionut Lucian</li>
+  <li>Dorneanu Anca</li>
+  <li>Salvatore Giulliti</li>
+  <li>Tutuianu Corneliu</li>
+  </ul>
+</blockquote></div></body>
+</html>

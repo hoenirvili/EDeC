@@ -3,7 +3,6 @@
 
 #GLOBAL VAR
 
-
 #Source path (BASE)
 	html=src/*.html
 	css=src/css/
@@ -193,6 +192,29 @@ function buildPHP
 		
 	done
 }
+function buildDEPLOY
+{
+read -p "username: " USER
+stty -echo
+read -p "password: " PASS
+stty echo
+
+echo 
+echo
+echo '## Deployment'
+echo 
+echo 
+ftp -inv  << ftp_script
+open $HOST $PORT
+user $USER $PASS
+put $PATH_DEPLOY
+ls
+close
+bye
+ftp_script
+echo
+echo
+}
 
 echo '## BUILDING SCRIPT ##'
 echo '	 Starting..'
@@ -228,22 +250,7 @@ do
 				rm -rf build/*
 				;;
 			3) 
-				read -p "username: " USER
-				read -p "Password: " PASS; echo
-				stty echo
-				echo 
-				echo
-				echo '## Deployment'
-				echo 
-				echo 
-				ftp -inv  << ftp_script
-				open $HOST $PORT
-				user $USER $PASS
-				put LICENSE
-				ls
-				close
-				bye
-				ftp_script
+				buildDEPLOY $HOST $PORT $PATH_DEPLOY
 				;;
 
 			4)
@@ -271,4 +278,3 @@ do
 
 		esac
 done
-ftp_script

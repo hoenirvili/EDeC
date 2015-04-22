@@ -3,21 +3,21 @@ module.exports = function(grunt)
 	grunt.initConfig({
 			concat:{
 				css:{
-					src:['css/index.css','css/login.css','css/register.css','css/media-queries.css'],
-					dest: 'css/main.css'
+					src:['src/css/index.css','src/css/login.css','src/css/register.css','src/css/media-queries.css'],
+					dest: 'src/css/main.css'
 				},
 				js:{
-					src:['js/index.js','js/login.js'],
-					dest:'js/main.js'
+					src:['src/js/index.js','src/js/login.js'],
+					dest:'src/js/main.js'
 				},
 			},
 		watch:{
 			css: {
-				files: ['css/*.css'],
+				files: ['src/css/*.css'],
 				tasks: ['concat']
 			},
 			js: {
-				files: ['js/*.js'],
+				files: ['src/js/*.js'],
 				tasks: ['concat']
 			},
 			options:{
@@ -29,7 +29,7 @@ module.exports = function(grunt)
 					options:{
 					    port: 9000,
 					    hostname: 'localhost',
-					    bases: ['html','.'],
+					    bases: ['.','src'],
 					    livereload : true
 				}
 			}
@@ -39,5 +39,4 @@ module.exports = function(grunt)
 		grunt.loadNpmTasks('grunt-contrib-concat');
 		grunt.loadNpmTasks('grunt-express');
 		grunt.registerTask('live',['express','concat','watch'] );
-        //grunt.registerTask('live',['watch']);
 }

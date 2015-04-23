@@ -5,12 +5,23 @@ GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 
 CREATE OR REPLACE PACKAGE edec_users_package AS
 
+--populeaza tabela de users
 PROCEDURE populateUsers;
+
+--populeaza tabela de user_hates
+PROCEDURE populateHate(max_car IN NUMBER);
+
+--populeaza tabela de user_loves
+PROCEDURE populateLove(max_car IN NUMBER);
 
 END edec_users_package;
 /
   
 CREATE OR REPLACE PACKAGE BODY edec_users_package AS
+--insereaza o caracteristica pt un user in tabela user loves
+PROCEDURE insertLove(user_id IN users.id%TYPE);
+--insereaza o caracteristica pt un user in tabela user hates
+PROCEDURE insertHate(user_id IN users.id%TYPE);
 --insereaza un user in tabela users
 PROCEDURE insertUser (
     v_username IN  users.username%TYPE,
@@ -64,6 +75,67 @@ BEGIN
     UTL_FILE.FCLOSE(input_file);
    
 END populateUsers;
+
+PROCEDURE populateHate(max_car IN NUMBER) AS
+  CURSOR user_cursor IS
+    SELECT id
+    FROM users;
+    
+  user_rec user_cursor%ROWTYPE;
+  v_no_car NUMBER(3);
+BEGIN
+  FOR user_rec in user_cursor LOOP
+  
+    v_no_car:=TRUNC(dbms_random.value(1,max_car));
+    
+    FOR i IN 0..v_no_car LOOP
+      insertHate(user_rec.id);
+    END LOOP;
+  END LOOP;
+END populateHate;
+
+PROCEDURE populateLove(max_car IN NUMBER) AS
+    CURSOR user_cursor IS
+    SELECT id
+    FROM users;
+    
+  user_rec user_cursor%ROWTYPE;
+  v_no_car NUMBER(3);
+BEGIN
+  FOR user_rec in user_cursor LOOP
+  
+    v_no_car:=TRUNC(dbms_random.value(1,max_car));
+    
+    FOR i IN 0..v_no_car LOOP
+      insertLove(user_rec.id);
+    END LOOP;
+  END LOOP;
+END populateLove;
+
+PROCEDURE insertLove(user_id IN users.id%TYPE)AS
+  carac_id caracteristica.id%TYPE;  
+BEGIN
+  SELECT id INTO carac_id
+    FROM ( SELECT id FROM caracteristica
+          ORDER BY dbms_random.value )
+    WHERE rownum = 1 ;
+    
+    INSERT INTO user_loves(user_id,caracteristica_id) VALUES (user_id,carac_id);
+    
+END insertLove;
+
+PROCEDURE insertHate(user_id IN users.id%TYPE)AS
+  carac_id caracteristica.id%TYPE;  
+BEGIN
+  SELECT id INTO carac_id
+    FROM ( SELECT id FROM caracteristica
+          ORDER BY dbms_random.value )
+    WHERE rownum = 1 ;
+    
+    INSERT INTO user_hates(user_id,caracteristica_id) VALUES (user_id,carac_id);
+    
+END insertHate;
+
 
 END edec_users_package;
 /

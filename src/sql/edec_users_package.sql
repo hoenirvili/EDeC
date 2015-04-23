@@ -68,6 +68,4 @@ END populateUsers;
 END edec_users_package;
 /
   
-BEGIN
-   edec_users_package.populateUsers;
-END;
+

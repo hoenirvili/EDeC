@@ -1,15 +1,15 @@
 
 
-CREATE OR REPLACE PACKAGE edec_produse IS
+CREATE OR REPLACE PACKAGE edec_produse_package IS
 
-PROCEDURE populate ;
-PROCEDURE generate_caracteristics(max_car IN NUMBER);
-END edec_produse;
+PROCEDURE populateProduse ;
+PROCEDURE generateCaracteristics(max_car IN NUMBER);
+END edec_produse_package;
 /
 
-CREATE OR REPLACE PACKAGE BODY edec_produse IS
+CREATE OR REPLACE PACKAGE BODY edec_produse_package IS
 
-PROCEDURE insert_caracteristic (prod_id IN produs.id%TYPE,type_c caracteristica.categorie_caracteristici_id%TYPE) IS 
+PROCEDURE insertCaracteristic (prod_id IN produs.id%TYPE,type_c caracteristica.categorie_caracteristici_id%TYPE) IS 
   carac_id caracteristica.id%TYPE;    
 BEGIN
 
@@ -21,9 +21,9 @@ BEGIN
     
   INSERT INTO CARACTERISTICI_PRODUSE(produs_id,caracteristica_id) VALUES (prod_id,carac_id);
     
-END insert_caracteristic;
+END insertCaracteristic;
 
-PROCEDURE generate_caracteristics(max_car IN NUMBER) IS
+PROCEDURE generateCaracteristics(max_car IN NUMBER) IS
   CURSOR prod_cursor IS
     SELECT id
     FROM produs;
@@ -38,44 +38,55 @@ BEGIN
     
     FOR i IN 0..v_no_car LOOP
       v_r_type:=TRUNC(dbms_random.value(1,4));
-      insert_caracteristic(product_rec.id,v_r_type);
+      insertCaracteristic(product_rec.id,v_r_type);
     END LOOP;
     
   END LOOP;
-END generate_caracteristics;
+END generateCaracteristics;
 
-PROCEDURE insert_product(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE )IS
+PROCEDURE insertProduct(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE )IS
 BEGIN
   INSERT INTO produs(name,image) VALUES (prod_name,image_id);
-END insert_product;
+END insertProduct;
 
-PROCEDURE populate IS
+PROCEDURE populateProduse IS
+
+    input_file UTL_FILE.FILE_TYPE;
+     V_LINE VARCHAR2(1000);
+     v_name produs.name%TYPE;
+     v_image produs.image%TYPE;
+    
+
 BEGIN
-  insert_product('product1',28);
-  insert_product('product2',29);
-  insert_product('product3',30);
-  insert_product('product4',31);
-  insert_product('product5',32);
-  insert_product('product6',33);
-  insert_product('product7',34);
-  insert_product('product8',35);
-  insert_product('product9',36);
-  insert_product('product10',37);
-  insert_product('product11',38);
-  insert_product('product12',39);
-  insert_product('product13',40);
-  insert_product('product14',41);
-  insert_product('product15',42);
-END populate;
+   input_file := UTL_FILE.FOPEN ('USER_DIR','produs_csv.txt', 'R');
+   IF UTL_FILE.IS_OPEN(input_file) THEN
+      LOOP
+        BEGIN
+          UTL_FILE.GET_LINE(input_file, V_LINE, 1000);
+          IF V_LINE IS NULL THEN
+            EXIT;
+          END IF;
+          v_name := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
+          v_image := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
+          
+           insertProduct(v_name,TO_NUMBER(v_image));
+          
+          COMMIT;
+        EXCEPTION
+       WHEN NO_DATA_FOUND THEN
+          EXIT;
+       END;
+     END LOOP;
+    END IF;
+    UTL_FILE.FCLOSE(input_file);
+  
+END populateProduse;
 
 
-END edec_produse;
+END edec_produse_package;
 /
 
-BEGIN
-  edec_produse.populate;
-  edec_produse.generate_caracteristics(4);
-END;
+
 
 
 

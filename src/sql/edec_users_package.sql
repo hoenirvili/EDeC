@@ -1,40 +1,73 @@
-CREATE OR REPLACE PACKAGE edec_users AS
-PROCEDURE insertUser (
-    v_username IN  users.username%TYPE,
-    v_passwd IN  users.pass%TYPE,
-    v_email IN  users.email%TYPE,
-    v_av IN users.avatar%tYPE,
-    v_usertype IN  users.tip%TYPE,
-    v_birthdate IN  users.data_nasterii%TYPE,
-    v_sex IN  users.sex%TYPE);
+SET SERVEROUTPUT ON;
+--seteaza directorul ?
+CREATE OR REPLACE DIRECTORY USER_DIR AS 'D:\UAIC-COMPUTERSCIENCE\UAIC\ANII-SEM2\TW\EDEC\SRC\SQL\CSV'; 
+GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
+
+CREATE OR REPLACE PACKAGE edec_users_package AS
+
 PROCEDURE populateUsers;
-END edec_users;
+
+END edec_users_package;
 /
   
-CREATE OR REPLACE PACKAGE BODY edec_users AS
+CREATE OR REPLACE PACKAGE BODY edec_users_package AS
+--insereaza un user in tabela users
 PROCEDURE insertUser (
     v_username IN  users.username%TYPE,
-    v_passwd IN  users.pass%TYPE,
+    v_pass IN  users.pass%TYPE,
     v_email IN  users.email%TYPE,
-    v_av IN users.avatar%tYPE,
-    v_usertype IN  users.tip%TYPE,
-    v_birthdate IN  users.data_nasterii%TYPE,
+    v_avatar IN users.avatar%tYPE,
+    v_tip IN  users.tip%TYPE,
+    v_data_nasterii IN  users.data_nasterii%TYPE,
     v_sex IN  users.sex%TYPE) IS
 BEGIN
-    INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_passwd, v_email,v_av, v_usertype, v_birthdate, v_sex);
+    INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
 END insertUser; 
   
 PROCEDURE populateUsers IS
+     input_file UTL_FILE.FILE_TYPE;
+     V_LINE VARCHAR2(1000);
+     v_username users.username%TYPE;
+     v_pass users.pass%TYPE;
+     v_email users.email%TYPE;
+     v_avatar users.avatar%TYPE;
+     v_tip users.tip%TYPE;
+     v_data_nasterii users.data_nasterii%TYPE;
+     v_sex users.sex%TYPE;
+
 BEGIN
-    insertUser('anca_dorneanu','ancablabla','anca.dorneanu@info.uaic.ro',1,2,TO_DATE('21-07-1994'),'F');
-    insertUser('ionutcalara','parola123','ionut.calara@info.uaic.ro',2,2,TO_DATE('30-11-1993'),'M');
-    insertUser('tutuianu.c','incorrectpassword','corneliu.tutuianu@info.uaic.ro',3,2,TO_DATE('01-05-1994'),'M');
-    insertUser('toto_salvatore','archlinuxftw234','giulitti.salvatore@info.uaic.ro',4,2,TO_DATE('02-01-1994'),'M');
-    insertUser('random_user5','mypasswordis1234','random_email@gmail.com',5,1,TO_DATE('17-12-1995'),'F');
+   input_file := UTL_FILE.FOPEN ('USER_DIR','users_csv.txt', 'R');
+   IF UTL_FILE.IS_OPEN(input_file) THEN
+      LOOP
+        BEGIN
+          UTL_FILE.GET_LINE(input_file, V_LINE, 1000);
+          IF V_LINE IS NULL THEN
+            EXIT;
+          END IF;
+          v_username := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
+          v_pass := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
+          v_email := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 3);
+          v_avatar := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 4);
+          v_tip := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 5);
+          v_data_nasterii := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 6);
+          v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
+          
+           insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii),v_sex);
+          
+          COMMIT;
+        EXCEPTION
+       WHEN NO_DATA_FOUND THEN
+          EXIT;
+       END;
+     END LOOP;
+    END IF;
+    UTL_FILE.FCLOSE(input_file);
+   
 END populateUsers;
-END edec_users;
+
+END edec_users_package;
 /
   
 BEGIN
-   edec_users.populateUsers;
+   edec_users_package.populateUsers;
 END;

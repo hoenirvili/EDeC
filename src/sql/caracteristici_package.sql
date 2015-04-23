@@ -1,5 +1,7 @@
 SET SERVEROUTPUT ON;
-CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\USERS\CORNELIUS\DESKTOP\SGBD\CSV'; 
+
+--seteaza directorul ?
+CREATE OR REPLACE DIRECTORY USER_DIR AS 'D:\UAIC-COMPUTERSCIENCE\UAIC\ANII-SEM2\TW\EDEC\SRC\SQL\CSV'; 
 GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 
 --pachet tabele caracteristici
@@ -11,20 +13,32 @@ END edec_caracteristici;
 /
 
 CREATE OR REPLACE PACKAGE BODY edec_caracteristici IS
+
 --forward declaration
+--populeaza tabela categorie_caracteristici 
 PROCEDURE populate_categories;
+--insereaza un rand in tabela categorie_caracteristici
 PROCEDURE insert_category(category_name IN categorie_caracteristici.nume%TYPE);
 
+--populeaza tabela caracteristica cu caracteristici legate de organizatii
 PROCEDURE populate_organisations;
+--insereaza un rand cu date despre o organizatie in tabela caracteristica
 PROCEDURE insert_organisation(organisation_name IN caracteristica.name%TYPE);
 
+--populeaza tabela caracteristica cu caracteristici legate de substante alimentare
 PROCEDURE populate_subst_alim;
+--insereaza un rand cu date despre o substanta alimentara in tabela caracteristica
 PROCEDURE insert_subst_alim(alim_name IN caracteristica.name%TYPE);
 
+
+--populeaza tabela caracteristica cu caracteristici legate de substante nealimentare
 PROCEDURE populate_subst_nealim;
+--insereaza un rand cu date despre o sustanta nealimentara in tabela caracteristica
 PROCEDURE insert_subst_nealim(nealim_name IN caracteristica.name%TYPE);
 
+--populeaza tabela caracteristica cu caracteristici legate de orase
 PROCEDURE populate_cities;
+--insereaza un rand cu date despre un oras in tabela caracteristica
 PROCEDURE insert_city(city_name IN caracteristica.name%TYPE);
 
 PROCEDURE populate IS

@@ -1,5 +1,0 @@
-anca_dorneanu,ancablabla,anca.dorneanu@info.uaic.ro,13,2,21-07-1994,F
-ionutcalara,parola123,ionut.calara@info.uaic.ro,12,2,30-11-1993,M
-tutuianu.c,incorrectpassword,corneliu.tutuianu@info.uaic.ro,11,2,01-05-1994,M
-toto_salvatore,archlinuxftw234,giulitti.salvatore@info.uaic.ro,14,2,02-01-1994,M
-random_user5,mypasswordis1234,random_email@gmail.com,15,1,17-12-1995,F

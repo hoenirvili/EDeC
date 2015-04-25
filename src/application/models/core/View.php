@@ -29,7 +29,6 @@ class View {
             require VIEWS_PATH . '_templates/headers/' . $header . '.php';
             require VIEWS_PATH . $filename . '.php';
         } else {
-            require VIEWS_PATH . '_templates/headers/header.php';
             require VIEWS_PATH . $filename . '.php';
 
         }

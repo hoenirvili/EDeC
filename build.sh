@@ -10,7 +10,7 @@
 	img=src/img/
 	php=src/php/
 
-#Dest path
+#Dest path 
 	dest=build/
 
 #MAIN STYLESHEETCSS PATH

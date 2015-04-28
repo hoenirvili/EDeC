@@ -8,16 +8,16 @@
 	css=src/html/css/
 	js=src/html/js/
 	img=src/html/img/
-	php=src/php/
+	php=src
 
 #Dest path 
-	dest=build/
+	dest=build
 
 #MAIN STYLESHEETCSS PATH
-	mainCSS=src/css/main.css
-	mediaCSS=src/css/media-queries.css
+	mainCSS=src/html/css/main.css
+	mediaCSS=src/html/css/media-queries.css
 
-	mainJS=src/js/main.js
+	mainJS=src/html/js/main.js
 
 #FTP
 	HOST="ftp.derikon.com"
@@ -28,13 +28,19 @@ function buildHTML
 {	
 	
 	echo
-	echo
+	echo 
 	echo '## Building HTML ##' 
 	echo '## SOURCE:' $html
 	echo '## DEST:' $dest
 	echo
 	echo 
 
+	#if html file dosen't exist create it
+	if ! [ -d build/html ] 
+		then
+			echo '==> build/html'
+			mkdir build/html
+	fi
 
 	for file in $html
 	do 
@@ -60,7 +66,7 @@ function buildCSS
 	#Create css file
 	if ! [ -d build/html/css ] 
 		then
-			echo '==> build/css'
+			echo '==> build/html/css'
 			mkdir build/html/css
 	fi
 
@@ -83,7 +89,7 @@ function buildCSS
 		if [ -d $dir ]  
 			then
 				echo '==> '$dir
-				cp -r $dir $dest/html/css
+				cp -r $dir $dest/html/css/
 				sleep 1s
 		fi	
 	done
@@ -102,9 +108,9 @@ function buildJS
 	echo
 
 	#Create js file
-	if ! [ -d build/html/js ]
+	if ! [ -d build/html/js/ ]
 		then
-			echo '==> build/js'
+			echo '==> build/html/js'
 			mkdir build/html/js
 	fi
 
@@ -115,7 +121,7 @@ function buildJS
 		if [ $file == $mainJS ] 
 			then
 				echo '==>' $file
-				cp $file $dest/html/js/
+				cp $file $dest/html/js
 				sleep 1s
 		fi
 	done
@@ -148,7 +154,7 @@ function buildIMG
 	#Create img file
 	if ! [ -d build/html/img ]
 		then
-			echo '==> build/img'
+			echo '==> build/html/img'
 			mkdir build/html/img
 	fi
 
@@ -170,27 +176,37 @@ function buildPHP
 	echo
 	echo  
 	echo '## BUILDING PHP ##'
-	echo '## SOURCE: ' $php*
+	echo '## SOURCE: ' $php
 	echo '## DEST: ' $dest
 	echo
 	echo
 
 	#Create img file
-	if ! [ -d build/php ]
+	if ! [ -d build/application ]
 		then
-			echo '==> build/php'
-			mkdir build/php
+			echo '==> build/application'
+			mkdir build/application
 	fi
 
-	for file in $php*
+	for file in $php/application
 	do
 		#Copy every php root file into build directory
 
 				echo '==>' $file
-				cp -r $file $dest/php
+				cp -r $file $dest/
 				sleep 1s
 		
 	done
+
+	for file in $php/*.php
+	do
+			#Copy every php file that is in src root directory
+			echo '==>'
+			cp -r $file $dest/
+			sleep 1s
+	done
+
+
 }
 function buildDEPLOY
 {

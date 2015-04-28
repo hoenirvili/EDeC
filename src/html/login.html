@@ -30,7 +30,6 @@
 <body class="body-background">
     <div class="container"> 
         <div class="row">
-            <div class="col-md-8"></div>
             <div class="col-md-4">
                 <div class="panel panel-default login-panel">
                     <div class="panel-body">
@@ -70,11 +69,72 @@
                             </label>
                           </div>
                           <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in">
-                          <a href="register.html" class=" btn btn-primary btn-lg singup-button">Sign up</a>
+
                         </form><!--form -->                   
                     </div> <!--pannel body-->    
                 </div> <!--pannel pannel-deafult login-pannel -->
             </div> <!-- col-md-4 -->
+            <div class="col-md-8">
+            <div class="panel panel-default register-panel">
+            <div class="panel-body">
+            	<div class="page-header">
+            		<h2>Register Page</h2>
+            	</div>
+             	<!-- form -->
+            	<form id="registerForm" class="form-group" role="form" action"php/register.php" method="post">
+            		<div class="form-group">
+            			<label for="username" class="control-label">Username</label>
+            			<input type="text" class="form-control" id="username" placeholder="Username">
+            			<p class="help-block">Username can contain any letters or numbers, without spaces</p>
+            		</div>
+					
+               		<div class="form-group">
+            			<label for="email" class="control-label">Email</label>
+            			<input type="email" class="form-control" id="email" placeholder="example@domain.com">
+            			<p class="help-block">Please provide your E-mail</p>
+            		</div>
+
+            		<div class="form-group">
+            			<label for="password" class="control-label">Password</label>
+            			<input type="password" class="form-control" id="password" placeholder="Password">
+            			<p class="help-block">Password should be at least 6 characters</p>
+            		</div>
+
+            		<div class="form-group">
+            			<label for="repeatPassword" class="control-label">Repeat password</label>
+            			<input type="password" class="form-control" id="repeat-password" placeholder="Repreat password">
+            			 <p class="help-block">Please confirm password</p>
+            		</div>
+            		
+                <div class="form-group">
+                  <label class="control-label">Gender</label>
+                  
+                  <div class="radio inline control-label">
+                    <label>
+                      <input type="radio" name"gender" value="male"> Male
+                    </label>
+
+                    <label>
+                      <input type="radio" name"gender" value="male"> Male
+                    </label>
+
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label">Date of birth</label>
+                        <input type="text" class="form-control" name="birthday" placeholder="dd/mm/yyyy" />
+                    </div>
+                </div>
+
+            		  <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register">
+            	  
+                
+              </form><!-- form -->
+            </div> <!-- panl body -->
+			</div> <!-- pannel pannel default -->
+            </div> <!-- col-md 8 -->
        </div> <!-- row -->
     </div>
 	<!-- Loading animation svg -->

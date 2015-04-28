@@ -1,6 +1,12 @@
-Options FollowSymLinks
+
+<IfModule mod_rewrite.c>
+# turn rewriting on
 RewriteEngine On
+
+RewriteBase /EDeC/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)(?:/([^/]+))?/?$ index.php?url=$1#$2 [L,QSA,NC]
+RewriteRule ^(.+)$ index.php?url=$1 [L,QSA]
+
+</IfModule>

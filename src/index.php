@@ -13,7 +13,6 @@ require 'application/config/config.php';
 // The auto-loader to load the php-login related internal stuff automatically
 require 'application/config/autoload.php';
 
-
 try {
     $db = new Database();
 }

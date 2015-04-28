@@ -14,8 +14,9 @@ define('CONTROLLER_PATH', 'application/controllers/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
 
-define('DB_TYPE', 'mysql');
+define('DB_TYPE', 'oci');
 define('DB_HOST', '');
-define('DB_NAME', ' ');
-define('DB_USER', ' ');
-define('DB_PASS', ' ');
+define('DB_NAME', 'XE'); // Try ORCL if XE not working
+
+define('DB_USER', ''); // db username
+define('DB_PASS', ''); // db pass

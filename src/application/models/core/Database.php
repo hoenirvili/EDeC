@@ -29,6 +29,12 @@ class Database extends PDO
          * "Adding the charset to the DSN is very important for security reasons,
          * most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
          */
-        parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS, $options);
+        if(DB_TYPE!='oci') {
+            parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS, $options);
+        }
+        else
+        {
+            parent::__construct('oci:dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, $options);
+        }
     }
 }

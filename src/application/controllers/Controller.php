@@ -21,7 +21,6 @@ class Controller {
 
         // create database connection
         $this->db = $GLOBALS['db'];
-        require_once(__DIR__.'/../../init.php');
 
 
 

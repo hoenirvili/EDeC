@@ -408,6 +408,7 @@ h1,h2,h3,h4,h5,h6{
     border-style: none;
     border-radius: 0;
 }
+
 .singin-button {
     border-radius: 0;
     border-style:none;
@@ -444,6 +445,35 @@ h1,h2,h3,h4,h5,h6{
     margin-top: 1px;
 }
 
+.register-panel{
+	opacity: 0.95;
+	border-style: none;
+	border-radius: 0;
+	width: 65%;
+	display: table-cell;
+	vertical-align: middle;
+}
+.register-button{
+    border-radius: 0;
+    border-style:none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    letter-spacing: 1px;
+    width: 98%;
+    text-transform: none;
+    display: block;
+    margin: 0 auto;
+}
+.register-button:hover,
+.register-button:focus,
+.register-button:active{
+	color: #18BC9C;
+	margin-top: 1px;
+}
+
+.vertical-center {
+  text-align: center;  
+}
 
 .form-control{
     border-style: none;

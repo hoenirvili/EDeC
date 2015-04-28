@@ -98,4 +98,3 @@ if(formListener != null)
 	//formListener.attachEvent("submit",primaryValidate); manly for internet explorel abouve 9
 }
 
-document.write("haloha");

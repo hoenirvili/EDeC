@@ -14,6 +14,12 @@ require 'application/config/config.php';
 require 'application/config/autoload.php';
 
 
+try {
+    $db = new Database();
+}
+catch (PDOException $e) {
+    die('Database connection could not be established.');
+}
 
 
 $app = new Application();

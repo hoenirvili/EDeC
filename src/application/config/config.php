@@ -13,3 +13,9 @@ define('APPLICATION_PATH', 'application/');
 define('CONTROLLER_PATH', 'application/controllers/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
+
+define('DB_TYPE', 'mysql');
+define('DB_HOST', '');
+define('DB_NAME', ' ');
+define('DB_USER', ' ');
+define('DB_PASS', ' ');

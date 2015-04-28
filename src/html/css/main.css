@@ -394,6 +394,174 @@ h1,h2,h3,h4,h5,h6{
 	letter-spacing: 1px;
 	font-color: #666;
 }
+/*loader icon */
+.no-js #loader {
+	display: none;
+}
+.js #loader {
+	display: block;
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+.util-pie {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 30%;
+	height: 30%;
+	z-index: 9999;
+}
+.navbar-text > a{
+	color: inherit;
+	text-decoration: none;
+}
+.navbar {
+    border-width: 0;
+}
+body{
+	padding-top: 3.5em;
+
+}
+p{
+	font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Oswald', sans-serif;
+}
+
+.navbar-default{
+	background: #2C3E50;
+	border-color: #FFF;
+	/*color: #FFFFFF;*/
+}
+/*logo style*/
+.navbar-default .navbar-brand{
+	color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus{
+	color: #18BC9C;
+	background: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #FFF;
+}
+
+/*style focus button ,*/
+.navbar-default .navbar-nav > .active >a,
+.navbar-default .navbar-nav > .active >a:hover,
+.navbar-default .navbar-nav > .active >a:focus {
+	color : #fff;
+	background: #1A242F;
+}
+
+.navbar-default .navbar-nav > li a:hover,
+.navbar-default .navbar-nav > li a:focus{
+	color: #18BC9C;
+	background: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus{
+	background: #1A242F;
+	color: #fff;
+}
+
+
+.btn-primary{
+    background: #2C3E50;
+	border-color: #2C3E50;
+	color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle .btn-primary{
+	color: #fff;
+	background: #1E2A36;
+	border-color: #161F29;
+}
+
+.navbar-default .navbar-nav
+.open .dropdown-menu > li > a{
+	color: #fff;
+}
+
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form{
+  border-style: none
+} /* remove the tiny line from the dropdown menu*/
+
+.btn-success{
+	background: #18BC9C;
+	border-color: #18BC9C;
+	color: #fff;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle .btn-success{
+	color: #FFF;
+	background: #13987E;
+	border-color: #13987E;
+}
+
+
+.btn-default{
+	background: #95A5A6;
+	border-color: #95A5A6;
+	color: #fff;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle .btn-default{
+	color: #FFF;
+	background: #7F9293;
+	border-color: #74898A;
+}
+
+
+.dropdown-menu{
+		background: #2C3E50;
+		border-width: 0;
+}
+.dropdown-header{
+	color : #ECF0F1;
+	font-style: italic;
+
+}
+.dropdown-menu >li > a{
+		color: #fff;
+}
+
+.fa-anchor{
+	position: relative;
+	bottom: 0.25em;
+}
+.logo-effect{
+	font-family: 'Pacifico', cursive;
+	position: relative;
+	bottom: 0.50em;
+	left: 0.70em;
+	font-size: 1.2em;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus{
+	color : #18BC9C;
+}
 
 .body-background {
     background: url("../img/backgrounds/login-flat.jpg") no-repeat center center fixed;
@@ -450,8 +618,7 @@ h1,h2,h3,h4,h5,h6{
 	border-style: none;
 	border-radius: 0;
 	width: 65%;
-	display: table-cell;
-	vertical-align: middle;
+	margin: 0 auto;
 }
 .register-button{
     border-radius: 0;
@@ -459,7 +626,8 @@ h1,h2,h3,h4,h5,h6{
     font-family: 'Oswald', sans-serif;
     font-size: 1em;
     letter-spacing: 1px;
-    width: 98%;
+    padding: 8px 15px;
+    margin-top: 1px;
     text-transform: none;
     display: block;
     margin: 0 auto;
@@ -469,10 +637,6 @@ h1,h2,h3,h4,h5,h6{
 .register-button:active{
 	color: #18BC9C;
 	margin-top: 1px;
-}
-
-.vertical-center {
-  text-align: center;  
 }
 
 .form-control{
@@ -496,38 +660,6 @@ h1,h2,h3,h4,h5,h6{
     display: none;
 }
 
-.register-background{
-	background-image: url("../img/backgrounds/register-flat.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-ms-background-size: cover;
-	-o-background-size: cover;
-}
-.register-panel{
-	opacity: 0.95;
-	border-style: none;
-	border-radius: 0;
-	width: 65%;
-}
-.register-button{
-    border-radius: 0;
-    border-style:none;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1em;
-    letter-spacing: 1px;
-    width: 98%;
-    text-transform: none;
-    display: block;
-    margin: 0 auto;
-}
-.register-button:hover,
-.register-button:focus,
-.register-button:active{
-	color: #18BC9C;
-	margin-top: 1px;
-}
 /*media queries*/
 @media only screen and (max-width:320px) {
         .start-button{

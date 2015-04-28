@@ -3,21 +3,21 @@ module.exports = function(grunt)
 	grunt.initConfig({
 			concat:{
 				css:{
-					src:['src/css/index.css','src/css/login.css','src/css/register.css','src/css/media-queries.css'],
-					dest: 'src/css/main.css'
+					src:['src/html/css/index.css','src/html/css/login.css','src/html/css/register.css','src/html/css/media-queries.css'],
+					dest: 'src/html/css/main.css'
 				},
 				js:{
-					src:['src/js/index.js','src/js/login.js'],
-					dest:'src/js/main.js'
+					src:['src/html/js/index.js','src/html/js/login.js'],
+					dest:'src/html/js/main.js'
 				},
 			},
 		watch:{
 			css: {
-				files: ['src/css/*.css'],
+				files: ['src/html/css/*.css'],
 				tasks: ['concat']
 			},
 			js: {
-				files: ['src/js/*.js'],
+				files: ['src/html/js/*.js'],
 				tasks: ['concat']
 			},
 			options:{
@@ -29,7 +29,7 @@ module.exports = function(grunt)
 					options:{
 					    port: 9000,
 					    hostname: 'localhost',
-					    bases: ['.','src'],
+					    bases: ['.','src','src/html'],
 					    livereload : true
 				}
 			}

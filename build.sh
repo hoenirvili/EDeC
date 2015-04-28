@@ -4,10 +4,10 @@
 #GLOBAL VAR
 
 #Source path (BASE)
-	html=src/*.html
-	css=src/css/
-	js=src/js/
-	img=src/img/
+	html=src/html/*.html
+	css=src/html/css/
+	js=src/html/js/
+	img=src/html/img/
 	php=src/php/
 
 #Dest path 
@@ -40,7 +40,7 @@ function buildHTML
 	do 
 		#Copy every html file into build directory
 		echo '==> '$file
-		cp $file $dest
+		cp $file $dest/html/
 		sleep 1s
 	done
 }
@@ -58,10 +58,10 @@ function buildCSS
 	echo 
 
 	#Create css file
-	if ! [ -d build/css ] 
+	if ! [ -d build/html/css ] 
 		then
 			echo '==> build/css'
-			mkdir build/css
+			mkdir build/html/css
 	fi
 
 	for file in $css*.css
@@ -71,7 +71,7 @@ function buildCSS
 		if [ $file == $mainCSS -o $file == $mediaCSS ] 
 			then
 				echo '==> '$file
-				cp $file $dest/css/
+				cp $file $dest/html/css/
 				sleep 1s
 		fi
 	done
@@ -83,7 +83,7 @@ function buildCSS
 		if [ -d $dir ]  
 			then
 				echo '==> '$dir
-				cp -r $dir $dest/css
+				cp -r $dir $dest/html/css
 				sleep 1s
 		fi	
 	done
@@ -102,10 +102,10 @@ function buildJS
 	echo
 
 	#Create js file
-	if ! [ -d build/js ]
+	if ! [ -d build/html/js ]
 		then
 			echo '==> build/js'
-			mkdir build/js
+			mkdir build/html/js
 	fi
 
 	for file in $js*.js
@@ -115,7 +115,7 @@ function buildJS
 		if [ $file == $mainJS ] 
 			then
 				echo '==>' $file
-				cp $file $dest/js/
+				cp $file $dest/html/js/
 				sleep 1s
 		fi
 	done
@@ -128,7 +128,7 @@ function buildJS
 		if [ -d $dir ]
 			then
 				echo '==>' $dir
-				cp -r $dir $dest/js
+				cp -r $dir $dest/html/js
 				sleep 1s
 		fi
 	done
@@ -146,10 +146,10 @@ function buildIMG
 	echo
 
 	#Create img file
-	if ! [ -d build/img ]
+	if ! [ -d build/html/img ]
 		then
 			echo '==> build/img'
-			mkdir build/img
+			mkdir build/html/img
 	fi
 
 	for file in $img*
@@ -157,7 +157,7 @@ function buildIMG
 		#Copy every image/image-directory root file into build directory
 
 				echo '==>' $file
-				cp -r $file $dest/img
+				cp -r $file $dest/html/img
 				sleep 1s
 	done
 

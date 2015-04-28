@@ -65,3 +65,4 @@ if(formListener != null)
 	formListener.addEventListener("submit",primaryValidate);
 	//formListener.attachEvent("submit",primaryValidate); manly for internet explorel abouve 9
 }
+

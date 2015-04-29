@@ -8,7 +8,9 @@
                         <h2> Login Page</h2>
                     </div>
                     <!-- form -->
-                    <form id="loginForm" class="form-group" role="form" action="php/login.php" method="post"> <!-- role form helps improve accessibility for people using screen readers -->
+                    <form id="loginForm" class="form-group" role="form" action="../controllers/" method="post">
+                        <!-- role form
+                    helps improve accessibility for people using screen readers -->
                         <p class="errors" id="error1">Username field empty please fill up with a valid username</p>
                         <p class="errors" id="error3">Empty fields , please fill up the form</p>
                         <!-- Username -->
@@ -45,6 +47,7 @@
                 </div> <!--pannel body-->
             </div> <!--pannel pannel-deafult login-pannel -->
         </div> <!-- col-md-4 -->
+
         <div class="col-md-8">
             <div class="panel panel-default register-panel">
                 <div class="panel-body">
@@ -81,11 +84,11 @@
                         <label class="control-label">Gender</label>
 
                         <div class="radio inline control-label">
-                            <label>
+                            <label for="male">
                                 <input type="radio" name="gender" value="male"> Male
                             </label>
 
-                            <label>
+                            <label for="female">
                                 <input type="radio" name="gender" value="female">Female
                             </label>
 

@@ -173,7 +173,7 @@ h1,h2,h3,h4,h5,h6{
     background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
-    -ms-background-size: 100$ 100$;
+    -ms-background-size: 100% 100%;
     -o-background-size: 100% 100%;
 	border-style: none;
 	-webkit-border-radius: 0 !important;
@@ -210,7 +210,8 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .section-one{
-	background-color :#fff no-repeat;
+	background-color :#fff
+    background-repeat: no-repeat;
     color: #999;
     font-size: 1em;
     
@@ -245,8 +246,8 @@ h1,h2,h3,h4,h5,h6{
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
-	-ms- background-size: cover;
-	-o- background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
 }
 .section-three{
 	background-color: #bdc3c7;
@@ -263,8 +264,8 @@ h1,h2,h3,h4,h5,h6{
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
-	-ms- background-size: cover;
-	-o- background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
 }
 .footer-style {
 	-webkit-border-radius: 0 !important;
@@ -279,7 +280,7 @@ h1,h2,h3,h4,h5,h6{
     color: #fff;
 }
 .pull-left > a:hover,
-.pull- left> a:focus {
+.pull-left> a:focus {
     color: #18BC9C;
 }
 

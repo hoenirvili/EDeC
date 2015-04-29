@@ -24,11 +24,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Client</li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="#">Search</a></li>
+                            <li><a href="access">Access</a></li>
+                            <li><a href="search">Search</a></li>
                             <li class="dropdown-header">Administrator</li>
-                            <li><a href="#">Control Pannel</a></li>
+                            <li><a href="admin">Control Pannel</a></li>
                         </ul>
                     </li>
                     <li>

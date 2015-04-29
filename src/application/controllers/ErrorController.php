@@ -7,5 +7,10 @@
  */
 
 class errorController extends Controller {
-
+    function __construct(){
+        parent::__construct();
+    }
+    function error(){
+        $this->view->render("error/index",false);
+    }
 }

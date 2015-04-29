@@ -1,1 +1,3 @@
-Are you lost ?
+<?php
+
+    echo 'Are you lost ?';

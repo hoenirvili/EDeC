@@ -7,7 +7,8 @@ $classes = array(
     'models/core/Database',
     'models/core/Session',
     'models/core/View',
-    'controllers/Controller'
+    'controllers/Controller',
+    'models/user/User'
 );
 //$classes=array_merge($classes_main, $classes_user);
 foreach ($classes as $class)

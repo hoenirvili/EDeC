@@ -8,5 +8,5 @@
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
 <!--main js-->
 <script src="<?php echo URL ?>html/js/main.js"></script>
-</body>
+</body  >
 </html>

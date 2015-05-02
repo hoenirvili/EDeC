@@ -109,19 +109,19 @@ class Application {
             $url = explode('/', $url);
             $this->url_controller = (isset($url[0]) ? $url[0] : null);
             $this->url_action     = (isset($url[1]) ? $url[1] : null);
-            if (isset($_POST['action'])) {
-                $this->url_action = $_POST['action'];
-            }
+//            if (isset($_POST['action'])) {
+//                $this->url_action = $_POST['action'];
+//            }
             $this->url_parameter_1 = (isset($url[2]) ? $url[2] : null);
             $this->url_parameter_2 = (isset($url[3]) ? $url[3] : null);
             $this->url_parameter_3 = (isset($url[4]) ? $url[4] : null);
             $this->url_controller = ucwords($this->url_controller) . 'Controller';
         } else {
-            if (isset($_POST['action'])) {
-                $this->url_controller = 'index';
-                $this->url_action     = $_POST['action'];
-                $this->url_controller = ucwords($this->url_controller) . 'Controller';
-            }
+//            if (isset($_POST['action'])) {
+//                $this->url_controller = 'index';
+//                $this->url_action     = $_POST['action'];
+//                $this->url_controller = ucwords($this->url_controller) . 'Controller';
+//            }
         }
     }
 }

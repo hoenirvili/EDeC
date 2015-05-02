@@ -1,6 +1,6 @@
 BEGIN
 
-  edec_caracteristici_package.populate;
+  edec_caracteristici_package.populateCaracteristici;
   edec_media_package.populateMedia;
   edec_users_package.populateUsers;
   edec_produse_package.populateProduse;
@@ -9,4 +9,4 @@ BEGIN
   edec_users_package.populateHate(5);
 
 END;
-END;
+/

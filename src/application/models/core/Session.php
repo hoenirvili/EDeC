@@ -53,7 +53,7 @@ class Session {
      * deletes the session (= logs the user out)
      */
     public static function destroy() {
-        session_destroy();
+            session_destroy();
     }
 
 }

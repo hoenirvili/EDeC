@@ -1,4 +1,5 @@
 <!--navigation menu-->
+<body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="container">

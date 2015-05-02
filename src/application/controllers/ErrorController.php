@@ -6,11 +6,11 @@
  * Time: 3:04 PM
  */
 
-class errorController extends Controller {
+class ErrorController extends Controller {
     function __construct(){
         parent::__construct();
     }
-    function error(){
+    function index(){
         $this->view->render("error/index",false);
     }
 }

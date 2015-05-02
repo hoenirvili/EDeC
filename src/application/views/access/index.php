@@ -1,6 +1,8 @@
 <body class="body-background">
 <div class="container">
     <div class="row">
+
+        <!--login pannel -->
         <div class="col-md-4">
             <div class="panel panel-default login-panel">
                 <div class="panel-body">
@@ -8,7 +10,8 @@
                         <h2> Login Page</h2>
                     </div>
                     <!-- form -->
-                    <form id="loginForm" class="form-group" role="form" action="../controllers/" method="post">
+                    <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/loginMethod'?>"
+                          method="POST">
                         <!-- role form
                     helps improve accessibility for people using screen readers -->
                         <p class="errors" id="error1">Username field empty please fill up with a valid username</p>
@@ -20,7 +23,9 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </span>
-                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                <input type="text" class="form-control" id="username" placeholder="Enter username"
+                                       name="loginUsername">
+
                             </div>
                         </div>
                         <!--Password -->
@@ -31,22 +36,27 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </span>
-                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                       name="loginPassword">
                             </div>
                         </div>
 
                         <!--checkbox -->
                         <div class="checkbox">
                             <label for="remeberInputPassword">
-                                <input type="checkbox"> Remeber me
+                                <input type="checkbox" name="remember"> Remeber me
                             </label>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in">
+                        <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in" name="singin">
 
                     </form><!--form -->
                 </div> <!--pannel body-->
             </div> <!--pannel pannel-deafult login-pannel -->
         </div> <!-- col-md-4 -->
+
+
+        <!--Register pannel -->
+
 
         <div class="col-md-8">
             <div class="panel panel-default register-panel">
@@ -55,28 +65,33 @@
                         <h2>Register Page</h2>
                     </div>
                     <!-- form -->
-                    <form id="registerForm" class="form-group" role="form" action"php/register.php" method="post">
+                    <form id="registerForm" class="form-group" role="form" action="<?php echo URL
+                        .'access/registerMethod'?>" method="post">
                     <div class="form-group">
                         <label for="username" class="control-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Username">
+                        <input type="text" class="form-control" id="username" placeholder="Username"
+                               name="registerUsername">
                         <p class="help-block">Username can contain any letters or numbers, without spaces</p>
                     </div>
 
                     <div class="form-group">
                         <label for="email" class="control-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="example@domain.com">
+                        <input type="email" class="form-control" id="email" placeholder="example@domain.com"
+                               name="email">
                         <p class="help-block">Please provide your E-mail</p>
                     </div>
 
                     <div class="form-group">
                         <label for="password" class="control-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                               name="registerPassword">
                         <p class="help-block">Password should be at least 6 characters</p>
                     </div>
 
                     <div class="form-group">
                         <label for="repeatPassword" class="control-label">Repeat password</label>
-                        <input type="password" class="form-control" id="repeat-password" placeholder="Repreat password">
+                        <input type="password" class="form-control" id="repeat-password" placeholder="Repreat
+                        password" name="repeatRegisterPassword">
                         <p class="help-block">Please confirm password</p>
                     </div>
 
@@ -98,19 +113,18 @@
 
                     <div class="form-group">
                         <label class="control-label">Date of birth</label>
-                        <input type="text" class="form-control" name="birthday" placeholder="dd/mm/yyyy" />
+                        <input type="text" class="form-control" name="birthday" placeholder="dd/mm/yyyy" >
                     </div>
                 </div>
 
-                <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register">
-
-
+                <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register"
+                       name="register">
+                <!--<input type="hidden" value="register" name="action">-->
                 </form><!-- form -->
             </div> <!-- panl body -->
         </div> <!-- pannel pannel default -->
     </div> <!-- col-md 8 -->
 </div> <!-- row -->
-</div>
 <!-- Loading animation svg -->
 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="util-pie">
     <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>

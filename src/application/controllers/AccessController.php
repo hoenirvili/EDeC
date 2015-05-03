@@ -15,40 +15,25 @@ class AccessController extends Controller
     }
     public function register()
     {
-        /*all register event + inputs */
-        $registerEventUser = @$_POST['register'];
-        $username = @$_POST['registerUsername'];
-        $email = @$_POST['email'];
-        $password = @$_POST['registerPassword'];
-        $repeatPassword = @$_POST['repeatPassword'];
-        $gender = @$_POST['gender'];
-        $registerBirthday = @$_POST['birthday'];
-
-        /*now we must do something with them like validating and shit*/
-        /*we create first an object to parse ,validate and send the shit to database*/
-        $user = new User($registerEventUser);
-        /*after every info is parsed they return a boolean indicating if was valid or parsed ok or not*/
-        $inputs = SplFixedArray::fromArray(array(
-            $user->mainRegisterSubmitEvent(),
-            $user->registerUsername($username),
-            $user->registerEmail($email),
-            $user->registerPassword($password,$repeatPassword),
-            $user->registerGender($gender),
-            $user->regiterBirthday($registerBirthday),
-        ));
-
-        foreach($inputs as  $key => $value)
+        if(isset($_POST['register']))
         {
-            if($value === false)
+            $user=new User();
+            if($user->handleRegister()!==false)
             {
-                echo 'Somthing went very wrong , look one more time you pice of shit';
-                break;
+                // userul este inregistrat cu success
+                header('Location: '.URL.'access/');
             }
             else
-                $k = 'ok';
+            {
+                header('Location: '.URL.'access/');
+            }
+        }
+        else {
+            //@TODO Add error
+            header('Location: '.URL.'access/');
         }
 
-        if($k === 'ok') echo 'complete register';
+
 
     }
 

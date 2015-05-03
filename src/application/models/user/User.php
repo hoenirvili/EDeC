@@ -1,57 +1,46 @@
 <?php
+
 class User
 {
-        private $event; private $status;
-        private $gender;
-        function __construct($logRegEvent){
-            $this->event =$logRegEvent;
-            $this->status = isset($this->event);
-        }
-        public function mainRegisterSubmitEvent()
-        {
-          if($this->status === false)
-              return false;
-          else return true;
-        }
-        public function registerUsername($username)
-        {
+    function __construct()
+    {
 
-           return true;
-        }
-        public function registerEmail($email)
-        {
-            return true;
-        }
-        public function registerPassword($password,$repeatPassword)
-        {
+    }
 
-            return true;
+    public function handleRegister()
+    {
+        $error = 0;
+        if (isset($_POST['registerUsername'])) {
+            if (!$this->validateUsername($_POST['registerUsername']))
+                add_error("Username wasn't correct");
+            $error = 1;
+        } else {
+            add_error("Username shouldn't be empty");
+            $error = 1;
         }
-        public function registerGender($gender)
-        {
-            $genderSet = isset($gender);
-            $validGen = strtoupper($gender);
-            /*if it's set the gender */
-            if ($genderSet)
-            {
-                /*if he/she selected male*/
-                if (strncmp($validGen, "MALE", 4))
-                {
-                    $this->gender = "male";
-                    return true;
-                }
-                /*if he/she selected female*/
-                else if (strncmp($validGen, "FEMALE", 6))
-                {
-                    $this->gender = "female";
-                    return true;
-                }
-            }
-            else return false; // the gender is not set and this sucks
-        }
-        public function regiterBirthday($registerBirthday)
-        {
-            return true;
-        }
+        ////
+
+
+        if($error)
+           return 0;
+        else
+            $this->saveUserFromPost($_POST);
+        return 1;
+    }
+
+
+    public function validateUsername($var)
+    {
+        if ($var == 'test1')
+            return 1;
+        else
+            return 0;
+    }
+
+    public function saveUserFromPost($post)
+    {
+        // adaugam in baza de date
+    }
+
 
 }

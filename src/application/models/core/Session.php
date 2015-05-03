@@ -23,7 +23,7 @@ class Session {
                 0,//expires at end of session
                 $currentCookieParams['path'],//path
                 $currentCookieParams['domain'],//domain
-                true, //secure
+                false, //secure
                 true
             );
         }

@@ -1,4 +1,7 @@
 <body class="body-background">
+<?php
+$this->renderFeedbackMessages();
+?>
 <div class="container">
     <div class="row">
 
@@ -66,7 +69,7 @@
                     </div>
                     <!-- form -->
                     <form id="registerForm" class="form-group" role="form" action="<?php echo URL
-                        .'access/registerMethod'?>" method="post">
+                        .'access/register'?>" method="post">
                     <div class="form-group">
                         <label for="username" class="control-label">Username</label>
                         <input type="text" class="form-control" id="username" placeholder="Username"

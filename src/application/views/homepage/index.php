@@ -1,5 +1,8 @@
 <!--navigation menu-->
 <body>
+<?php
+$this->renderFeedbackMessages();
+?>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="container">

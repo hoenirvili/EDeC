@@ -8,12 +8,12 @@ class AccessController extends Controller
     public  function index(){
         $this->view->render("access/index",false);
     }
-    public function loginMethod()
+    public function login()
     {
 //        $loginEventUser = @$_POST['singin'];
 //        echo 'logat'; // testing
     }
-    public function registerMethod()
+    public function register()
     {
         /*all register event + inputs */
         $registerEventUser = @$_POST['register'];

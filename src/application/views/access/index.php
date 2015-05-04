@@ -7,7 +7,9 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2> Login Page</h2>
-
+                            <?php $this->renderFeedbackMessages();
+                            Session::destroy();
+                        ?>
                     </div>
                     <!-- form -->
                     <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/login'?>"
@@ -60,7 +62,10 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2>Register Page</h2>
-                        <?php $this->renderFeedbackMessages();?>
+                        <?php $this->renderFeedbackMessages();
+                              Session::destroy();
+
+                        ?>
                     </div>
                     <!-- form -->
                     <form id="registerForm" class="form-group" role="form" action="<?php echo URL

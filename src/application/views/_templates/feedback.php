@@ -25,4 +25,3 @@ if (isset($feedback_negative)) {
                     </button>'.$feedback.'</div>';
     }
 }
-Session::destroy();

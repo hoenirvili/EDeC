@@ -31,6 +31,7 @@ class AccessController extends Controller
             {
                 // The user is succesfull registered
                 header('Location: '.URL.'access/');
+
             }
             else
                 header('Location: '.URL.'access/');

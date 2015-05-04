@@ -2,15 +2,11 @@
 
 class User
 {
-    function __construct()
-    {
-    }
-
+    function __construct(){}
       public function handleLogin()
       {
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
-
           if(
               isset($_POST['loginUsername']) &&
               isset($_POST['loginPassword']))
@@ -44,13 +40,16 @@ class User
               {
                   // loginUser($post);
                   add_success("Logged!");
+                  return true;
+              }else{
+                  return false;
               }
           }//if
-          else
+          else {
               /*you bastard :))*/
               add_error("Plase complete all the forms nigga");
-
-
+              return false;
+          }
       }
       public function handleRegister()
       {
@@ -116,18 +115,17 @@ class User
                     }
               }
               /*if everything it's ok*/
-              if(!$error)
-              {
+              if(!$error) {
                   // saveUserFromPost($post);
                   add_success("Registered !");
-
+                  return true;
               }
-
           }
-          else
+          else {
               /*you bastard :))*/
               add_error("Plase complete all the forms nigga");
-
+              return false;
+          }
       }
     /*LOGIN*/
     public function validClientUsername($clientUsername)

@@ -10,8 +10,17 @@ class AccessController extends Controller
     }
     public function login()
     {
-//        $loginEventUser = @$_POST['singin'];
-//        echo 'logat'; // testing
+        if(isset($_POST['login']))
+        {
+            $user = new User();
+            if($user->handleLogin()!==false)
+            {
+                //The user is succesfull loged
+                header('Location: '.URL.'index/');
+            }
+            else
+                header('Location: '.URL.'access/');
+        }
     }
     public function register()
     {
@@ -20,7 +29,7 @@ class AccessController extends Controller
             $user = new User();
             if($user->handleRegister()!==false)
             {
-                // The user is succesfull loged
+                // The user is succesfull registered
                 header('Location: '.URL.'access/');
             }
             else

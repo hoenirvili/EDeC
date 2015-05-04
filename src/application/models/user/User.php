@@ -6,6 +6,52 @@ class User
     {
     }
 
+      public function handleLogin()
+      {
+          /*We presume that everything it's valid */
+          $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
+
+          if(
+              isset($_POST['loginUsername']) &&
+              isset($_POST['loginPassword']))
+          {
+              if(!$this->validClientUsername($_POST['loginUsername']))
+                  $arrayOfCheckers[0] = 1;
+              if(!$this->validClientPassword($_POST['loginPassword']))
+                  $arrayOfCheckers[1] = 1;
+              /*we susspect that everything it's ok*/
+              $error = 0;
+              /*we iiterate all of error is something get's wrong we handle it like MEN */
+              foreach($arrayOfCheckers as $key => $value)
+              {
+                    switch($key)
+                    {
+                        case 0:
+                            if ($value) {
+                                $error = 1;
+                                add_error("Invalid username/Username does not exist");
+                                break;
+                            }
+                        case 1:
+                            if ($value) {
+                                $error = 1;
+                                add_error("Invalid password");
+                                break;
+                            }
+                    }//swith
+              }//foreach
+              if(!$error)
+              {
+                  // loginUser($post);
+                  add_success("Logged!");
+              }
+          }//if
+          else
+              /*you bastard :))*/
+              add_error("Plase complete all the forms nigga");
+
+
+      }
       public function handleRegister()
       {
           /*we presume that everything it's valid */
@@ -83,41 +129,22 @@ class User
               add_error("Plase complete all the forms nigga");
 
       }
-//    public function handleRegister()
-//    {
-//        $error = 0;
-//        if (isset($_POST['registerUsername']))
-//            if (!$this->validateUsername($_POST['registerUsername'])) {
-//                add_error("Username already registred");
-//                $error = 1;
-//            } else {
-//                add_error("Username shouldn't be empty");
-//                $error = 1;
-//            }
-//
-//        if ($error)
-//            return 0;
-//        else
-//            $this->saveUserFromPost($_POST);
-//        return 1;
-//
-//        if (isset($_POST['email']))
-//        {
-//            if (!$this->validateEmail($_POST['email']))
-//            {
-//                add_error("Email already used");
-//            }
-//
-//            $error = 1;
-//        }
-//        else
-//        {
-//            add_error("Please complete the email field");
-//            $error = 1;
-//        }
-//    }
-
-
+    /*LOGIN*/
+    public function validClientUsername($clientUsername)
+    {
+        if($clientUsername == 'test')
+            return 1;
+        else
+            return 0;
+    }
+    public function validClientPassword($clientPassword)
+    {
+        if($clientPassword == 'test')
+            return 1;
+        else
+            return 0;
+    }
+    /*REGISTER*/
     public function validateUsername($username)
     {
         if ($username == 'test')
@@ -158,6 +185,10 @@ class User
     public function saveUserFromPost($post)
     {
         // adaugam in baza de date
+    }
+    public function loginUserFromPost($post)
+    {
+        // logam userul , salvand o sesiune pana cand el se va deloga
     }
 
 }

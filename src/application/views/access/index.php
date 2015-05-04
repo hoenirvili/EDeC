@@ -7,9 +7,10 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2> Login Page</h2>
+
                     </div>
                     <!-- form -->
-                    <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/loginMethod'?>"
+                    <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/login'?>"
                           method="POST">
                         <!-- role form helps improve accessibility for people using screen readers -->
                         <p class="errors" id="error1">Username field empty please fill up with a valid username</p>

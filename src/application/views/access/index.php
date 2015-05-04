@@ -1,10 +1,6 @@
 <body class="body-background">
-<?php
-$this->renderFeedbackMessages();
-?>
-<div class="container">
+  <div class="container">
     <div class="row">
-
         <!--login pannel -->
         <div class="col-md-4">
             <div class="panel panel-default login-panel">
@@ -15,8 +11,7 @@ $this->renderFeedbackMessages();
                     <!-- form -->
                     <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/loginMethod'?>"
                           method="POST">
-                        <!-- role form
-                    helps improve accessibility for people using screen readers -->
+                        <!-- role form helps improve accessibility for people using screen readers -->
                         <p class="errors" id="error1">Username field empty please fill up with a valid username</p>
                         <p class="errors" id="error3">Empty fields , please fill up the form</p>
                         <!-- Username -->
@@ -57,15 +52,14 @@ $this->renderFeedbackMessages();
             </div> <!--pannel pannel-deafult login-pannel -->
         </div> <!-- col-md-4 -->
 
-
         <!--Register pannel -->
-
 
         <div class="col-md-8">
             <div class="panel panel-default register-panel">
                 <div class="panel-body">
                     <div class="page-header">
                         <h2>Register Page</h2>
+                        <?php $this->renderFeedbackMessages();?>
                     </div>
                     <!-- form -->
                     <form id="registerForm" class="form-group" role="form" action="<?php echo URL
@@ -93,8 +87,7 @@ $this->renderFeedbackMessages();
 
                     <div class="form-group">
                         <label for="repeatPassword" class="control-label">Repeat password</label>
-                        <input type="password" class="form-control" id="repeat-password" placeholder="Repreat
-                        password" name="repeatRegisterPassword">
+                        <input type="password" class="form-control" id="repeat-password" placeholder="password" name="repeatRegisterPassword">
                         <p class="help-block">Please confirm password</p>
                     </div>
 
@@ -112,14 +105,11 @@ $this->renderFeedbackMessages();
 
                         </div>
                     </div>
-
-
                     <div class="form-group">
                         <label class="control-label">Date of birth</label>
                         <input type="text" class="form-control" name="birthday" placeholder="dd/mm/yyyy" >
                     </div>
                 </div>
-
                 <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register"
                        name="register">
                 <!--<input type="hidden" value="register" name="action">-->
@@ -129,19 +119,19 @@ $this->renderFeedbackMessages();
     </div> <!-- col-md 8 -->
 </div> <!-- row -->
 <!-- Loading animation svg -->
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="util-pie">
-    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-    <path d="M0 50A50 50 0 0 1 50 0L50 50L0 50" fill="#0073eb" opacity="0.5">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="util-pie">
+        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+        <path d="M0 50A50 50 0 0 1 50 0L50 50L0 50" fill="#0073eb" opacity="0.5">
         <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="0.8s" repeatCount="indefinite"></animateTransform>
-    </path>
-    <path d="M50 0A50 50 0 0 1 100 50L50 50L50 0" fill="#00ff27" opacity="0.5">
+        </path>
+        <path d="M50 0A50 50 0 0 1 100 50L50 50L50 0" fill="#00ff27" opacity="0.5">
         <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.6s" repeatCount="indefinite"></animateTransform>
-    </path>
-    <path d="M100 50A50 50 0 0 1 50 100L50 50L100 50" fill="#ff9400" opacity="0.5">
-        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2.4s" repeatCount="indefinite"></animateTransform>
-    </path>
-    <path d="M50 100A50 50 0 0 1 0 50L50 50L50 100" fill="#ff3c00" opacity="0.5">
-        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="3.2s" repeatCount="indefinite"></animateTransform>
-    </path>
-</svg>
+        </path>
+        <path d="M100 50A50 50 0 0 1 50 100L50 50L100 50" fill="#ff9400" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2.4s" repeatCount="indefinite"></animateTransform>
+        </path>
+        <path d="M50 100A50 50 0 0 1 0 50L50 50L50 100" fill="#ff3c00" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="3.2s" repeatCount="indefinite"></animateTransform>
+        </path>
+    </svg>
 </div>

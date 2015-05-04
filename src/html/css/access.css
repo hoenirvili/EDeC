@@ -96,3 +96,8 @@
     visibility: hidden;
     display: none;
 }
+.custom-alert{
+    border-style: none;
+    border-radius: 0px;
+
+}

@@ -17,24 +17,19 @@ class AccessController extends Controller
     {
         if(isset($_POST['register']))
         {
-            $user=new User();
+            $user = new User();
             if($user->handleRegister()!==false)
             {
-                // userul este inregistrat cu success
+                // The user is succesfull loged
                 header('Location: '.URL.'access/');
             }
             else
-            {
                 header('Location: '.URL.'access/');
-            }
+
         }
-        else {
+        else
             //@TODO Add error
             header('Location: '.URL.'access/');
-        }
-
-
-
     }
 
 }

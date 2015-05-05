@@ -6,7 +6,7 @@ GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 CREATE OR REPLACE PACKAGE edec_media_package IS
 
 PROCEDURE populateMedia ;
-
+PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE);
 END edec_media_package;
 /
 

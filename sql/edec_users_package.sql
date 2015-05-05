@@ -7,7 +7,14 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 
 --populeaza tabela de users
 PROCEDURE populateUsers;
-
+PROCEDURE insertUser (
+    v_username IN  users.username%TYPE,
+    v_pass IN  users.pass%TYPE,
+    v_email IN  users.email%TYPE,
+    v_avatar IN users.avatar%tYPE,
+    v_tip IN  users.tip%TYPE,
+    v_data_nasterii IN  users.data_nasterii%TYPE,
+    v_sex IN  users.sex%TYPE);
 --populeaza tabela de user_hates
 PROCEDURE populateHate(max_car IN NUMBER);
 
@@ -22,6 +29,12 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 PROCEDURE insertLove(user_id IN users.id%TYPE);
 --insereaza o caracteristica pt un user in tabela user hates
 PROCEDURE insertHate(user_id IN users.id%TYPE);
+
+--insereaza o caracteristica pt un user in tabela user loves
+PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
+--insereaza o caracteristica pt un user in tabela user hates
+PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
+
 --insereaza un user in tabela users
 PROCEDURE insertUser (
     v_username IN  users.username%TYPE,
@@ -136,6 +149,17 @@ BEGIN
     
 END insertHate;
 
+PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE)
+IS
+  BEGIN
+     INSERT INTO user_loves(user_id,caracteristica_id) VALUES (user_id,carac_id);
+  END insertLove;
+
+  PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE)
+IS
+  BEGIN
+     INSERT INTO user_hates(user_id,caracteristica_id) VALUES (user_id,carac_id);
+  END insertHate;
 
 END edec_users_package;
 /

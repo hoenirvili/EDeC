@@ -22,7 +22,7 @@ CREATE TABLE caracteristici_produse (
     CONSTRAINT caracteristici_produse_pk PRIMARY KEY (id)
 ) ;
 
-
+DROP INDEX caracteristici_produse_idx_1;
 CREATE UNIQUE INDEX caracteristici_produse_idx_1 
 on caracteristici_produse 
 (produs_id ASC,caracteristica_id ASC)
@@ -76,6 +76,7 @@ CREATE TABLE user_hates (
 ) ;
 
 
+DROP INDEX user_hates_idx_1;
 CREATE INDEX user_hates_idx_1 
 on user_hates 
 (user_id ASC,caracteristica_id ASC)
@@ -93,7 +94,7 @@ CREATE TABLE user_loves (
     CONSTRAINT user_loves_pk PRIMARY KEY (Id)
 ) ;
 
-
+DROP INDEX user_loves_idx_1;
 CREATE INDEX user_loves_idx_1 
 on user_loves 
 (user_id ASC,caracteristica_id ASC)

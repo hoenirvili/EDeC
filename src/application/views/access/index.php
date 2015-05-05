@@ -7,9 +7,9 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2> Login Page</h2>
-                            <?php $this->renderFeedbackMessages();
-                            Session::destroy();
-                        ?>
+                            <?php
+                                 //   $this->renderFeedbackMessages();
+                            ?>
                     </div>
                     <!-- form -->
                     <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/login'?>"
@@ -48,8 +48,7 @@
                                 <input type="checkbox" name="remember"> Remeber me
                             </label>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in" name="singin">
-
+                        <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in" name="singing">
                     </form><!--form -->
                 </div> <!--pannel body-->
             </div> <!--pannel pannel-deafult login-pannel -->
@@ -62,9 +61,8 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2>Register Page</h2>
-                        <?php $this->renderFeedbackMessages();
-                              Session::destroy();
-
+                        <?php
+                            $this->renderFeedbackMessages();
                         ?>
                     </div>
                     <!-- form -->
@@ -116,8 +114,7 @@
                         <input type="text" class="form-control" name="birthday" placeholder="dd/mm/yyyy" >
                     </div>
                 </div>
-                <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register"
-                       name="register">
+                <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register" name="register">
                 <!--<input type="hidden" value="register" name="action">-->
                 </form><!-- form -->
             </div> <!-- panl body -->

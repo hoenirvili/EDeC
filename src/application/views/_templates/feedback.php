@@ -13,6 +13,7 @@ if (isset($feedback_positive)) {
                     <span class="sr-only">Close</span>
                 </button>'.$feedback.'</div>';
     }
+    Session::destroy();
 }
 
 // echo out negative messages
@@ -24,4 +25,5 @@ if (isset($feedback_negative)) {
                             <span class="sr-only">Close</span>
                     </button>'.$feedback.'</div>';
     }
+    Session::destroy();
 }

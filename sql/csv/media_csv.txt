@@ -2,7 +2,7 @@ http://www.realgoods.ch/pictures_products/02-040.jpg,01
 http://www.danone.ro/wp-content/uploads/2014/03/activia4.jpg,02
 http://ecx.images-amazon.com/images/I/41O3QMq%2B31L.jpg,03
 http://www.chocolate-brands.com/image/cache/data/Milka/Milka-chocolates/milka-yoghurt-chocolate-bar-100g-500x500.png,04
-http://ecx.images-amazon.com/images/I/41SyquzsESL._SY300_.jpg','05');
+http://ecx.images-amazon.com/images/I/41SyquzsESL._SY300_.jpg,05
 http://magazinalimentaronline.ro/image/cache/data/Imagini%20produse%20bune/delicatese/Biscuiti%20Oreo%2066%20gr-500x500.jpg,06
 http://www.shopnaturally.com.au/images/P/nakula-coconut-cream.jpg,07
 http://www.shopnaturally.com.au/images/P/dr-superfoods-super-raspberries-01.jpg,08

@@ -9,6 +9,8 @@ CREATE OR REPLACE PACKAGE edec_caracteristici_package IS
 
 PROCEDURE populateCaracteristici ;
 
+PROCEDURE insertCacacteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE);
+
 END edec_caracteristici_package;
 /
 
@@ -136,6 +138,13 @@ PROCEDURE insertCity(city_name IN caracteristica.name%TYPE)AS
 BEGIN
   INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (city_name,4);
 END insertCity;
+
+PROCEDURE insertCacacteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE)
+IS
+  BEGIN
+    INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (c_name,c_cat);
+
+END insertCacacteristica;
 
 END edec_caracteristici_package;
 /

@@ -4,6 +4,7 @@ CREATE OR REPLACE PACKAGE edec_produse_package IS
 
 PROCEDURE populateProduse ;
 PROCEDURE generateCaracteristics(max_car IN NUMBER);
+PROCEDURE insertProduct(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE );
 END edec_produse_package;
 /
 

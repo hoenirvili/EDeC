@@ -1,5 +1,4 @@
 <?php
 $this->renderFeedbackMessages();
+echo 'bine ai venit pe dashboard';
 ?>
-<?php
-    echo 'bine ai venit pe dashboard';

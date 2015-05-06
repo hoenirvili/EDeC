@@ -2,39 +2,13 @@
 
 class User
 {
-    function __construct(){}
-
     public static $loginSessHandler;
     public static $registerSessHandler;
 
-    /*test who started the session */
-    public static function logSess()
-    {
-        if(User::$loginSessHandler == 1)
-        {
-            return 1;
-
-        }
-        else {
-            return 0;
-        }
-    }
-    public static function regSess()
-    {
-        var_dump(User::$registerSessHandler); // null
-        if(User::$registerSessHandler == 1)
-        {
-            return 1;
-        }
-        else{
-            echo 'nu merge';
-            return 0;
-        }
-    }
+    function __construct(){}
       /*HANDLERS */
       public function handleLogin()
       {
-          User::$loginSessHandler = 1;
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
           if(
@@ -56,14 +30,15 @@ class User
                             if ($value) {
                                 $error = 1;
                                 add_error("Invalid username/Username does not exist");
-                                break;
                             }
+                            break;
+
                         case 1:
                             if ($value) {
                                 $error = 1;
                                 add_error("Invalid password");
-                                break;
                             }
+                            break;
                     }//swith
               }//foreach
               if(!$error)
@@ -83,7 +58,6 @@ class User
       }
       public function handleRegister()
       {
-          User::$registerSessHandler = 1;
           /*we presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0,0,0,0));
 
@@ -117,32 +91,32 @@ class User
                             if($value) {
                                 $error = 1;
                                 add_error("Incorrect username or already registered");
-                                break;
                             }
+                            break;
                         case 1:
                             if($value) {
                                 $error = 1;
                                 add_error("Invalid email or already registerd");
-                                break;
                             }
+                            break;
                         case 2:
                             if($value) {
                                 $error = 1;
                                 add_error("Invalid password ");
-                                break;
                             }
+                            break;
                         case 3:
                             if($value) {
                                 $error = 1;
                                 add_error("The password shold match");
-                                break;
                             }
+                            break;
                         case 4:
                             if($value){
                                 $error = 1;
                                 add_error("Please enter a valid date");
-                                break;
                             }
+                            break;
                     }
               }
               /*if everything it's ok*/
@@ -219,5 +193,30 @@ class User
     {
         // logam userul , salvand o sesiune pana cand el se va deloga
     }
+    /*test who started the session */
+    public static function logSess()
+    {
+        if(User::$loginSessHandler == 1)
+        {
+            return 1;
+
+        }
+        else {
+            return 0;
+        }
+    }
+    public static function regSess()
+    {
+        //var_dump(User::$registerSessHandler); // null
+        if(User::$registerSessHandler == 1)
+        {
+            return 1;
+        }
+        else{
+            echo 'nu merge';
+            return 0;
+        }
+    }
+
 
 }

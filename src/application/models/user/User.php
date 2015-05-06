@@ -3,6 +3,34 @@
 class User
 {
     function __construct(){}
+
+    public static $loginSessHandler;
+    public static $registerSessHandler;
+
+    /*test who started the session */
+    public static function logSess()
+    {
+        if(User::$loginSessHandler == 1)
+        {
+            return 1;
+
+        }
+        else {
+            return 0;
+        }
+    }
+    public static function regSess()
+    {
+        if(User::$registerSessHandler == 1)
+        {
+            return 1;
+        }
+        else{
+            echo 'nu merge';
+            return 0;
+        }
+    }
+      /*HANDLERS */
       public function handleLogin()
       {
           /*We presume that everything it's valid */

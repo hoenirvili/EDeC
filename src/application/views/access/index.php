@@ -8,7 +8,9 @@
                     <div class="page-header">
                         <h2> Login Page</h2>
                             <?php
-                                 //   $this->renderFeedbackMessages();
+                                if(User::logSess())
+                                    $this->renderFeedbackMessages();
+
                             ?>
                     </div>
                     <!-- form -->
@@ -62,7 +64,10 @@
                     <div class="page-header">
                         <h2>Register Page</h2>
                         <?php
-                            $this->renderFeedbackMessages();
+                            if(User::regSess())
+                                $this->renderFeedbackMessages();
+                            else
+
                         ?>
                     </div>
                     <!-- form -->

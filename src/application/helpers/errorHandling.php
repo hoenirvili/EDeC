@@ -11,7 +11,6 @@ function add_success($msg)
     $_SESSION["feedback_positive"][]=$msg;
 }
 
-
 function printr($mixed)
 {
     echo '<pre>';

@@ -2,8 +2,6 @@
 
 class AccessController extends Controller
 {
-    private static $registerCheck;
-    private static $loginCheck;
     function __construct(){
         parent::__construct();
     }
@@ -12,10 +10,8 @@ class AccessController extends Controller
     }
     public function login()
     {
-        $this->loginCheck = 0;
         if(isset($_POST['login']))
         {
-            $this->loginCheck = 1;
             $user = new User();
             if($user->handleLogin()!==false)
             {
@@ -28,10 +24,8 @@ class AccessController extends Controller
     }
     public function register()
     {
-       AccessController::$registerCheck = 0;
         if(isset($_POST['register']))
         {
-            AccessController::$registerCheck = 1;
             $user = new User();
             if($user->handleRegister()!==false)
             {
@@ -40,20 +34,13 @@ class AccessController extends Controller
 
             }
             else{
+                User::$registerSessHandler = 1;
                 header('Location: '.URL.'access/');
             }
         }
         else
             //@TODO Add error
             header('Location: '.URL.'access/');
-    }
-    public static function retRegAcces()
-    {
-        return AccessController::$registerCheck;
-    }
-    public static function retLogAcces()
-    {
-        return AccessController::$loginCheck;
     }
 
 }

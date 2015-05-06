@@ -21,6 +21,7 @@ class User
     }
     public static function regSess()
     {
+        var_dump(User::$registerSessHandler); // null
         if(User::$registerSessHandler == 1)
         {
             return 1;
@@ -33,6 +34,7 @@ class User
       /*HANDLERS */
       public function handleLogin()
       {
+          User::$loginSessHandler = 1;
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
           if(
@@ -81,6 +83,7 @@ class User
       }
       public function handleRegister()
       {
+          User::$registerSessHandler = 1;
           /*we presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0,0,0,0));
 

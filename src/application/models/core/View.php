@@ -70,7 +70,6 @@ class View {
         // default return
         return false;
     }
-
     /**
      * Checks if the passed string is the currently active controller-action (=method).
      * Useful for handling the navigation's active/non-active link.

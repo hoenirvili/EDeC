@@ -1,14 +1,14 @@
 <?php
-
 class AccessController extends Controller
 {
     function __construct(){
         parent::__construct();
+
         /*nothing has been submited and echo back */
         User::$loginSessHandler = 0;
         User::$registerSessHandler = 0;
     }
-    public  function index(){
+    public function index(){
 
         $this->view->render("access/index",false);
     }
@@ -21,7 +21,7 @@ class AccessController extends Controller
             if($user->handleLogin()!==false)
             {
                 //The user is succesfull loged
-                header('Location: '.URL.'index/');
+                header('Location: '.URL.'access/');
             }
             else
                 header('Location: '.URL.'access/');
@@ -40,7 +40,6 @@ class AccessController extends Controller
                 header('Location: '.URL.'dashboard/');
             }
             else{
-                var_dump(User::$registerSessHandler);
                 header('Location: '.URL.'access/');
             }
         }

@@ -1,18 +1,19 @@
-Instructions:
+#Instructions:
 
-Please run in the following order
-0.schema.sql;
-1.edec_utils_package.sql
-2.caracteristici_package.sql
-3.products_package.sql
-4.edec_users_package.sql
+####Please run in the following order
+- schema.sql;
+- edec_utils_package.sql
+- caracteristici_package.sql
+- products_package.sql
+- edec_users_package.sql
+- populate.sql
 
-5.populate.sql
 
+###Modify path to csv files if necessary.
+###NOTE:
 
-Modify path to csv files if necessary.
-NOTE:
+-If packages dosen't work please check if user has privileges and if you don't have privilages run when beeing SYS user
+` GRANT EXECUTE ON UTL_FILE TO <user_name>;` 
 
-if packages dont work pls check if user have privileges
-
-if not pls run  GRANT EXECUTE ON UTL_FILE TO <user_name>; when beeing SYS user
+- If you have error on date please enter this command in your sqlplus or sqldeveloper and run it
+` alter SESSION set NLS_DATE_FORMAT = 'DD-MM-YYYY HH24:MI:SS' `

@@ -8,9 +8,9 @@
                     <div class="page-header">
                         <h2> Login Page</h2>
                             <?php
+                            //if something goes good/wrong from login method controller display it, just login
                                 if(User::logSess())
                                     $this->renderFeedbackMessages();
-
                             ?>
                     </div>
                     <!-- form -->
@@ -64,9 +64,9 @@
                     <div class="page-header">
                         <h2>Register Page</h2>
                         <?php
+                            //if something goes good/wrong from register method controller display it, just register
                             if(User::regSess())
                                 $this->renderFeedbackMessages();
-                            else
 
                         ?>
                     </div>

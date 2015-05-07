@@ -1,4 +1,3 @@
-﻿
 -- tables
 -- Table: caracteristica
 DROP TABLE caracteristica cascade constraints;

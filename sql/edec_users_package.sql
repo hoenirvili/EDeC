@@ -1,5 +1,5 @@
 SET SERVEROUTPUT ON;
---seteaza directorul ?
+--seteaza directorul
 CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv'; 
 GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 

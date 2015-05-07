@@ -197,23 +197,17 @@ class User
     public static function logSess()
     {
         if(User::$loginSessHandler == 1)
-        {
             return 1;
-
-        }
-        else {
+        else
             return 0;
-        }
     }
     public static function regSess()
     {
         //var_dump(User::$registerSessHandler); // null
         if(User::$registerSessHandler == 1)
-        {
             return 1;
-        }
         else{
-            echo 'nu merge';
+           // echo 'nu merge';
             return 0;
         }
     }

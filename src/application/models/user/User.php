@@ -1,5 +1,4 @@
 <?php
-
 class User
 {
     private $loginSessHandler;
@@ -11,49 +10,45 @@ class User
       {
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
-          $this->loginSessHandler = 1;
-          if(
-              isset($_POST['loginUsername']) &&
-              isset($_POST['loginPassword']))
-          {
-              if(!$this->validClientUsername($_POST['loginUsername']))
-                  $arrayOfCheckers[0] = 1;
-              if(!$this->validClientPassword($_POST['loginPassword']))
-                  $arrayOfCheckers[1] = 1;
-              /*we susspect that everything it's ok*/
-              $error = 0;
-              /*we iiterate all of error is something get's wrong we handle it like MEN */
-              foreach($arrayOfCheckers as $key => $value)
-              {
-                    switch($key)
-                    {
-                        case 0:
-                            if ($value) {
-                                $error = 1;
-                                add_error("Invalid username/Username does not exist");
-                            }
-                            break;
 
-                        case 1:
-                            if ($value) {
-                                $error = 1;
-                                add_error("Invalid password");
-                            }
-                            break;
-                    }//swith
-              }//foreach
-              if(!$error)
-              {
-                  // loginUser($post);
-                  add_success("Logged!");
-                  return true;
-              }else{
-                  return false;
-              }
+          Session::set("login","render");
+          if( isset($_POST['loginUsername']) &&
+              isset($_POST['loginPassword']) &&
+              $_POST['loginUsername'] !="" &&
+              $_POST['loginPassword'] !="" )
+          {
+                  if (!$this->validClientUsername($_POST['loginUsername']))
+                      $arrayOfCheckers[0] = 1;
+                  if (!$this->validClientPassword($_POST['loginPassword']))
+                      $arrayOfCheckers[1] = 1;
+                  /*we susspect that everything it's ok*/
+                  $error = 0;
+                  /*we iiterate all of error is something get's wrong we handle it like MEN */
+                  foreach ($arrayOfCheckers as $key => $value) {
+                      switch ($key) {
+                          case 0:
+                              if ($value) {
+                                  $error = 1;
+                                  add_error("Invalid username/Username does not exist");
+                              }
+                              break;
+                          case 1:
+                              if ($value) {
+                                  $error = 1;
+                                  add_error("Invalid password");
+                              }
+                              break;
+                      }//swith
+                  }//foreach
+                  if ($error == 0) {
+                      // loginUser($post);
+                      add_success("Logged!");
+                      return true;
+                  } else return false;
           }//if
           else {
-              /*you bastard :))*/
-              add_error("Plase complete all the forms nigga");
+              //you bastard :))*/
+              add_error("Plase complete all the forms");
               return false;
           }
       }
@@ -61,14 +56,19 @@ class User
       {
           /*we presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0,0,0,0));
-          $this->registerSessHandler = 1;
+          Session::set("register","render");
           /*if the user completed all the forms */
           if( isset($_POST['registerUsername']) &&
               isset($_POST['email']) &&
               isset($_POST['registerPassword']) &&
               isset($_POST['repeatRegisterPassword']) &&
               isset($_POST['gender']) &&
-              isset($_POST['birthday']))
+              isset($_POST['birthday']) && (
+                $_POST['registerUsername'] !="" &&
+                $_POST['email'] !="" &&
+                $_POST['registerPassword'] !="" &&
+                $_POST['repeatRegisterPassword'] !="" &&
+                $_POST['birthday'] !="" ))
           {
               if(!$this->validateUsername($_POST['registerUsername'])) //if it fails
                 $arrayOfCheckers[0] = 1;
@@ -129,7 +129,7 @@ class User
           }
           else{
               /*you bastard :))*/
-              add_error("Plase complete all the forms nigga");
+              add_error("Plase complete all the forms");
               return false;
           }
       }//method
@@ -193,16 +193,6 @@ class User
     public function loginUserFromPost($post)
     {
         // logam userul , salvand o sesiune pana cand el se va deloga
-    }
-
-    /*test who started the session */
-    public  function logSess()
-    {
-        return $this->loginSessHandler;
-    }
-    public  function regSess()
-    {
-        return $this->registerSessHandler;
     }
 
 

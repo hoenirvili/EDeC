@@ -9,9 +9,7 @@
                         <h2> Login Page</h2>
                             <?php
                             //if something goes good/wrong from login method controller display it, just login
-                                if(AccessController::$logSess)
                                     $this->renderFeedbackMessages();
-
                             ?>
                     </div>
                     <!-- form -->
@@ -25,7 +23,7 @@
                             <label for="InputUsername" class="control-label" >Username</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
+                                   <i class="glyphicon glyphicon-user"></i>
                                 </span>
                                 <input type="text" class="form-control" id="username" placeholder="Enter username"
                                        name="loginUsername">
@@ -66,14 +64,7 @@
                         <h2>Register Page</h2>
                         <?php
                             //if something goes good/wrong from register method controller display it, just register
-                            if(AccessController::$regSess)
-                            {
-                                session_start();
-                                $this->renderFeedbackMessages();
-
-                            }
-                            //else
-                              //  echo ' nu merge';
+                          //  $this->renderFeedbackMessages();
 
                         ?>
                     </div>

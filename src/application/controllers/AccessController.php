@@ -15,7 +15,6 @@ class AccessController extends Controller
         if(isset($_POST['singing']))
         {
             $user = new User();
-            AccessController::$logSess = $user->logSess();
             if($user->handleLogin()!==false)
             {
                 //The user is succesfull loged
@@ -34,17 +33,13 @@ class AccessController extends Controller
         if(isset($_POST['register']))
         {
             $user = new User();
-            AccessController::$regSess = $user->regSess();
-
             if($user->handleRegister()!==false)
             {
                 // The user is succesfull registered
                 header('Location: '.URL.'access/');
             }
-            else{
-                echo 'nu ai completat tot formularul';
-                header('Location: '.URL.'access/');
-            }
+            else header('Location: '.URL.'access/');
+
         }
         else
             //@TODO Add error

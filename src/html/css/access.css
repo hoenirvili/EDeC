@@ -89,15 +89,26 @@
     opacity: 0.95;
 }
 
-
 .errors{
     font-size: 0.8em;
     color: red;
     visibility: hidden;
     display: none;
+    opacity: none;
 }
 .custom-alert{
     border-style: none;
     border-radius: 0px;
-
+}
+.alert-danger
+{
+    background-image: none;
+    background-color : #E30022;
+}
+.message-wrapper{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 15000;
+    text-align: center;
 }

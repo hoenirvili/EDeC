@@ -116,12 +116,12 @@ class Application {
             $this->url_parameter_2 = (isset($url[3]) ? $url[3] : null);
             $this->url_parameter_3 = (isset($url[4]) ? $url[4] : null);
             $this->url_controller = ucwords($this->url_controller) . 'Controller';
-        } else {
+        }// else {
 //            if (isset($_POST['action'])) {
 //                $this->url_controller = 'index';
 //                $this->url_action     = $_POST['action'];
 //                $this->url_controller = ucwords($this->url_controller) . 'Controller';
 //            }
-        }
+//        }
     }
 }

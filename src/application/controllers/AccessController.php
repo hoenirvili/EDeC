@@ -1,8 +1,8 @@
 <?php
 class AccessController extends Controller
 {
-    public static $regSess;
-    public static $logSess;
+    //private static $loginSession;
+    //private static $regi
     function __construct(){
         parent::__construct();
     }

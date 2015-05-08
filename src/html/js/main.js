@@ -59,9 +59,9 @@ function primaryValidate(event)
 	var passwordGroupForm = document.getElementsByClassName("form-group")[2];
 	var flag = true;
 	clearError(error1,error2,error3,usernameGroupForm,passwordGroupForm); // after every submit
-	
 
-	if( (username.value === "") && (password.value ==="")) //the form is Empty 
+
+	if( (username.value === "") && (password.value ==="")) //the form is Empty
 	{
 		showError(error3);
 		usernameGroupForm.className = usernameGroupForm.className  + " has-error";
@@ -69,7 +69,7 @@ function primaryValidate(event)
 		flag = false;
 	}
 	else
-		if(username.value === "") 
+		if(username.value === "")
 		{
 			showError(error1);
 			usernameGroupForm.className = usernameGroupForm.className  + " has-error";
@@ -83,13 +83,13 @@ function primaryValidate(event)
 				flag = false;
 			}
 	if(flag === false)
-	{ 
+	{
 			event.preventDefault(); // if something goes wrong don't do anything
 	}
-	else return true; // if everything goes well submit the form 
+	else return true; // if everything goes well submit the form
 
 }
-	
+
 var formListener = document.getElementById("loginForm");
 
 if(formListener != null)

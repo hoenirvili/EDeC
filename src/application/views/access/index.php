@@ -1,4 +1,7 @@
 <body class="body-background">
+    <?php
+    $this->renderFeedbackMessages();
+    ?>
   <div class="container">
     <div class="row">
         <!--login pannel -->
@@ -7,10 +10,6 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2> Login Page</h2>
-                            <?php
-                            //if something goes good/wrong from login method controller display it, just login
-                                    $this->renderFeedbackMessages();
-                            ?>
                     </div>
                     <!-- form -->
                     <form id="loginForm" class="form-group" role="form" action="<?php echo URL.'access/login'?>"
@@ -62,11 +61,6 @@
                 <div class="panel-body">
                     <div class="page-header">
                         <h2>Register Page</h2>
-                        <?php
-                            //if something goes good/wrong from register method controller display it, just register
-                          //  $this->renderFeedbackMessages();
-
-                        ?>
                     </div>
                     <!-- form -->
                     <form id="registerForm" class="form-group" role="form" action="<?php echo URL

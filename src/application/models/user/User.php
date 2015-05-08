@@ -1,9 +1,6 @@
 <?php
 class User
 {
-    private $loginSessHandler;
-    private $registerSessHandler;
-
     function __construct(){}
       /*HANDLERS */
       public function handleLogin()
@@ -56,7 +53,6 @@ class User
       {
           /*we presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0,0,0,0));
-          Session::set("register","render");
           /*if the user completed all the forms */
           if( isset($_POST['registerUsername']) &&
               isset($_POST['email']) &&
@@ -126,6 +122,7 @@ class User
                   add_success("Registered !");
                   return true;
               }
+              else return false;
           }
           else{
               /*you bastard :))*/

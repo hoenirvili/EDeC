@@ -270,7 +270,7 @@ h1,h2,h3,h4,h5,h6{
 .footer-style {
 	-webkit-border-radius: 0 !important;
 		-moz-border-radius: 0 !important;
-					border-radius: 0 !important;
+             border-radius: 0 !important;
 			-ms-border-radius: 0 !important;
 			-o-border-radius:  0 !important;
 }
@@ -486,17 +486,28 @@ h1,h2,h3,h4,h5,h6{
     opacity: 0.95;
 }
 
-
 .errors{
     font-size: 0.8em;
     color: red;
     visibility: hidden;
     display: none;
+    opacity: none;
 }
 .custom-alert{
     border-style: none;
     border-radius: 0px;
-
+}
+.alert-danger
+{
+    background-image: none;
+    background-color : #E30022;
+}
+.message-wrapper{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 15000;
+    text-align: center;
 }
 /*media queries*/
 @media only screen and (max-width:320px) {

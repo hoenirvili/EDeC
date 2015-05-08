@@ -270,7 +270,7 @@ h1,h2,h3,h4,h5,h6{
 .footer-style {
 	-webkit-border-radius: 0 !important;
 		-moz-border-radius: 0 !important;
-					border-radius: 0 !important;
+             border-radius: 0 !important;
 			-ms-border-radius: 0 !important;
 			-o-border-radius:  0 !important;
 }

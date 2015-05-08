@@ -2,8 +2,8 @@
 
 class User
 {
-    public static $loginSessHandler;
-    public static $registerSessHandler;
+    private $loginSessHandler;
+    private $registerSessHandler;
 
     function __construct(){}
       /*HANDLERS */
@@ -11,6 +11,7 @@ class User
       {
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
+          $this->loginSessHandler = 1;
           if(
               isset($_POST['loginUsername']) &&
               isset($_POST['loginPassword']))
@@ -60,7 +61,7 @@ class User
       {
           /*we presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0,0,0,0));
-
+          $this->registerSessHandler = 1;
           /*if the user completed all the forms */
           if( isset($_POST['registerUsername']) &&
               isset($_POST['email']) &&
@@ -126,12 +127,12 @@ class User
                   return true;
               }
           }
-          else {
+          else{
               /*you bastard :))*/
               add_error("Plase complete all the forms nigga");
               return false;
           }
-      }
+      }//method
     /*LOGIN*/
     public function validClientUsername($clientUsername)
     {
@@ -193,23 +194,15 @@ class User
     {
         // logam userul , salvand o sesiune pana cand el se va deloga
     }
+
     /*test who started the session */
-    public static function logSess()
+    public  function logSess()
     {
-        if(User::$loginSessHandler == 1)
-            return 1;
-        else
-            return 0;
+        return $this->loginSessHandler;
     }
-    public static function regSess()
+    public  function regSess()
     {
-        //var_dump(User::$registerSessHandler); // null
-        if(User::$registerSessHandler == 1)
-            return 1;
-        else{
-           // echo 'nu merge';
-            return 0;
-        }
+        return $this->registerSessHandler;
     }
 
 

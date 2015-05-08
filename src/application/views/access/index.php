@@ -9,8 +9,9 @@
                         <h2> Login Page</h2>
                             <?php
                             //if something goes good/wrong from login method controller display it, just login
-                                if(User::logSess())
+                                if(AccessController::$logSess)
                                     $this->renderFeedbackMessages();
+
                             ?>
                     </div>
                     <!-- form -->
@@ -65,8 +66,14 @@
                         <h2>Register Page</h2>
                         <?php
                             //if something goes good/wrong from register method controller display it, just register
-                            if(User::regSess())
+                            if(AccessController::$regSess)
+                            {
+                                session_start();
                                 $this->renderFeedbackMessages();
+
+                            }
+                            //else
+                              //  echo ' nu merge';
 
                         ?>
                     </div>

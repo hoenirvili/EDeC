@@ -1,12 +1,10 @@
 <?php
 class AccessController extends Controller
 {
+    public static $regSess;
+    public static $logSess;
     function __construct(){
         parent::__construct();
-
-        /*nothing has been submited and echo back */
-        User::$loginSessHandler = 0;
-        User::$registerSessHandler = 0;
     }
     public function index(){
 
@@ -14,18 +12,21 @@ class AccessController extends Controller
     }
     public function login()
     {
-        if(isset($_POST['login']))
+        if(isset($_POST['singing']))
         {
             $user = new User();
-            User::$loginSessHandler = 1; // problem
+            AccessController::$logSess = $user->logSess();
             if($user->handleLogin()!==false)
             {
                 //The user is succesfull loged
-                header('Location: '.URL.'access/');
+                header('Location: '.URL.'dashboard/');
             }
             else
                 header('Location: '.URL.'access/');
         }
+        else
+            //@TODO add error
+            header('Location: '.URL.'access/');
     }
     public function register()
     {
@@ -33,13 +34,15 @@ class AccessController extends Controller
         if(isset($_POST['register']))
         {
             $user = new User();
-            User::$registerSessHandler = 1; //problem
+            AccessController::$regSess = $user->regSess();
+
             if($user->handleRegister()!==false)
             {
                 // The user is succesfull registered
-                header('Location: '.URL.'dashboard/');
+                header('Location: '.URL.'access/');
             }
             else{
+                echo 'nu ai completat tot formularul';
                 header('Location: '.URL.'access/');
             }
         }

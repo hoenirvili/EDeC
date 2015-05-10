@@ -1,5 +1,4 @@
 /*custom css style aside from BOOTSTRAP */
-
 /*loader icon */
 .no-js #loader {
 	display: none;
@@ -19,22 +18,21 @@
 	height: 30%;
 	z-index: 9999;
 }
+/*general*/
+p{
+    font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Oswald', sans-serif;
+}
+
+/*navigation*/
 .navbar-text > a{
 	color: inherit;
 	text-decoration: none;
 }
 .navbar {
     border-width: 0;
-}
-body{
-	padding-top: 3.5em;
-
-}
-p{
-	font-family: 'Open Sans', sans-serif;
-}
-h1,h2,h3,h4,h5,h6{
-	font-family: 'Oswald', sans-serif;
 }
 
 .navbar-default{
@@ -55,6 +53,7 @@ h1,h2,h3,h4,h5,h6{
 
 .navbar-default .navbar-nav > li > a {
 	color: #FFF;
+    font-weight: bold;
 }
 
 /*style focus button ,*/
@@ -98,12 +97,13 @@ h1,h2,h3,h4,h5,h6{
 .navbar-default .navbar-nav
 .open .dropdown-menu > li > a{
 	color: #fff;
+    font-weight: bold;
 }
 
 
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form{
-  border-style: none
+  border-style: none;
 } /* remove the tiny line from the dropdown menu*/
 
 .btn-success{
@@ -210,19 +210,19 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .section-one{
-	background-color :#fff
+	background-color :#fff;
     background-repeat: no-repeat;
     color: #999;
     font-size: 1em;
     
 }
-.star{
+.left-icon{
 	display: block;
 	height: 100px;
 	width: 100px;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url("../img/icons/star.png");
+	background-image: url("../img/icons/pocket.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -234,13 +234,13 @@ h1,h2,h3,h4,h5,h6{
 .section-two{
 	background-color: #f1c40f;
 }
-.search{
+.middle-icon{
 	display: block;
 	height: 100px;
 	width: 100px;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url("../img/icons/search.png");
+	background-image: url("../img/icons/roundsearch.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -252,13 +252,13 @@ h1,h2,h3,h4,h5,h6{
 .section-three{
 	background-color: #bdc3c7;
 }
-.diamond{
+.right-icon{
 	display: block;
 	height: 100px;
 	width: 100px;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url("../img/icons/diamond.png");
+	background-image: url("../img/icons/graph.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -266,6 +266,40 @@ h1,h2,h3,h4,h5,h6{
 	-moz-background-size: cover;
 	-ms-background-size: cover;
 	-o-background-size: cover;
+}
+.about{
+    display:block;
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/icons/rocket.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+}
+.paragraph-decoration {
+    margin-top: 40px;
+    font-size: 1.3em;
+}
+.idea{
+    display: block;
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/icons/bestidea.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
 }
 .footer-style {
 	-webkit-border-radius: 0 !important;
@@ -322,7 +356,7 @@ h1,h2,h3,h4,h5,h6{
     letter-spacing: 1px;
     border-style: none;    
     text-transform: none;
-    padding: 17px 30px 17px 30px;
+    padding: 13px 25px 13px 25px;
     margin-top: 40px;
 }
 .start-button:hover,
@@ -336,6 +370,12 @@ h1,h2,h3,h4,h5,h6{
     text-decoration: none;
     color: #fff;
     font-size: 0.8em;
+}
+.orange-background{
+    background-color: #F9690E;
+}
+.navy-background{
+    background-color: #2C3E50;
 }
 .middle-flag-anchor:hover,
 .middle-flag-anchor:focus,
@@ -394,4 +434,7 @@ h1,h2,h3,h4,h5,h6{
 .big{
 	letter-spacing: 1px;
 	font-color: #666;
+}
+#about{
+    transition: 0.3s;
 }

@@ -14,7 +14,8 @@ $this->renderFeedbackMessages();
                     <span class="icon-bar"></span>
                 </button>
                 <!--logo -->
-                <a class="navbar-brand" href="index.html"><i class="fa fa-anchor fa-2x"></i><span class="logo-effect">EDeC</span></a>
+                <a class="navbar-brand" href="<?php URL.'/index'?>"><i class="fa fa-anchor fa-2x"></i><span
+                        class="logo-effect">EDeC</span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -22,7 +23,7 @@ $this->renderFeedbackMessages();
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="<?php echo URL.'index/#ToAbout'?>">About</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>
@@ -48,8 +49,8 @@ $this->renderFeedbackMessages();
         <div class="jumbotron text-center">
             <div class="container container-header">
                 <h1>Ethic Decisions for Consummers</h1>
-                <p>Continut paragraf test</p>
-                <a href="#" class="btn btn-primary btn-lg start-button">Start Up!</a>
+                <p>The best way to make a decision is to search and document it</p>
+                <a href="<?php echo URL.'access/'?>" class="btn btn-primary btn-lg start-button">Start Up!</a>
                 <!--<div class="start-button"><a href="#">Start Now!</a></div>-->
             </div> <!-- container to center all pice in the middle-->
         </div>
@@ -62,19 +63,23 @@ $this->renderFeedbackMessages();
     <div class="row section-row section-one">
         <div class="container">
             <div class="col-md-4 text-center" id="el1">
-                <i class="star"></i>
-                <h4 class="big">Gundrakk at er</h4>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima odio placeat ut maiores, quos iure enim, ipsam nam deleniti molestias earum ducimus doloremque corrupti sapiente officiis explicabo mollitia culpa nisi similique omnis nostrum quod incidunt ullam repellendus asperiores necessitatibus, iste.</p>
+                <i class="left-icon"></i>
+                <h4 class="big">Good idea !</h4>
+                <p>The words "ethics" and "morals" are frequently used interchangeably.
+                    Ethics refer to behavior customary in our culture or society. Ethics may change as a person moves from one society to the next.
+                    Morals refer to personal standards of right and wrong. Morals do not change as a person moves from one society to the next</p>
             </div>
             <div class="col-md-4 text-center" id="el2">
-                <i class="search"></i>
-                <h4 class="big">Terstuldsad sda </h4>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima odio placeat ut maiores, quos iure enim, ipsam nam deleniti molestias earum ducimus similique omnis nostrum quod incidunt ullam repellendus asperiores necessitatibus, iste.que ab! Nisi mollitia dicta, quisquam tenetur ducimus.</p>
+                <i class="middle-icon"></i>
+                <h4 class="big">Best searching ! </h4>
+                <p>A typical legal rationale for protecting the consumer is based on the notion of policing
+                    market failures and inefficiencies, such as inequalities of bargaining power between a consumer and a business.
+                     As of all potential voters are also consumers, consumer protection takes on a clear political significance.</p>
             </div>
             <div class="col-md-4 text-center" id="el3">
-                <i class="diamond"></i>
-                <h4 class="big">Uhdaus welcome</h4>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima odio placeat ut maiores, quos iure enim, ipsam nam deleniti molestias earum ducimus doloremque sapiente officiis explicabo mollitia culpa nisi similique omnis nostrum quod incidunt ullam repellendus asperiores necessitatibus, iste.imus.</p>
+                <i class="right-icon"></i>
+                <h4 class="big">Weekly statistics !</h4>
+                <p>Major brands in particular say they are keen to build trust in their products by becoming more environmentally and ethically conscious but are prepared only to invest if they can see it will add to the bottom line.</p>
             </div>
         </div>
     </div> <!--row contianer-->
@@ -82,24 +87,33 @@ $this->renderFeedbackMessages();
     <div class="row section-row section-two">
         <div class="container">
             <div class="col-md-12 text-center">
-                <i class="fa fa-rocket fa-5x"></i>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet rerum debitis ex eveniet itaque, animi ea, sit odio numquam possimus tempore illo sequi magnam fugit odit facere veritatis. Totam, repudiandae.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto suscipit architecto deleniti, earum est officia incidunt fugit, excepturi tempore corporis quidem praesentium. Quia sed quam voluptate labore voluptates dolor ab.</p>
+                <i class="idea"></i>
+                <p class="paragraph-decoration">Coming up with a great idea for a product to sell online will occasionally strike when you
+                    least expect it. Many times though, it’s something you need to be proactively on the lookout for.
+                    The internet contains a wealth of ideas and inspiration, but as a new entrepreneur, where do you begin?
+                    Aimlessly searching online will only get you so far so we have compiled a list of the best resources to give you direction and get you started.</p>
             </div>
         </div>
     </div><!--row contianer-->
     <!--third section -->
-    <div class ="row section-row section-three">
+    <div class ="row section-row section-three orange-background" id="ToAbout">
         <div class="container">
             <div class="col-md-12 text-center">
-                <i class="fa fa-github-square fa-5x"></i>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, corrupti similique? Laborum modi doloremque temporibus officiis quae provident alias earum maiores fuga harum veritatis quia quo voluptatibus enim ducimus, aperiam.</p>
+                <i class="about"></i>
+                <p class="paragraph-decoration">We are a bounch of people doing a fun assignment for collage.We are
+                    young and we don't care about anything.We are still at the begining and we try hard to learn as
+                    many things as posible.This is a web to monitor the new products that are in the market and
+                    making a lot of review and talk about that products. We include all weekly updates
+                    and make a giant pool about what's the best prodcut/products that had been searched last week
+                    example
+                    .</p>
             </div>
         </div>
     </div>
 </div> <!--main continer-->
 <!--footer -->
 <!--navbar-fixed-bottom -->
-<div class="navbar navbar-inverse bottom-footer footer-style" role="navigation">
+<div class="navbar navbar-inverse bottom-footer footer-style navy-background " role="navigation">
     <div class="container-fluid">
         <div class="container">
             <div class="navbar-text pull-right">
@@ -113,7 +127,7 @@ $this->renderFeedbackMessages();
             <div class="navbar-text pull-left">
                 <a href="index.html"><p class="footer-title">Ethical decision for consumers</p></a>
                 <a href="#"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="#"><i class="fa fa-github-square fa-2x"></i>www.github.com/hoenirvili</a>
+                <a href="https://github.com/hoenirvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github.com/hoenirvili</a>
                 <a href="#"><i class="fa fa-linux fa-2x"></i>www.linkukernel.com</a>
                 <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea de informatica</a>
             </div>
@@ -128,7 +142,7 @@ $this->renderFeedbackMessages();
         <div class="modal-content">
             <form class="form-horizontal" role="form">
                 <div class="modal-header">
-                    <h4>contact me mothercufker</h4>
+                    <h4>Contact us !</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/font-awesome-4.3.0/css/font-awesome.css">
     <link rel="stylesheet" href="<?echo URL ?>html/css/formValidation/formValidation.css" type="text/css">
     <!--fonts-->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Oswald" rel='stylesheet' type="text/css">
+<!--    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">-->
+<!--    <link href="http://fonts.googleapis.com/css?family=Oswald" rel='stylesheet' type="text/css">-->
     <link href="http://fonts.googleapis.com/css?family=Pacifico" rel='stylesheet' type="text/css">
     <!--main style -->
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/main.css">

@@ -29,7 +29,7 @@ $this->renderFeedbackMessages();
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Client</li>
-                            <li><a href="access">Access</a></li>
+                            <li><a href="<?php echo URL.'access'?>">Access</a></li>
                             <li><a href="search">Search</a></li>
                             <li class="dropdown-header">Administrator</li>
                             <li><a href="admin">Control Pannel</a></li>
@@ -64,22 +64,23 @@ $this->renderFeedbackMessages();
         <div class="container">
             <div class="col-md-4 text-center" id="el1">
                 <i class="left-icon"></i>
-                <h4 class="big">Good idea !</h4>
-                <p>The words "ethics" and "morals" are frequently used interchangeably.
+                <h3 class="big">Good idea !</h3>
+                <p class="three-paragraph">The words "ethics" and "morals" are frequently used interchangeably.
                     Ethics refer to behavior customary in our culture or society. Ethics may change as a person moves from one society to the next.
                     Morals refer to personal standards of right and wrong. Morals do not change as a person moves from one society to the next</p>
             </div>
             <div class="col-md-4 text-center" id="el2">
                 <i class="middle-icon"></i>
-                <h4 class="big">Best searching ! </h4>
-                <p>A typical legal rationale for protecting the consumer is based on the notion of policing
+                <h3 class="big">Best searching ! </h3>
+                <p class="three-paragraph">A typical legal rationale for protecting the consumer is based on the notion of policing
                     market failures and inefficiencies, such as inequalities of bargaining power between a consumer and a business.
                      As of all potential voters are also consumers, consumer protection takes on a clear political significance.</p>
             </div>
             <div class="col-md-4 text-center" id="el3">
                 <i class="right-icon"></i>
-                <h4 class="big">Weekly statistics !</h4>
-                <p>Major brands in particular say they are keen to build trust in their products by becoming more environmentally and ethically conscious but are prepared only to invest if they can see it will add to the bottom line.</p>
+                <h3 class="big">Weekly statistics !</h3>
+                <p class="three-paragraph">Major brands in particular say they are keen to build trust in their products by becoming
+                    more environmentally and ethically conscious but are prepared only to invest if they can see it will add to the bottom line.</p>
             </div>
         </div>
     </div> <!--row contianer-->
@@ -128,7 +129,6 @@ $this->renderFeedbackMessages();
                 <a href="index.html"><p class="footer-title">Ethical decision for consumers</p></a>
                 <a href="#"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
                 <a href="https://github.com/hoenirvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github.com/hoenirvili</a>
-                <a href="#"><i class="fa fa-linux fa-2x"></i>www.linkukernel.com</a>
                 <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea de informatica</a>
             </div>
         </div>

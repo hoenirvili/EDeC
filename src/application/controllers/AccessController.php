@@ -18,7 +18,7 @@ class AccessController extends Controller
             if($user->handleLogin()!==false)
             {
                 //The user is succesfull loged
-                header('Location: '.URL.'dashboard/');
+                header('Location: '.URL.'search/');
             }
             else
                 header('Location: '.URL.'access/');

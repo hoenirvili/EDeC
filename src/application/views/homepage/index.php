@@ -126,9 +126,10 @@ $this->renderFeedbackMessages();
                 <p> Tutuianu Cornealiu</p>
             </div>
             <div class="navbar-text pull-left">
-                <a href="index.html"><p class="footer-title">Ethical decision for consumers</p></a>
-                <a href="#"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="https://github.com/hoenirvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github.com/hoenirvili</a>
+                <a href="<?php echo URL.'index'?>"><p class="footer-title">Ethical decision for consumers</p></a>
+                <a href="https://redit.com/EDeC/"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
+                <a href="https://github.com/hoeni/rvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github
+                    .com/hoenirvili</a>
                 <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea de informatica</a>
             </div>
         </div>

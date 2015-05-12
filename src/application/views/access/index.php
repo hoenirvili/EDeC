@@ -1,7 +1,5 @@
-<body class="body-background">
-    <?php
-    $this->renderFeedbackMessages();
-    ?>
+<body>
+<?php $this->renderFeedbackMessages(); ?>
   <div class="container">
     <div class="row">
         <!--login pannel -->
@@ -48,7 +46,8 @@
                                 <input type="checkbox" name="remember"> Remeber me
                             </label>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in" name="singing">
+                        <input type="submit" class="btn btn-primary btn-lg singin-button" value="Sing in" name="Sign
+                        in">
                     </form><!--form -->
                 </div> <!--pannel body-->
             </div> <!--pannel pannel-deafult login-pannel -->
@@ -88,7 +87,8 @@
 
                     <div class="form-group">
                         <label for="repeatPassword" class="control-label">Repeat password</label>
-                        <input type="password" class="form-control" id="repeat-password" placeholder="password" name="repeatRegisterPassword">
+                        <input type="password" class="form-control" id="repeat-password" placeholder="Repaet password"
+                               name="repeatRegisterPassword">
                         <p class="help-block">Please confirm password</p>
                     </div>
 
@@ -111,7 +111,8 @@
                         <input type="text" class="form-control" name="birthday" placeholder="dd/mm/yyyy" >
                     </div>
                 </div>
-                <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register" name="register">
+                <input type="submit" class="btn btn-primary btn-lg register-button text-center" value="Register"
+                       name="register">
                 <!--<input type="hidden" value="register" name="action">-->
                 </form><!-- form -->
             </div> <!-- panl body -->

@@ -22,13 +22,13 @@ END insertMedia;
 
 --populeaza tabela media
 PROCEDURE populateMedia IS
-
- input_file UTL_FILE.FILE_TYPE;
-     V_LINE VARCHAR2(1000);
-     v_url media.url%TYPE;
-     v_file_json media.file_json%TYPE;
- it NUMBER:=1;
- ok NUMBER(1):=0;
+  
+  input_file UTL_FILE.FILE_TYPE;
+  V_LINE VARCHAR2(1000);
+  v_url media.url%TYPE;
+  v_file_json media.file_json%TYPE;
+  it NUMBER:=1;
+  ok NUMBER(1):=0;
  
 BEGIN
 

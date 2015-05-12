@@ -1,5 +1,7 @@
 SET SERVEROUTPUT ON;
+
 --seteaza directorul
+
 CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv'; 
 GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 
@@ -7,6 +9,7 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 
 --populeaza tabela de users
 PROCEDURE populateUsers;
+
 PROCEDURE insertUser (
     v_username IN  users.username%TYPE,
     v_pass IN  users.pass%TYPE,
@@ -37,6 +40,7 @@ PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE
 
 --insereaza un user in tabela users
 PROCEDURE insertUser (
+
     v_username IN  users.username%TYPE,
     v_pass IN  users.pass%TYPE,
     v_email IN  users.email%TYPE,
@@ -45,10 +49,13 @@ PROCEDURE insertUser (
     v_data_nasterii IN  users.data_nasterii%TYPE,
     v_sex IN  users.sex%TYPE) IS
 BEGIN
+
     INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
+
 END insertUser; 
   
 PROCEDURE populateUsers IS
+
      input_file UTL_FILE.FILE_TYPE;
      V_LINE VARCHAR2(1000);
      v_username users.username%TYPE;
@@ -58,9 +65,13 @@ PROCEDURE populateUsers IS
      v_tip users.tip%TYPE;
      v_data_nasterii users.data_nasterii%TYPE;
      v_sex users.sex%TYPE;
+     it NUMBER:=1;
+     ok NUMBER(1):=0;
 
 BEGIN
+
    input_file := UTL_FILE.FOPEN ('USER_DIR','users_csv.txt', 'R');
+   
    IF UTL_FILE.IS_OPEN(input_file) THEN
       LOOP
         BEGIN
@@ -77,15 +88,22 @@ BEGIN
           v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
           
            insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii),v_sex);
-          
+           it:=it+1;
           COMMIT;
         EXCEPTION
        WHEN NO_DATA_FOUND THEN
           EXIT;
+       WHEN OTHERS THEN
+         DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\media_csv.txt at  line '||it);
+         ok:=1;
        END;
      END LOOP;
     END IF;
     UTL_FILE.FCLOSE(input_file);
+       
+   IF ok=0 
+   THEN COMMIT;
+   END IF;
    
 END populateUsers;
 

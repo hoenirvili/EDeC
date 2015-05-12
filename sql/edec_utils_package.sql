@@ -2,7 +2,7 @@
 CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv'; 
 GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 
-
+  
 CREATE OR REPLACE PACKAGE edec_media_package IS
 
 PROCEDURE populateMedia ;
@@ -25,7 +25,8 @@ PROCEDURE populateMedia IS
      v_url media.url%TYPE;
      v_file_json media.file_json%TYPE;
     
-
+ it NUMBER:=1;
+ ok NUMBER(1):=0;
 BEGIN
    input_file := UTL_FILE.FOPEN ('USER_DIR','media_csv.txt', 'R');
    IF UTL_FILE.IS_OPEN(input_file) THEN
@@ -39,16 +40,21 @@ BEGIN
           v_file_json := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
           
            insertMedia(v_url,TO_NUMBER(v_file_json));
+           it:=it+1;
           
-          COMMIT;
         EXCEPTION
        WHEN NO_DATA_FOUND THEN
           EXIT;
+       WHEN OTHERS THEN
+         DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\media_csv.txt at  line '||it);
+         ok:=1;
        END;
      END LOOP;
     END IF;
     UTL_FILE.FCLOSE(input_file);
-   
+   IF ok=0 
+   THEN COMMIT;
+   END IF;
 END populateMedia;
 
 END edec_media_package;

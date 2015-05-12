@@ -1,12 +1,12 @@
 #Instructions:
 
 ####Please run in the following order
-- schema.sql;
+- edec_schema.sql;
 - edec_utils_package.sql
-- caracteristici_package.sql
-- products_package.sql
+- edec_caracteristici_package.sql
+- edec_products_package.sql
 - edec_users_package.sql
-- populate.sql
+- edec_populate.sql
 
 
 ###Modify path to csv files if necessary.

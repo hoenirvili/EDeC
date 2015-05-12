@@ -44,6 +44,7 @@ PROCEDURE insertCity(city_name IN caracteristica.name%TYPE);
 
 PROCEDURE populateCaracteristici IS
 BEGIN
+
   populateCategories;
   populateOrganisations;
   populateSubst_alim;
@@ -54,94 +55,180 @@ END populateCaracteristici;
 
 PROCEDURE populateCategories IS
 BEGIN
+
    insertCategory('ORGANIZATII');
    insertCategory('SUBSTANTE ALIMENTARE');
    insertCategory('SUBSTANTE NEALIMENTARE');
    insertCategory('ORASE');
+   
  END populateCategories;
 
 PROCEDURE insertCategory(category_name IN categorie_caracteristici.nume%TYPE) AS
 BEGIN
+
   INSERT INTO categorie_caracteristici(NUME) VALUES (category_name);
+  
 END insertCategory;
 
 PROCEDURE populateOrganisations AS
+
   org_name caracteristica.name%TYPE;
-  input_file UTL_FILE.FILE_TYPE; 
+  input_file UTL_FILE.FILE_TYPE;
+  it NUMBER:=1;
+  ok NUMBER(1):=0;
+  
 BEGIN
+
   input_file := UTL_FILE.FOPEN('USER_DIR','organizations_csv.txt','R'); 
+  
   LOOP
     BEGIN
+    
       UTL_FILE.GET_LINE(input_file,org_name); 
       insertOrganisation(org_name);
-    EXCEPTION WHEN No_Data_Found THEN EXIT; END;
+      it:=it+1;
+      
+    EXCEPTION WHEN No_Data_Found THEN EXIT; 
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\organizations_csv.txt at  line '||it);
+      ok:=1;
+      
+    END;
   END LOOP;
+  
+  IF ok=0 
+   THEN COMMIT;
+   END IF;
+   
 END populateOrganisations;
 
 PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE) AS
 BEGIN
+
  INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (organisation_name,1);
+ 
 END insertOrganisation;
 
 PROCEDURE populateSubst_alim AS
+
   alim_name caracteristica.name%TYPE;
   input_file UTL_FILE.FILE_TYPE; 
+  it NUMBER:=1;
+  ok NUMBER(1):=0;
+  
 BEGIN
+
   input_file := UTL_FILE.FOPEN('USER_DIR','subst_alim_csv.txt','R'); 
   
   LOOP
     BEGIN
+    
       UTL_FILE.GET_LINE(input_file,alim_name); 
       insertSubst_alim(alim_name);
-    EXCEPTION WHEN No_Data_Found THEN EXIT; END;
+      it:=it+1;
+      
+    EXCEPTION
+    WHEN No_Data_Found THEN EXIT; 
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\subst_alim_csv.txt at  line '||it);
+      ok:=1;
+    END;
+    
   END LOOP;
+  IF ok=0 
+   THEN COMMIT;
+   END IF;
+   
 END populateSubst_alim;
 
 PROCEDURE insertSubst_alim(alim_name IN caracteristica.name%TYPE) AS
+
 BEGIN
+
   INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (alim_name,2);
+  
 END insertSubst_alim;
 
 PROCEDURE populateSubst_nealim AS
+
   nealim_name caracteristica.name%TYPE;
-  input_file UTL_FILE.FILE_TYPE; 
+  input_file UTL_FILE.FILE_TYPE;
+  it NUMBER:=1;
+  ok NUMBER(1):=0;
+  
 BEGIN
+
   input_file := UTL_FILE.FOPEN('USER_DIR','chemicals_csv.txt','R'); 
+  
   LOOP
     BEGIN
+    
       UTL_FILE.GET_LINE(input_file,nealim_name); 
       insertSubst_nealim(nealim_name);
-    EXCEPTION WHEN No_Data_Found THEN EXIT; END;
+      it:=it+1;
+      
+    EXCEPTION WHEN No_Data_Found THEN EXIT; 
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\chemicals_csv.txt at  line '||it);
+      ok:=1;
+      
+    END;
   END LOOP;
+  
+  IF ok=0 
+   THEN COMMIT;
+   END IF;
+   
 END populateSubst_nealim;
 
 PROCEDURE insertSubst_nealim(nealim_name IN caracteristica.name%TYPE) AS
 BEGIN
+
   INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (nealim_name,3);
+  
 END insertSubst_nealim;
 
 PROCEDURE populateCities AS
+
   city_name caracteristica.name%TYPE;
   input_file UTL_FILE.FILE_TYPE; 
+  it NUMBER:=1;
+  ok NUMBER(1):=0;
+  
 BEGIN
+
   input_file := UTL_FILE.FOPEN('USER_DIR','cities_csv.txt','R'); 
   
   LOOP
     BEGIN
       UTL_FILE.GET_LINE(input_file,city_name); 
       insertCity(city_name);
-    EXCEPTION WHEN No_Data_Found THEN EXIT; END;
+      it:=it+1;
+      
+    EXCEPTION WHEN No_Data_Found THEN EXIT;
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\chemicals_csv.txt at  line '||it);
+      ok:=1;
+    END;
   END LOOP;
+  
+  IF ok=0 
+   THEN COMMIT;
+   END IF;
+   
 END populateCities;
 
 PROCEDURE insertCity(city_name IN caracteristica.name%TYPE)AS
 BEGIN
+
   INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (city_name,4);
+  
 END insertCity;
 
 PROCEDURE insertCacacteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE)
 IS
   BEGIN
+  
     INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (c_name,c_cat);
 
 END insertCacacteristica;

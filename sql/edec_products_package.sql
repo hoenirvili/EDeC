@@ -5,6 +5,7 @@ CREATE OR REPLACE PACKAGE edec_produse_package IS
 PROCEDURE populateProduse ;
 PROCEDURE generateCaracteristics(max_car IN NUMBER);
 PROCEDURE insertProduct(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE );
+
 END edec_produse_package;
 /
 
@@ -51,15 +52,18 @@ BEGIN
 END insertProduct;
 
 PROCEDURE populateProduse IS
-
+  
     input_file UTL_FILE.FILE_TYPE;
-     V_LINE VARCHAR2(1000);
-     v_name produs.name%TYPE;
-     v_image produs.image%TYPE;
-    
+    V_LINE VARCHAR2(1000);
+    v_name produs.name%TYPE;   
+    v_image produs.image%TYPE;
+    it NUMBER:=1;
+    ok NUMBER(1):=0;
 
 BEGIN
+
    input_file := UTL_FILE.FOPEN ('USER_DIR','produs_csv.txt', 'R');
+   
    IF UTL_FILE.IS_OPEN(input_file) THEN
       LOOP
         BEGIN
@@ -67,19 +71,27 @@ BEGIN
           IF V_LINE IS NULL THEN
             EXIT;
           END IF;
+          
           v_name := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
           v_image := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
           
            insertProduct(v_name,TO_NUMBER(v_image));
-          
+           it:=it+1;
           COMMIT;
         EXCEPTION
        WHEN NO_DATA_FOUND THEN
           EXIT;
+       WHEN OTHERS THEN
+         DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\produs_csv.txt at  line '||it);
+         ok:=1;
        END;
      END LOOP;
     END IF;
     UTL_FILE.FCLOSE(input_file);
+    
+     IF ok=0 
+      THEN COMMIT;
+    END IF;
   
 END populateProduse;
 

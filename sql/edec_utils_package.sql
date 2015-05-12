@@ -15,20 +15,25 @@ CREATE OR REPLACE PACKAGE BODY edec_media_package IS
 --insereaza un obiect media in tabela media
 PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE) IS
 BEGIN
+
   INSERT INTO media(url,FILE_JSON) VALUES (v_url,v_json);
+  
 END insertMedia; 
 
 --populeaza tabela media
 PROCEDURE populateMedia IS
+
  input_file UTL_FILE.FILE_TYPE;
      V_LINE VARCHAR2(1000);
      v_url media.url%TYPE;
      v_file_json media.file_json%TYPE;
-    
  it NUMBER:=1;
  ok NUMBER(1):=0;
+ 
 BEGIN
+
    input_file := UTL_FILE.FOPEN ('USER_DIR','media_csv.txt', 'R');
+   
    IF UTL_FILE.IS_OPEN(input_file) THEN
       LOOP
         BEGIN
@@ -50,11 +55,14 @@ BEGIN
          ok:=1;
        END;
      END LOOP;
+     
     END IF;
     UTL_FILE.FCLOSE(input_file);
+    
    IF ok=0 
    THEN COMMIT;
    END IF;
+   
 END populateMedia;
 
 END edec_media_package;

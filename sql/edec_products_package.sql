@@ -33,6 +33,7 @@ PROCEDURE generateCaracteristics(max_car IN NUMBER) IS
   product_rec prod_cursor%ROWTYPE;
   v_no_car NUMBER(1);
   v_r_type CARACTERISTICA.CATEGORIE_CARACTERISTICI_ID%TYPE;
+  
 BEGIN
   FOR product_rec in prod_cursor LOOP
   
@@ -48,7 +49,9 @@ END generateCaracteristics;
 
 PROCEDURE insertProduct(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE )IS
 BEGIN
+
   INSERT INTO produs(name,image) VALUES (prod_name,image_id);
+  
 END insertProduct;
 
 PROCEDURE populateProduse IS
@@ -58,7 +61,6 @@ PROCEDURE populateProduse IS
     v_name produs.name%TYPE;   
     v_image produs.image%TYPE;
     it NUMBER:=1;
-    ok NUMBER(1):=0;
 
 BEGIN
 
@@ -77,21 +79,18 @@ BEGIN
           
            insertProduct(v_name,TO_NUMBER(v_image));
            it:=it+1;
-          COMMIT;
+        
         EXCEPTION
+      WHEN VALUE_ERROR THEN --when the file formar is wrong
+          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\produs_csv.txt at  line '||it);
+          ROLLBACK;--rollback any changes so far
+          EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
           EXIT;
-       WHEN OTHERS THEN
-         DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\produs_csv.txt at  line '||it);
-         ok:=1;
        END;
      END LOOP;
     END IF;
     UTL_FILE.FCLOSE(input_file);
-    
-     IF ok=0 
-      THEN COMMIT;
-    END IF;
   
 END populateProduse;
 

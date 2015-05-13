@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!--logo -->
-                <a class="navbar-brand" href="<?php URL.'/index'?>"><i class="fa fa-anchor fa-2x"></i><span
+                <a class="navbar-brand" href="<?php URL.'index'?>"><i class="fa fa-anchor fa-2x"></i><span
                         class="logo-effect">EDeC</span></a>
             </div>
             <div class="navbar-collapse collapse">
@@ -29,7 +29,7 @@
                             <li><a href="<?php echo URL.'access'?>">Access</a></li>
                             <li><a href="search">Search</a></li>
                             <li class="dropdown-header">Administrator</li>
-                            <li><a href="admin">Control Pannel</a></li>
+                            <li><a href="<?php echo URL. 'controlpannel'?>">Control Pannel</a></li>
                         </ul>
                     </li>
                     <li>

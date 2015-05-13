@@ -575,3 +575,43 @@
             background-size: cover;
         }
 }
+/*control pannel admin*/
+.background-control-pannel
+{
+    background: #f3f3f4;
+    color: #676a6c;
+    height: 100%;
+}
+.box {
+    border: 1px solid red;
+}
+html{
+    height: 100%;
+}
+#side-menu{
+    background: #2f4050;
+    padding: 0;
+}
+#side-menu h1{
+    color: #1f3647;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 25px;
+}
+.display-table{
+    display: table;
+    padding: 0;
+    height: 100%;
+}
+.display-table-row{g
+    display: table-row;
+    height: 100%;
+}
+.display-table-cell{
+    display: table-cell;
+    float: none;
+    height: 100%;
+}
+.valign-top{
+    vertical-align: top;
+}

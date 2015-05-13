@@ -1,8 +1,5 @@
 <!--navigation menu-->
-<body>
-<?php
-$this->renderFeedbackMessages();
-?>
+<body><?php$this->renderFeedbackMessages();?>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="container">
@@ -20,10 +17,10 @@ $this->renderFeedbackMessages();
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active">
-                        <a href="index.html">Home</a>
+                        <a href="<?php echo URL.'index/'?>">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL.'index/#ToAbout'?>">About</a>
+                        <a href="<?php echo URL.'index/#ToAbout'?>" id="about">About</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>

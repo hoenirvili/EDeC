@@ -6,6 +6,31 @@
         }
 
 }
+@media only screen and ( max-width: 338px) {
+    .container-header >h1 {
+        font-size: 30px;
+    }
+    .container-header > p{
+        font-size: 15px;
+    }
+
+    .start-button{
+        font-size:0.8em;
+    }
+    .three-paragraph{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 265px) {
+    .container-header >h1{
+        font-size: 25px;
+
+    }
+    .container-header >p {
+        font-size: 12px;
+    }
+
+}
 @media only screen and (max-width:540px){
         .pull-left{
             font-size: 0.7em;    

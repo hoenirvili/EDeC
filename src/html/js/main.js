@@ -89,8 +89,6 @@ $("#about").click(function doScrollEvent() {
     var el = "ToAbout";
     autoScrollTo(el);
 });
-
-
 /*set arrow key to go to top of the page */
 
 //$("#arrow").click(function doArrowScroll(){

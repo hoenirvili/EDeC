@@ -53,9 +53,8 @@
     margin-left: 25px;
 }
 .input-group-addon{
-    background-color: dodgerblue;
+    background-color: #0c516c;
 }
-
 /*UTILS*/
 .errors{
     font-size: 0.8em;

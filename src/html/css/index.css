@@ -367,3 +367,14 @@
 	letter-spacing: 1px;
 	color: #222;
 }
+
+/*contact */
+.contactButton{
+    border: none;
+}
+.contactButton:hover,
+.contactButton:focus,
+.contactButton:active{
+    border: none;
+    margin-top: 0;
+}

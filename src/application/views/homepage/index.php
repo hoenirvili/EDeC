@@ -163,8 +163,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Send</button>
-                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                    <button type="submit" class="btn btn-primary contactButton">Send</button>
+                    <a class="btn btn-default contactButton" data-dismiss="modal">Close</a>
                 </div>
             </form>
         </div>

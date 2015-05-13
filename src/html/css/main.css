@@ -390,17 +390,8 @@
 	letter-spacing: 1px;
 	color: #222;
 }
-
-.body-background {
-    background: url("../img/backgrounds/login-flat.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size:cover;
-    -ms-background-size: cover;   
-    -o-background-size: cover;
-    background-size: cover;
-}
+/*login pannel* style*/
 .login-panel{
-    opacity: 0.95;
     border-style: none;
     border-radius: 0;
 }
@@ -408,40 +399,18 @@
 .singin-button {
     border-radius: 0;
     border-style:none;
-    font-family: 'Oswald', sans-serif;
     font-size: 1em;
-    letter-spacing: 1px;
-    padding: 8px 15px;
-    text-transform: none;
+    padding: 5px 10px;
     margin-top: 1px;
 }
 .singin-button:hover,
 .singin-button:focus,
 .singin-button:active{
-    color: #18BC9C;
     margin-top: 1px;
 }
-
-.singup-button {
-    border-style: none;
-    border-radius: 0;
-    margin-left: 2.5em;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1em;
-    letter-spacing: 1px;
-    padding: 8px 15px;
-    text-transform: none;    
-    margin-top: 1px;
-}
-.singup-button:hover,
-.singup-button:focus,
-.singup-button:active{
-    color: #18BC9C;
-    margin-top: 1px;
-}
-
+/*==================*/
+/*register pannel style*/
 .register-panel{
-	opacity: 0.95;
 	border-style: none;
 	border-radius: 0;
 	width: 65%;
@@ -451,36 +420,35 @@
 .register-button{
     border-radius: 0;
     border-style:none;
-    font-family: 'Oswald', sans-serif;
     font-size: 1em;
-    letter-spacing: 1px;
-    padding: 8px 41.5%;
+    padding: 8px 40%;
     margin-top: 1px;
-    text-transform: none;
     display: block;
     margin-left: 3%;
-
 }
 .register-button:hover,
 .register-button:focus,
 .register-button:active{
-	color: #18BC9C;
 	margin-top: 1px;
 }
 
-.form-control{
-    border-style: none;
-    border-radius: 0px;
-    background-color: #EBEBEB;   
-    color: #000;
+
+/*skelet */
+.panel{
+    margin-top: 50px;
+}
+.page-header h2{
+    color: #fff;
+    font-weight: bolder;
+}
+.radio >label[for="female"]{
+    margin-left: 25px;
+}
+.input-group-addon{
+    background-color: dodgerblue;
 }
 
-.input-group-addon {
-    border-style: none;
-    border-radius: 0px;
-    opacity: 0.95;
-}
-
+/*UTILS*/
 .errors{
     font-size: 0.8em;
     color: red;
@@ -504,6 +472,8 @@
     z-index: 15000;
     text-align: center;
 }
+
+
 /*media queries*/
 @media only screen and (max-width:320px) {
         .start-button{

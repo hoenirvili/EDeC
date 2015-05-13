@@ -1,8 +1,5 @@
 <!--navigation menu-->
-<body>
-<?php
-$this->renderFeedbackMessages();
-?>
+<body><?php$this->renderFeedbackMessages();?>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="container">
@@ -20,10 +17,10 @@ $this->renderFeedbackMessages();
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active">
-                        <a href="index.html">Home</a>
+                        <a href="<?php echo URL.'index/'?>">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL.'index/#ToAbout'?>">About</a>
+                        <a href="<?php echo URL.'index/#ToAbout'?>" id="about">About</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>
@@ -126,9 +123,10 @@ $this->renderFeedbackMessages();
                 <p> Tutuianu Cornealiu</p>
             </div>
             <div class="navbar-text pull-left">
-                <a href="index.html"><p class="footer-title">Ethical decision for consumers</p></a>
-                <a href="#"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="https://github.com/hoenirvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github.com/hoenirvili</a>
+                <a href="<?php echo URL.'index'?>"><p class="footer-title">Ethical decision for consumers</p></a>
+                <a href="https://redit.com/EDeC/"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
+                <a href="https://github.com/hoeni/rvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github
+                    .com/hoenirvili</a>
                 <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea de informatica</a>
             </div>
         </div>

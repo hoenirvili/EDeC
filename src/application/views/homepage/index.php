@@ -20,7 +20,7 @@
                         <a href="<?php echo URL.'index/'?>">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL.'index/#ToAbout'?>" id="about">About</a>
+                        <a href="#" id="about">About</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>

@@ -75,7 +75,6 @@ PROCEDURE populateOrganisations AS
   org_name caracteristica.name%TYPE;
   input_file UTL_FILE.FILE_TYPE;
   it NUMBER:=1;
-  ok NUMBER(1):=0;
   
 BEGIN
 
@@ -88,18 +87,16 @@ BEGIN
       insertOrganisation(org_name);
       it:=it+1;
       
-    EXCEPTION WHEN No_Data_Found THEN EXIT; 
-    WHEN OTHERS THEN
-      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\organizations_csv.txt at  line '||it);
-      ok:=1;
-      
+    EXCEPTION 
+    WHEN VALUE_ERROR THEN --when the file formar is wrong
+          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\organizations_csv.txt at  line '||it);
+          ROLLBACK;--rollback any changes so far
+          EXIT;--exit procedure
+       WHEN NO_DATA_FOUND THEN
+          EXIT;
     END;
   END LOOP;
   
-  IF ok=0 
-   THEN COMMIT;
-   END IF;
-   
 END populateOrganisations;
 
 PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE) AS
@@ -114,7 +111,6 @@ PROCEDURE populateSubst_alim AS
   alim_name caracteristica.name%TYPE;
   input_file UTL_FILE.FILE_TYPE; 
   it NUMBER:=1;
-  ok NUMBER(1):=0;
   
 BEGIN
 
@@ -128,16 +124,15 @@ BEGIN
       it:=it+1;
       
     EXCEPTION
-    WHEN No_Data_Found THEN EXIT; 
-    WHEN OTHERS THEN
-      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\subst_alim_csv.txt at  line '||it);
-      ok:=1;
+    WHEN VALUE_ERROR THEN --when the file formar is wrong
+      DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\subst_alim_csv.txt at  line '||it);
+      ROLLBACK;--rollback any changes so far
+      EXIT;--exit procedure
+    WHEN NO_DATA_FOUND THEN
+      EXIT;
     END;
     
   END LOOP;
-  IF ok=0 
-   THEN COMMIT;
-   END IF;
    
 END populateSubst_alim;
 
@@ -154,7 +149,6 @@ PROCEDURE populateSubst_nealim AS
   nealim_name caracteristica.name%TYPE;
   input_file UTL_FILE.FILE_TYPE;
   it NUMBER:=1;
-  ok NUMBER(1):=0;
   
 BEGIN
 
@@ -167,17 +161,15 @@ BEGIN
       insertSubst_nealim(nealim_name);
       it:=it+1;
       
-    EXCEPTION WHEN No_Data_Found THEN EXIT; 
-    WHEN OTHERS THEN
-      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\chemicals_csv.txt at  line '||it);
-      ok:=1;
-      
+    EXCEPTION 
+     WHEN VALUE_ERROR THEN --when the file formar is wrong
+       DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\chemicals_csv.txt at  line '||it);
+       ROLLBACK;--rollback any changes so far
+       EXIT;--exit procedure
+     WHEN NO_DATA_FOUND THEN
+       EXIT;
     END;
   END LOOP;
-  
-  IF ok=0 
-   THEN COMMIT;
-   END IF;
    
 END populateSubst_nealim;
 
@@ -193,7 +185,6 @@ PROCEDURE populateCities AS
   city_name caracteristica.name%TYPE;
   input_file UTL_FILE.FILE_TYPE; 
   it NUMBER:=1;
-  ok NUMBER(1):=0;
   
 BEGIN
 
@@ -205,16 +196,15 @@ BEGIN
       insertCity(city_name);
       it:=it+1;
       
-    EXCEPTION WHEN No_Data_Found THEN EXIT;
-    WHEN OTHERS THEN
-      DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\chemicals_csv.txt at  line '||it);
-      ok:=1;
+    EXCEPTION 
+     WHEN VALUE_ERROR THEN --when the file formar is wrong
+       DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\cities_csv.txt at  line '||it);
+       ROLLBACK;--rollback any changes so far
+       EXIT;--exit procedure
+     WHEN NO_DATA_FOUND THEN
+       EXIT;
     END;
   END LOOP;
-  
-  IF ok=0 
-   THEN COMMIT;
-   END IF;
    
 END populateCities;
 

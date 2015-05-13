@@ -66,7 +66,6 @@ PROCEDURE populateUsers IS
      v_data_nasterii users.data_nasterii%TYPE;
      v_sex users.sex%TYPE;
      it NUMBER:=1;
-     ok NUMBER(1):=0;
 
 BEGIN
 
@@ -91,19 +90,16 @@ BEGIN
            it:=it+1;
           COMMIT;
         EXCEPTION
+       WHEN VALUE_ERROR THEN --when the file formar is wrong
+          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\users_csv.txt at  line '||it);
+          ROLLBACK;--rollback any changes so far
+          EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
           EXIT;
-       WHEN OTHERS THEN
-         DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\media_csv.txt at  line '||it);
-         ok:=1;
        END;
      END LOOP;
     END IF;
     UTL_FILE.FCLOSE(input_file);
-       
-   IF ok=0 
-   THEN COMMIT;
-   END IF;
    
 END populateUsers;
 

@@ -22,13 +22,12 @@ END insertMedia;
 
 --populeaza tabela media
 PROCEDURE populateMedia IS
-  
+  --wrong_image EXCEPTION;
   input_file UTL_FILE.FILE_TYPE;
   V_LINE VARCHAR2(1000);
   v_url media.url%TYPE;
   v_file_json media.file_json%TYPE;
   it NUMBER:=1;
-  ok NUMBER(1):=0;
  
 BEGIN
 
@@ -42,26 +41,24 @@ BEGIN
             EXIT;
           END IF;
           v_url := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
+          
           v_file_json := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
           
            insertMedia(v_url,TO_NUMBER(v_file_json));
            it:=it+1;
           
         EXCEPTION
+       WHEN VALUE_ERROR THEN --when the file formar is wrong
+          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\media_csv.txt at  line '||it);
+          ROLLBACK;--rollback any changes so far
+          EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
           EXIT;
-       WHEN OTHERS THEN
-         DBMS_OUTPUT.PUT_LINE('CSV file \\EDeC\sql\csv\media_csv.txt at  line '||it);
-         ok:=1;
        END;
      END LOOP;
      
     END IF;
     UTL_FILE.FCLOSE(input_file);
-    
-   IF ok=0 
-   THEN COMMIT;
-   END IF;
    
 END populateMedia;
 

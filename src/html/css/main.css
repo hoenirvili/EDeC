@@ -593,11 +593,26 @@ html{
     padding: 0;
 }
 #side-menu h1{
-    color: #1f3647;
+    color: #fff;
     text-align: center;
-    margin: 10px 0;
     font-size: 25px;
+    margin-top: -10px;
+    margin-right: -5px;
 }
+.logo-wrapper{
+    position: relative;
+    width: 100%;
+    height: 20%;
+}
+.logo-wrapper > i{
+    height: 100px;
+    width: 100px;
+    margin-top: 25px;
+    margin-left: 20px;
+    font-size: 1em;
+    color: #fff;
+}
+
 .display-table{
     display: table;
     padding: 0;

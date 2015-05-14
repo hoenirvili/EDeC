@@ -3,7 +3,10 @@
         <div class="row display-table-row">
             <!--side menu-->
             <div class="col-md-2 display-table-cell valign-top" id="side-menu">
-                <h1>Navitaion</h1>
+                <div class="logo-wrapper">
+                     <i class="fa fa-anchor fa-2x"></i>
+                    <h1>EDeC</h1>
+                </div>
                 <ul>
                     <!--DASHBOARD-->
                     <li class="link">

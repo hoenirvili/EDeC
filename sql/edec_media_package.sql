@@ -1,23 +1,24 @@
 SET SERVEROUTPUT ON;
---seteaza directorul ?
+
 CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv'; 
 GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
-
   
 CREATE OR REPLACE PACKAGE edec_media_package IS
 
-WRONG_IMAGE_URL EXCEPTION;
+  WRONG_IMAGE_URL EXCEPTION;
 
-PROCEDURE populateMedia ;
-PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE);
+  PROCEDURE populateMedia ;
+  PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE);
+  
 END edec_media_package;
 /
 
 CREATE OR REPLACE PACKAGE BODY edec_media_package IS
 
+--checks the url for the imagine
 FUNCTION checkImageURL(v_url IN media.url%TYPE) RETURN NUMBER IS
 BEGIN
-  --checking the url for the imagine
+  --checking the url's extension for the imagine
     IF (LOWER(SUBSTR(v_url,(LENGTH(v_url)-3),LENGTH(v_url))))!='.jpg' THEN 
       IF (LOWER(SUBSTR(v_url,(LENGTH(v_url)-3),LENGTH(v_url))))!='.png' THEN
         IF (LOWER(SUBSTR(v_url,(LENGTH(v_url)-4),LENGTH(v_url))))!='.jpeg' THEN
@@ -32,9 +33,13 @@ END checkImageURL;
 PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE) IS
 
 BEGIN
-  
+  IF checkImageURL(v_url)=0 THEN
+            RAISE WRONG_IMAGE_URL;
+          END IF;
   INSERT INTO media(url,FILE_JSON) VALUES (v_url,v_json);
-  
+EXCEPTION
+  WHEN WRONG_IMAGE_URL THEN
+      DBMS_OUTPUT.PUT_LINE('Wrong imagine url ');
 END insertMedia; 
 
 --populeaza tabela media
@@ -45,7 +50,7 @@ PROCEDURE populateMedia IS
   v_url media.url%TYPE;
   v_file_json media.file_json%TYPE;
   it NUMBER:=1;
-  ck_img NUMBER;
+ 
 BEGIN
 
    input_file := UTL_FILE.FOPEN ('USER_DIR','media_csv.txt', 'R');

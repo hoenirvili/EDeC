@@ -25,11 +25,13 @@ html{
     display: table;
     padding: 0;
     height: 100%;
+    width: 100%;
 }
-.display-table-row{g
+.display-table-row{
     display: table-row;
     height: 100%;
 }
+
 .display-table-cell{
     display: table-cell;
     float: none;
@@ -37,4 +39,64 @@ html{
 }
 .valign-top{
     vertical-align: top;
+}
+
+#nav-header{
+    background-color: #fff;
+    border-bottom: 1px solid #e7eaec;
+
+}
+#nav-header #header-search-field {
+    padding-top: 17px;
+    vertical-align: middle;
+    border: none;
+    width: 300px;
+    outline: none;
+}
+#nav-header ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #676a6c;
+}
+#nav-header ul li{
+    float: left;
+    margin-left: 15px;
+    padding: 17px 0;
+}
+#nav-header ul .glyphicon{
+    color : #676a6c;
+}
+.label-success{
+    background-color: #1ab394;
+}
+#nav-header ul a {
+    text-decoration: none;
+}
+#nav-header .logout{
+    color: #676a6c;
+}
+#nav-header .logout:hover{
+    color: #676a6c;
+}
+#nav-header #welcome{
+    margin-right: 20px;
+}
+
+#nav-header ul .label {
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -5px;
+}
+#nav-header .fixed-width{
+    width: 35px;
+}
+#admin-footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 12px;
+    color: #676a6c;
 }

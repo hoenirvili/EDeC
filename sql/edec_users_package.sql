@@ -6,6 +6,8 @@ GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 CREATE OR REPLACE PACKAGE edec_users_package AS
 
   WRONG_EMAIL_FORMAT EXCEPTION;
+  WRONG_USERNAME EXCEPTION;
+  
   --populeaza tabela de users
   PROCEDURE populateUsers;
   PROCEDURE insertUser (
@@ -39,12 +41,25 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
   --checks the email for the user
   FUNCTION checkEmail(v_email IN users.email%TYPE) RETURN NUMBER IS
     CK_EMAIL NUMBER;
+    REGEX_EMAIL VARCHAR(93):='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2,4}|com|org|net|edu|gov||info|mobi|name|ro)$';
   BEGIN
-   SELECT REGEXP_INSTR (v_email,'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2,4}|com|org|net|edu|gov|
-|info|mobi|name|ro)$') INTO CK_EMAIL
+   SELECT REGEXP_INSTR (v_email,REGEX_EMAIL) INTO CK_EMAIL
       FROM dual;
    RETURN CK_EMAIL;
   END checkEmail;
+  
+   FUNCTION checkUsername(v_username IN users.username%TYPE) RETURN NUMBER IS
+    CK_USERNAME NUMBER;
+    REGEX_USERNAME VARCHAR(53):='^(([a-zA-Z])(([a-zA-Z0-9\._-])+){4,23}([a-zA-Z0-9]))$';
+    -- username starts with a alphabetical character
+    -- allowed characters a to z (lower or upper) "." "_" and "-"
+    -- just alphanumeric character at the end 
+    -- min 6 max 25 characters
+  BEGIN
+   SELECT REGEXP_INSTR (v_username,REGEX_USERNAME) INTO CK_USERNAME
+      FROM dual;
+   RETURN CK_USERNAME;
+  END checkUsername;
 
   --insereaza un user in tabela users
   PROCEDURE insertUser (
@@ -58,11 +73,16 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       v_sex IN  users.sex%TYPE) IS
   BEGIN
        IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+       IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME;END IF;
        
       INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
   EXCEPTION
     WHEN WRONG_EMAIL_FORMAT THEN
        DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username);
+    WHEN WRONG_USERNAME THEN
+        IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
+        ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        END IF;
   END insertUser; 
     
   PROCEDURE populateUsers IS
@@ -98,6 +118,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
             
             IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+            IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME;END IF;
             
             insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii),v_sex);
             it:=it+1;
@@ -105,6 +126,12 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
           EXCEPTION
             WHEN WRONG_EMAIL_FORMAT THEN
               DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\users_csv.txt');
+              it:=it+1;
+            WHEN WRONG_USERNAME THEN
+              IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
+                ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
+              END IF;
+              it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
               DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\users_csv.txt at  line '||it);
               ROLLBACK;--rollback any changes so far

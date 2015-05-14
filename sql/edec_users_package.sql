@@ -6,8 +6,8 @@ GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 CREATE OR REPLACE PACKAGE edec_users_package AS
 
   WRONG_EMAIL_FORMAT EXCEPTION;
-  WRONG_USERNAME EXCEPTION;
-  
+  WRONG_USERNAME_FORMAT EXCEPTION;
+  WRONG_PASSWORD_FORMAT EXCEPTION;
   --populeaza tabela de users
   PROCEDURE populateUsers;
   PROCEDURE insertUser (
@@ -60,6 +60,17 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       FROM dual;
    RETURN CK_USERNAME;
   END checkUsername;
+  
+ 
+  --checks the email for the user
+  FUNCTION checkPassword(v_pass IN users.email%TYPE) RETURN NUMBER IS
+    CK_PASSWORD NUMBER;
+    REGEX_PASSWORD VARCHAR(29):='^[a-zA-Z0-9\.\#$%^*_-]{6,18}$';
+  BEGIN
+   SELECT REGEXP_INSTR (v_pass,REGEX_PASSWORD) INTO CK_PASSWORD
+      FROM dual;
+   RETURN CK_PASSWORD;
+  END checkPassword;
 
   --insereaza un user in tabela users
   PROCEDURE insertUser (
@@ -73,15 +84,20 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       v_sex IN  users.sex%TYPE) IS
   BEGIN
        IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
-       IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME;END IF;
+       IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+       IF checkPassword(v_pass)=0 THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
        
       INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
   EXCEPTION
     WHEN WRONG_EMAIL_FORMAT THEN
        DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username);
-    WHEN WRONG_USERNAME THEN
-        IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
+    WHEN WRONG_USERNAME_FORMAT THEN
+        IF LENGTH(v_username)>25 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
         ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        END IF;
+    WHEN WRONG_PASSWORD_FORMAT THEN
+        IF LENGTH(v_pass)>18 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+        ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
         END IF;
   END insertUser; 
     
@@ -118,7 +134,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
             
             IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
-            IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME;END IF;
+            IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME_FORMAT;END IF;
             
             insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii),v_sex);
             it:=it+1;
@@ -127,9 +143,14 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             WHEN WRONG_EMAIL_FORMAT THEN
               DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\users_csv.txt');
               it:=it+1;
-            WHEN WRONG_USERNAME THEN
+            WHEN WRONG_USERNAME_FORMAT THEN
               IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
                 ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
+              END IF;
+              it:=it+1;
+             WHEN WRONG_PASSWORD_FORMAT THEN
+              IF LENGTH(v_pass)>18 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+               ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
               END IF;
               it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong

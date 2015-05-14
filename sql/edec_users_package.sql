@@ -38,13 +38,12 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 
   --checks the email for the user
   FUNCTION checkEmail(v_email IN users.email%TYPE) RETURN NUMBER IS
+    CK_EMAIL NUMBER;
   BEGIN
-     IF (LOWER(SUBSTR(v_email,(LENGTH(v_email)-3),LENGTH(v_email))))!='.com' THEN 
-       IF (LOWER(SUBSTR(v_email,(LENGTH(v_email)-2),LENGTH(v_email))))!='.ro' THEN
-              RETURN 0;
-       END IF;
-     END IF;
-   RETURN 1;
+   SELECT REGEXP_INSTR (v_email,'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2,4}|com|org|net|edu|gov|
+|info|mobi|name|ro)$') INTO CK_EMAIL
+      FROM dual;
+   RETURN CK_EMAIL;
   END checkEmail;
 
   --insereaza un user in tabela users

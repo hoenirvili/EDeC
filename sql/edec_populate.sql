@@ -7,6 +7,7 @@ BEGIN
   --edec_produse_package.generateCaracteristics(4);
   --edec_users_package.populateLove(5);
   --edec_users_package.populateHate(5);
-
+  
 END;
 /
+

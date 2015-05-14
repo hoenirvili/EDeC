@@ -12,7 +12,44 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <!--commments -->
+
+                    <!--ARTICLE-->
+                    <li class="link">
+                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                            <span>Article</span>
+                            <span class="label label-success pull-right">28</span>
+                        </a>
+                        <ul class="collapse collapseable" id="collapse-post">
+                            <li><a href="new-article.html">Create New</a></li>
+                            <li><a href="new-article.html">View Article</a></li>
+                        </ul>
+                    </li>
+
+
+                    <!--Comments-->
+                    <li class="link">
+                        <a href="#collapse-comments" data-toggle="collapse" aria-controls="collapse-comments">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            <span>Comments</span>
+                        </a>
+                        <ul class="collapse collapseable" id="collapse-comments">
+                            <li>
+                                <a href="approved.html">Approved
+                                <span class="label label-success pull-right" aria-hidden="true">10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="approved.html">Unnaproved
+                                    <span class="label label-warning pull-right" aria-hidden="true">6</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <!--COMMENTERS -->
                     <li class="link">
                         <a href="<?php echo 'URL' . 'index/' ?>">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -28,10 +65,15 @@
                     </li>
                     <!--Settings -->
                     <li class="link">
-                        <a href="<?php echo 'URL' . 'index/' ?>">
+                        <a href="#collapse-settings" data-toggle="collapse" aria-controls="collapse-post">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             <span>Settings</span>
                         </a>
+                        <ul class="collapse collapseable" id="collapse-settings">
+                            <li><a href="details.php">Profile</a></li>
+                            <li><a href="avatar.php">Avatar</a></li>
+                            <li><a href="Security">Security</a></li>
+                        </ul>
                     </li>
 
 

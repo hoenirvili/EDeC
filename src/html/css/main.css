@@ -582,37 +582,40 @@
     color: #676a6c;
     height: 100%;
 }
-.box {
+.box
+{
     border: 1px solid red;
 }
-html{
+html
+{
     height: 100%;
 }
-#side-menu{
+#side-menu
+{
     background: #2f4050;
     padding: 0;
 }
-#side-menu h1{
-    color: #fff;
-    text-align: center;
-    font-size: 25px;
-    margin-top: -10px;
-    margin-right: -5px;
-}
+
+/*#side-menu h1{*/
+    /*color: #fff;*/
+    /*text-align: center;*/
+    /*font-size: 25px;*/
+    /*margin-top: -10px;*/
+    /*margin-right: -5px;*/
+/*}*/
 .logo-wrapper{
-    position: relative;
     width: 100%;
     height: 20%;
 }
-.logo-wrapper > i{
-    height: 100px;
-    width: 100px;
-    margin-top: 25px;
-    margin-left: 20px;
-    font-size: 1em;
+.title-logo{
     color: #fff;
+    font-size: 25px;
+    display: inline-block;
+    margin-right: 70px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 25px;
 }
-
 .display-table{
     display: table;
     padding: 0;
@@ -622,6 +625,14 @@ html{
 .display-table-row{
     display: table-row;
     height: 100%;
+}
+.admin-brand{
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.admin-brand:hover{
+    color:#F9690E;
 }
 
 .display-table-cell{
@@ -682,6 +693,61 @@ html{
 }
 #nav-header .fixed-width{
     width: 35px;
+}
+.side-nav-menu{
+    margin-top: 5g%;
+    padding-left: 0;
+}
+.side-nav-menu > li {
+    list-style: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+.link
+{
+    margin-bottom: 10px;
+}
+.link > a:hover,
+.link > a:focus,
+{
+    background-color: #245269;
+}
+
+#collapse-post > li ,
+#collapse-settings > li,
+#collapse-comments > li
+{
+    list-style: none;
+}
+
+.side-nav-menu > li > a {
+    text-decoration: none;
+    color: #fff;
+}
+#collapse-post > li > a,
+#collapse-settings > li > a,
+#collapse-comments > li> a
+{
+    text-decoration: none;
+    color :#fff;
+}
+.side-nav-menu > li > a:hover,
+.side-nav-menu > li > a:focus,
+.side-nav-menu > li > a:active{
+    color: #F9690E;
+}
+#collapse-post > li > a:hover,
+#collapse-post > li > a:focus,
+#collapse-post > li > a:active,
+#collapse-settings > li > a:hover,
+#collapse-settings > li > a:focus,
+#collapse-settings > li > a:active,
+#collapse-comments > li > a:hover,
+#collapse-comments > li > a:focus,
+#collapse-comments > li > a:active
+{
+    color: #F9690E;
+
 }
 #admin-footer{
     position: absolute;

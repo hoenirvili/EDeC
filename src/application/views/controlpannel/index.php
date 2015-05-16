@@ -4,12 +4,14 @@
             <!--side menu-->
             <div class="col-md-2 display-table-cell valign-top" id="side-menu">
                 <div class="logo-wrapper">
-                     <i class="fa fa-anchor fa-2x"></i>
-                    <h1>EDeC</h1>
+                    <a class="navbar-brand admin-brand" href="<?php URL.'index'?>"><i class="fa fa-anchor fa-2x"></i>
+                        <span class="logo-effect">EDeC</span>
+                    </a>
                 </div>
-                <ul>
+
+                <ul class="side-nav-menu">
                     <!--DASHBOARD-->
-                    <li class="link">
+                    <li class="link box">
                         <a href="<?php echo 'URL' . 'index/' ?>">
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                             <span>Dashboard</span>
@@ -80,7 +82,7 @@
                     </li>
 
 
-                </ul>
+                </ul> <!--side nav menu-->
             </div> <!--col-md-2 left side pannel-->
             <!--main cntent area-->
             <div class="col-md-10 display-table-cell valign-top">

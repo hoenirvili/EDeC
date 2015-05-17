@@ -6,6 +6,7 @@
 <!--form validation plugin -->
 <script src="<?php echo URL ?>html/js/formValidation/formValidation.js"></script>
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
+<script src="<?php echo URL ?>html/plugins/jquery.bxslider.min.js"></script>
 <!--main js-->
 <script src="<?php echo URL ?>html/js/main.js"></script>
 </body  >

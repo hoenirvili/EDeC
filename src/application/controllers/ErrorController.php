@@ -11,6 +11,12 @@ class ErrorController extends Controller {
         parent::__construct();
     }
     function index(){
-        $this->view->render("error/index",false);
+        if(Auth::is_user_logged_in()) {
+            $this->view->render("error/index", false,"logged-in");
+        }
+        else
+        {
+            $this->view->render("error/index", false,"not-logged-in");
+        }
     }
 }

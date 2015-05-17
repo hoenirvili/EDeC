@@ -8,11 +8,17 @@ class AccessController extends Controller
     }
     public function index(){
 
-        $this->view->render("access/index",false);
+        if(Auth::is_user_logged_in()) {
+            $this->view->render("access/index", false,"logged-in");
+        }
+        else
+        {
+            $this->view->render("access/index", false,"not-logged-in");
+        }
     }
     public function login()
     {
-        if(isset($_POST['singing']))
+        if(isset($_POST['signin']))
         {
             $user = new User();
             if($user->handleLogin()!==false)

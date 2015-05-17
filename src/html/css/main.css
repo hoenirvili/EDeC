@@ -1,5 +1,38 @@
 /*custom css style aside from BOOTSTRAP */
 /*loader icon */
+
+@font-face {
+    font-family: 'Nexa Slab';
+    src: url('../fonts/nexa_slab_bold.eot');
+    src: url('../fonts/nexa_slab_bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/nexa_slab_bold.woff2') format('woff2'),
+    url('../fonts/nexa_slab_bold.woff') format('woff'),
+    url('../fonts/nexa_slab_bold.ttf') format('truetype'),
+    url('../fonts/nexa_slab_bold.svg#nexa_slab_bold_freeregular') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'Nexa Slab';
+    src: url('../fonts/nexa_slab_regular.eot');
+    src: url('../fonts/nexa_slab_regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/nexa_slab_regular.woff2') format('woff2'),
+    url('../fonts/nexa_slab_regular.woff') format('woff'),
+    url('../fonts/nexa_slab_regular.ttf') format('truetype'),
+    url('../fonts/nexa_slab_regular.svg#nexa_slab_regular_freeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.bx-wrapper .bx-controls-direction a
+
 .no-js #loader {
 	display: none;
 }
@@ -93,16 +126,15 @@
 	bottom: 0.25em;
 }
 .logo-effect{
-	font-family: 'Pacifico', cursive;
+    font-family: 'Montserrat', sans-serif;
 	position: relative;
-	bottom: 0.50em;
-	left: 0.70em;
-	font-size: 1.2em;
+    font-weight: bold;
+    font-size: 30px;
 }
 /* header */
 .jumbotron{
 	height: 38em;
-	background-image: url("../img/backgrounds/front1.jpg");
+	background-image: url("../img/backgrounds/vegetables.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
@@ -127,6 +159,30 @@
 	color : #F9690E;
 }
 
+.punchline
+{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
+    font-size: 24px;
+    padding:2px 5px;
+    max-width:80%;
+    background:rgba(0,0,0,0.4);
+    position: absolute;
+    color:#f7f7f7;
+    text-align: left;
+    bottom:80px;
+    text-transform: uppercase;
+}
+.punchline span
+{
+    font-size: 25px;
+    font-weight: 700;
+}
+.header-style .bx-wrapper .bx-viewport
+{
+    border:0;
+    left:0;
+}
 
 /*footer*/
 .bottom-footer{
@@ -136,8 +192,8 @@
 
 }
 .section-row{
-	padding-bottom: 15em;
-	padding-top: 15em;
+	padding-bottom: 2em;
+	padding-top: 4em;
 
 }
 .section-one{
@@ -163,7 +219,7 @@
 	-o-background-size: cover;
 }
 .section-two{
-	background-color: #f1c40f;
+	background-color: #92a9a2;
 }
 .middle-icon{
 	display: block;
@@ -275,7 +331,7 @@
 }
 /*big white space correction*/
 .header-style{
-	height: 38em;
+	_height: 38em;
 }
 
 .container-header {
@@ -441,7 +497,6 @@
     color: red;
     visibility: hidden;
     display: none;
-    opacity: none;
 }
 .custom-alert{
     border-style: none;
@@ -757,4 +812,14 @@ html
     padding: 10px;
     font-size: 12px;
     color: #676a6c;
+}
+
+
+.header-style .bx-wrapper .bx-controls-direction a
+{
+    background: none;
+    text-indent: 3px;
+    font-size:32px;
+    color:#f3f3f4;
+
 }

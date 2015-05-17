@@ -10,12 +10,12 @@
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" > -->
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/font-awesome-4.3.0/css/font-awesome.css">
     <link rel="stylesheet" href="<?echo URL ?>html/css/formValidation/formValidation.css" type="text/css">
-    <!--fonts-->
-<!--    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">-->
-<!--    <link href="http://fonts.googleapis.com/css?family=Oswald" rel='stylesheet' type="text/css">-->
-    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel='stylesheet' type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
     <!--main style -->
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jquery.bxslider.css">
+
     <title>Ethic Decisions for Consummers</title>
     <!-- pop for people who disabled javascript -->
     <noscript>

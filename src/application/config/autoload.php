@@ -4,6 +4,7 @@ $classes = array(
     'models/core/Application',
     'models/core/Database',
     'models/core/Session',
+    'models/core/Auth',
     'models/core/View',
     'controllers/Controller',
     'models/user/User'

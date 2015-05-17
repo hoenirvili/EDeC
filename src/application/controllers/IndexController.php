@@ -13,8 +13,10 @@ class IndexController extends Controller {
     }
     function index() {
 
-        $this->view->render('homepage/index', false);
-
+        if(Auth::is_user_logged_in())
+        $this->view->render('homepage/index', false,"logged-in");
+        else
+        $this->view->render('homepage/index', false,"not-logged-in");
     }
 
 }

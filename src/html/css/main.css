@@ -393,8 +393,10 @@
 	position: relative;
 }
 #el2{
+    /*
 	opacity: 0;
 	filter: alpha(opacity=0);
+	*/
 }
 .animate{
 	transition: 2s ease-in-out;

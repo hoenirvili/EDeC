@@ -1,7 +1,7 @@
 SET SERVEROUTPUT ON;
 
 --seteaza directorul ?
-CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv'; 
+CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv';
 GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 
 --pachet tabele caracteristici
@@ -9,7 +9,7 @@ CREATE OR REPLACE PACKAGE edec_caracteristici_package IS
 
 PROCEDURE populateCaracteristici ;
 
-PROCEDURE insertCacacteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE);
+PROCEDURE insertCaracteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE);
 
 END edec_caracteristici_package;
 /
@@ -215,13 +215,13 @@ BEGIN
   
 END insertCity;
 
-PROCEDURE insertCacacteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE)
+PROCEDURE insertCaracteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE)
 IS
   BEGIN
   
     INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (c_name,c_cat);
 
-END insertCacacteristica;
+END insertCaracteristica;
 
 END edec_caracteristici_package;
 /

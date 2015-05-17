@@ -110,7 +110,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
        v_email users.email%TYPE;
        v_avatar users.avatar%TYPE;
        v_tip users.tip%TYPE;
-       v_data_nasterii users.data_nasterii%TYPE;
+       v_data_nasterii VARCHAR2(30);
        v_sex users.sex%TYPE;
        it NUMBER:=1;
   
@@ -136,7 +136,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
             IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME_FORMAT;END IF;
             
-            insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii),v_sex);
+            insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii,'mm-dd-yyyy'),v_sex);
             it:=it+1;
             COMMIT;
           EXCEPTION

@@ -1,8 +1,13 @@
 #Instructions:
 
+#### csv file update
+
+- You should run this directly in sql plus or sql developer, running it trough an ide, or another java application may cause troubles do to the access you need to add triggers. 
+- make sure that in the edec_caracteristici_package.sql file you have set the proper path to the csv file. 
+
 ####Please run in the following order
 - edec_schema.sql;
-- edec_utils_package.sql
+- edec_media_package.sql
 - edec_caracteristici_package.sql
 - edec_products_package.sql
 - edec_users_package.sql

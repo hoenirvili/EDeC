@@ -162,7 +162,7 @@
 .punchline
 {
     font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 24px;
     padding:2px 5px;
     max-width:80%;
@@ -470,6 +470,12 @@
     display: block;
     margin-left: 3%;
 }
+
+.affix-top
+{
+    background: transparent;
+}
+
 .register-button:hover,
 .register-button:focus,
 .register-button:active{

@@ -114,7 +114,8 @@ CREATE TABLE users (
     data_nasterii date  NOT NULL,
     sex varchar2(1)  NOT NULL,
     CONSTRAINT check_1 CHECK (sex IN ('M','F')),
-    CONSTRAINT users_pk PRIMARY KEY (id)
+    CONSTRAINT users_pk PRIMARY KEY (id),
+    CONSTRAINT unique_email UNIQUE (email)
 ) ;
 
 

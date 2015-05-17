@@ -398,6 +398,12 @@
 	filter: alpha(opacity=0);
 	*/
 }
+
+.page-header
+{
+    margin:0;
+}
+
 .animate{
 	transition: 2s ease-in-out;
 	-webkit-transition : 2s ease-in-out;

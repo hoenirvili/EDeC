@@ -80,11 +80,11 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 --checks the email for the user
   FUNCTION checkPassword(v_pass IN users.email%TYPE) RETURN NUMBER IS
     CK_PASSWORD NUMBER;
-    REGEX_PASSWORD VARCHAR(29):='^[a-zA-Z0-9\.\#$%^*_-]{6,18}$';
+    REGEX_PASSWORD VARCHAR(33):='^[a-zA-Z0-9\.\#$%^*_-]{6,32}$';
     BEGIN
       SELECT REGEXP_INSTR (v_pass,REGEX_PASSWORD) INTO CK_PASSWORD
       FROM dual;
-      RETURN CK_PASSWORD;
+      RETURN CK_PASSWORD; 
     END checkPassword;
 
 --insereaza un user in tabela users
@@ -111,7 +111,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
       END IF;
       WHEN WRONG_PASSWORD_FORMAT THEN
-      IF LENGTH(v_pass)>18 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+      IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
       ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
       END IF;
     END insertUser;
@@ -164,7 +164,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             END IF;
             it:=it+1;
             WHEN WRONG_PASSWORD_FORMAT THEN
-            IF LENGTH(v_pass)>18 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+            IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
             ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
             END IF;
             it:=it+1;

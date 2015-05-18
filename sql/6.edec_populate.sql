@@ -9,7 +9,7 @@
     --edec_produse_package.generateCaracteristics(10);
     --edec_users_package.populateLove(5);
     --edec_users_package.populateHate(5);
-    
+    edec_utils_package.exportAlltoCSV;
   END;
   /
   

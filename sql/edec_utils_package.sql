@@ -6,6 +6,7 @@ GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
 
 CREATE OR REPLACE PACKAGE edec_utils_package AS
   PROCEDURE exportToCSV( v_table_name IN VARCHAR2,v_filename IN VARCHAR2 );
+  PROCEDURE exportALLtoCSV;
 END edec_utils_package;
 /
 
@@ -50,5 +51,16 @@ DBMS_SQL.CLOSE_CURSOR(v_theCursor);
 UTL_FILE.FCLOSE( v_output );
 
 END;
+
+  PROCEDURE exportALLtoCSV IS
+    CURSOR table_cursor IS
+      SELECT table_name
+      FROM user_tables;
+    table_rec table_cursor%ROWTYPE;
+  BEGIN
+    FOR table_rec IN table_cursor LOOP
+      exportToCSV(table_rec.table_name,(table_rec.table_name||'.csv'));
+    END LOOP;
+  END;
 END edec_utils_package;
 /

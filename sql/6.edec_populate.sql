@@ -2,8 +2,8 @@
   
   BEGIN
   
-    --edec_caracteristici_package.populateCaracteristici;
-    edec_media_package.importFromCSV('media.csv');
+    edec_caracteristici_package.importFromCSV('caracteristica.csv');
+    --edec_media_package.importFromCSV('media.csv');
     --edec_users_package.importFromCSV('users.csv');
     --edec_produse_package.populateProduse;
     --edec_produse_package.generateCaracteristics(4);
@@ -12,4 +12,6 @@
     
   END;
   /
+  
+  
   

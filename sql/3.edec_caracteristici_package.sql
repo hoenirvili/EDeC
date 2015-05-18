@@ -19,7 +19,8 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
 
 --forward declaration
 --insereaza un rand in tabela categorie_caracteristici
-  PROCEDURE insertCategory(category_name IN categorie_caracteristici.nume%TYPE);
+  PROCEDURE insertCategory(v_name IN categorie_caracteristici.nume%TYPE);
+  PROCEDURE insertCategory(v_id IN categorie_caracteristici.id%TYPE,v_name IN categorie_caracteristici.nume%TYPE);
 --insereaza un rand cu date despre o organizatie in tabela caracteristica
   PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE);
 --insereaza un rand cu date despre o substanta alimentara in tabela caracteristica
@@ -32,17 +33,24 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
   PROCEDURE populateCategories IS
     BEGIN
 
-      insertCategory('ORGANIZATII');
-      insertCategory('SUBSTANTE ALIMENTARE');
-      insertCategory('SUBSTANTE NEALIMENTARE');
-      insertCategory('ORASE');
+      insertCategory(1,'ORGANIZATII');
+      insertCategory(2,'SUBSTANTE ALIMENTARE');
+      insertCategory(3,'SUBSTANTE NEALIMENTARE');
+      insertCategory(4,'ORASE');
 
     END populateCategories;
 
-  PROCEDURE insertCategory(category_name IN categorie_caracteristici.nume%TYPE) AS
+  PROCEDURE insertCategory(v_name IN categorie_caracteristici.nume%TYPE) AS
     BEGIN
 
-      INSERT INTO categorie_caracteristici(NUME) VALUES (category_name);
+      INSERT INTO categorie_caracteristici(NUME) VALUES (v_name);
+
+    END insertCategory;
+    
+   PROCEDURE insertCategory(v_id IN categorie_caracteristici.id%TYPE,v_name IN categorie_caracteristici.nume%TYPE) AS
+    BEGIN
+
+      INSERT INTO categorie_caracteristici(ID,NUME) VALUES (v_id,v_name);
 
     END insertCategory;
 
@@ -99,7 +107,7 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
     v_name caracteristica.name%TYPE;
     v_categorie caracteristica.CATEGORIE_CARACTERISTICI_ID%TYPE;
     it NUMBER:=1;
-
+    v_count NUMBER;
     BEGIN
       populateCategories;
       
@@ -112,16 +120,17 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
             IF V_LINE IS NULL THEN
               EXIT;
             END IF;
+            SELECT LENGTH(V_LINE)-LENGTH(REPLACE(V_LINE,','))INTO v_count FROM DUAL;
             v_id:=REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
-            v_name := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
-            v_categorie := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 3);
-
+            v_categorie := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, v_count+1);
+            v_name := SUBSTR(V_LINE,LENGTH(v_id)+2,LENGTH(V_LINE)-(LENGTH(v_id)+LENGTH(v_categorie))-2);
+            
             insertCaracteristica(TO_NUMBER(v_id),v_name,TO_NUMBER(v_categorie));
             it:=it+1;
             COMMIT;
             EXCEPTION
             WHEN DUP_VAL_ON_INDEX THEN
-              DBMS_OUTPUT.PUT_LINE('CATEGORY ALREADY EXISTS');
+              DBMS_OUTPUT.PUT_LINE('Caracteristic already exists');
               it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
               DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
@@ -130,6 +139,11 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
               EXIT;--exit procedure
             WHEN NO_DATA_FOUND THEN
             EXIT;
+           --  WHEN OTHERS  THEN
+          --     DBMS_OUTPUT.PUT_LINE('Error AT LINE'||it);
+         --      DBMS_OUTPUT.PUT_LINE(V_LINE);
+         --      DBMS_OUTPUT.PUT_LINE(v_id||' '||v_name||' '||v_categorie);
+         --      it:=it+1;
           END;
         END LOOP;
       END IF;

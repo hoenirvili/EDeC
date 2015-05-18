@@ -12,6 +12,7 @@
 - edec_products_package.sql
 - edec_users_package.sql
 - edec_populate.sql
+- trigger_sequences.sql
 
 
 ###Modify path to csv files if necessary.

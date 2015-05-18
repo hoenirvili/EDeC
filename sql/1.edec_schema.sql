@@ -196,8 +196,6 @@ ALTER TABLE users ADD CONSTRAINT user_media
 
 
 
-
-
 --TRIGGERS--
 
 -- CATEGORIE CARACTERISTI--
@@ -216,9 +214,11 @@ BEFORE INSERT ON CATEGORIE_CARACTERISTICI
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  CATEG_CARACT_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 
@@ -263,9 +263,11 @@ BEFORE INSERT ON MEDIA
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  MEDIA_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 
@@ -285,9 +287,11 @@ BEFORE INSERT ON USER_HATES
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  USER_HATES_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 --USER LOVES--
@@ -306,9 +310,11 @@ BEFORE INSERT ON USER_LOVES
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  USER_LOVES_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 --PRODUS--
@@ -326,10 +332,12 @@ CREATE OR REPLACE TRIGGER AI_PRODUS
 BEFORE INSERT ON PRODUS
 FOR EACH ROW
 
-BEGIN 
+BEGIN
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  PRODUS_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 --CARACTERISTICA--
@@ -348,9 +356,11 @@ BEFORE INSERT ON CARACTERISTICA
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  CARACTERISTICA_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 --CARACTERISTICI PRODUSE--
@@ -369,9 +379,11 @@ BEFORE INSERT ON CARACTERISTICI_PRODUSE
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  CARACT_PROD_SEQ.NEXTVAL 
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 

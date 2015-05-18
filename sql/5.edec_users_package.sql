@@ -202,7 +202,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       input_file := UTL_FILE.FOPEN ('USER_DIR',input_file_name, 'R');
       EXECUTE IMMEDIATE 'ALTER  SESSION set NLS_DATE_FORMAT = ''DD-MM-YYYY''' ;
       IF UTL_FILE.IS_OPEN(input_file) THEN
-      UTL_FILE.GET_LINE(input_file, V_LINE, 1000);--ignore the first line
+      UTL_FILE.GET_LINE(input_file, V_LINE, 1000);--ignore the first line with header info
         LOOP
           BEGIN
             UTL_FILE.GET_LINE(input_file, V_LINE, 1000);

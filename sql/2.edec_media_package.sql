@@ -7,9 +7,9 @@ CREATE OR REPLACE PACKAGE edec_media_package IS
 
   WRONG_IMAGE_URL EXCEPTION;
 
-  PROCEDURE populateMedia ;
+  PROCEDURE importFromCSV(input_file_name IN VARCHAR2) ;
   PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE);
-  
+  PROCEDURE exportToCSV ;
 END edec_media_package;
 /
 
@@ -42,20 +42,34 @@ EXCEPTION
       DBMS_OUTPUT.PUT_LINE('Wrong imagine url ');
 END insertMedia; 
 
+PROCEDURE insertMedia (v_id media.id%TYPE,v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE) IS
+
+BEGIN
+  IF checkImageURL(v_url)=0 THEN
+            RAISE WRONG_IMAGE_URL;
+          END IF;
+  INSERT INTO media(id,url,FILE_JSON) VALUES (v_id,v_url,v_json);
+EXCEPTION
+  WHEN WRONG_IMAGE_URL THEN
+      DBMS_OUTPUT.PUT_LINE('Wrong imagine url ');
+END insertMedia; 
+
 --populeaza tabela media
-PROCEDURE populateMedia IS
+PROCEDURE importFromCSV(input_file_name IN VARCHAR2) IS
  
   input_file UTL_FILE.FILE_TYPE;
   V_LINE VARCHAR2(1000);
+  v_id media.id%TYPE;
   v_url media.url%TYPE;
   v_file_json media.file_json%TYPE;
   it NUMBER:=1;
  
 BEGIN
 
-   input_file := UTL_FILE.FOPEN ('USER_DIR','media_csv.txt', 'R');
+   input_file := UTL_FILE.FOPEN ('USER_DIR',input_file_name, 'R');
    
    IF UTL_FILE.IS_OPEN(input_file) THEN
+   UTL_FILE.GET_LINE(input_file, V_LINE, 1000);--ignore the first line with header info
       LOOP
         BEGIN
         
@@ -64,20 +78,23 @@ BEGIN
           IF V_LINE IS NULL THEN
             EXIT;
           END IF;
-          
-          v_url := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
-          v_file_json := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
+          v_id:=REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
+          v_url := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
+          v_file_json := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 3);
           
           IF checkImageURL(v_url)=0 THEN
             RAISE WRONG_IMAGE_URL;
           END IF;
           
-          insertMedia(v_url,TO_NUMBER(v_file_json));
+          insertMedia(TO_NUMBER(v_id),v_url,TO_NUMBER(v_file_json));
           it:=it+1;
           
         EXCEPTION
        WHEN WRONG_IMAGE_URL THEN
           DBMS_OUTPUT.PUT_LINE('Wrong imagine url at line'||it);
+          it:=it+1; 
+       WHEN DUP_VAL_ON_INDEX THEN
+          DBMS_OUTPUT.PUT_LINE('Media already exists');
           it:=it+1;
        WHEN VALUE_ERROR THEN --when the file formar is wrong
           DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\media_csv.txt at  line '||it);
@@ -91,7 +108,14 @@ BEGIN
     END IF;
     UTL_FILE.FCLOSE(input_file);
    
-END populateMedia;
+END importFromCSV;
+
+  
+  PROCEDURE exportToCSV IS
+  BEGIN
+    edec_utils_package.exportToCSV('media','media.csv');
+  END exportToCSV;
+
 
 END edec_media_package;
 /

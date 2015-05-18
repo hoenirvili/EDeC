@@ -7,16 +7,6 @@ $(window).load(function()
 $(document).ready(function()
 {
 
-    $('.bxslider').bxSlider({
-        auto: true,
-        autoControls: false,
-        pager:false,
-        nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>'
-    });
-
-
-    /* Causes issues on # on the last section
 	var elementOne = document.getElementById("el1");
 	var elementTwo = document.getElementById("el2");
 	var elementThree = document.getElementById("el3");
@@ -42,7 +32,6 @@ $(document).ready(function()
 		}else if(window.innerWidth <993 )
 			  elementTwo.style.opacity = "1";
 	}
-	*/
 });
 function autoScrollTo(el){
     /*Local*/

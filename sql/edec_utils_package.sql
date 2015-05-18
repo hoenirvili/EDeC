@@ -38,7 +38,7 @@ BEGIN
  v_status := DBMS_SQL.EXECUTE(v_theCursor);
 
  WHILE ( DBMS_SQL.FETCH_ROWS(v_theCursor) > 0 ) LOOP
-    v_separator := '';
+    v_separator := '"';
     FOR i IN 1 .. v_colCount LOOP
       DBMS_SQL.COLUMN_VALUE( v_theCursor, i, v_columnValue );
       UTL_FILE.PUT( v_output, v_separator || v_columnValue );

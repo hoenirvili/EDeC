@@ -46,21 +46,21 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 
 --checks the email for the user
   FUNCTION checkEmail(v_email IN users.email%TYPE) RETURN BOOLEAN IS
-    CK_EMAIL NUMBER;
-    REGEX_EMAIL VARCHAR(93):='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2,4}|com|org|net|edu|gov||info|mobi|name|ro)$';
+    CK_EMAIL NUMBER:=0;
+    REGEX_EMAIL VARCHAR(93):='^[a-zA-Z0-9\._\-]+@([a-zA-Z0-9_\-]+\.)+(ro|info|com|org|edu|nz|au)$';
     BEGIN
       SELECT REGEXP_INSTR (v_email,REGEX_EMAIL) INTO CK_EMAIL
       FROM dual;
       IF CK_EMAIL>0
       THEN 
-        RETURN FALSE;
-      ELSE
         RETURN TRUE;
+      ELSE
+        RETURN FALSE;
       END IF;
     END checkEmail;
 
   FUNCTION userExistsEmail(v_email IN users.email%TYPE) RETURN BOOLEAN IS
-    v_count int;
+    v_count int:=0;
     BEGIN
       SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE EMAIL=v_email;
       IF V_COUNT>0
@@ -72,7 +72,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     END userExistsEmail;
 
    FUNCTION userExistsName(v_name IN users.username%TYPE) RETURN BOOLEAN IS
-    v_count int;
+    v_count int:=0;
     BEGIN
       SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE username=v_name;
       IF V_COUNT>0
@@ -84,7 +84,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     END userExistsName;
 
   FUNCTION checkUsername(v_username IN users.username%TYPE) RETURN BOOLEAN IS
-    CK_USERNAME NUMBER;
+    CK_USERNAME NUMBER:=0;
     REGEX_USERNAME VARCHAR(53):='^(([a-zA-Z])(([a-zA-Z0-9\._-])+){4,23}([a-zA-Z0-9]))$';
 -- username starts with a alphabetical character
 -- allowed characters a to z (lower or upper) "." "_" and "-"
@@ -95,25 +95,25 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       FROM dual;
       IF CK_USERNAME>0
       THEN
-        RETURN FALSE;
-      ELSE 
         RETURN TRUE;
+      ELSE 
+        RETURN FALSE;
       END IF;
     END checkUsername;
 
 
 --checks the email for the user
   FUNCTION checkPassword(v_pass IN users.email%TYPE) RETURN BOOLEAN IS
-    CK_PASSWORD NUMBER;
+    CK_PASSWORD NUMBER:=0;
     REGEX_PASSWORD VARCHAR(33):='^[a-zA-Z0-9\.\#$%^*_-]{6,32}$';
     BEGIN
       SELECT REGEXP_INSTR (v_pass,REGEX_PASSWORD) INTO CK_PASSWORD
       FROM dual;
         IF CK_PASSWORD>0
       THEN
-        RETURN FALSE;
-      ELSE 
         RETURN TRUE;
+      ELSE 
+        RETURN FALSE;
       END IF;
     END checkPassword;
 
@@ -129,9 +129,9 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     v_sex IN  users.sex%TYPE) IS
     BEGIN
     
-      IF checkEmail(v_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
-      IF checkUsername(v_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
-      IF checkPassword(v_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+      IF checkEmail(v_email)=TRUE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+      IF checkUsername(v_username)=TRUE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+      IF checkPassword(v_pass)=TRUE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
 
       INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
       EXCEPTION

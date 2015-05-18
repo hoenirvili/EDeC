@@ -1,4 +1,4 @@
--- tables
+  -- tables
 -- Table: caracteristica
 DROP TABLE caracteristica cascade constraints;
 CREATE TABLE caracteristica (

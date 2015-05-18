@@ -239,9 +239,11 @@ BEFORE INSERT ON USERS
 FOR EACH ROW
 
 BEGIN 
+    IF :new.id=NULL THEN --in case we have an id when we insert (eg when importing from csv) we do not use the trigger
     Select  USERS_SEQ.NEXTVAL
     INTO    :new.id
     FROM    dual;
+    END IF;
 END;
 /
 

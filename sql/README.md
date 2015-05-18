@@ -21,4 +21,4 @@
 ` GRANT EXECUTE ON UTL_FILE TO <user_name>;` 
 
 - If you have error on date please enter this command in your sqlplus or sqldeveloper and run it
-` alter SESSION set NLS_DATE_FORMAT = 'DD-MM-YYYY HH24:MI:SS' `
+` alter SESSION set NLS_DATE_FORMAT = 'DD-MM-YYYY' `

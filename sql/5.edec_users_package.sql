@@ -8,8 +8,11 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
     WRONG_EMAIL_FORMAT EXCEPTION;
     WRONG_USERNAME_FORMAT EXCEPTION;
     WRONG_PASSWORD_FORMAT EXCEPTION;
+    USER_EXISTS_EMAIL EXCEPTION;
+    USER_EXISTS_NAME EXCEPTION;
 --populeaza tabela de users
-  PROCEDURE populateUsers;
+  PROCEDURE importFromCSV(input_file_name IN VARCHAR2);
+  PROCEDURE exportToCSV;
   PROCEDURE insertUser (
     v_username IN  users.username%TYPE,
     v_pass IN  users.pass%TYPE,
@@ -24,7 +27,9 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 --populeaza tabela de user_loves
   PROCEDURE populateLove(max_car IN NUMBER);
 -- verifica daca exista userul cu emailul respectiv
-  FUNCTION userExists(v_email IN users.email%TYPE) RETURN BOOLEAN;
+  FUNCTION userExistsEmail(v_email IN users.email%TYPE) RETURN BOOLEAN;
+-- verifica daca exista userul cu numele respectiv
+  FUNCTION userExistsName(v_name IN users.username%TYPE) RETURN BOOLEAN;
 --insereaza o caracteristica pt un user in tabela user loves
   PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
 --insereaza o caracteristica pt un user in tabela user hates
@@ -40,16 +45,21 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
   PROCEDURE insertHate(user_id IN users.id%TYPE);
 
 --checks the email for the user
-  FUNCTION checkEmail(v_email IN users.email%TYPE) RETURN NUMBER IS
+  FUNCTION checkEmail(v_email IN users.email%TYPE) RETURN BOOLEAN IS
     CK_EMAIL NUMBER;
     REGEX_EMAIL VARCHAR(93):='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2,4}|com|org|net|edu|gov||info|mobi|name|ro)$';
     BEGIN
       SELECT REGEXP_INSTR (v_email,REGEX_EMAIL) INTO CK_EMAIL
       FROM dual;
-      RETURN CK_EMAIL;
+      IF CK_EMAIL>0
+      THEN 
+        RETURN FALSE;
+      ELSE
+        RETURN TRUE;
+      END IF;
     END checkEmail;
 
-  FUNCTION userExists(v_email IN users.email%TYPE) RETURN BOOLEAN IS
+  FUNCTION userExistsEmail(v_email IN users.email%TYPE) RETURN BOOLEAN IS
     v_count int;
     BEGIN
       SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE EMAIL=v_email;
@@ -59,11 +69,21 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       ELSE
         return FALSE;
       END IF ;
-    END userExists;
+    END userExistsEmail;
 
+   FUNCTION userExistsName(v_name IN users.username%TYPE) RETURN BOOLEAN IS
+    v_count int;
+    BEGIN
+      SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE username=v_name;
+      IF V_COUNT>0
+      THEN
+        return TRUE;
+      ELSE
+        return FALSE;
+      END IF ;
+    END userExistsName;
 
-
-  FUNCTION checkUsername(v_username IN users.username%TYPE) RETURN NUMBER IS
+  FUNCTION checkUsername(v_username IN users.username%TYPE) RETURN BOOLEAN IS
     CK_USERNAME NUMBER;
     REGEX_USERNAME VARCHAR(53):='^(([a-zA-Z])(([a-zA-Z0-9\._-])+){4,23}([a-zA-Z0-9]))$';
 -- username starts with a alphabetical character
@@ -73,18 +93,28 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     BEGIN
       SELECT REGEXP_INSTR (v_username,REGEX_USERNAME) INTO CK_USERNAME
       FROM dual;
-      RETURN CK_USERNAME;
+      IF CK_USERNAME>0
+      THEN
+        RETURN FALSE;
+      ELSE 
+        RETURN TRUE;
+      END IF;
     END checkUsername;
 
 
 --checks the email for the user
-  FUNCTION checkPassword(v_pass IN users.email%TYPE) RETURN NUMBER IS
+  FUNCTION checkPassword(v_pass IN users.email%TYPE) RETURN BOOLEAN IS
     CK_PASSWORD NUMBER;
     REGEX_PASSWORD VARCHAR(33):='^[a-zA-Z0-9\.\#$%^*_-]{6,32}$';
     BEGIN
       SELECT REGEXP_INSTR (v_pass,REGEX_PASSWORD) INTO CK_PASSWORD
       FROM dual;
-      RETURN CK_PASSWORD; 
+        IF CK_PASSWORD>0
+      THEN
+        RETURN FALSE;
+      ELSE 
+        RETURN TRUE;
+      END IF;
     END checkPassword;
 
 --insereaza un user in tabela users
@@ -98,28 +128,66 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     v_data_nasterii IN  users.data_nasterii%TYPE,
     v_sex IN  users.sex%TYPE) IS
     BEGIN
-      IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
-      IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME_FORMAT;END IF;
-      IF checkPassword(v_pass)=0 THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+    
+      IF checkEmail(v_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+      IF checkUsername(v_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+      IF checkPassword(v_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
 
       INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
       EXCEPTION
       WHEN WRONG_EMAIL_FORMAT THEN
-      DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username);
+          DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username);
       WHEN WRONG_USERNAME_FORMAT THEN
-      IF LENGTH(v_username)>25 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
-      ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
-      END IF;
+        IF LENGTH(v_username)>25 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
+        ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        END IF;
       WHEN WRONG_PASSWORD_FORMAT THEN
-      IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
-      ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
-      END IF;
+        IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+        ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        END IF;
     END insertUser;
 
-  PROCEDURE populateUsers IS
+--internal procedure for inserting user used when importing data from csv
+  PROCEDURE insertUser (
+    v_id IN users.id%TYPE,
+    v_username IN  users.username%TYPE,
+    v_pass IN  users.pass%TYPE,
+    v_email IN  users.email%TYPE,
+    v_avatar IN users.avatar%tYPE,
+    v_tip IN  users.tip%TYPE,
+    v_data_nasterii IN  users.data_nasterii%TYPE,
+    v_sex IN  users.sex%TYPE) IS
+    BEGIN
+    
+      IF userExistsName(v_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+      IF userExistsEmail(v_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+      IF checkEmail(v_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+      IF checkUsername(v_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+      IF checkPassword(v_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+
+      INSERT INTO users(id,username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_id,v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
+      EXCEPTION
+      WHEN USER_EXISTS_NAME THEN
+        DBMS_OUTPUT.PUT_LINE('USERNAME ALREADY IN USE');
+      WHEN USER_EXISTS_EMAIL THEN
+        DBMS_OUTPUT.PUT_LINE('EMAIL ALREADY IN USE');
+      WHEN WRONG_EMAIL_FORMAT THEN
+        DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username);
+      WHEN WRONG_USERNAME_FORMAT THEN
+        IF LENGTH(v_username)>25 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
+        ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        END IF;
+      WHEN WRONG_PASSWORD_FORMAT THEN
+        IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+        ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        END IF;
+    END insertUser;
+
+  PROCEDURE importFromCSV(input_file_name IN VARCHAR2 ) IS
 
     input_file UTL_FILE.FILE_TYPE;
     V_LINE VARCHAR2(1000);
+    v_id users.id%TYPE;
     v_username users.username%TYPE;
     v_pass users.pass%TYPE;
     v_email users.email%TYPE;
@@ -131,47 +199,50 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 
     BEGIN
 
-      input_file := UTL_FILE.FOPEN ('USER_DIR','users_csv.txt', 'R');
-
+      input_file := UTL_FILE.FOPEN ('USER_DIR',input_file_name, 'R');
+      EXECUTE IMMEDIATE 'ALTER  SESSION set NLS_DATE_FORMAT = ''DD-MM-YYYY''' ;
       IF UTL_FILE.IS_OPEN(input_file) THEN
+      UTL_FILE.GET_LINE(input_file, V_LINE, 1000);--ignore the first line
         LOOP
           BEGIN
             UTL_FILE.GET_LINE(input_file, V_LINE, 1000);
             IF V_LINE IS NULL THEN
               EXIT;
             END IF;
-            v_username := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
-            v_pass := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
-            v_email := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 3);
-            v_avatar := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 4);
-            v_tip := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 5);
-            v_data_nasterii := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 6);
-            v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
+            v_id:=REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
+            v_username := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
+            v_pass := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 3);
+            v_email := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 4);
+            v_avatar := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 5);
+            v_tip := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 6);
+            v_data_nasterii := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
+            v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 8);
 
-            IF checkEmail(v_email)=0 THEN RAISE WRONG_EMAIL_FORMAT;END IF;
-            IF checkUsername(v_username)=0 THEN RAISE WRONG_USERNAME_FORMAT;END IF;
-
-            insertUser(v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii,'mm-dd-yyyy'),v_sex);
+            insertUser(v_id,v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii,'dd-mm-yyyy'),v_sex);
             it:=it+1;
             COMMIT;
             EXCEPTION
+            WHEN DUP_VAL_ON_INDEX THEN
+              DBMS_OUTPUT.PUT_LINE('USER ALREADY EXISTS');
+              it:=it+1;
             WHEN WRONG_EMAIL_FORMAT THEN
-            DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\users_csv.txt');
-            it:=it+1;
+              DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\'||input_file_name);
+              it:=it+1;
             WHEN WRONG_USERNAME_FORMAT THEN
-            IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
-            ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
-            END IF;
-            it:=it+1;
+              IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
+                ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
+              END IF;
+              it:=it+1;
             WHEN WRONG_PASSWORD_FORMAT THEN
-            IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
-            ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
-            END IF;
-            it:=it+1;
+              IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
+              ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
+              END IF;
+              it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
-            DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\users_csv.txt at  line '||it);
-            ROLLBACK;--rollback any changes so far
-            EXIT;--exit procedure
+              DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
+              DBMS_OUTPUT.PUT_LINE(V_LINE); 
+              ROLLBACK;--rollback any changes so far
+              EXIT;--exit procedure
             WHEN NO_DATA_FOUND THEN
             EXIT;
           END;
@@ -179,7 +250,12 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       END IF;
       UTL_FILE.FCLOSE(input_file);
 
-    END populateUsers;
+    END importFromCSV;
+  
+  PROCEDURE exportToCSV IS
+  BEGIN
+    edec_utils_package.exportToCSV('users','users.csv');
+  END exportToCSV;
 
   PROCEDURE populateHate(max_car IN NUMBER) AS
     CURSOR user_cursor IS
@@ -255,5 +331,3 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 
 END edec_users_package;
 /
-  
-

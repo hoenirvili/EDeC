@@ -97,7 +97,7 @@ BEGIN
           DBMS_OUTPUT.PUT_LINE('Media already exists');
           it:=it+1;
        WHEN VALUE_ERROR THEN --when the file formar is wrong
-          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\media_csv.txt at  line '||it);
+          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'|| input_file_name || ' at  line '||it);
           ROLLBACK;--rollback any changes so far
           EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN

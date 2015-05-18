@@ -1,4 +1,4 @@
-1,product1,1
+ID,NAME,IMAGE
 2,product2,2
 3,product3,3
 4,product4,4
@@ -13,3 +13,4 @@
 13,product13,9
 14,product14,8
 15,product15,7
+1,product1,1

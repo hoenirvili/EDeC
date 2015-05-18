@@ -2,9 +2,10 @@
 
 CREATE OR REPLACE PACKAGE edec_produse_package IS
 
-PROCEDURE populateProduse ;
+PROCEDURE importFromCSV(input_file_name IN VARCHAR2) ;
+PROCEDURE exportToCSV;
 PROCEDURE generateCaracteristics(max_car IN NUMBER);
-PROCEDURE insertProduct(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE );
+PROCEDURE insertProduct(v_name IN produs.name%TYPE,v_image_id IN produs.image%TYPE );
 
 END edec_produse_package;
 /
@@ -47,52 +48,69 @@ BEGIN
   END LOOP;
 END generateCaracteristics;
 
-PROCEDURE insertProduct(prod_name IN produs.name%TYPE,image_id IN produs.image%TYPE )IS
+PROCEDURE insertProduct(v_name IN produs.name%TYPE,v_image_id IN produs.image%TYPE )IS
 BEGIN
 
-  INSERT INTO produs(name,image) VALUES (prod_name,image_id);
+  INSERT INTO produs(name,image) VALUES (v_name,v_image_id);
   
 END insertProduct;
 
-PROCEDURE populateProduse IS
+PROCEDURE insertProduct(v_id IN produs.id%TYPE,v_name IN produs.name%TYPE,v_image_id IN produs.image%TYPE )IS
+BEGIN
+
+  INSERT INTO produs(id,name,image) VALUES (v_id,v_name,v_image_id);
+  
+END insertProduct;
+
+PROCEDURE importFromCSV(input_file_name IN VARCHAR2) IS
   
     input_file UTL_FILE.FILE_TYPE;
     V_LINE VARCHAR2(1000);
+    v_id produs.id%TYPE;
     v_name produs.name%TYPE;   
     v_image produs.image%TYPE;
     it NUMBER:=1;
 
 BEGIN
 
-   input_file := UTL_FILE.FOPEN ('USER_DIR','produs_csv.txt', 'R');
+   input_file := UTL_FILE.FOPEN ('USER_DIR',input_file_name, 'R');
    
    IF UTL_FILE.IS_OPEN(input_file) THEN
+      UTL_FILE.GET_LINE(input_file, V_LINE, 1000);--ignore the first line with header info
       LOOP
         BEGIN
           UTL_FILE.GET_LINE(input_file, V_LINE, 1000);
           IF V_LINE IS NULL THEN
             EXIT;
           END IF;
+          v_id:=REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
+          v_name := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
+          v_image := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 3);
           
-          v_name := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 1);
-          v_image := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 2);
-          
-           insertProduct(v_name,TO_NUMBER(v_image));
+           insertProduct(TO_NUMBER(v_id),v_name,TO_NUMBER(v_image));
            it:=it+1;
         
         EXCEPTION
+      WHEN DUP_VAL_ON_INDEX THEN
+        DBMS_OUTPUT.PUT_LINE('Product already exists');
+        it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\produs_csv.txt at  line '||it);
-          ROLLBACK;--rollback any changes so far
-          EXIT;--exit procedure
+        DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'|| input_file_name ||'at  line '||it);
+        ROLLBACK;--rollback any changes so far
+        EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
-          EXIT;
+        EXIT;
        END;
      END LOOP;
     END IF;
     UTL_FILE.FCLOSE(input_file);
   
-END populateProduse;
+END importFromCSV;
+
+PROCEDURE exportToCSV IS
+  BEGIN
+    edec_utils_package.exportToCSV('produs','produs.csv');
+  END exportToCSV;
 
 
 END edec_produse_package;

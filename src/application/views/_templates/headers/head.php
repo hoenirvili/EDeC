@@ -9,11 +9,21 @@
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/bootstrap-3.3.4/css/bootstrap-theme.min.css">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" > -->
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/font-awesome-4.3.0/css/font-awesome.css">
-    <link rel="stylesheet" href="<?echo URL ?>html/css/formValidation/formValidation.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo URL ?>html/css/formValidation/formValidation.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
     <!--main style -->
-    <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/main.css">
+    <?php
+    if (PRODUCTION) { ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/main.css">
+    <?php } else { ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/index.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/access.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/error.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/search.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/media-queries.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/controlpannel.css">
+    <?php } ?>
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jquery.bxslider.css">
 
     <title>Ethic Decisions for Consummers</title>

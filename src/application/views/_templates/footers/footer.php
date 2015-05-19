@@ -8,6 +8,11 @@
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery.bxslider.min.js"></script>
 <!--main js-->
-<script src="<?php echo URL ?>html/js/main.js"></script>
+<?php if (PRODUCTION) { ?>
+    <script src="<?php echo URL ?>html/js/main.js"></script>
+<?php } else { ?>
+    <script src="<?php echo URL ?>html/js/index.js"></script>
+    <script src="<?php echo URL ?>html/js/access.js"></script>
+<?php } ?>
 </body  >
 </html>

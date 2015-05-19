@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/error.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/search.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/media-queries.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/product.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/controlpannel.css">
     <?php } ?>
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jquery.bxslider.css">

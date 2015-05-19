@@ -3,7 +3,7 @@ module.exports = function(grunt)
 	grunt.initConfig({
 			concat:{
 				css:{
-					src:['src/html/css/index.css','src/html/css/access.css','src/html/css/error.css','src/html/css/search.css','src/html/css/media-queries.css','src/html/css/controlpannel.css'],
+					src:['src/html/css/index.css','src/html/css/access.css','src/html/css/error.css','src/html/css/search.css','src/html/css/media-queries.css','src/html/css/controlpannel.css','src/html/css/product.css'],
 					dest: 'src/html/css/main.css'
 				},
 				js:{

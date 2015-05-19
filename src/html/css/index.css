@@ -96,25 +96,6 @@
 	font-size: 1.2em;
     font-size: 30px;
 }
-/* header */
-.jumbotron{
-	height: 38em;
-    background-image: url("../img/backgrounds/vegetables.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -ms-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    /*for that line betweeen section one and jubotron to dissapear*/
-    border-style: none;
-
-}
-.jumbotron > h1,
-.jumbotron > p{
-	color: #fff;
-	margin-top: 1.7em;
-}
 
 .punchline
 {

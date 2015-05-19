@@ -1,22 +1,60 @@
 <body>
 
-    <div class="container">
+    <div class="container main-wrapper-product-content box">
         <div class="row">
             <div class="col-md-4">
-                <img src="<?php echo URL ?>/html/img/backgrounds/oreo.jpg" alt="oreo" class="img-responsive img-rounded">
-            </div>
-            <div class="col-md-8">
-                <h1>Test nou</h1>
-                <div class="jumbotron">
-                    <h1>Jumbotron</h1>
-                    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                    <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+                <div class="box-image-wrapper box">
+                   <img src="<?php echo URL ?>/html/img/backgrounds/oreo.jpg" alt="oreo" class="img-responsive img-rounded">
                 </div>
+
+                <div class="like-menu-nav box">
+                    <a href="#" class="pull-right">
+                        <span class="glyphicon glyphicon-thumbs-up">25</span>
+                    </a>
+
+                    <a href="#" class="pull-right">
+                     <span class="glyphicon glyphicon-thumbs-down">25</span>
+                    </a>
+
+                    <a href="#" class="pull-right">
+                        <span class="glyphicon glyphicon-comment">10</span>
+                    </a>
+                </div>
+
+            </div><!--col-md-4-->
+
+            <div class="col-md-8">
+                <div class="jumbotron-wrapper">
+                    <h1>Biscuits Oreo</h1>
+                    <div class="jumbotron product-jumbotron">
+                        <p>Oreo is a sandwich cookie consisting of two chocolate wafers with a sweet creme filling inbetween, and (as of 1974) are marketed as
+                        "Chocolate Sandwich Cookies" on the package they are held in. The version currently sold in the United States is made by the Nabisco division
+                        of Mondelez International. Oreo has become the best selling cookie in the
+                        United States since its introduction in</p>
+                    </div>
+                </div><!--jumbotron wrapper-->
+                <a href="#" class="pull-right missing-ingredient"> Report missing ingredient</a>
             </div><!--col-md-8-->
-
-
         </div><!--row-->
     </div><!--container-->
+    <div class="container similar-box-wrapper">
+            <div class="row">
+                            <h1>Similar products</h1>
+                            <div class="col-md-4 box">
+                                <div class="left-arrow pull-left box "></div>
+                            </div>
+
+                            <div class="col-md-4 box">
+                                <div class="similar-products box"></div>
+                            </div>
+
+                            <div class="col-md-4 box">
+                                <div class="right-arrow pull-right box"></div>
+                            </div>
+
+            </div>
+        </div>
+
 
     <!--pop UP-->
     <!-- Loading animation svg -->

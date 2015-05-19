@@ -96,25 +96,6 @@
 	font-size: 1.2em;
     font-size: 30px;
 }
-/* header */
-.jumbotron{
-	height: 38em;
-    background-image: url("../img/backgrounds/vegetables.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -ms-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    /*for that line betweeen section one and jubotron to dissapear*/
-    border-style: none;
-
-}
-.jumbotron > h1,
-.jumbotron > p{
-	color: #fff;
-	margin-top: 1.7em;
-}
 
 .punchline
 {
@@ -648,11 +629,6 @@ This was connected to the issue with javascript
             width: 20px;
             height: 20px;
         }
-        .jumbotron{
-            background-image: url("../img/backgrounds/banner2.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
 
 }
 @media only screen and (max-width:425px){
@@ -669,13 +645,6 @@ This was connected to the issue with javascript
             font-size: 7px;
         }    
     
-}
-@media only screen and (max-width: 700px){
-        .jumbotron{
-            background-image: url("../img/backgrounds/banner3.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
 }
 /*control pannel admin*/
 .background-control-pannel
@@ -859,4 +828,46 @@ html
     padding: 10px;
     font-size: 12px;
     color: #676a6c;
+}
+
+/*product style sheet */
+.box-image-wrapper{
+    width: 250px;
+    height: 250px;
+    margin-top: 100px;
+}
+.similar-box-wrapper{
+    margin-top: 60px;
+}
+.like-menu-nav{
+    width: 250px;
+    height: 25px;
+    margin-top: 20px;
+
+}
+.like-menu-nav > a{
+    margin-left: 40px;
+}
+.main-wrapper-product-content{
+    margin-top: 60px;
+
+}
+
+
+
+/********************
+*   Similar products
+*********************/
+.left-arrow{
+    width: 120px;
+    height: 250px;
+}
+.right-arrow{
+    width: 120px;
+    height: 250px;
+}
+.similar-products{
+    height: 250px;
+    width: 500px;
+    background-color: blue;
 }

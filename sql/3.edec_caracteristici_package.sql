@@ -37,21 +37,23 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
       insertCategory(2,'SUBSTANTE ALIMENTARE');
       insertCategory(3,'SUBSTANTE NEALIMENTARE');
       insertCategory(4,'ORASE');
-
+     
     END populateCategories;
 
   PROCEDURE insertCategory(v_name IN categorie_caracteristici.nume%TYPE) AS
     BEGIN
 
       INSERT INTO categorie_caracteristici(NUME) VALUES (v_name);
-
+      
     END insertCategory;
     
    PROCEDURE insertCategory(v_id IN categorie_caracteristici.id%TYPE,v_name IN categorie_caracteristici.nume%TYPE) AS
     BEGIN
 
       INSERT INTO categorie_caracteristici(ID,NUME) VALUES (v_id,v_name);
-
+    EXCEPTION
+      WHEN DUP_VAL_ON_INDEX THEN
+        DBMS_OUTPUT.PUT_LINE('Caracteristic CATEGORY already exists');
     END insertCategory;
 
   PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE) AS

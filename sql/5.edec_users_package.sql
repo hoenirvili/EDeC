@@ -34,6 +34,10 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
   PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
 --insereaza o caracteristica pt un user in tabela user hates
   PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
+--insereaza o caracteristica pt un user in tabela user loves
+  PROCEDURE insertLove(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
+--insereaza o caracteristica pt un user in tabela user hates
+  PROCEDURE insertHate(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
 
 END edec_users_package;
 /
@@ -100,7 +104,6 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
         RETURN FALSE;
       END IF;
     END checkUsername;
-
 
 --checks the email for the user
   FUNCTION checkPassword(v_pass IN users.email%TYPE) RETURN BOOLEAN IS
@@ -329,5 +332,16 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       INSERT INTO user_hates(user_id,caracteristica_id) VALUES (user_id,carac_id);
     END insertHate;
 
+  PROCEDURE insertLove(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE) IS
+  
+  BEGIN
+     INSERT INTO user_loves(id,user_id,caracteristica_id) VALUES (v_id,user_id,carac_id);
+  END insertLove;
+
+  PROCEDURE insertHate(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE) IS
+  
+  BEGIN
+     INSERT INTO user_hates(id,user_id,caracteristica_id) VALUES (v_id,user_id,carac_id);
+  END insertHate;
 END edec_users_package;
 /

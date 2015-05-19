@@ -6,11 +6,21 @@ PROCEDURE importFromCSV(input_file_name IN VARCHAR2) ;
 PROCEDURE exportToCSV;
 PROCEDURE generateCaracteristics(max_car IN NUMBER);
 PROCEDURE insertProduct(v_name IN produs.name%TYPE,v_image_id IN produs.image%TYPE );
+PROCEDURE insertCarProd(v_id IN CARACTERISTICI_PRODUSE.id%TYPE,
+                          v_prod_id IN CARACTERISTICI_PRODUSE.produs_id%TYPE,
+                          v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE);
 
 END edec_produse_package;
 /
 
 CREATE OR REPLACE PACKAGE BODY edec_produse_package IS
+
+PROCEDURE insertCarProd(v_id IN CARACTERISTICI_PRODUSE.id%TYPE,
+                          v_prod_id IN CARACTERISTICI_PRODUSE.produs_id%TYPE,
+                          v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE) IS
+  BEGIN
+     INSERT INTO CARACTERISTICI_PRODUSE(ID,PRODUS_ID,CARACTERISTICA_ID) VALUES (v_id,v_prod_id,v_car_id);
+  END insertCarProd;
 
 PROCEDURE insertCaracteristic (prod_id IN produs.id%TYPE,type_c caracteristica.categorie_caracteristici_id%TYPE) IS 
   carac_id caracteristica.id%TYPE;    

@@ -14,6 +14,9 @@
 - edec_populate.sql
 - trigger_sequences.sql
 
+####OR run just
+- run.sql
+
 
 ###Modify path to csv files if necessary.
 ###NOTE:

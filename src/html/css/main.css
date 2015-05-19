@@ -861,13 +861,31 @@ html
 .left-arrow{
     width: 120px;
     height: 250px;
+    display: inline-block;
+}
+.left-arrow > a > span{
+    margin-top: 90px;
+    margin-left: 5px;
+    font-size: 50px;
 }
 .right-arrow{
     width: 120px;
     height: 250px;
+    display: inline-block;
+
 }
+.right-arrow > a > span{
+    margin-top: 90px;
+    margin-left: 45px;
+    font-size: 50px;
+    color: #fff;
+}
+.right-arrow > a:hover{
+    color: #df691a;
+}
+
 .similar-products{
     height: 250px;
-    width: 500px;
-    background-color: blue;
+    width: 900px;
+    display: inline-block;
 }

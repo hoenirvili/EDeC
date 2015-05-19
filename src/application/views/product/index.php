@@ -39,19 +39,22 @@
     </div><!--container-->
     <div class="container similar-box-wrapper">
             <div class="row">
+                <div class="col-md-12">
                             <h1>Similar products</h1>
-                            <div class="col-md-4 box">
-                                <div class="left-arrow pull-left box "></div>
-                            </div>
+                                <div class="left-arrow pull-left box ">
+                                    <a href="">
+                                        <span class="glyphicon glyphicon-arrow-left"></span>
+                                    </a>
+                                </div>
 
-                            <div class="col-md-4 box">
                                 <div class="similar-products box"></div>
-                            </div>
 
-                            <div class="col-md-4 box">
-                                <div class="right-arrow pull-right box"></div>
-                            </div>
-
+                                <div class="right-arrow pull-right box">
+                                    <a href="">
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
+                                    </a>
+                                </div>
+                </div>
             </div>
         </div>
 

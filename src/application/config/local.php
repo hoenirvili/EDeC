@@ -1,5 +1,4 @@
 <?php
-
 define('URL', 'http://localhost/EDeC/');
 define('ADMIN_URL', 'http://localhost/EDeC/admin/');
 define('DB_TYPE', 'oci');

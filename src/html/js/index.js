@@ -15,14 +15,14 @@ $(document).ready(function()
     });
 
 
-    /* Causes issues on # on the last section
+    /* Causes issues on # on the last section*/
      var elementOne = document.getElementById("el1");
      var elementTwo = document.getElementById("el2");
      var elementThree = document.getElementById("el3");
 
      if(elementOne!=null && elementThree !=null && elementTwo!=null)
      {
-     if(window.innerWidth >= 993)
+        if(window.innerWidth >= 993)
      {
      $(window).scroll(function(event)
      {
@@ -34,14 +34,15 @@ $(document).ready(function()
      $(elementThree).addClass('animate');
      $(elementTwo).fadeIn('slow',function()
      {
-     $(this).fadeTo("slow",1);
+        $(this).fadeTo("slow",1);
      });
      }
-     });
-     }else if(window.innerWidth <993 )
-     elementTwo.style.opacity = "1";
+        });
      }
-     */
+        else if(window.innerWidth <993 )
+        elementTwo.style.opacity = "1";
+     }
+
 });
 function autoScrollTo(el){
     /*Local*/
@@ -62,7 +63,7 @@ function autoScrollTo(el){
     else
     {
         /* the animation will still going */
-        if(currentY < targetY-distance) // if we still in the hot spot
+        if(currentY+2*(distance) < targetY-distance) // if we still in the hot spot
         {
             scollY = currentY+distance;
             window.scroll(0,scollY); // allow to scroll a specific point on the page
@@ -70,11 +71,10 @@ function autoScrollTo(el){
         }
         else
         {
-            clearTimeout(animator);
+            clearTimeout(animator); // stop function setTimeOut to execute when if we are not in the hot spot
         }
     }
 }
-
 function resetScroller(el)
 {
     /*Local*/
@@ -83,7 +83,7 @@ function resetScroller(el)
     var speed = 10; //10 miliseconds
 
     var currentY = window.pageYOffset;
-    var targetY = document.getElementsById(el).offsetTop;
+    var targetY = document.getElementById(el).offsetTop;
     var animator = setTimeout('resetScroller(\''+el+'\')',speed);
     if(currentY > targetY)
     {
@@ -92,12 +92,14 @@ function resetScroller(el)
     }
     else
     {
+        console.log('test');
         clearTimeout(animator);
     }
 }
 $("#about").click(function doScrollEvent() {
-    var el = "ToAbout";
+    var el= "ToAbout";
     autoScrollTo(el);
+    //resetScroller(el);
 });
 /*set arrow key to go to top of the page */
 

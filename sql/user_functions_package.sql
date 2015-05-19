@@ -1,0 +1,19 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv';
+GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
+
+CREATE OR REPLACE PACKAGE user_functions_package AS
+
+END user_functions_package;
+/
+
+CREATE OR REPLACE PACKAGE BODY user_functions_package AS
+
+END user_functions_package;
+/
+
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('TEST STRING');
+END;
+/

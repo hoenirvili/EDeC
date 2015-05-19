@@ -15,7 +15,7 @@
         8. Access deployment url on your local server and start developing 
         
 ### Untrack files     
-    
+     
     > After setting the gitignore files, if you have already tracked the files you will need to do as follows :
     
     1. run git rm -r --cached .

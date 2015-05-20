@@ -1,13 +1,13 @@
 <body>
 
-    <div class="container main-wrapper-product-content box">
+    <div class="container main-wrapper-product-content ">
         <div class="row">
             <div class="col-md-4">
-                <div class="box-image-wrapper box">
+                <div class="box-image-wrapper ">
                    <img src="<?php echo URL ?>/html/img/backgrounds/oreo.jpg" alt="oreo" class="img-responsive img-rounded">
                 </div>
 
-                <div class="like-menu-nav box">
+                <div class="like-menu-nav ">
                     <a href="#" class="pull-right">
                         <span class="glyphicon glyphicon-thumbs-up">25</span>
                     </a>
@@ -42,7 +42,7 @@
 
 
     <!-- similar products content -->
-    <div class="container">
+    <div class="container main-wrapper-thubnail-content">
         <div class="row">
             <div class="span12">
                 <div class="well">
@@ -58,8 +58,8 @@
                         <div class="carousel-inner">
 
                             <div class="item active">
-                                <div class="row-fluid">
-                                    <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+                                <div class="row-fluid ">
+                                    <div class="span3 "><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>

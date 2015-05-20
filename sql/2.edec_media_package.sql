@@ -1,7 +1,3 @@
-SET SERVEROUTPUT ON;
-
-CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv'; 
-  GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
   
 CREATE OR REPLACE PACKAGE edec_media_package IS
 
@@ -10,6 +6,7 @@ CREATE OR REPLACE PACKAGE edec_media_package IS
   PROCEDURE importFromCSV(input_file_name IN VARCHAR2) ;
   PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE);
   PROCEDURE exportToCSV ;
+  
 END edec_media_package;
 /
 
@@ -110,12 +107,10 @@ BEGIN
    
 END importFromCSV;
 
-  
   PROCEDURE exportToCSV IS
   BEGIN
     edec_utils_package.exportToCSV('media','media.csv');
   END exportToCSV;
-
 
 END edec_media_package;
 /

@@ -7,6 +7,7 @@
  */
 class Database extends PDO
 {
+    private $connection;
     /**
      * Construct this Database object, extending the PDO object
      * By the way, the PDO object is built into PHP by default
@@ -30,11 +31,21 @@ class Database extends PDO
          * most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
          */
         if(DB_TYPE!='oci') {
-            parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS, $options);
+          $this->connection =parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';
+          charset=utf8', DB_USER,
+                DB_PASS, $options);
         }
         else
         {
-            parent::__construct('oci:dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, $options);
+            $this->connection = parent::__construct('oci:dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, $options);
         }
+    }
+    /**Return the connection the the databse
+     * Oci databse in our case
+     * Plus we incapsulate our conneciton using private atribute and public method
+    */
+    public function __getConneciton()
+    {
+        return $this->connection;
     }
 }

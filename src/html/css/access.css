@@ -4,16 +4,16 @@
     border-radius: 0;
 }
 
-.singin-button {
+.signin-button {
     border-radius: 0;
     border-style:none;
     font-size: 1em;
     padding: 5px 10px;
     margin-top: 1px;
 }
-.singin-button:hover,
-.singin-button:focus,
-.singin-button:active{
+.signin-button:hover,
+.signin-button:focus,
+.signin-button:active{
     margin-top: 1px;
 }
 /*==================*/
@@ -61,7 +61,6 @@
     color: red;
     visibility: hidden;
     display: none;
-    opacity: none;
 }
 .custom-alert{
     border-style: none;

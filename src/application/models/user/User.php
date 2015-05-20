@@ -1,9 +1,14 @@
 <?php
 class User
 {
-    function __construct(){}
+
+    public $db;
+    function __construct(){
+        $this->db = $GLOBALS['db'];
+
+    }
       /*HANDLERS */
-      public function handleLogin()
+          public function handleLogin()
       {
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));
@@ -133,6 +138,8 @@ class User
     /*LOGIN*/
     public function validClientUsername($clientUsername)
     {
+       $connection =  $db->__getConnection();
+
         if($clientUsername == 'test')
             return 1;
         else

@@ -17,6 +17,7 @@ try {
     $db = new Database();
 }
 catch (PDOException $e) {
+	print_r($e);
     die('Database connection could not be established.');
 }
 

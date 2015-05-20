@@ -6,13 +6,14 @@
 - make sure that in the edec_caracteristici_package.sql file you have set the proper path to the csv file. 
 
 ####Please run in the following order
-- edec_schema.sql;
-- edec_media_package.sql
-- edec_caracteristici_package.sql
-- edec_products_package.sql
-- edec_users_package.sql
-- edec_populate.sql
-- trigger_sequences.sql
+- 1.edec_schema.sql;
+- 2.edec_media_package.sql
+- 3.edec_caracteristici_package.sql
+- 4.edec_products_package.sql
+- 5.edec_users_package.sql
+- 6.edec_utils_package.sql
+- 7.edec_populate.sql
+- 8.trigger_sequences.sql
 
 ####OR run just
 - run.sql

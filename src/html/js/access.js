@@ -84,7 +84,7 @@ $(document).ready(function(){
             {
                 validators:
                 {
-                    notEmpry:
+                    notEmpty:
                     {
                         message: 'Username is required'
                     },

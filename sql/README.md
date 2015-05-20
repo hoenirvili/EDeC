@@ -11,8 +11,8 @@
 - 3.edec_caracteristici_package.sql
 - 4.edec_products_package.sql
 - 5.edec_users_package.sql
-- 6.edec_utils_package.sql
-- 7.edec_populate.sql
+- 6.edec_populate.sql
+- 7.edec_utils_package.sql
 - 8.trigger_sequences.sql
 
 ####OR run just

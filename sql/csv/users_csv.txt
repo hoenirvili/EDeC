@@ -1,5 +1,0 @@
-anca_dorneanu,2e67e6babf8536b08c20d5fc3274f54b,anca.dorneanu@info.uaic.ro,13,2,07-21-1994,F
-ionutcalara,2e67e6babf8536b08c20d5fc3274f54b,ionut.calara@info.uaic.ro,12,2,10-24-1993,M
-tutuianu.c,2e67e6babf8536b08c20d5fc3274f54b,corneliu.tutuianu@info.uaic.ro,11,2,05-01-1994,M
-toto_salvatore,2e67e6babf8536b08c20d5fc3274f54b,giulitti.salvatore@info.uaic.ro,14,2,01-02-1994,M
-random_user5,2e67e6babf8536b08c20d5fc3274f54b,random_email@gmail.com,15,1,11-23-1995,F

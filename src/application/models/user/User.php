@@ -133,6 +133,8 @@ class User
     /*LOGIN*/
     public function validClientUsername($clientUsername)
     {
+       $connection =  $db->__getConnection();
+
         if($clientUsername == 'test')
             return 1;
         else

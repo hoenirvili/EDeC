@@ -7,7 +7,7 @@ module.exports = function(grunt)
 					dest: 'src/html/css/main.css'
 				},
 				js:{
-					src:['src/html/js/index.js','src/html/js/access.js'],
+					src:['src/html/js/index.js','src/html/js/access.js','src/html/js/search.js','src/html/js/product.js'],
 					dest:'src/html/js/main.js'
 				}
 			},

@@ -13,6 +13,8 @@
 <?php } else { ?>
     <script src="<?php echo URL ?>html/js/index.js"></script>
     <script src="<?php echo URL ?>html/js/access.js"></script>
+    <script src="<?php echo URL ?>html/js/search.js"></script>
+    <script src="<?php echo URL ?>html/js/product.js"></script>
 <?php } ?>
-</body  >
+</body>
 </html>

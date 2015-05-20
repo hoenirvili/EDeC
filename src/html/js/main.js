@@ -178,6 +178,113 @@ if(formListener != null)
 
 
 
+
+$(document).ready(function(){
+    $('#registerForm').formValidation({
+       framework: 'bootstrap',
+       icon:
+       {
+           valid: 'glyphicon glyphicon-ok',
+           invalid: 'glyphicon glyphicon-remove',
+           validating: 'glyphicon glyphicon-refresh'
+       },
+        fields:
+        {
+            registerUsername:
+            {
+                validators:
+                {
+                    notEmpry:
+                    {
+                        message: 'Username is required'
+                    },
+                    stringLength:
+                    {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },
+                    regexp:
+                    {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: 'The username can only consist of alphabetical, number, dot and underscore'
+                    }
+
+                }
+            },
+            email:
+            {
+                validators:
+                {
+                    notEmpty:
+                    {
+                        message: 'Email is required'
+                    },
+                    emailAddress:
+                    {
+                        message: 'The input is not a valid email adress'
+                    }
+                }
+            },
+            registerPassword:
+            {
+                validators:
+                {
+                    notEmpty:
+                    {
+                        message: 'The password is required'
+                    },
+                    different:
+                    {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
+                }
+            },
+            repeatRegisterPassword:
+            {
+                validators:
+                {
+                    notEmpty:
+                    {
+                        message: 'The password is required'
+                    },
+                    different:
+                    {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
+                }
+            },
+            gender:
+            {
+                validators:
+                {
+                    notEmpty:
+                    {
+                        message: 'The gender is required'
+                    }
+                }
+            },
+            birthday:
+            {
+                validators:
+                {
+                    notEmpty:
+                    {
+                        message: 'The date of birth is required'
+                    },
+                    date:
+                    {
+                        format: 'DD/MM/YYYY',
+                        message: 'The date of birth is not valid'
+                    }
+                }
+            }//birthday
+        }//fields
+    });//formvalidation id
+}); //main function
+
 $(document).ready(function() {
     $('#myCarousel').carousel({
         interval: 10000

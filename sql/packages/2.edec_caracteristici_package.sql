@@ -47,7 +47,7 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
       INSERT INTO categorie_caracteristici(ID,NUME) VALUES (v_id,v_name);
     EXCEPTION
       WHEN DUP_VAL_ON_INDEX THEN
-        DBMS_OUTPUT.PUT_LINE('Caracteristic CATEGORY already exists');
+        raise_application_error(-20024,'Caracteristic CATEGORY already exists');
     END insertCategory;
 
   PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE) AS
@@ -126,19 +126,19 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
             COMMIT;
             EXCEPTION
             WHEN DUP_VAL_ON_INDEX THEN
-              DBMS_OUTPUT.PUT_LINE('Caracteristic already exists');
+              raise_application_error(-20025,'Caracteristic already exists');
               it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
-              DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
-              DBMS_OUTPUT.PUT_LINE(V_LINE); 
+              raise_application_error(-20026,'CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
+              raise_application_error(-20022V_LINE);
               ROLLBACK;--rollback any changes so far
               EXIT;--exit procedure
             WHEN NO_DATA_FOUND THEN
             EXIT;
            --  WHEN OTHERS  THEN
-          --     DBMS_OUTPUT.PUT_LINE('Error AT LINE'||it);
-         --      DBMS_OUTPUT.PUT_LINE(V_LINE);
-         --      DBMS_OUTPUT.PUT_LINE(v_id||' '||v_name||' '||v_categorie);
+          --     raise_application_error(-20022'Error AT LINE'||it);
+         --      raise_application_error(-20022V_LINE);
+         --      raise_application_error(-20022v_id||' '||v_name||' '||v_categorie);
          --      it:=it+1;
           END;
         END LOOP;

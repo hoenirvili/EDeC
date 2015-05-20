@@ -3,7 +3,7 @@ CREATE OR REPLACE PACKAGE user_functions_package AS
   PROCEDURE show_hate(v_id users.id%TYPE);
   PROCEDURE show_love(v_id users.id%TYPE);
   
-  
+   
 
 END user_functions_package;
 /
@@ -19,7 +19,7 @@ CREATE OR REPLACE PACKAGE BODY user_functions_package AS
     hate_rec hate_c%ROWTYPE;
   BEGIN
     FOR hate_rec IN hate_c LOOP
-      DBMS_OUTPUT.PUT_LINE(hate_rec.name);
+      raise_application_error(-20022hate_rec.name);
     END LOOP;
   END show_hate;
   
@@ -32,7 +32,7 @@ CREATE OR REPLACE PACKAGE BODY user_functions_package AS
     love_rec love_c%ROWTYPE;
   BEGIN
     FOR love_rec IN love_c LOOP
-      DBMS_OUTPUT.PUT_LINE(love_rec.name);
+      raise_application_error(-20022love_rec.name);
     END LOOP;
   END show_love;
 

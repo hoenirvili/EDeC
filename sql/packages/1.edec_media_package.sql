@@ -36,7 +36,7 @@ BEGIN
   INSERT INTO media(url,FILE_JSON) VALUES (v_url,v_json);
 EXCEPTION
   WHEN WRONG_IMAGE_URL THEN
-      DBMS_OUTPUT.PUT_LINE('Wrong imagine url ');
+      raise_application_error(-20019,'Wrong imagine url ');
 END insertMedia; 
 
 PROCEDURE insertMedia (v_id media.id%TYPE,v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE) IS
@@ -48,7 +48,7 @@ BEGIN
   INSERT INTO media(id,url,FILE_JSON) VALUES (v_id,v_url,v_json);
 EXCEPTION
   WHEN WRONG_IMAGE_URL THEN
-      DBMS_OUTPUT.PUT_LINE('Wrong imagine url ');
+      raise_application_error(-20020,'Wrong imagine url ');
 END insertMedia; 
 
 --populeaza tabela media
@@ -88,13 +88,13 @@ BEGIN
           
         EXCEPTION
        WHEN WRONG_IMAGE_URL THEN
-          DBMS_OUTPUT.PUT_LINE('Wrong imagine url at line'||it);
+          raise_application_error(-20021,'Wrong imagine url at line'||it);
           it:=it+1; 
        WHEN DUP_VAL_ON_INDEX THEN
-          DBMS_OUTPUT.PUT_LINE('Media already exists');
+          raise_application_error(-20022,'Media already exists');
           it:=it+1;
        WHEN VALUE_ERROR THEN --when the file formar is wrong
-          DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'|| input_file_name || ' at  line '||it);
+          raise_application_error(-20023,'CSV file value error \\EDeC\sql\csv\'|| input_file_name || ' at  line '||it);
           ROLLBACK;--rollback any changes so far
           EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN

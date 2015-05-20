@@ -137,12 +137,13 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       WHEN WRONG_EMAIL_FORMAT THEN
           raise_application_error(-20001,'Wrong email format for user '||v_username);
       WHEN WRONG_USERNAME_FORMAT THEN
-        IF LENGTH(v_username)>25 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
-        ELSE raise_application_error(-20002,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        IF LENGTH(v_username)>25 THEN raise_application_error(-20002,'Username too long');
+        ELSE raise_application_error(-20003,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
         END IF;
+
       WHEN WRONG_PASSWORD_FORMAT THEN
         IF LENGTH(v_pass)>32 THEN raise_application_error(-20003,'Password too long');
-        ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        ELSE raise_application_error(-20004,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
         END IF;
     END insertUser;
 
@@ -167,18 +168,18 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       INSERT INTO users(id,username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_id,v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
       EXCEPTION
       WHEN USER_EXISTS_NAME THEN
-        DBMS_OUTPUT.PUT_LINE('USERNAME ALREADY IN USE');
+      raise_application_error(-20005,'USERNAME ALREADY IN USE');
       WHEN USER_EXISTS_EMAIL THEN
-        DBMS_OUTPUT.PUT_LINE('EMAIL ALREADY IN USE');
+      raise_application_error(-20006,'EMAIL ALREADY IN USE');
       WHEN WRONG_EMAIL_FORMAT THEN
-        DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username);
+      raise_application_error(-20007,'Wrong email format for user '||v_username);
       WHEN WRONG_USERNAME_FORMAT THEN
-        IF LENGTH(v_username)>25 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
-        ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        IF LENGTH(v_username)>25 THEN raise_application_error(-20008,'Username too long');
+        ELSE raise_application_error(-20009,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
         END IF;
       WHEN WRONG_PASSWORD_FORMAT THEN
-        IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
-        ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        IF LENGTH(v_pass)>32 THEN raise_application_error(-20005,'Password too long');
+        ELSE raise_application_error(-20010,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
         END IF;
     END insertUser;
 
@@ -222,24 +223,24 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             COMMIT;
             EXCEPTION
             WHEN DUP_VAL_ON_INDEX THEN
-              DBMS_OUTPUT.PUT_LINE('USER ALREADY EXISTS');
+              raise_application_error(-20011,'USER ALREADY EXISTS');
               it:=it+1;
             WHEN WRONG_EMAIL_FORMAT THEN
-              DBMS_OUTPUT.PUT_LINE('Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\'||input_file_name);
+              raise_application_error(-20012,'Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\'||input_file_name);
               it:=it+1;
             WHEN WRONG_USERNAME_FORMAT THEN
-              IF LENGTH(v_username)>15 THEN DBMS_OUTPUT.PUT_LINE('Username too long');
-                ELSE DBMS_OUTPUT.PUT_LINE('Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
+              IF LENGTH(v_username)>15 THEN raise_application_error(-20013,'Username too long');
+                ELSE raise_application_error(-20014,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
               END IF;
               it:=it+1;
             WHEN WRONG_PASSWORD_FORMAT THEN
-              IF LENGTH(v_pass)>32 THEN DBMS_OUTPUT.PUT_LINE('Password too long');
-              ELSE DBMS_OUTPUT.PUT_LINE('Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
+              IF LENGTH(v_pass)>32 THEN raise_application_error(-20015,'Password too long');
+              ELSE raise_application_error(-20016,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
               END IF;
               it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
-              DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
-              DBMS_OUTPUT.PUT_LINE(V_LINE); 
+              raise_application_error(-20017,'CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
+              raise_application_error(-20018,V_LINE);
               ROLLBACK;--rollback any changes so far
               EXIT;--exit procedure
             WHEN NO_DATA_FOUND THEN

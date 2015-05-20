@@ -5,6 +5,8 @@ CREATE OR REPLACE PACKAGE edec_utils_package AS
   PROCEDURE exportALLtoCSV;
   PROCEDURE importALLfromCSV;
   
+  PROCEDURE exportall_no_carac;
+  
 END edec_utils_package;
 /
 
@@ -205,5 +207,15 @@ BEGIN
     importFromCSVCaraProd;
     importPreferencesFromCSV;
   END importALLfromCSV;
+  
+ PROCEDURE exportall_no_carac IS
+ 
+ BEGIN
+    edec_media_package.importFromCSV('media.csv');
+    edec_users_package.importFromCSV('users.csv');
+    edec_produse_package.importFromCSV('produs.csv');
+    importFromCSVCaraProd;
+    importPreferencesFromCSV;
+ END exportall_no_carac;
 END edec_utils_package;
 /

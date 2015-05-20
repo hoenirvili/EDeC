@@ -1,4 +1,3 @@
-  SET SERVEROUTPUT ON;
   
   BEGIN
   

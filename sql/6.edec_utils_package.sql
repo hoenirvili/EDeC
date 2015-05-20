@@ -1,13 +1,10 @@
 
-SET SERVEROUTPUT ON;
-
-CREATE OR REPLACE DIRECTORY USER_DIR AS 'C:\wamp\EDeC\sql\csv';
-GRANT READ ON DIRECTORY USER_DIR TO PUBLIC;
-
 CREATE OR REPLACE PACKAGE edec_utils_package AS
+
   PROCEDURE exportToCSV( v_table_name IN VARCHAR2,v_filename IN VARCHAR2 );
   PROCEDURE exportALLtoCSV;
   PROCEDURE importALLfromCSV;
+  
 END edec_utils_package;
 /
 

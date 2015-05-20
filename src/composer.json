@@ -1,0 +1,6 @@
+{
+  "require": {
+    "yajra/laravel-pdo-via-oci8": "~0.11",
+    "terah/pdooci": "1.0.5"
+  }
+}

@@ -2,10 +2,16 @@
 class User
 {
 
-    public $db;
-    function __construct(){
-        $this->db = $GLOBALS['db'];
+    private $db;
 
+    /**
+     * Public consttructor for db connection
+     * $db object is the global object that stores the database connection
+     * and all the mothods and attributes from Database class
+     * please check Database to know what the hell it's doing
+     */
+    public function __construct(){
+        $this->db = $GLOBALS['db'];
     }
       /*HANDLERS */
           public function handleLogin()
@@ -138,7 +144,6 @@ class User
     /*LOGIN*/
     public function validClientUsername($clientUsername)
     {
-       $connection =  $db->__getConnection();
 
         if($clientUsername == 'test')
             return 1;

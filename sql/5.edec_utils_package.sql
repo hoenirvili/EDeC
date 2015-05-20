@@ -137,7 +137,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Hate already exists');
         it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-        DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\USER_HATES.csv at  line '||it);
+        DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\USER_HATES.csv at  line '||(it+1));
         ROLLBACK;--rollback any changes so far
         EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
@@ -179,7 +179,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Love already exists');
         it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-        DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\USER_LOVES.csv at  line '||it);
+        DBMS_OUTPUT.PUT_LINE('CSV file value error \\EDeC\sql\csv\USER_LOVES.csv at  line '||(it+1));
         ROLLBACK;--rollback any changes so far
         EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN

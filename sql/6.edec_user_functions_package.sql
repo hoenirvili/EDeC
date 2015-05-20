@@ -8,7 +8,7 @@ CREATE OR REPLACE PACKAGE user_functions_package AS
   PROCEDURE show_hate(v_id users.id%TYPE);
   PROCEDURE show_love(v_id users.id%TYPE);
   
-  
+   
 
 END user_functions_package;
 /

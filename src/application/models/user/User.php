@@ -1,9 +1,14 @@
 <?php
 class User
 {
-    function __construct(){}
+
+    public $db;
+    function __construct(){
+        $this->db = $GLOBALS['db'];
+
+    }
       /*HANDLERS */
-      public function handleLogin()
+          public function handleLogin()
       {
           /*We presume that everything it's valid */
           $arrayOfCheckers = SplFixedArray::fromArray(array(0,0));

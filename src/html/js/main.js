@@ -176,3 +176,10 @@ if(formListener != null)
 	//formListener.attachEvent("submit",primaryValidate); manly for internet explorel abouve 9
 }
 
+
+
+$(document).ready(function() {
+    $('#myCarousel').carousel({
+        interval: 10000
+    })
+});

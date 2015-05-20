@@ -24,7 +24,6 @@
                                 </span>
                                 <input type="text" class="form-control" id="username" placeholder="Enter username"
                                        name="loginUsername">
-
                             </div>
                         </div>
                         <!--Password -->

@@ -21,39 +21,32 @@
 
 }
 
-
-
 /********************
 *   Similar products
 *********************/
-.left-arrow{
-    width: 120px;
-    height: 250px;
-    display: inline-block;
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
 }
-.left-arrow > a > span{
-    margin-top: 90px;
-    margin-left: 5px;
-    font-size: 50px;
+/* Reposition the controls slightly */
+.carousel-control {
+    left: -12px;
 }
-.right-arrow{
-    width: 120px;
-    height: 250px;
-    display: inline-block;
-
+.carousel-control.right {
+    right: -12px;
 }
-.right-arrow > a > span{
-    margin-top: 90px;
-    margin-left: 45px;
-    font-size: 50px;
-    color: #fff;
+/* Changes the position of the indicators */
+.carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-right: -19px;
 }
-.right-arrow > a:hover{
-    color: #df691a;
+/* Changes the colour of the indicators */
+.carousel-indicators li {
+    background: #c0c0c0;
 }
-
-.similar-products{
-    height: 250px;
-    width: 900px;
-    display: inline-block;
+.carousel-indicators .active {
+    background: #333333;
 }

@@ -130,15 +130,15 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
               it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
               raise_application_error(-20026,'CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
-              raise_application_error(-20022V_LINE);
+              raise_application_error(-20027,V_LINE);
               ROLLBACK;--rollback any changes so far
               EXIT;--exit procedure
             WHEN NO_DATA_FOUND THEN
             EXIT;
            --  WHEN OTHERS  THEN
-          --     raise_application_error(-20022'Error AT LINE'||it);
-         --      raise_application_error(-20022V_LINE);
-         --      raise_application_error(-20022v_id||' '||v_name||' '||v_categorie);
+          --     raise_application_error(-20028,'Error AT LINE'||it);
+         --      raise_application_error(-20029,V_LINE);
+         --      raise_application_error(-20030,v_id||' '||v_name||' '||v_categorie);
          --      it:=it+1;
           END;
         END LOOP;

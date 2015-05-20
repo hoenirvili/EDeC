@@ -1,5 +1,7 @@
 #Instructions:
 
+
+
 #### csv file update
 
 - You should run this directly in sql plus or sql developer, running it trough an ide, or another java application may cause troubles do to the access you need to add triggers. 
@@ -27,3 +29,9 @@
 
 - If you have error on date please enter this command in your sqlplus or sqldeveloper and run it
 ` alter SESSION set NLS_DATE_FORMAT = 'DD-MM-YYYY' `
+
+
+### Important
+
+Current exception threshold -20040
+Please decrement this number by one when you want to add an exception -> -20041 and update the readme.md file. If unsure ask Ionut. 

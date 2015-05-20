@@ -101,10 +101,10 @@ BEGIN
         
         EXCEPTION
       WHEN DUP_VAL_ON_INDEX THEN
-        raise_application_error(-20027,'Product already exists');
+        raise_application_error(-20031,'Product already exists');
         it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-        raise_application_error(-20028,'CSV file value error \\EDeC\sql\csv\'|| input_file_name ||'at  line '||it);
+        raise_application_error(-20032,'CSV file value error \\EDeC\sql\csv\'|| input_file_name ||'at  line '||it);
         ROLLBACK;--rollback any changes so far
         EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN

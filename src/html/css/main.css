@@ -849,9 +849,28 @@ html
 }
 .main-wrapper-product-content{
     margin-top: 60px;
+    background-color: #245269;
+}
+/********************
+*   Missing link
+***********************/
+.missing-ingredient{
+    color: #fff;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    font-size: 1em;
+}
+.missing-ingredient:hover,
+.missing-ingredient:active,
+.missing-ingredient:active
+{
+    text-decoration: none;
+    color: #df691a;
+    -webkit-transition: width 2s; /* Safari */
+    transition: width 2s;
+    -moz-transform:  width 2s;
 
 }
-
 /********************
 *   Similar products
 *********************/
@@ -880,4 +899,14 @@ html
 }
 .carousel-indicators .active {
     background: #333333;
+}
+.span3
+{
+    display: inline-block;
+}
+.item{
+    margin-top: 45px;
+}
+.main-wrapper-thubnail-content{
+    margin-top: 100px;
 }

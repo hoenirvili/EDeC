@@ -25,7 +25,7 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 --populeaza tabela de user_hates
   PROCEDURE populateHate(max_car IN NUMBER);
 --populeaza tabela de user_loves
-  PROCEDURE populateLove(max_car IN NUMBER);
+  PROCEDURE populateLove(v_no_car IN NUMBER);
 -- verifica daca exista userul cu emailul respectiv
   FUNCTION userExistsEmail(v_email IN users.email%TYPE) RETURN BOOLEAN;
 -- verifica daca exista userul cu numele respectiv
@@ -278,17 +278,17 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       END LOOP;
     END populateHate;
 
-  PROCEDURE populateLove(max_car IN NUMBER) AS
+  PROCEDURE populateLove(v_no_car IN NUMBER) AS
     CURSOR user_cursor IS
       SELECT id
       FROM users;
 
     user_rec user_cursor%ROWTYPE;
-    v_no_car NUMBER(3);
+    --v_no_car NUMBER(3);
     BEGIN
       FOR user_rec in user_cursor LOOP
 
-        v_no_car:=TRUNC(dbms_random.value(1,max_car));
+        --v_no_car:=TRUNC(dbms_random.value(1,max_car));
 
         FOR i IN 0..v_no_car LOOP
           insertLove(user_rec.id);

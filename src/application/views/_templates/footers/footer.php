@@ -8,7 +8,7 @@
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery.bxslider.min.js"></script>
 <!--Chart js plugin -->
-<script src="<?php echo URL ?>html/plugins/src/Chart.js"></script>
+<script src="<?php echo URL ?>html/plugins/Chart/Chart.js"></script>
 <!--main js-->
 <?php if (PRODUCTION) { ?>
     <script src="<?php echo URL ?>html/js/main.js"></script>

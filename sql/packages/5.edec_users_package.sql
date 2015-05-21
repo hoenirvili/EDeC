@@ -35,6 +35,11 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 --insereaza o caracteristica pt un user in tabela user hates
   PROCEDURE insertHate(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
 
+  
+  PROCEDURE show_hate(v_id users.id%TYPE);
+  PROCEDURE show_love(v_id users.id%TYPE);
+  
+  
 END edec_users_package;
 /
 
@@ -131,18 +136,26 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       IF checkEmail(v_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
       IF checkUsername(v_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
       IF checkPassword(v_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+      IF userExistsName(v_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+      IF userExistsEmail(v_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
 
       INSERT INTO users(username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
       EXCEPTION
+      WHEN USER_EXISTS_NAME THEN
+      raise_application_error(-20005,'USERNAME ALREADY IN USE');
+      WHEN USER_EXISTS_EMAIL THEN
+      raise_application_error(-20004,'EMAIL ALREADY IN USE');
       WHEN WRONG_EMAIL_FORMAT THEN
           raise_application_error(-20001,'Wrong email format for user '||v_username);
       WHEN WRONG_USERNAME_FORMAT THEN
-        IF LENGTH(v_username)>25 THEN raise_application_error(-20002,'Username too long');
-        ELSE raise_application_error(-20003,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        IF LENGTH(v_username)>25 THEN raise_application_error(-20002,'Username too long');END IF;
+        IF LENGTH(v_username)<6 THEN raise_application_error(-20002,'Username too short');
+        ELSE raise_application_error(-20002,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
         END IF;
 
       WHEN WRONG_PASSWORD_FORMAT THEN
-        IF LENGTH(v_pass)>32 THEN raise_application_error(-20003,'Password too long');
+        IF LENGTH(v_pass)>32 THEN raise_application_error(-20003,'Password too long');END IF;
+        IF LENGTH(v_pass)<6 THEN raise_application_error(-20003,'Password too short');
         ELSE raise_application_error(-20004,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
         END IF;
     END insertUser;
@@ -159,27 +172,29 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     v_sex IN  users.sex%TYPE) IS
     BEGIN
     
-      IF userExistsName(v_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
-      IF userExistsEmail(v_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
       IF checkEmail(v_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
       IF checkUsername(v_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
       IF checkPassword(v_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+      IF userExistsName(v_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+      IF userExistsEmail(v_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
 
       INSERT INTO users(id,username, pass, email,avatar, tip, data_nasterii, sex) VALUES (v_id,v_username, v_pass, v_email,v_avatar, v_tip, v_data_nasterii, v_sex);
       EXCEPTION
       WHEN USER_EXISTS_NAME THEN
       raise_application_error(-20005,'USERNAME ALREADY IN USE');
       WHEN USER_EXISTS_EMAIL THEN
-      raise_application_error(-20006,'EMAIL ALREADY IN USE');
+      raise_application_error(-20004,'EMAIL ALREADY IN USE');
       WHEN WRONG_EMAIL_FORMAT THEN
-      raise_application_error(-20007,'Wrong email format for user '||v_username);
+      raise_application_error(-20001,'Wrong email format for user '||v_username);
       WHEN WRONG_USERNAME_FORMAT THEN
-        IF LENGTH(v_username)>25 THEN raise_application_error(-20008,'Username too long');
-        ELSE raise_application_error(-20009,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
+        IF LENGTH(v_username)>25 THEN raise_application_error(-20002,'Username too long');END IF;
+        IF LENGTH(v_username)<6 THEN raise_application_error(-20002,'Username too short');
+        ELSE raise_application_error(-20002,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]'));
         END IF;
       WHEN WRONG_PASSWORD_FORMAT THEN
-        IF LENGTH(v_pass)>32 THEN raise_application_error(-20005,'Password too long');
-        ELSE raise_application_error(-20010,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        IF LENGTH(v_pass)>32 THEN raise_application_error(-20003,'Password too long');END IF;
+        IF LENGTH(v_pass)<6 THEN raise_application_error(-20003,'Password too short');
+        ELSE raise_application_error(-20003,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
         END IF;
     END insertUser;
 
@@ -223,24 +238,25 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             COMMIT;
             EXCEPTION
             WHEN DUP_VAL_ON_INDEX THEN
-              raise_application_error(-20011,'USER ALREADY EXISTS');
+              raise_application_error(-20006,'USER ALREADY EXISTS IN THE DATABASE');
               it:=it+1;
             WHEN WRONG_EMAIL_FORMAT THEN
-              raise_application_error(-20012,'Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\'||input_file_name);
+              raise_application_error(-20001,'Wrong email format for user '||v_username||' at line '||it||' from file \\EDeC\sql\csv\'||input_file_name);
               it:=it+1;
             WHEN WRONG_USERNAME_FORMAT THEN
-              IF LENGTH(v_username)>15 THEN raise_application_error(-20013,'Username too long');
-                ELSE raise_application_error(-20014,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
+              IF LENGTH(v_username)>15 THEN raise_application_error(-20002,'Username too long');END IF;
+              IF LENGTH(v_username)<6 THEN raise_application_error(-20002,'Username too short');
+                ELSE raise_application_error(-20003,'Wrong username: invalid character used '||REGEXP_SUBSTR(v_username,'[^a-zA-Z0-9\._-]')||' at line '||it);
               END IF;
               it:=it+1;
             WHEN WRONG_PASSWORD_FORMAT THEN
-              IF LENGTH(v_pass)>32 THEN raise_application_error(-20015,'Password too long');
+              IF LENGTH(v_pass)>32 THEN raise_application_error(-20003,'Password too long');END IF;
+              IF LENGTH(v_pass)<6 THEN raise_application_error(-20003,'Password too short');
               ELSE raise_application_error(-20016,'Wrong password: invalid character used '||REGEXP_SUBSTR(v_pass,'[^a-zA-Z0-9\.\#$%^*_-]')||' at line '||it);
               END IF;
               it:=it+1;
             WHEN VALUE_ERROR THEN --when the file formar is wrong
-              raise_application_error(-20017,'CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it );
-              raise_application_error(-20018,V_LINE);
+              raise_application_error(-20007,'CSV file value error \\EDeC\sql\csv\'||input_file_name||' at  line '||it ||V_LINE);
               ROLLBACK;--rollback any changes so far
               EXIT;--exit procedure
             WHEN NO_DATA_FOUND THEN
@@ -340,5 +356,32 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
   BEGIN
      INSERT INTO user_hates(id,user_id,caracteristica_id) VALUES (v_id,user_id,carac_id);
   END insertHate;
+  
+   PROCEDURE show_hate(v_id users.id%TYPE) AS
+    CURSOR hate_c IS
+    SELECT name 
+    FROM caracteristica car JOIN user_hates uh
+    ON car.id=uh.caracteristica_id
+    WHERE uh.user_id=v_id;
+    hate_rec hate_c%ROWTYPE;
+  BEGIN
+    FOR hate_rec IN hate_c LOOP
+      raise_application_error(-20009,hate_rec.name);
+    END LOOP;
+  END show_hate;
+  
+  PROCEDURE show_love(v_id users.id%TYPE) AS
+    CURSOR love_c IS
+    SELECT name 
+    FROM caracteristica car JOIN user_loves ul
+    ON car.id=ul.caracteristica_id
+    WHERE ul.user_id=v_id;
+    love_rec love_c%ROWTYPE;
+  BEGIN
+    FOR love_rec IN love_c LOOP
+      raise_application_error(-20008,love_rec.name);
+    END LOOP;
+  END show_love;
+  
 END edec_users_package;
 /

@@ -1,14 +1,24 @@
 
 CREATE OR REPLACE PACKAGE edec_produse_package IS
 
-PROCEDURE importFromCSV(input_file_name IN VARCHAR2) ;
-PROCEDURE exportToCSV;
-PROCEDURE generateCaracteristics(max_car IN NUMBER);
-PROCEDURE insertProduct(v_name IN produs.name%TYPE,v_image_id IN produs.image%TYPE );
-PROCEDURE insertCarProd(v_id IN CARACTERISTICI_PRODUSE.id%TYPE,
-                          v_prod_id IN CARACTERISTICI_PRODUSE.produs_id%TYPE,
-                          v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE);
-
+  PROCEDURE importFromCSV(input_file_name IN VARCHAR2) ;
+  PROCEDURE exportToCSV;
+  PROCEDURE generateCaracteristics(max_car IN NUMBER);
+  PROCEDURE insertProduct(v_name IN produs.name%TYPE,v_image_id IN produs.image%TYPE );
+  PROCEDURE insertCarProd(v_id IN CARACTERISTICI_PRODUSE.id%TYPE,
+                            v_prod_id IN CARACTERISTICI_PRODUSE.produs_id%TYPE,
+                            v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE);
+  PROCEDURE insertCarProd(v_prod_id IN CARACTERISTICI_PRODUSE.produs_id%TYPE,
+                            v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE);
+                            
+  PROCEDURE edit_produs_name(new_name IN produs.name%TYPE,v_product_id IN produs.id%TYPE);
+  PROCEDURE edit_product_image(new_image IN produs.image%TYPE,v_product_id IN produs.id%TYPE);
+  PROCEDURE edit_product(new_name IN produs.name%TYPE,new_image IN produs.image%TYPE,v_product_id IN produs.id%TYPE);
+  
+  PROCEDURE edit_caract_name_prod(new_name IN caracteristica.name%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE);
+  PROCEDURE edit_caract_categ_prod(new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE);
+  PROCEDURE edit_caract_prod(new_name IN caracteristica.name%TYPE,new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE);
+        
 END edec_produse_package;
 /
 
@@ -19,6 +29,12 @@ PROCEDURE insertCarProd(v_id IN CARACTERISTICI_PRODUSE.id%TYPE,
                           v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE) IS
   BEGIN
      INSERT INTO CARACTERISTICI_PRODUSE(ID,PRODUS_ID,CARACTERISTICA_ID) VALUES (v_id,v_prod_id,v_car_id);
+  END insertCarProd;
+
+PROCEDURE insertCarProd(v_prod_id IN CARACTERISTICI_PRODUSE.produs_id%TYPE,
+                          v_car_id IN CARACTERISTICI_PRODUSE.caracteristica_id%TYPE) IS
+  BEGIN
+     INSERT INTO CARACTERISTICI_PRODUSE(PRODUS_ID,CARACTERISTICA_ID) VALUES (v_prod_id,v_car_id);
   END insertCarProd;
 
 PROCEDURE insertCaracteristic (prod_id IN produs.id%TYPE,type_c caracteristica.categorie_caracteristici_id%TYPE) IS 
@@ -70,6 +86,64 @@ BEGIN
   INSERT INTO produs(id,name,image) VALUES (v_id,v_name,v_image_id);
   
 END insertProduct;
+
+PROCEDURE edit_produs_name
+      (new_name IN produs.name%TYPE,v_product_id IN produs.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM produs 
+      WHERE v_product_id=produs.id  
+      FOR UPDATE OF produs.name;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      produs SET produs.name=new_name 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+END edit_produs_name;
+
+PROCEDURE edit_product_image
+      (new_image IN produs.image%TYPE,v_product_id IN produs.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM produs 
+      WHERE v_product_id=produs.id  
+      FOR UPDATE OF produs.image;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      produs SET produs.image=new_image 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+END edit_product_image;
+
+PROCEDURE edit_product
+      (new_name IN produs.name%TYPE,new_image IN produs.image%TYPE,v_product_id IN produs.id%TYPE)IS
+  BEGIN
+    edit_produs_name(new_name,v_product_id);
+    edit_product_image(new_image,v_product_id);
+END edit_product;
+
+PROCEDURE edit_caract_name_prod
+      (new_name IN caracteristica.name%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE)IS
+     
+   BEGIN
+      edec_caracteristici_package.edit_caracteristica_name(new_name,v_caracteristica_id);
+END edit_caract_name_prod;
+
+PROCEDURE edit_caract_categ_prod
+      (new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE)IS
+     
+   BEGIN
+      edec_caracteristici_package.edit_caracteristica_category(new_category,v_caracteristica_id);
+END edit_caract_categ_prod;
+
+PROCEDURE edit_caract_prod
+      (new_name IN caracteristica.name%TYPE,new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE)IS
+     
+   BEGIN
+      edec_caracteristici_package.edit_caracteristica(new_name,new_category,v_caracteristica_id);
+END edit_caract_prod;
 
 PROCEDURE importFromCSV(input_file_name IN VARCHAR2) IS
   

@@ -27,7 +27,8 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Client</li>
                             <li><a href="<?php echo URL . 'access' ?>">Access</a></li>
-                            <li><a href="search">Search</a></li>
+                            <li><a href="<?php echo URL.'search' ?>">Search</a></li>
+                            <li><a href="<?php echo URL.'stats'?>">Stats</a></li>
                             <li class="dropdown-header">Administrator</li>
                             <li><a href="<?php echo URL . 'controlpannel' ?>">Control Pannel</a></li>
                         </ul>

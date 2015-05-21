@@ -1,3 +1,4 @@
+ALTER  SESSION set NLS_DATE_FORMAT = 'dd-mm-yyyy' ;
 
 CREATE OR REPLACE PACKAGE edec_utils_package AS
 
@@ -24,7 +25,6 @@ IS
  v_descTab       DBMS_SQL.DESC_TAB;
 BEGIN
  v_output := utl_file.fopen( 'USER_DIR', v_filename, 'w' );
- EXECUTE IMMEDIATE 'ALTER SESSION SET NLS_DATE_FORMAT=''dd-mon-yyyy''';
 
  DBMS_SQL.parse(  v_theCursor,  v_query, DBMS_SQL.NATIVE );
  DBMS_SQL.describe_columns( v_theCursor, v_colCount, v_descTab );

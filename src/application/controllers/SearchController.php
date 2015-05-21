@@ -9,9 +9,7 @@ class SearchController extends Controller
     }
     public function index()
     {
-        //if there is a session started with a succesfull log in render the dashboard or don't do anything.. redirect to error page
-
-        $this->view->render("search/index",false);
+        $this->view->render("search/index");
     }
 
 }

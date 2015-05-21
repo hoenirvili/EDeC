@@ -4,6 +4,10 @@
     border-radius: 0;
 }
 
+.xdebug-error
+{
+    color:#000 !important;
+}
 .signin-button {
     border-radius: 0;
     border-style:none;

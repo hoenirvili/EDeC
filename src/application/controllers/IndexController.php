@@ -14,9 +14,9 @@ class IndexController extends Controller {
     function index() {
 
         if(Auth::is_user_logged_in())
-        $this->view->render('homepage/index', false,"logged-in");
+        $this->view->render('homepage/index');
         else
-        $this->view->render('homepage/index', false,"not-logged-in");
+        $this->view->render('homepage/index');
     }
 
 }

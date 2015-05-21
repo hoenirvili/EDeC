@@ -4,8 +4,11 @@ $classes = array(
     'models/core/Application',
     'models/core/Database',
     'models/core/Session',
+    'models/media/Media',
+    'models/core/Access',
     'models/core/Auth',
     'models/core/View',
+    'models/media/UploadHandler',
     'controllers/Controller',
     'models/user/User'
 );

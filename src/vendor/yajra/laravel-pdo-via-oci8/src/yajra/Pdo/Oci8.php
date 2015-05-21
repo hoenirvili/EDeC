@@ -310,9 +310,12 @@ class Oci8 extends PDO {
 	 */
 	public function lastInsertId($sequence = null)
 	{
+
+
 		if (is_null($sequence)) {
 			$sequence = $this->_table . "_id_seq";
 		}
+
 
 		if ( ! $this->checkSequence($sequence))
 		{

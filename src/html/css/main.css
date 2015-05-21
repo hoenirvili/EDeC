@@ -405,6 +405,10 @@ This was connected to the issue with javascript
     border-radius: 0;
 }
 
+.xdebug-error
+{
+    color:#000 !important;
+}
 .signin-button {
     border-radius: 0;
     border-style:none;
@@ -827,6 +831,11 @@ html
     padding: 10px;
     font-size: 12px;
     color: #676a6c;
+}
+
+.admin-wrapper
+{
+    margin-top:50px;
 }
 
 /*product style sheet */

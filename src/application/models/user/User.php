@@ -3,6 +3,8 @@ class User
 {
 
     private $db;
+    public $name;
+
 
     /**
      * Public consttructor for db connection

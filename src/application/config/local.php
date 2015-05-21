@@ -1,7 +1,7 @@
 <?php
 
-define('URL', 'http://localhost:8080/EDeC/');
-define('ADMIN_URL', 'http://localhost:8080/EDeC/admin/');
+define('URL', 'http://edec.ddns.net/');
+define('ADMIN_URL', 'http://edec.ddns.net/');
 define('DB_TYPE', 'oci');
 define('DB_HOST', '');
 define('DB_NAME', 'XE'); // Try ORCL if XE not working

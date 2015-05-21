@@ -295,6 +295,8 @@ $(document).ready(function() {
  *  @type {boolean}
  */
 // Make our chart responsive
+
+
 Chart.defaults.global.responsive = true;
 
 
@@ -325,10 +327,13 @@ var data1 = {
     ]
 };
 
+
+if($('body').hasClass('stats')) {
 // Get context with jQuery - using jQuery's .get() method.
-var ctx = $("#MostLovedCaract").get(0).getContext("2d");
+    var ctx = $("#MostLovedCaract").get(0).getContext("2d");
 // This will get the first returned node in the jQuery collection.
-var mostLovedCaract =new Chart(ctx).Bar(data1);
+    var mostLovedCaract = new Chart(ctx).Bar(data1);
+}
 
 
 
@@ -358,5 +363,42 @@ var data2 = {
         }
     ]
 };
-var dtx = $("#MostHatedCaract").get(0).getContext("2d");
-var mostHatedCaract = new Chart(dtx).Bar(data2);
+if($('body').hasClass('stats')) {
+    var dtx = $("#MostHatedCaract").get(0).getContext("2d");
+    var mostHatedCaract = new Chart(dtx).Bar(data2);
+}
+
+$(document).ready(function() {
+    $('#caracteristics').selectize({
+        valueField: 'NAME',
+        labelField: 'NAME',
+        searchField: 'NAME',
+        options: [],
+        create: false,
+        render: {
+            option: function(item, escape) {
+                console.log(item)
+                return '<div>' +
+                    '<span class="title">' +
+                    '<span class="name">' + escape(item.NAME) + '</span>' +
+                    '</span>' +
+                    '</div>';
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length>3) return callback();
+            $.ajax({
+                url: 'https://api.github.com/legacy/repos/search/'+ encodeURIComponent(query),
+                type: 'GET',
+                dataType: "json",
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    console.log(res);
+                    callback(res.repositories.slice(0, 10));
+                }
+            });
+        }
+    });
+});

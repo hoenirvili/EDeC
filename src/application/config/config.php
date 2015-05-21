@@ -7,8 +7,8 @@ ini_set("display_errors", 1);
  * Configuration for: Base URL
  */
 include_once('local.php');
-define('APPLICATION_PATH', 'application/');
-define('CONTROLLER_PATH', 'application/controllers/');
-define('MODELS_PATH', 'application/models/');
-define('VIEWS_PATH', 'application/views/');
+define('APPLICATION_PATH', __DIR__.'/../../application/');
+define('CONTROLLER_PATH', APPLICATION_PATH.'controllers/');
+define('MODELS_PATH', APPLICATION_PATH.'models/');
+define('VIEWS_PATH', APPLICATION_PATH.'views/');
 define('PRODUCTION',false);

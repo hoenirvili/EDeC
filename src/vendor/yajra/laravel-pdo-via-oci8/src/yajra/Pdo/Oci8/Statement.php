@@ -150,7 +150,11 @@ class Statement extends PDOStatement {
 			$message = $message . 'Statement     : ' . $e['sqltext'] . PHP_EOL;
 			$message = $message . 'Bindings      : [' . implode(',', (array) $inputParams) . ']' . PHP_EOL;
 
-			throw new Oci8Exception($message, $e['code']);
+            $user_error=explode(':',$e['message']);
+            $user_error=$user_error[1];
+            $user_error=explode('ORA',$user_error);
+            $user_error=$user_error[0];
+			throw new Oci8Exception($message, $e['code'],$user_error);
 		}
 
 		return $result;

@@ -7,6 +7,9 @@ CREATE OR REPLACE PACKAGE edec_media_package IS
   PROCEDURE insertMedia (v_url IN media.url%TYPE,v_json IN MEDIA.FILE_JSON%TYPE);
   PROCEDURE exportToCSV ;
   
+  PROCEDURE edit_url(new_url IN media.url%TYPE,v_media_id IN media.id%TYPE);
+  PROCEDURE edit_file_json(new_json IN media.file_json%TYPE,v_media_id IN media.id%TYPE);
+  PROCEDURE edit_media(new_url IN media.url%TYPE,new_json IN media.file_json%TYPE,v_media_id IN media.id%TYPE);
 END edec_media_package;
 /
 
@@ -50,6 +53,46 @@ EXCEPTION
   WHEN WRONG_IMAGE_URL THEN
       raise_application_error(-20020,'Wrong imagine url ');
 END insertMedia; 
+
+PROCEDURE edit_url
+      (new_url IN media.url%TYPE,v_media_id IN media.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM media 
+      WHERE v_media_id=media.id  
+      FOR UPDATE OF media.url;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      media SET media.url=new_url 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+END edit_url;
+
+PROCEDURE edit_file_json
+      (new_json IN media.file_json%TYPE,v_media_id IN media.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM media 
+      WHERE v_media_id=media.id  
+      FOR UPDATE OF media.file_json;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      media SET media.file_json=new_json 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+END edit_file_json;
+
+PROCEDURE edit_media
+      (new_url IN media.url%TYPE,new_json IN media.file_json%TYPE,v_media_id IN media.id%TYPE)IS
+     
+   BEGIN
+   
+   edit_url(new_url,v_media_id);
+   edit_file_json(new_json,v_media_id);
+   
+END edit_media;
 
 --populeaza tabela media
 PROCEDURE importFromCSV(input_file_name IN VARCHAR2) IS

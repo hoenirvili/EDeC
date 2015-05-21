@@ -7,6 +7,8 @@
 <script src="<?php echo URL ?>html/js/formValidation/formValidation.js"></script>
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery.bxslider.min.js"></script>
+<!--Chart js plugin -->
+<script src="<?php echo URL ?>html/plugins/src/Chart.js"></script>
 <!--main js-->
 <?php if (PRODUCTION) { ?>
     <script src="<?php echo URL ?>html/js/main.js"></script>
@@ -15,6 +17,7 @@
     <script src="<?php echo URL ?>html/js/access.js"></script>
     <script src="<?php echo URL ?>html/js/search.js"></script>
     <script src="<?php echo URL ?>html/js/product.js"></script>
+    <script src="<?php echo URL ?>html/js/stats.js"></script>
 <?php } ?>
 </body>
 </html>

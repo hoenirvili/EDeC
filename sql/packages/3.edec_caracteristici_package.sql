@@ -6,6 +6,11 @@ CREATE OR REPLACE PACKAGE edec_caracteristici_package IS
   PROCEDURE insertCaracteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE);
   PROCEDURE exportToCSV ;
   
+  PROCEDURE edit_caracteristica_name(new_name IN caracteristica.name%TYPE,v_caracteristica_id IN caracteristica.id%TYPE);
+  PROCEDURE edit_caracteristica_category(new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.ID%TYPE);
+  PROCEDURE edit_caracteristica (new_name IN caracteristica.name%TYPE,new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.ID%TYPE);
+  PROCEDURE edit_categorie_name(new_name IN CATEGORIE_CARACTERISTICI.nume%TYPE,v_categorie_id IN CATEGORIE_CARACTERISTICI.id%TYPE);
+  
 END edec_caracteristici_package;
 /
 
@@ -15,14 +20,6 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
 --insereaza un rand in tabela categorie_caracteristici
   PROCEDURE insertCategory(v_name IN categorie_caracteristici.nume%TYPE);
   PROCEDURE insertCategory(v_id IN categorie_caracteristici.id%TYPE,v_name IN categorie_caracteristici.nume%TYPE);
---insereaza un rand cu date despre o organizatie in tabela caracteristica
-  PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE);
---insereaza un rand cu date despre o substanta alimentara in tabela caracteristica
-  PROCEDURE insertSubst_alim(alim_name IN caracteristica.name%TYPE);
---insereaza un rand cu date despre o sustanta nealimentara in tabela caracteristica
-  PROCEDURE insertSubst_nealim(nealim_name IN caracteristica.name%TYPE);
---insereaza un rand cu date despre un oras in tabela caracteristica
-  PROCEDURE insertCity(city_name IN caracteristica.name%TYPE);
 
   PROCEDURE populateCategories IS
     BEGIN
@@ -50,35 +47,6 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
         raise_application_error(-20024,'Caracteristic CATEGORY already exists');
     END insertCategory;
 
-  PROCEDURE insertOrganisation(organisation_name IN caracteristica.name%TYPE) AS
-    BEGIN
-
-      INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (organisation_name,1);
-
-    END insertOrganisation;
-
-  PROCEDURE insertSubst_alim(alim_name IN caracteristica.name%TYPE) AS
-
-    BEGIN
-
-      INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (alim_name,2);
-
-    END insertSubst_alim;
-
-  PROCEDURE insertSubst_nealim(nealim_name IN caracteristica.name%TYPE) AS
-    BEGIN
-
-      INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (nealim_name,3);
-
-    END insertSubst_nealim;
-
-  PROCEDURE insertCity(city_name IN caracteristica.name%TYPE)AS
-    BEGIN
-
-      INSERT INTO caracteristica(NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (city_name,4);
-
-    END insertCity;
-
   PROCEDURE insertCaracteristica(c_name caracteristica.name%TYPE,c_cat caracteristica.categorie_caracteristici_id%TYPE)
   IS
     BEGIN
@@ -87,13 +55,73 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
 
     END insertCaracteristica;
 
-    PROCEDURE insertCaracteristica(v_id caracteristica.id%TYPE,v_name caracteristica.name%TYPE,v_categorie caracteristica.categorie_caracteristici_id%TYPE)
+  PROCEDURE insertCaracteristica(v_id caracteristica.id%TYPE,v_name caracteristica.name%TYPE,v_categorie caracteristica.categorie_caracteristici_id%TYPE)
   IS
     BEGIN
 
       INSERT INTO caracteristica(ID,NAME,CATEGORIE_CARACTERISTICI_ID) VALUES (v_id,v_name,v_categorie);
 
     END insertCaracteristica;
+
+  PROCEDURE edit_caracteristica_name
+      (new_name IN caracteristica.name%TYPE,v_caracteristica_id IN caracteristica.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM caracteristica 
+      WHERE v_caracteristica_id=caracteristica.id  
+      FOR UPDATE OF caracteristica.name;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      caracteristica SET caracteristica.name=new_name 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+END edit_caracteristica_name;
+
+  PROCEDURE edit_caracteristica_category
+      (new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.ID%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM caracteristica 
+      WHERE v_caracteristica_id=caracteristica.ID  
+      FOR UPDATE OF caracteristica.CATEGORIE_CARACTERISTICI_ID;
+      v_category_id CATEGORIE_CARACTERISTICI.ID%TYPE;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      SELECT ID INTO v_category_id
+        FROM  CATEGORIE_CARACTERISTICI
+        WHERE nume=new_category;
+      
+      UPDATE 
+      caracteristica SET caracteristica.CATEGORIE_CARACTERISTICI_ID=v_category_id 
+      WHERE CURRENT OF update_cursor;
+      
+    END LOOP;
+END edit_caracteristica_category;
+
+PROCEDURE edit_caracteristica
+      (new_name IN caracteristica.name%TYPE,new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.ID%TYPE)IS
+      
+   BEGIN
+    edit_caracteristica_name(new_name,v_caracteristica_id);
+    edit_caracteristica_category(new_category,v_caracteristica_id);
+      
+END edit_caracteristica;
+
+PROCEDURE edit_categorie_name
+      (new_name IN CATEGORIE_CARACTERISTICI.nume%TYPE,v_categorie_id IN CATEGORIE_CARACTERISTICI.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM CATEGORIE_CARACTERISTICI 
+      WHERE v_categorie_id=CATEGORIE_CARACTERISTICI.id  
+      FOR UPDATE OF CATEGORIE_CARACTERISTICI.nume;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      CATEGORIE_CARACTERISTICI SET CATEGORIE_CARACTERISTICI.nume=new_name 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+END edit_categorie_name;
 
   PROCEDURE importFromCSV(input_file_name IN VARCHAR2 ) IS
 
@@ -105,7 +133,7 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
     it NUMBER:=1;
     v_count NUMBER;
     BEGIN
-      populateCategories;
+      populateCategories;  
       
       input_file := UTL_FILE.FOPEN ('USER_DIR',input_file_name, 'R');
       IF UTL_FILE.IS_OPEN(input_file) THEN

@@ -35,6 +35,29 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 --insereaza o caracteristica pt un user in tabela user hates
   PROCEDURE insertHate(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
 
+  PROCEDURE edit_user_username(new_username IN users.username%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user_pass(new_pass IN users.pass%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user_email(new_email IN users.email%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user_avatar(new_avatar IN users.avatar%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user_birthdate(new_birthdate IN users.data_nasterii%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user_type(new_type IN users.tip%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user_sex(new_sex IN users.sex%TYPE,v_user_id IN users.id%TYPE);
+  PROCEDURE edit_user (
+    v_user_id IN users.id%TYPE,
+    new_username IN users.username%TYPE,
+    new_pass IN  users.pass%TYPE,
+    new_email IN  users.email%TYPE,
+    new_avatar IN users.avatar%tYPE,
+    new_type IN  users.tip%TYPE,
+    new_birthdate IN  users.data_nasterii%TYPE,
+    new_sex IN  users.sex%TYPE);
+  PROCEDURE edit_user (
+    v_user_id IN users.id%TYPE,
+    new_pass IN  users.pass%TYPE,
+    new_email IN  users.email%TYPE,
+    new_avatar IN users.avatar%tYPE,
+    new_birthdate IN  users.data_nasterii%TYPE,
+    new_sex IN  users.sex%TYPE);
   
   PROCEDURE show_hate(v_id users.id%TYPE);
   PROCEDURE show_love(v_id users.id%TYPE);
@@ -383,5 +406,174 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
     END LOOP;
   END show_love;
   
+PROCEDURE edit_user_username
+        (new_username IN users.username%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.username;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      IF checkUsername(new_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+      IF userExistsName(new_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+      UPDATE
+      users SET users.username=new_username
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+    EXCEPTION
+     WHEN USER_EXISTS_NAME THEN
+      raise_application_error(-20005,'USERNAME ALREADY IN USE');
+    WHEN WRONG_USERNAME_FORMAT THEN
+        IF LENGTH(new_username)>25 THEN raise_application_error(-20002,'Username too long');END IF;
+        IF LENGTH(new_username)<6 THEN raise_application_error(-20002,'Username too short');
+        ELSE raise_application_error(-20002,'Wrong username: invalid character used '||REGEXP_SUBSTR(new_username,'[^a-zA-Z0-9\._-]'));
+        END IF;
+END edit_user_username;
+
+  
+PROCEDURE edit_user_pass
+        (new_pass IN users.pass%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.pass;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      IF checkPassword(new_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+      UPDATE
+      users SET users.pass=new_pass 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+    EXCEPTION
+     WHEN WRONG_EMAIL_FORMAT THEN
+      raise_application_error(-20007,'Wrong email format for user '||v_user_id||' on update');
+END edit_user_pass;
+
+PROCEDURE edit_user_email
+        (new_email IN users.email%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.email;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      IF checkEmail(new_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+      IF userExistsEmail(new_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+      UPDATE
+      users SET users.email=new_email 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+    EXCEPTION
+      WHEN USER_EXISTS_EMAIL THEN
+      raise_application_error(-20004,'EMAIL ALREADY IN USE');
+      WHEN WRONG_EMAIL_FORMAT THEN
+      raise_application_error(-20001,'Wrong email format for user '|| v_user_id );
+END edit_user_email;
+
+PROCEDURE edit_user_avatar
+        (new_avatar IN users.avatar%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.avatar;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      users SET users.avatar=new_avatar 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+   
+END edit_user_avatar;
+
+PROCEDURE edit_user_birthdate
+        (new_birthdate IN users.data_nasterii%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.data_nasterii;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      users SET users.data_nasterii=new_birthdate 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+   
+END edit_user_birthdate;
+
+PROCEDURE edit_user_type
+        (new_type IN users.tip%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.tip;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      users SET users.tip=new_type 
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+   
+END edit_user_type;
+
+PROCEDURE edit_user_sex
+        (new_sex IN users.sex%TYPE,v_user_id IN users.id%TYPE)IS
+      CURSOR update_cursor IS
+      SELECT * FROM users 
+      WHERE v_user_id=users.id  
+      FOR UPDATE OF users.sex;
+   BEGIN
+    FOR indx IN update_cursor
+    LOOP
+      UPDATE
+      users SET users.sex=new_sex
+      WHERE CURRENT OF update_cursor;
+    END LOOP;
+   
+END edit_user_sex;
+
+ PROCEDURE edit_user (
+    v_user_id IN users.id%TYPE,
+    new_username IN users.username%TYPE,
+    new_pass IN  users.pass%TYPE,
+    new_email IN  users.email%TYPE,
+    new_avatar IN users.avatar%tYPE,
+    new_type IN  users.tip%TYPE,
+    new_birthdate IN  users.data_nasterii%TYPE,
+    new_sex IN  users.sex%TYPE) IS
+    
+  BEGIN
+    edit_user_username(new_username,v_user_id);
+    edit_user_pass(new_pass,v_user_id);
+    edit_user_email(new_email,v_user_id);
+    edit_user_avatar(new_avatar,v_user_id);
+    edit_user_type(new_type,v_user_id);
+    edit_user_birthdate(new_birthdate,v_user_id);
+    edit_user_sex(new_sex,v_user_id);
+  END edit_user;
+  
+  PROCEDURE edit_user (
+    v_user_id IN users.id%TYPE,
+    new_pass IN  users.pass%TYPE,
+    new_email IN  users.email%TYPE,
+    new_avatar IN users.avatar%tYPE,
+    new_birthdate IN  users.data_nasterii%TYPE,
+    new_sex IN  users.sex%TYPE) IS
+    
+  BEGIN
+  
+    edit_user_pass(new_pass,v_user_id);
+    edit_user_email(new_email,v_user_id);
+    edit_user_avatar(new_avatar,v_user_id);
+    edit_user_birthdate(new_birthdate,v_user_id);
+    edit_user_sex(new_sex,v_user_id);
+  END edit_user;
+
+
 END edec_users_package;
 /

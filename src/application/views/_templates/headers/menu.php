@@ -1,6 +1,8 @@
 <!--navigation menu-->
-<body><?php $this->renderFeedbackMessages(); ?>
-<div class="navbar" data-spy="affix" data-offset-top="10" role="navigation">
+<body class="<?php
+global $current_page;
+echo $current_page ; if(Auth::is_user_logged_in()) echo ' logged-in'; if(Auth::is_admin())echo ' admin'; ?>"><?php $this->renderFeedbackMessages(); ?>
+<div class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="10"  role="navigation">
     <div class="container-fluid">
         <div class="container">
             <div class="navbar-header">

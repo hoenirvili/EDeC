@@ -295,6 +295,8 @@ $(document).ready(function() {
  *  @type {boolean}
  */
 // Make our chart responsive
+
+
 Chart.defaults.global.responsive = true;
 
 
@@ -325,10 +327,13 @@ var data1 = {
     ]
 };
 
+
+if($('body').hasClass('stats')) {
 // Get context with jQuery - using jQuery's .get() method.
-var ctx = $("#MostLovedCaract").get(0).getContext("2d");
+    var ctx = $("#MostLovedCaract").get(0).getContext("2d");
 // This will get the first returned node in the jQuery collection.
-var mostLovedCaract =new Chart(ctx).Bar(data1);
+    var mostLovedCaract = new Chart(ctx).Bar(data1);
+}
 
 
 
@@ -358,5 +363,7 @@ var data2 = {
         }
     ]
 };
-var dtx = $("#MostHatedCaract").get(0).getContext("2d");
-var mostHatedCaract = new Chart(dtx).Bar(data2);
+if($('body').hasClass('stats')) {
+    var dtx = $("#MostHatedCaract").get(0).getContext("2d");
+    var mostHatedCaract = new Chart(dtx).Bar(data2);
+}

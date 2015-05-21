@@ -358,6 +358,5 @@ var data2 = {
         }
     ]
 };
-
-var dtx = $("MostHatedCaract").get(0).getContext("2d");
+var dtx = $("#MostHatedCaract").get(0).getContext("2d");
 var mostHatedCaract = new Chart(dtx).Bar(data2);

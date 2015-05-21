@@ -24,6 +24,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/media-queries.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/product.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/controlpannel.css">
+        <link rel="stylesheet" href="test/css" href="<?php echo URL ?>html/css/stats.css">
     <?php } ?>
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jquery.bxslider.css">
 

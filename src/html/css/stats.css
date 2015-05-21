@@ -1,0 +1,16 @@
+/*Stats style sheet */
+
+/**********************
+*    MOST LOVED CARACT*
+*                     *
+**********************/
+.mlc{
+    margin-top: 25px;
+}
+/**********************
+*    MOST HATED CARACT*
+*                     *
+**********************/
+.mhc{
+    margin-top: 10px;
+}

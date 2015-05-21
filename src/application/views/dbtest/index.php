@@ -2,8 +2,8 @@
     <pre>
         <?php
 
+        /* testing package call */
         global $db;
-        print_r($db);
         $sql="
         BEGIN
                 edec_users_package.insertUser(:username,:password,:email,:avatar,:tip,:birth_date,:sex);
@@ -24,8 +24,10 @@
             )
         );
         } catch (PDOException $e) {
+            printr($e);
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
+
  ?>
     </pre>
 

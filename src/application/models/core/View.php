@@ -13,7 +13,7 @@ class View {
      * @param string $filename Path of the to-be-rendered view, usually folder/file(.php)
      * @param boolean $render_without_header_and_footer Optional: Set this to true if you don't want to include header and footer
      */
-    public function render($filename, $render_without_header_and_footer = false, $header = "", $admin = false, $data = null) {
+    public function render($filename, $render_without_header_and_footer = false, $header = "menu", $admin = false, $data = null) {
 
         if ($data) {
             foreach ($data as $key => $value) {

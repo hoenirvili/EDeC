@@ -34,4 +34,31 @@ catch (PDOException $e) {
 }
 
 
+$image_sizes = array(
+    // The empty image version key defines options for the original image:
+    '' => array(
+        // Automatically rotate images based on EXIF meta data:
+        'auto_orient' => true
+    ),
+    // Uncomment the following to create medium sized images:
+
+    'large' => array(
+        'max_width' => 1200,
+        'max_height' => 900
+    ),
+    'medium' => array(
+        'max_width' => 600,
+        'max_height' => 300
+    ),
+
+    'thumbnail' => array(
+        'max_width' => 120,
+        'max_height' => 120
+    ),
+
+
+
+);
+
+
 $app = new Application();

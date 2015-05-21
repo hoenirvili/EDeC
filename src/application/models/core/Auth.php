@@ -36,7 +36,7 @@ class Auth {
         Session::init();
 
         // if user is not an admin, destroy and exit
-        if ( ! isset( $_SESSION['user_logged_in'] ) || ! self::is_user_type( "WEDD_ADMIN" ) ) {
+        if ( ! isset( $_SESSION['user_logged_in'] ) || ! self::is_user_type( "admin" ) ) {
             Session::destroy();
             header( 'location: ' . URL );
             // to prevent fetching views via cURL (which "ignores" the header-redirect above) we leave the application
@@ -44,6 +44,11 @@ class Auth {
             exit();
         } else {
         }
+    }
+
+    public static function is_admin()
+    {
+        return self::is_user_type('admin');
     }
 
     public static function get_user_type() {

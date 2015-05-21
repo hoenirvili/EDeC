@@ -6,50 +6,32 @@ class AccessController extends Controller
     function __construct(){
         parent::__construct();
     }
+
     public function index(){
 
-        if(Auth::is_user_logged_in()) {
-            $this->view->render("access/index", false,"logged-in");
-        }
-        else
-        {
-            $this->view->render("access/index", false,"not-logged-in");
-        }
-    }
-    public function login()
-    {
         if(isset($_POST['signin']))
         {
-            $user = new User();
-            if($user->handleLogin()!==false)
-            {
-                //The user is succesfull loged
-                header('Location: '.URL.'search/');
-            }
-            else
-                header('Location: '.URL.'access/');
-        }
-        else
-            //@TODO add error
-            header('Location: '.URL.'access/');
-    }
-    public function register()
-    {
-
-        if(isset($_POST['register']))
+            Access::login();
+        }elseif(isset($_POST['register']))
         {
-            $user = new User();
-            if($user->handleRegister()!==false)
-            {
-                // The user is succesfull registered
-                header('Location: '.URL.'access/');
-            }
-            else header('Location: '.URL.'access/');
+            Access::registerNewUser();
+        }
 
+        if(Auth::is_user_logged_in()) {
+           header('location:'.URL.'dashboard');
+            exit;
         }
         else
-            //@TODO Add error
-            header('Location: '.URL.'access/');
+        {
+
+            $this->view->render("access/index");
+        }
+    }
+
+    public function logout()
+    {
+        Access::logout();
+        header('Location:'.URL.'access');
     }
 
 }

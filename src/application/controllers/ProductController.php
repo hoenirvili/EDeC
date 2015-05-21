@@ -8,9 +8,9 @@ class ProductController extends Controller
     public function index()
     {
         if(Auth::is_user_logged_in())
-            $this->view->render('product/index', false,"logged-in");
+            $this->view->render('product/index');
         else
-            $this->view->render('product/index', false,"not-logged-in");
+            $this->view->render('product/index');
     }
 
 }

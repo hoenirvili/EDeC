@@ -31,11 +31,7 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
   PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
 --insereaza o caracteristica pt un user in tabela user hates
   PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
---insereaza o caracteristica pt un user in tabela user loves
-  PROCEDURE insertLove(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
---insereaza o caracteristica pt un user in tabela user hates
-  PROCEDURE insertHate(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
-
+  
   PROCEDURE edit_user_username(new_username IN users.username%TYPE,v_user_id IN users.id%TYPE);
   PROCEDURE edit_user_pass(new_pass IN users.pass%TYPE,v_user_id IN users.id%TYPE);
   PROCEDURE edit_user_email(new_email IN users.email%TYPE,v_user_id IN users.id%TYPE);

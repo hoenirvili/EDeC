@@ -6,7 +6,7 @@ CREATE OR REPLACE PACKAGE edec_utils_package AS
   PROCEDURE exportALLtoCSV;
   PROCEDURE importALLfromCSV;
   
-  PROCEDURE exportall_no_carac;
+  PROCEDURE importall_no_carac;
   
 END edec_utils_package;
 /
@@ -92,10 +92,10 @@ BEGIN
         
         EXCEPTION
       WHEN DUP_VAL_ON_INDEX THEN
-        raise_application_error(-20033,'Row already exists');
+        raise_application_error(-20006,'Row already exists');
         it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-        raise_application_error(-20034,'CSV file value error \\EDeC\sql\csv\CARACTERISTICI_PRODUSE.csv at  line '||it);
+        raise_application_error(-20007,'CSV file value error \\EDeC\sql\csv\CARACTERISTICI_PRODUSE.csv at  line '||it);
         ROLLBACK;--rollback any changes so far
         EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
@@ -134,10 +134,10 @@ BEGIN
         
         EXCEPTION
       WHEN DUP_VAL_ON_INDEX THEN
-        raise_application_error(-20035,'Hate already exists');
+        raise_application_error(-20006,'Hate already exists');
         it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-        raise_application_error(-20036,'CSV file value error \\EDeC\sql\csv\USER_HATES.csv at  line '||(it+1));
+        raise_application_error(-20007,'CSV file value error \\EDeC\sql\csv\USER_HATES.csv at  line '||(it+1));
         ROLLBACK;--rollback any changes so far
         EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
@@ -176,10 +176,10 @@ BEGIN
         
         EXCEPTION
       WHEN DUP_VAL_ON_INDEX THEN
-        raise_application_error(-20037,'Love already exists');
+        raise_application_error(-20006,'Love already exists');
         it:=it+1;
       WHEN VALUE_ERROR THEN --when the file formar is wrong
-        raise_application_error(-20038,'CSV file value error \\EDeC\sql\csv\USER_LOVES.csv at  line '||(it+1));
+        raise_application_error(-20007,'CSV file value error \\EDeC\sql\csv\USER_LOVES.csv at  line '||(it+1));
         ROLLBACK;--rollback any changes so far
         EXIT;--exit procedure
        WHEN NO_DATA_FOUND THEN
@@ -208,7 +208,7 @@ BEGIN
     importPreferencesFromCSV;
   END importALLfromCSV;
   
- PROCEDURE exportall_no_carac IS
+ PROCEDURE importall_no_carac IS
  
  BEGIN
     edec_media_package.importFromCSV('media.csv');
@@ -216,6 +216,6 @@ BEGIN
     edec_produse_package.importFromCSV('produs.csv');
     importFromCSVCaraProd;
     importPreferencesFromCSV;
- END exportall_no_carac;
+ END importall_no_carac;
 END edec_utils_package;
 /

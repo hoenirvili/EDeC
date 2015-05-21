@@ -14,7 +14,7 @@ COMMIT;
 
 BEGIN
  
-  edec_utils_package.exportall_no_carac;
+  edec_utils_package.importall_no_carac;
   
 END;
 /

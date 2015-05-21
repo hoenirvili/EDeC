@@ -1,0 +1,67 @@
+<h3 id="general-info">General Info</h3>
+
+<p>This folder is used to store all the script files which contains the packages.</p>
+
+<h3 id="contents">Contents</h3>
+
+<ul>
+<li><p><strong>1.edec_utils_package.sql</strong>-script with the <em>edec_utils_package</em> package used to assists the tables from the database, it has the following procedures/functions: </p>
+
+<ul><li>exportToCSV(v_table_name,v_filename) procedure with 2 arguments that exports a table to a csv file: <br>
+<ul><li>v_table_name = the name of the table that will pe exported;</li>
+<li>v_filename = the name of the file in which will the data be exported.</li></ul></li>
+<li>exportALLtoCSV procedure that exports all the tables from the database to csv files;</li>
+<li>importALLfromCSV  procedure that imports all the tables from the csv files to the database;</li>
+<li>exportall_no_carac procedure that imports all the tables from the csv files to the database except the <em>caracteristica.csv</em> file.</li></ul></li>
+<li><p><strong>2.edec_media_package.sql</strong>-script with the <em>edec_media_package</em> package used to manipulate data from the <em>MEDIA</em> table, it contains the following procedures/functions:</p>
+
+<ul><li>importFromCSV(input_file_name) - used to import the data from the file given as input;</li>
+<li>insertMedia (v_url ,v_json )-used to insert row in the <em>MEDIA</em> table;</li>
+<li>exportToCSV - export the table <em>MEDIA</em>;</li>
+<li>edit_url(new_url,v_media_id) - edits the url column for a row specified by the v_media_id;</li>
+<li>edit_file_json(new_json ,v_media_id )- edits the json_file column for a row specified by the v_media_id;</li>
+<li>edit_media(new_url ,new_json ,v_media_id)- edits the two columns of the row specified by the v_media_id;</li></ul></li>
+<li><p><strong>3.edec_caracteristici_package.sql</strong>-script with the <em>edec_caracteristici_package</em> package used to manipulate data from the <em>CARACTERISTICA</em> and <em>CATEGORIE_CARACTERISTICI</em> tables, it contains the following procedures/functions:</p>
+
+<ul><li>importFromCSV(input_file_name ) - imports the data from the csv file given as parameter ;</li>
+<li>insertCaracteristica(c_name ,c_cat) - insert a new feature with the given values from the parameters ;</li>
+<li>exportToCSV - exports the <em>CARACTERISTICA</em> table to a csv file;</li>
+<li>edit_caracteristica_name(new_name ,v_caracteristica_id ) - edit the name of the feature identified by the v_caracteristica_id;</li>
+<li>edit_caracteristica_category(new_category ,v_caracteristica_id)- edit the category of the feature identified by the v_caracteristica_id;</li>
+<li>edit_caracteristica (new_name ,new_category ,v_caracteristica_id )- edit the name and category of the feature identified by the v_caracteristica_id;</li>
+<li>edit_categorie_name(new_name ,v_categorie_id ) edit the category name of the feature identified by the v_caracteristica_id;</li></ul></li>
+<li><strong>4.edec_produse_package.sql</strong>-script with the <em>edec_produse_package</em> package used to manipulate data from the <em>PRODUS</em> and <em>CARACTERISTICI_PRODUSE</em> tables, it contains the following procedures/functions: </li>
+<li>importFromCSV(input_file_name) - imports the data from the specified file into the <em>PRODUS</em> table;</li>
+<li>exportToCSV - exports the data from the table <em>PRODUS</em> to the csv file;</li>
+<li>generateCaracteristics(max_car ) - generates a number of random features for all the products from the  <em>PRODUS</em> table and inserts the combinations into the <em>CARACTERISTICI_PRODUSE</em> table;</li>
+<li>insertProduct(v_name,v_image_id )-inserts a product with the specified values for the columns into the <em>PRODUS</em> table;</li>
+<li>insertCarProd(v_prod_id ,v_car_id ) - inserts a feature with the product which contains it to the <em>CARACTERISTICI_PRODUSE</em> table;                        </li>
+<li>edit_produs_name(new_name ,v_product_id )-edits the name for a product specified with the id;</li>
+<li>edit_product_image(new_image ,v_product_id )-edits the image for a product specified with the id;</li>
+<li>edit_product(new_name ,new_image ,v_product_id )-edits the name and the image for a product specified with the id;</li>
+<li>edit_caract_name_prod(new_name,v_caracteristica_id,v_product_id)-edits the name for the feature specified with v_caracteristica_id, feature contained by the product specified with the v_product_id;</li>
+<li>edit_caract_categ_prod(new_category,v_caracteristica_id,v_product_id)-edits the name of the category for the feature specified with v_caracteristica_id, feature contained by the product specified with the v_product_id;</li>
+<li>edit_caract_prod(new_name,new_category,v_caracteristica_id,v_product_id)-edits the name and the category name for the feature specified with v_caracteristica_id, feature contained by the product specified with the v_product_id;</li>
+<li><p><strong>5.edec_users_package.sql</strong> -script with the <em>edec_produse_package</em> package used to manipulate data from the <em>USERS</em> , <em>USER_HATES</em> and <em>USER_LOVES</em> tables, it contains the following procedures/functions: </p>
+
+<ul><li>importFromCSV(input_file_name )-import data from a csv file specified as a argument to the <em>USERS</em> table;</li>
+<li>exportToCSV-exports the data from the <em>USERS</em> table to the csv file;</li>
+<li>insertUser (v_username,v_pass,v_email,v_avatar,v_tip,v_data_nasterii,v_sex)-inserts a new user in the *USERS*table ;</li>
+<li>populateHate(v_no_car)-populates the <em>USER_LOVES</em> table ;</li>
+<li>populateLove(v_no_car)-populates the <em>USER_HATES</em> table ;</li>
+<li>userExistsEmail(v_email)-verify if the user with the email specified as argument exists;</li>
+<li>userExistsName(v_name)-verify if the user with the name specified as argument exists;</li>
+<li>insertLove(user_id,carac_id)-insert a row in the <em>USER_LOVES</em> table;</li>
+<li>insertHate(user_id,carac_id)–insert a row in the <em>USER_HATES</em> table;</li>
+<li>edit_user_username(new_username,v_user_id)-edits the name for username specified by the v_user_id;</li>
+<li>edit_user_pass(new_pass,v_user_id)-edits the password for username specified by the v_user_id;</li>
+<li>edit_user_email(new_email,v_user_id)-edits the email for username specified by the v_user_id;</li>
+<li>edit_user_avatar(new_avatar,v_user_id)-edits the avatar for username specified by the v_user_id;</li>
+<li>edit_user_birthdate(new_birthdate,v_user_id)-edits the birth date for username specified by the v_user_id;</li>
+<li>edit_user_type(new_type,v_user_id)-edits the type for username specified by the v_user_id;</li>
+<li>edit_user_sex(new_sex,v_user_id)-edits the sex for username specified by the v_user_id;</li>
+<li>edit_user(v_user_id,new_username,new_pass,new_email,new_avatar,new_type,new_birthdate,new_sex)-edits all the columns for a user specified by the id (should be used by the admin);</li>
+<li>edit_user(v_user_id,new_pass,new_email,new_avatar,new_birthdate,new_sex)-edits the password,email,avatar,birth date and sex for username specified by the v_user_id;</li>
+<li>show_hate(v_id )-shows the features that a user specified by it’s id hates;</li>
+<li>show_love(v_id )-shows the features that a user specified by it’s id likes;</li></ul></li>
+</ul>

@@ -7,6 +7,7 @@
 <script src="<?php echo URL ?>html/js/formValidation/formValidation.js"></script>
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery.bxslider.min.js"></script>
+<script src="<?php echo URL ?>html/plugins/selectize/dist/js/standalone/selectize.js"></script>
 <!--Chart js plugin -->
 <script src="<?php echo URL ?>html/plugins/Chart/Chart.js"></script>
 <!--main js-->
@@ -18,6 +19,7 @@
     <script src="<?php echo URL ?>html/js/search.js"></script>
     <script src="<?php echo URL ?>html/js/product.js"></script>
     <script src="<?php echo URL ?>html/js/stats.js"></script>
+    <script src="<?php echo URL ?>html/js/controlpanel.js"></script>
 <?php } ?>
 </body>
 </html>

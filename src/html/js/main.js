@@ -367,3 +367,38 @@ if($('body').hasClass('stats')) {
     var dtx = $("#MostHatedCaract").get(0).getContext("2d");
     var mostHatedCaract = new Chart(dtx).Bar(data2);
 }
+
+$(document).ready(function() {
+    $('#caracteristics').selectize({
+        valueField: 'NAME',
+        labelField: 'NAME',
+        searchField: 'NAME',
+        options: [],
+        create: false,
+        render: {
+            option: function(item, escape) {
+                console.log(item)
+                return '<div>' +
+                    '<span class="title">' +
+                    '<span class="name">' + escape(item.NAME) + '</span>' +
+                    '</span>' +
+                    '</div>';
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length>3) return callback();
+            $.ajax({
+                url: 'https://api.github.com/legacy/repos/search/'+ encodeURIComponent(query),
+                type: 'GET',
+                dataType: "json",
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    console.log(res);
+                    callback(res.repositories.slice(0, 10));
+                }
+            });
+        }
+    });
+});

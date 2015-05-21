@@ -16,4 +16,8 @@ class DbtestController extends Controller
     {
         $this->view->render("dbtest/index");
     }
+    public function import()
+    {
+        $this->view->render("dbtest/import");
+    }
 }

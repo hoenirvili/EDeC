@@ -18,7 +18,7 @@
 
 ###**Just exporting the database:**
   - \\EDeC\sql\export\ **edec_export_all.sql**
-  - 
+
 ###**Just rerunning the packages:**
  - \\EDeC\sql\shortcuts\ **run_packages.sql**
 

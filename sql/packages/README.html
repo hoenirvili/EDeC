@@ -2,6 +2,8 @@
 
 <p>This folder is used to store all the script files which contains the packages.</p>
 
+
+
 <h3 id="contents">Contents</h3>
 
 <ul>
@@ -12,7 +14,12 @@
 <li>v_filename = the name of the file in which will the data be exported.</li></ul></li>
 <li>exportALLtoCSV procedure that exports all the tables from the database to csv files;</li>
 <li>importALLfromCSV  procedure that imports all the tables from the csv files to the database;</li>
-<li>exportall_no_carac procedure that imports all the tables from the csv files to the database except the <em>caracteristica.csv</em> file.</li></ul></li>
+<li>exportall_no_carac procedure that imports all the tables from the csv files to the database except the <em>caracteristica.csv</em> file.</li>
+<li>get_hate_stats RETURN hate_statistics_array - returns an array of 10 most hated features (name and count);</li>
+<li>get_love_stats RETURN love_statistics_array - returns an array of 10 most loved features (name and cout);</li>
+<li>show_love_stats(v_l_stat_array )-shows the love array with the 10 most loved features;</li>
+<li>show_hate_stats(v_h_stat_array )-shows the hate array with the 10 most hated features;</li>
+<li>this package also creates 2 objects and 2 varray used for the statistics;</li></ul></li>
 <li><p><strong>2.edec_media_package.sql</strong>-script with the <em>edec_media_package</em> package used to manipulate data from the <em>MEDIA</em> table, it contains the following procedures/functions:</p>
 
 <ul><li>importFromCSV(input_file_name) - used to import the data from the file given as input;</li>

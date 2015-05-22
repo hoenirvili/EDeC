@@ -13,7 +13,11 @@ This folder is used to store all the script files which contains the packages.
 	 -  exportALLtoCSV procedure that exports all the tables from the database to csv files;
 	 -  importALLfromCSV  procedure that imports all the tables from the csv files to the database;
 	 -  exportall_no_carac procedure that imports all the tables from the csv files to the database except the *caracteristica.csv* file.
-
+	 -  get_hate_stats RETURN hate_statistics_array - returns an array of 10 most hated features (name and count);
+     - get_love_stats RETURN love_statistics_array - returns an array of 10 most loved features (name and cout);
+     - show_love_stats(v_l_stat_array )-shows the love array with the 10 most loved features;
+     - show_hate_stats(v_h_stat_array )-shows the hate array with the 10 most hated features;
+     - this package also creates 2 objects and 2 varray used for the statistics;
   
 
  - **2.edec_media_package.sql**-script with the *edec_media_package* package used to manipulate data from the *MEDIA* table, it contains the following procedures/functions:

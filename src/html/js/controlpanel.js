@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('.caracteristics').selectize({
+
+    $('.ch').selectize({
         valueField: 'ID',
         /*plugins: ['remove_button','restore_on_backspace'],*/
         plugins: ['remove_button'],
@@ -28,7 +29,7 @@ $(document).ready(function () {
             if(!category_id)return callback();
             if (!query.length > 3) return callback();
             $.ajax({
-                url: '/ajax/get_characteristics/?category_id='+category_id+'&query=' + encodeURIComponent(query),
+                url: '/ajax/get_ch/?category_id='+category_id+'&query=' + encodeURIComponent(query),
                 type: 'GET',
                 dataType: "json",
                 error: function () {
@@ -40,4 +41,9 @@ $(document).ready(function () {
             });
         }
     });
+
+
+
+
+
 });

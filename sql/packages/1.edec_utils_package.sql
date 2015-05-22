@@ -34,8 +34,8 @@ CREATE OR REPLACE PACKAGE edec_utils_package AS
   PROCEDURE importall_no_carac;
   FUNCTION get_hate_stats RETURN hate_statistics_array;
   FUNCTION get_love_stats RETURN love_statistics_array;
-  PROCEDURE show_love_stats(v_l_stat_array love_statistics_array);
-  PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array);
+  --PROCEDURE show_love_stats(v_l_stat_array love_statistics_array); -- not yet implemented
+  --PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array);
 END edec_utils_package;
 /
 

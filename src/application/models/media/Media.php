@@ -7,7 +7,7 @@ class Media
 
     public static function file_thumb($f)
     {
-        $urls = retrieve('media', $f, 'file_json');
+        $urls = retrieve('media', $f, 'FILE_JSON');
         $urlsdecoded = json_decode($urls);
         $type = $urlsdecoded->type;
         switch ($type):
@@ -49,12 +49,33 @@ class Media
         return false;
         }
         $id = $db->lastInsertId();
-        print_r($id);
         $count = $query->rowCount();
         if ($count)
             return $id;
         else
             return 0;
+    }
+
+    public static function handle_upload($name)
+    {
+        if(isset($_FILES[$name]))
+        if ($_FILES[$name]['size']) {
+            $upload_handler = new UploadHandler(array(
+                'param_name' => $name,
+                'accept_file_types' => '/\.(gif|jpe?g|png)$/i'
+            ));
+            if (isset($upload_handler->response[$name][0]->error)) {
+                add_error($upload_handler->response[$name][0]->name . ' : ' . $upload_handler->response[$name][0]->error);
+                return false;
+            } else {
+                $media_id = Media::add_media_file(json_encode($upload_handler->response['upload_image'][0]),$upload_handler->response['upload_image'][0]->url);
+            }
+            return $media_id;
+        }
+        add_error('Please upload an image');
+        return false;
+
+
     }
 
 
@@ -72,7 +93,7 @@ class Media
 
     public static function get_src($id, $size = "")
     {
-        $urls = retrieve('media', $id, 'file_json');
+        $urls = retrieve('media', $id, 'FILE_JSON');
         //printr($urls);
         if ($size != "")
             return self::extract_url($urls, $size);

@@ -117,48 +117,37 @@ class Access
                 add_error('Passwords fields have to match');
                 return false;
             }
-            if ($_FILES['upload_avatar']['size']) {
-                $upload_handler = new UploadHandler(array(
-                    'param_name' => 'upload_avatar',
-                    'accept_file_types' => '/\.(gif|jpe?g|png)$/i'
-                ));
-                if (isset($upload_handler->response['upload_avatar'][0]->error)) {
-                    add_error($upload_handler->response['upload_avatar'][0]->name . ' : ' . $upload_handler->response['upload_avatar'][0]->error);
-                    return false;
-                } else {
-                    $media_id = Media::add_media_file(json_encode($upload_handler->response['upload_avatar'][0]),$upload_handler->response['upload_avatar'][0]->url);
-                }
-            } else {
-                add_error('Please upload an avatar');
-                return false;
-
-            }
-            $user_password_hash = md5($_POST['registerPassword']);
-            echo $media_id;
-            $sql = "  BEGIN
+            $media_id=Media::handle_upload('upload_avatr');
+            if($media_id) {
+                $user_password_hash = md5($_POST['registerPassword']);
+                $sql = "  BEGIN
                         edec_users_package.insertUser(:username,:password,:email,:avatar,:tip,:birth_date,:sex);
                     END;";
 
-            $query = $db->prepare($sql);
-            try {
-             $query->execute(
-                    array(
-                        ':username' => $_POST['registerUsername'],
-                        ':password' => $user_password_hash,
-                        ':email' => $_POST['email'],
-                        ':avatar' => $media_id,
-                        ':tip' => 1,
-                        ':birth_date' => date_to_db($_POST['birthday']),
-                        ':sex' => $_POST['gender']
-                    )
-                );
+                $query = $db->prepare($sql);
+                try {
+                    $query->execute(
+                        array(
+                            ':username' => $_POST['registerUsername'],
+                            ':password' => $user_password_hash,
+                            ':email' => $_POST['email'],
+                            ':avatar' => $media_id,
+                            ':tip' => 1,
+                            ':birth_date' => date_to_db($_POST['birthday']),
+                            ':sex' => $_POST['gender']
+                        )
+                    );
 
-            } catch (PDOException $e) {
-                db_exception($e);
+                } catch (PDOException $e) {
+                    db_exception($e);
+                    return false;
+                }
+                add_success('You have succesfully registered. Please login. ');
+                return true;
+            }
+            else {
                 return false;
             }
-            add_success('You have succesfully registered. Please login. ');
-            return true;
         } else {
             add_error('Make sure that you have added all the required information');
             return false;

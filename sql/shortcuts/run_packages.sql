@@ -9,4 +9,4 @@ start "E:\Facultate\ANUL 2\SEM2\TW\EDeC\sql\packages\2.edec_media_package.sql"
 start "E:\Facultate\ANUL 2\SEM2\TW\EDeC\sql\packages\3.edec_caracteristici_package.sql"
 start "E:\Facultate\ANUL 2\SEM2\TW\EDeC\sql\packages\4.edec_products_package.sql"
 start "E:\Facultate\ANUL 2\SEM2\TW\EDeC\sql\packages\5.edec_users_package.sql"
-start "E:\Facultate\ANUL 2\SEM2\TW\EDeC\sql\packages\6.edec_user_functions_package.sql"
+--start "E:\Facultate\ANUL 2\SEM2\TW\EDeC\sql\packages\6.edec_user_functions_package.sql" -- doesn't exist anymore

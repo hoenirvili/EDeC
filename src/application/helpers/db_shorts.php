@@ -58,7 +58,7 @@ function retrieve($table, $id, $col)
     $sql->execute(array(
         ':id' => $id
     ));
-    $sql = $sql->fetch();
+    $sql = $sql->fetch(PDO::FETCH_OBJ);
     if ($sql) {
         return $sql->$col;
     } else {
@@ -75,7 +75,7 @@ function retrieveU($id, $col)
     $sql->execute(array(
         ':id' => $id
     ));
-    $sql = $sql->fetch();
+    $sql = $sql->fetch(PDO::FETCH_OBJ);
     if ($sql) {
         return $sql->$col;
     } else {
@@ -94,7 +94,7 @@ function fetchRow($table, $col, $equalto)
     $sql->execute(array(
         ':id' => $equalto
     ));
-    $sql=$sql->fetch();
+    $sql=$sql->fetch(PDO::FETCH_OBJ);
     if ($sql) {
         return $sql;
     } else {
@@ -111,7 +111,7 @@ function fetchRows($table, $col, $equalto)
     $sql->execute(array(
         ':id' => $equalto
     ));
-    $sql=$sql->fetchAll();
+    $sql=$sql->fetchAll(PDO::FETCH_OBJ);
     if ($sql) {
         return $sql;
     } else {

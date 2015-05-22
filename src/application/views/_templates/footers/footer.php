@@ -8,6 +8,7 @@
 <script src="<?php echo URL ?>html/js/formValidation/bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery.bxslider.min.js"></script>
 <script src="<?php echo URL ?>html/plugins/selectize/dist/js/standalone/selectize.js"></script>
+<script src="<?php echo URL ?>html/plugins/jasny-bootstrap/js/jasny-bootstrap.js"></script>
 <!--Chart js plugin -->
 <script src="<?php echo URL ?>html/plugins/Chart/Chart.js"></script>
 <!--main js-->

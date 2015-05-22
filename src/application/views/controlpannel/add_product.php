@@ -4,7 +4,7 @@
 		<div class = "row">
 			<div class = "col-md-6 col-sm-12">
                 <div class="inner-wrapper">
-                    <form class="form-horizontal">
+                    <form id="add_product" class="form-horizontal" method="POST" action="/controlpannel/add_product/" enctype="multipart/form-data">
                         <fieldset>
 
                             <!-- Form Name -->
@@ -14,32 +14,30 @@
                             <div class="control-group">
                                 <label class="control-label" for="product_name">Product name</label>
                                 <div class="controls">
-                                    <input id="product_name" name="product_name" type="text" placeholder="" class=" form-control" required="">
+                                    <input id="product_name" name="product_name" type="text" placeholder="" class=" form-control" required value="<?php echo inp_val('product_name'); ?>">
 
                                 </div>
                             </div>
-
+                            <br/>
                             <!-- File Button -->
-                            <div class="control-group">
-                                <label class="control-label" for="product_image">Add product image</label>
-                                <div class="input-group">
-								<span class="input-group-addon">
-								<i class="glyphicon glyphicon-file"></i>
-								</span>
-								<span class="btn btn-default btn-file">
-								Browse <input type="file" class="form-control" id="image_upload" name="upload_image" required>
-								</span>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+
+                                </div>
+                                <div>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input required type="file" name="upload_image"></span>
                                 </div>
                             </div>
-                                <?php $characteristics_categories=Characteristics::get_characteristics_categories();
-                                if($characteristics_categories)
-                                    foreach($characteristics_categories as $characteristic_category){ ?>
+                                <?php $ch_categories=Characteristics::get_ch_categories();
+                                if($ch_categories)
+                                    foreach($ch_categories as $ch_category){ ?>
                                         <!-- Textarea -->
                                         <div class="control-group">
-                                            <label class="control-label" for="caracteristics">Characteristics From : <?php echo $characteristic_category->NUME ?></label>
+                                            <label class="control-label" for="ch">Characteristics From : <?php echo $ch_category->NUME ?></label>
                                             <div class="controls">
-                                                <textarea class="form-control caracteristics" data-category_id="<?php echo $characteristic_category->ID ?>"  name="caracteristics_<?php echo $characteristic_category->ID ?>"></textarea>
-                                                <p class="help-block">This field is case sensitive, delimit with ;</p>
+
+                                                <select multiple aria-multiselectable class="form-control ch" data-category_id="<?php echo $ch_category->ID ?>"  name="ch_<?php echo $ch_category->ID ?>[]"><?php echo inp_val('ch_'.$ch_category->ID); ?></select>
+                                                <p class="help-block">Delimit new values using ;</p>
                                             </div>
                                         </div>
                             <?php } ?>
@@ -48,7 +46,7 @@
                             <div class="control-group">
                                 <label class="control-label" for=""></label>
                                 <div class="controls">
-                                    <button id="" name="" class="btn btn-primary">Add product</button>
+                                    <button type="submit" id="" name="submit" class="btn btn-primary">Add product</button>
                                 </div>
                             </div>
 

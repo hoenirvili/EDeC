@@ -10,12 +10,12 @@ class AjaxController extends Controller
         Auth::handleLogin();
     }
 
-    function get_characteristics()
+    function get_ch()
     {
         global $db;
         $searched=$_GET['query'];
         $category_id=$_GET['category_id'];
-        echo json_encode(Characteristics::grab_characteristics($searched,$category_id));
+        echo json_encode(Characteristics::grab_ch($searched,$category_id));
 
     }
 

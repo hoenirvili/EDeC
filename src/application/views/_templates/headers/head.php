@@ -27,8 +27,9 @@
         <link rel="stylesheet" href="test/css" href="<?php echo URL ?>html/css/stats.css">
     <?php } ?>
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jquery.bxslider.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/selectize/dist/css/selectize.bootstrap3.css">
 
+    <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/selectize/dist/css/selectize.bootstrap3.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/selectize/dist/css/selectize.default.css">
     <title>Ethic Decisions for Consummers</title>
     <!-- pop for people who disabled javascript -->
     <noscript>

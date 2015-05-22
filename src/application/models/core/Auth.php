@@ -53,6 +53,7 @@ class Auth {
 
     public static function get_user_type() {
         $user_type = false;
+        if(isset($_SESSION['user_account_type']))
         switch ( $_SESSION['user_account_type'] ) {
             case 1:
                 $user_type = 'user';

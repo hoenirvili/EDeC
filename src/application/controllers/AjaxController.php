@@ -14,19 +14,8 @@ class AjaxController extends Controller
     {
         global $db;
         $searched=$_GET['query'];
-        $sth = $db->prepare("SELECT id,name
-                                   FROM   CARACTERISTICA C
-                                   WHERE  (C.NAME LIKE :searched) AND ROWNUM <= 20");
-        try {
-            $sth->execute(array(
-                ':searched' => $searched.'%'
-            ));
-        }catch (PDOException $e) {
-            db_exception($e);
-            return false;
-        }
-        $results=$sth->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($results);
+        $category_id=$_GET['category_id'];
+        echo json_encode(Characteristics::grab_characteristics($searched,$category_id));
 
     }
 

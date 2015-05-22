@@ -31,14 +31,18 @@
 								</span>
                                 </div>
                             </div>
-
-                            <!-- Textarea -->
-                            <div class="control-group">
-                                <label class="control-label" for="caracteristics">Characteristics</label>
-                                <div class="controls">
-                                    <textarea class="form-control" id="caracteristics" name="caracteristics"></textarea>
-                                </div>
-                            </div>
+                                <?php $characteristics_categories=Characteristics::get_characteristics_categories();
+                                if($characteristics_categories)
+                                    foreach($characteristics_categories as $characteristic_category){ ?>
+                                        <!-- Textarea -->
+                                        <div class="control-group">
+                                            <label class="control-label" for="caracteristics">Characteristics From : <?php echo $characteristic_category->NUME ?></label>
+                                            <div class="controls">
+                                                <textarea class="form-control caracteristics" data-category_id="<?php echo $characteristic_category->ID ?>"  name="caracteristics_<?php echo $characteristic_category->ID ?>"></textarea>
+                                                <p class="help-block">This field is case sensitive, delimit with ;</p>
+                                            </div>
+                                        </div>
+                            <?php } ?>
 
                             <!-- Button -->
                             <div class="control-group">

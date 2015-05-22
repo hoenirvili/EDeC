@@ -10,6 +10,7 @@ $classes = array(
     'models/core/View',
     'models/media/UploadHandler',
     'controllers/Controller',
+    'models/product/Characteristics',
     'models/user/User'
 );
 //$classes=array_merge($classes_main, $classes_user);

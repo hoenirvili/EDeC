@@ -1,5 +1,20 @@
 ALTER  SESSION set NLS_DATE_FORMAT = 'dd-mm-yyyy' ;
 
+DROP TYPE imagine_obj FORCE;
+/
+CREATE OR REPLACE TYPE imagine_obj AS OBJECT (
+  img_name VARCHAR2(30),
+  img_url VARCHAR2(30),
+  img_json VARCHAR2(30)
+  );
+/
+
+DROP TYPE images FORCE;
+/
+CREATE OR REPLACE TYPE images IS TABLE OF imagine_obj ;
+/
+
+
 DROP TYPE love_statistic FORCE;
 /
 CREATE OR REPLACE TYPE love_statistic AS OBJECT (
@@ -34,8 +49,8 @@ CREATE OR REPLACE PACKAGE edec_utils_package AS
   PROCEDURE importall_no_carac;
   FUNCTION get_hate_stats RETURN hate_statistics_array;
   FUNCTION get_love_stats RETURN love_statistics_array;
-  --PROCEDURE show_love_stats(v_l_stat_array love_statistics_array); -- not yet implemented
-  --PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array);
+  PROCEDURE show_love_stats(v_l_stat_array love_statistics_array); 
+  PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array);
 END edec_utils_package;
 /
 
@@ -300,5 +315,17 @@ BEGIN
   RETURN v_l_stat_array;
 END get_love_stats;
 
+  PROCEDURE show_love_stats(v_l_stat_array love_statistics_array)IS
+  BEGIN
+    FOR i IN v_l_stat_array.FIRST .. v_l_stat_array.LAST LOOP
+      DBMS_OUTPUT.PUT_LINE(v_l_stat_array(I).C_NAME||v_l_stat_array(i).C_COUNT);
+    END LOOP;
+  END show_love_stats;
+  PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array)IS
+  BEGIN
+    FOR i IN v_h_stat_array.FIRST .. v_h_stat_array.LAST LOOP
+      DBMS_OUTPUT.PUT_LINE(v_h_stat_array(I).C_NAME||v_h_stat_array(i).C_COUNT);
+    END LOOP;
+  END show_hate_stats;
 END edec_utils_package;
 /

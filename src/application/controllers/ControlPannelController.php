@@ -9,7 +9,7 @@ class ControlPannelController extends Controller {
      * Construct this object by extending the basic Controller class
      */
     function __construct() {
-        Auth::handleAdminLogin();
+        //Auth::handleAdminLogin();
         parent::__construct();
     }
     function index() {

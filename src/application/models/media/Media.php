@@ -87,7 +87,13 @@ class Media
         //printr($filejson);
         $filejson = json_decode($filejson);
         //printr($filejson);
-        return $filejson->$size;
+        if(URL=='http://localhost/'){
+        return str_replace('http://edec.ddns.net','http://localhost',$filejson->$size);
+        }
+        else
+        {
+            return $filejson->$size;
+        }
     }
 
 

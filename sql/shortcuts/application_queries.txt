@@ -1,0 +1,140 @@
+--- Inserting an user
+
+  $sql = "  BEGIN
+                        edec_users_package.insertUser(:username,:password,:email,:avatar,:tip,:birth_date,:sex);
+                    END;";
+
+                $query = $db->prepare($sql);
+                try {
+                    $query->execute(
+                        array(
+                            ':username' => $_POST['registerUsername'],
+                            ':password' => $user_password_hash,
+                            ':email' => $_POST['email'],
+                            ':avatar' => $media_id,
+                            ':tip' => 1,
+                            ':birth_date' => date_to_db($_POST['birthday']),
+                            ':sex' => $_POST['gender']
+                        )
+                    );
+
+
+---
+
+
+--- Retrieving characteristics for display
+
+ if(isset($_GET['s'])&&$_GET['s']!='')
+        {
+            $sql = "SELECT outer.*
+  FROM (SELECT ROWNUM rn, inner.*
+          FROM (  SELECT CA.ID,CA.NAME AS CARACTERISTICA, CC.NUME AS CATEGORIE
+                    FROM CARACTERISTICA CA JOIN CATEGORIE_CARACTERISTICI CC ON CC.ID = CA.CATEGORIE_CARACTERISTICI_ID WHERE CA.NAME LIKE :s ORDER BY CA.ID) inner) outer
+ WHERE outer.rn >= :lower_limit AND outer.rn <= :upper_limit";
+        }else {
+            $sql = "SELECT outer.*
+  FROM (SELECT ROWNUM rn, inner.*
+          FROM ( SELECT CA.ID, CA.NAME AS CARACTERISTICA, CC.NUME AS CATEGORIE
+                    FROM CARACTERISTICA CA JOIN CATEGORIE_CARACTERISTICI CC ON CC.ID = CA.CATEGORIE_CARACTERISTICI_ID ORDER BY CA.ID) inner) outer
+ WHERE outer.rn >= :lower_limit AND outer.rn <= :upper_limit";
+        }
+        $query = $db->prepare($sql);
+        try {
+            if(isset($_GET['s'])&&$_GET['s']!='') {
+                $query->execute(
+                    array(
+                        ':lower_limit' => $lower_limit,
+                        ':upper_limit' => $upper_limit,
+                        ':s'=>'%'.$_GET['s'].'%'
+                    )
+                );
+            }else
+            {
+                $query->execute(
+                    array(
+                        ':lower_limit' => $lower_limit,
+                        ':upper_limit' => $upper_limit
+
+                    )
+                );
+            }
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+
+------
+
+
+----- Query characteristics for autocomplete
+
+$lowercase=strtolower($query);
+        $uppercase=strtoupper($query);
+        $capitalized=ucfirst($lowercase);
+        $sth = $db->prepare("SELECT id,name
+                                   FROM   CARACTERISTICA C
+                                   WHERE  ((C.NAME LIKE :lowercase) OR (C.NAME LIKE :uppercase) OR (C.NAME LIKE :capitalized)) AND CATEGORIE_CARACTERISTICI_ID=:category_id AND ROWNUM <= 20");
+        try {
+            /*
+            $sth->execute(array(
+                ':lowercase' => '%'.$lowercase.'%',
+                ':uppercase' => '%'.$uppercase.'%',
+                ':capitalized' => '%'.$capitalized.'%',
+                ':category_id'=>$category_id
+            ));
+            */
+            /* This is faster
+            */
+               $sth->execute(array(
+                ':lowercase' => $lowercase.'%',
+                ':uppercase' => $uppercase.'%',
+                ':capitalized' => $capitalized.'%',
+                ':category_id'=>$category_id
+            ));
+        }catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+
+
+--- Get product characteristics by category for product
+
+  $sql = "SELECT CP.CARACTERISTICA_ID FROM CARACTERISTICI_PRODUSE CP LEFT JOIN CARACTERISTICA CR ON CR.ID = CP.CARACTERISTICA_ID WHERE CP.PRODUS_ID=:product_id AND CR.CATEGORIE_CARACTERISTICI_ID=:category_id";
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':product_id' => $product_id,
+                    ':category_id' => $category_id
+                )
+            );
+
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+
+
+--- Inserting a characteristic
+
+ $sql = "BEGIN
+                        edec_caracteristici_package.insertCaracteristica(:c_name,:c_cat);
+                END;";
+
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':c_name' => $name,
+                    ':c_cat' => $category_id
+                )
+            );
+
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+
+
+------

@@ -96,8 +96,11 @@ class AdminLister
 
     public function display_rows()
     {
+        if(!empty($this->resources))
         foreach ($this->resources as $resource)
             echo '<tr>' . $this->display_row($resource) . '</tr>';
+        else
+            echo '</table><p>No data found</p>';
     }
 
     public function display_row($resource)
@@ -105,8 +108,8 @@ class AdminLister
         foreach ($this->columns as $column) {
             echo '<td>' . $resource->$column . '</td>';
         }
-        echo '<td><a class="btn btn-default" href="' . $this->edit_link . $resource->ID . '">Edit</a></td>';
-        echo '<td><a class="btn btn-default" href="' . $this->delete_link . $resource->ID . '">Delete</a></td>';
+        echo '<td><a class="label label-success" href="' . $this->edit_link . $resource->ID . '"><span class="glyphicon glyphicon-pencil"></span></a></td>';
+        echo '<td><a class="label label-danger" href="' . $this->delete_link . $resource->ID . '"><span class="glyphicon glyphicon-remove"></span></a></td>';
     }
 
     public function get_current_page()

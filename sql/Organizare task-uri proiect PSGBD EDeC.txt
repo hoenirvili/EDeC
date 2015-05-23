@@ -1,0 +1,48 @@
+Organizare task-uri proiect PSGBD EDeC
+
+Membrii:
+	-Calara Ionut;
+	-Dorneanu Anca;
+	-Giulitti Salvatore;
+	-Tutuianu Corneliu.
+
+
+1.Import/export CSV:
+	-Calara Ionut : procedura importFromCSV si procedura exportToCSV din pachetul edec_caracteristici_package;
+	-Dorneanu Anca : procedura importall_no_carac din pachetul edec_utils_package + procedura importFromCSV si procedura exportToCSV din pachetul edec_media_package;
+	-Giulitti Salvatore : procedura importFromCSV si procedura exportToCSV din pachetul edec_produse_package ;
+	-Tutuianu Corneliu : procedura exportToCSV din pachetul edec_utils_package +procedura importFromCSV si procedura exportToCSV din pachetul edec_users_package.
+
+2.Preluarea de date si modificarea lor dintr-un formular al aplicatiei:
+	-Calara Ionut;
+	-Dorneanu Anca;
+	-Giulitti Salvatore;
+	-Tutuianu Corneliu.
+
+3.Demonstrare consistenta baza de date - demonstrat la laborator;
+
+4.Paginarea datelor
+	-Calara Ionut;
+	-Dorneanu Anca;
+	-Giulitti Salvatore;
+	-Tutuianu Corneliu.
+
+5.Triggere:
+	-Calara Ionut : AI_CARACT_PROD + AI_CARACTERISTICA;
+	-Dorneanu Anca : AI_CATEG_CARACT + AI_MEDIA;
+	-Giulitti Salvatore : AI_PRODUS + AI_USERS;
+	-Tutuianu Corneliu : AI_USER_LOVES + AI_USER_HATES.
+
+6.Pachete:
+	-Calara Ionut : edec_caracteristici_package + edec_utils_package + edec_media_package;
+	-Dorneanu Anca : edec_media_package + edec_users_package + edec_caracteristici_package;
+	-Giulitti Salvatore : edec_produse_package + edec_users_package + edec_utils_package;
+	-Tutuianu Corneliu : edec_users_package + edec_produse_package + edec_caracteristici_package;
+
+7.Obiecte/Colectii/Viewuri
+	-Calara Ionut : view_Caracteristics_ordName + view_Caracteristics_ordCat + view_Organizatii + imagine_obj + view_Statistics_Hate;
+	-Dorneanu Anca : view_Orase + view_SubsAlim + view_Subs_Nealim + images;
+	-Giulitti Salvatore : view_Produse + view_Produse_Org + view_Produse_SubsAlim + love_statistic + love_statistics_array;
+	-Tutuianu Corneliu : view_Produse_SubsNealim + view_Produse_City + view_Statistics_Love + hate_statistic + hate_statistics_array.
+
+8.Exceptii - odata cu crearea procedurilor din pachetelor.

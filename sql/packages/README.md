@@ -17,7 +17,7 @@ This folder is used to store all the script files which contains the packages.
      - get_love_stats RETURN love_statistics_array - returns an array of 10 most loved features (name and cout);
      - show_love_stats(v_l_stat_array )-shows the love array with the 10 most loved features;
      - show_hate_stats(v_h_stat_array )-shows the hate array with the 10 most hated features;
-     - this package also creates 2 objects and 2 varray used for the statistics;
+     - this package also creates 2 objects and 2 varray used for the statistics and 1 object for media images and a nested table for it;
   
 
  - **2.edec_media_package.sql**-script with the *edec_media_package* package used to manipulate data from the *MEDIA* table, it contains the following procedures/functions:

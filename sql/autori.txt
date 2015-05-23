@@ -1,0 +1,8 @@
+An II, Grupa A7.
+Autori:
+	-Calara Ionut;
+	-Dorneanu Anca;
+	-Giulitti Salvatore;
+	-Tutuianu Corneliu.
+
+Github repository : https://github.com/hoenirvili/EDeC.

@@ -9,7 +9,7 @@ $user=new User($user_id);
         <div class = "row">
             <div class = "col-md-6 col-sm-12">
                 <div class="inner-wrapper">
-                    <form id="add_product" class="form-horizontal" method="POST" action="/controlpannel/edit_user?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data">
+                    <form id="edit_user" class="form-horizontal" method="POST" action="/controlpannel/edit_user?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data">
                         <fieldset>
 
                             <!-- Form Name -->
@@ -47,6 +47,7 @@ $user=new User($user_id);
                                 <label class="control-label">Pass</label>
                                 <div class="controls">
                                     <input id="pass" name="new_password" type="password" placeholder="" class=" form-control" value="">
+                                    <p class="help-block">Only add the value if you wish to change it</p>
 
                                 </div>
                             </div>

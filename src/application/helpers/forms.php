@@ -16,6 +16,11 @@ function inp_val($key, $r = '')
         if (isset($characteristic->$key))
             $post = $characteristic->$key;
 
+    global $current_user;
+    if ($current_user)
+        if (isset($current_user->$key))
+            $post = $current_user->$key;
+
     global $user;
     if ($user)
         if (isset($user->$key))

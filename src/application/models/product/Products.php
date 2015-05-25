@@ -161,6 +161,8 @@ class Products
         return true;
     }
 
+
+
     public static function update_product()
     {
         global $db;
@@ -209,6 +211,7 @@ class Products
             add_success("Product succesfully updated");
             return $product_id;
         } else {
+            add_error("The image you uploaded is too big");
             return false;
         }
         add_error("Something bad happened");

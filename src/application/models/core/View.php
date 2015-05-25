@@ -63,7 +63,6 @@ class View {
     private function checkForActiveController($filename, $navigation_controller) {
         $split_filename    = explode("/", $filename);
         $active_controller = $split_filename[0];
-
         if ($active_controller == $navigation_controller) {
             return true;
         }

@@ -40,15 +40,14 @@ $image_sizes = array(
         // Automatically rotate images based on EXIF meta data:
         'auto_orient' => true
     ),
-    // Uncomment the following to create medium sized images:
-
     'large' => array(
         'max_width' => 1200,
-        'max_height' => 900
+        'max_height' => 900,
     ),
     'medium' => array(
-        'max_width' => 600,
-        'max_height' => 300
+        'max_width' => 300,
+        'max_height' => 400,
+        'crop'=>true
     ),
 
     'thumbnail' => array(

@@ -18,16 +18,16 @@ echo $current_page ; if(Auth::is_user_logged_in()) echo ' logged-in'; if(Auth::i
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
+                    <li <?php if ($this->checkForActiveController($filename, "homepage")) { echo ' class="active" '; } ?>>
                         <a href="<?php echo URL . 'index/' ?>">Home</a>
                     </li>
-                    <li>
+                    <li <?php if ($this->checkForActiveController($filename, "about")) { echo ' class="active" '; } ?>>
                         <a href="#" id="about">About</a>
                     </li>
                     <?php
                         if(Auth::is_user_logged_in()){
                     ?>
-                    <li class="dropdown">
+                    <li  class="dropdown <?php if ($this->checkForActiveController($filename, "access")||$this->checkForActiveController($filename, "stats")||$this->checkForActiveController($filename, "dashboard")||$this->checkForActiveController($filename, "search")||$this->checkForActiveController($filename, "controlpannel")) { echo ' active'; } ?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Client</li>
@@ -46,7 +46,7 @@ echo $current_page ; if(Auth::is_user_logged_in()) echo ' logged-in'; if(Auth::i
                     </li><?php
 }else {
                     ?>
-                    <li><a href="<?php echo URL . 'access' ?>">Register/Login</a></li>
+                    <li <?php if ($this->checkForActiveController($filename, "access")) { echo ' class="active" '; } ?>><a href="<?php echo URL . 'access' ?>">Register/Login</a></li>
                     <?php } ?>
                     <li>
                         <a href="#contact" data-toggle="modal">Contact</a>

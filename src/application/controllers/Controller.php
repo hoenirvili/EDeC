@@ -16,6 +16,11 @@ class Controller {
 
         // create database connection
         $this->db = $GLOBALS['db'];
+        global $current_user;
+        if (isset($_SESSION['user_logged_in'])) {
+                $current_user = new User($_SESSION['user_id']);
+                $current_user->populate_user();
+        }
 
         // create a view object (that does nothing, but provides the view render() method)
         $this->view = new View();

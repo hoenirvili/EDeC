@@ -41,6 +41,7 @@ class Product {
 
     public function __isset($name)
     {
+
         if (array_key_exists($name, $this->ch)) {
             return true;
         }
@@ -64,7 +65,7 @@ class Product {
         $this->product_id=$this->ID=$product->ID;
         $this->NAME=$this->product_name=$product->NAME;
         $this->IMAGE=$this->product_image=$product->IMAGE;
-        $this->characteristics=$this->populate_ch();
+        $this->characteristics=$this->ch=$this->populate_ch();
 
     }
 

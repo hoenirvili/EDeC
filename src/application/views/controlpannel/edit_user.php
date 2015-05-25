@@ -1,10 +1,15 @@
+<?php
+global $user;
+$user_id=$_GET['user_id'];
+$user=new User($user_id);
+?>
 <div class = "admin-wrapper">
 
     <div class = "container">
         <div class = "row">
             <div class = "col-md-6 col-sm-12">
                 <div class="inner-wrapper">
-                    <form id="add_product" class="form-horizontal" method="POST" action="/controlpannel/add_user/" enctype="multipart/form-data">
+                    <form id="add_product" class="form-horizontal" method="POST" action="/controlpannel/edit_user?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data">
                         <fieldset>
 
                             <!-- Form Name -->
@@ -18,16 +23,16 @@
 
                                 </div>
                             </div>
-                            </br>
-                            <!-- File Button -->
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <br/>
+                            <div class="fileinput fileinput-exists" data-provides="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
-
+                                    <img src="<?php echo Media::get_src($user->AVATAR,'medium') ?>">
                                 </div>
                                 <div>
-                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input required type="file" name="user_avatar"></span>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="user_avatar"></span>
                                 </div>
                             </div>
+                            <input type="hidden" name="media_id" value="<?php echo $user->AVATAR ?>">
                             <!-- Text input-->
                             <div class="control-group">
                                 <label class="control-label">Email</label>
@@ -36,27 +41,30 @@
 
                                 </div>
                             </div>
+                            <br/>
                             <!-- Text input-->
                             <div class="control-group">
                                 <label class="control-label">Pass</label>
                                 <div class="controls">
-                                    <input id="pass"  name="new_password" type="password" placeholder="" class=" form-control" value="<?php inp_val('new_password')?>">
+                                    <input id="pass" name="new_password" type="password" placeholder="" class=" form-control" value="">
 
                                 </div>
                             </div>
+                            <br/>
                             <!-- Text input-->
                             <div class="control-group">
                                 <label class="control-label">Type</label>
                                 <div class="controls" style="margin-left: 20px;">
-                                   <?php inp_val('user_type',1) ?>
+                                    <?php inp_val('user_type',1) ?>
 
                                 </div>
                             </div>
+                            <br/>
                             <!-- Text input-->
                             <div class="control-group">
                                 <label class="control-label" for="product_name">Birthdate</label>
                                 <div class="controls">
-                                    <input type="text" name="user_birthdate" value="<?php inp_val('user_birthdate'); ?>"/>
+                                    <input type="text" name="user_birthdate" placeholder="mm/dd/yyyy" value="<?php inp_val('user_birthdate'); ?>"/>
 
                                 </div>
                             </div>
@@ -76,7 +84,7 @@
                                         <label class="control-label" for="ch">User <?php echo $preference ?></label>
                                         <div class="controls">
 
-                                            <select multiple aria-multiselectable class="form-control full_ch"   name="user_<?php echo $preference ?>[]"><?php echo inp_val('user_'.$preference); ?></select>
+                                            <select multiple aria-multiselectable class="form-control full_ch"   name="user_<?php echo $preference ?>[]"><?php inp_val('user_'.$preference); ?></select>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -86,7 +94,7 @@
                             <div class="control-group">
                                 <label class="control-label" for=""></label>
                                 <div class="controls">
-                                    <button type="submit" id="" name="submit" class="btn btn-primary">Add User</button>
+                                    <button type="submit" id="" name="submit" class="btn btn-primary">Update User</button>
                                 </div>
                             </div>
 

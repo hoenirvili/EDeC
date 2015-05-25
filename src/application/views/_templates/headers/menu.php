@@ -39,6 +39,7 @@ echo $current_page ; if(Auth::is_user_logged_in()) echo ' logged-in'; if(Auth::i
                             <li class="dropdown-header">Administrator</li>
                             <li><a href="<?php echo URL . 'controlpannel' ?>">Control Pannel</a></li>
                                 <li><a href="<?php echo URL . 'controlpannel/products' ?>">Products</a></li><li><a href="<?php echo URL . 'controlpannel/characteristics' ?>">Characteristici</a></li>
+                                <li><a href="<?php echo URL . 'controlpannel/users' ?>">Users</a></li>
 
                             <?php } ?>
                         </ul>

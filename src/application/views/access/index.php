@@ -106,13 +106,14 @@
                         </div>
                         <div class="form-group">
                             <label for="avatar" class="control-label">Avatar</label>
-                            <div class="input-group">
-								<span class="input-group-addon">
-								<i class="glyphicon glyphicon-file"></i>
-								</span>
-								<span class="btn btn-default btn-file">
-								Browse <input type="file" class="form-control" id="avatar_upload" name="upload_avatar" required>
-								</span>
+                            <div class="clearfix"></div>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px;">
+
+                                </div>
+                                <div>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input required type="file" name="upload_avatar"></span>   <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

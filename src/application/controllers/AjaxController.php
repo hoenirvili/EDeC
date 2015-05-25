@@ -12,9 +12,13 @@ class AjaxController extends Controller
 
     function get_ch()
     {
-        global $db;
         $searched=$_GET['query'];
+        if(isset($_GET['category_id']))
         $category_id=$_GET['category_id'];
+        else
+        {
+            $category_id=0;
+        }
         echo json_encode(Characteristics::grab_ch($searched,$category_id));
 
     }

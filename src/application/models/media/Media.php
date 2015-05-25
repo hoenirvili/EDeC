@@ -68,7 +68,7 @@ class Media
                 add_error($upload_handler->response[$name][0]->name . ' : ' . $upload_handler->response[$name][0]->error);
                 return false;
             } else {
-                $media_id = Media::add_media_file(json_encode($upload_handler->response['upload_image'][0]),$upload_handler->response['upload_image'][0]->url);
+                $media_id = Media::add_media_file(json_encode($upload_handler->response[$name][0]),$upload_handler->response[$name][0]->url);
             }
             return $media_id;
         }
@@ -92,7 +92,7 @@ class Media
         }
         else
         {
-            return $filejson->$size;
+            return str_replace('http://localhost','http://edec.ddns.net',$filejson->$size);
         }
     }
 

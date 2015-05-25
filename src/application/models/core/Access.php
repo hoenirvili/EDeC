@@ -27,13 +27,10 @@ class Access
             return false;
         }
 
-        // get user's data
-        // (we check if the password fits the password_hash via password_verify() some lines below)
         $sth = $db->prepare("SELECT *
                                    FROM   users
                                    WHERE  (username = :username)");
-        // DEFAULT is the marker for "normal" accounts (that have a password etc.)
-        // There are other types of accounts that don't have passwords etc. (FACEBOOK)
+
         try {
             $sth->execute(array(
                 ':username' => $_POST['loginUsername']
@@ -117,7 +114,7 @@ class Access
                 add_error('Passwords fields have to match');
                 return false;
             }
-            $media_id=Media::handle_upload('upload_avatr');
+            $media_id=Media::handle_upload('upload_avatar');
             if($media_id) {
                 $user_password_hash = md5($_POST['registerPassword']);
                 $sql = "  BEGIN

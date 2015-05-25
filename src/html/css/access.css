@@ -83,3 +83,8 @@
     text-align: center;
 }
 
+.btn-file .form-control-feedback
+{
+    position:static;
+    display: inline-block;
+}

@@ -29,6 +29,10 @@ function date_to_db($datestring)
 {
     return date('d-M-Y',strtotime($datestring));
 }
+function db_to_date($datestring)
+{
+    return date('m/d/Y',strtotime($datestring));
+}
 
 function db_exception($e)
 {

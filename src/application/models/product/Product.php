@@ -70,7 +70,7 @@ class Product {
 
     public function populate_ch()
     {
-        $this->characteristics=$this->ch=Characteristics::retrieve_product_ch($this->id);
+        return Characteristics::retrieve_product_ch($this->id);
     }
 
     private function product_exists($id)

@@ -11,11 +11,13 @@ $classes = array(
     'models/media/UploadHandler',
     'controllers/Controller',
     'models/product/Characteristics',
+    'models/product/Characteristic',
     'models/product/Products',
     'models/product/Product',
     'models/decorators/AdminLister',
     'models/decorators/Pagination',
     'models/decorators/BootstrapPagination',
+    'models/user/Users',
     'models/user/User'
 );
 //$classes=array_merge($classes_main, $classes_user);

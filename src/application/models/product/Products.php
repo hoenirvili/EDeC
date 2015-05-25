@@ -195,7 +195,7 @@ class Products
             self::remove_all_product_characteristics($product_id);
             if ($ch_categories)
                 foreach ($ch_categories as $ch_category) {
-                    if ($_POST['ch_' . $ch_category->ID])
+                    if (isset($_POST['ch_' . $ch_category->ID]))
                         foreach ($_POST['ch_' . $ch_category->ID] as $ch) {
 
                             if (is_numeric($ch) && Characteristics::ch_exists($ch)) {

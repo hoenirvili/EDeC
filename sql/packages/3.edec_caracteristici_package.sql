@@ -67,7 +67,7 @@ CREATE OR REPLACE PACKAGE BODY edec_caracteristici_package IS
       (new_name IN caracteristica.name%TYPE,v_caracteristica_id IN caracteristica.id%TYPE)IS
       CURSOR update_cursor IS
       SELECT * FROM caracteristica 
-      WHERE v_caracteristica_id=caracteristica.id  
+      WHERE caracteristica.id=v_caracteristica_id
       FOR UPDATE OF caracteristica.name;
    BEGIN
     FOR indx IN update_cursor
@@ -82,7 +82,7 @@ END edit_caracteristica_name;
       (new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.ID%TYPE)IS
       CURSOR update_cursor IS
       SELECT * FROM caracteristica 
-      WHERE v_caracteristica_id=caracteristica.ID  
+      WHERE caracteristica.id=v_caracteristica_id
       FOR UPDATE OF caracteristica.CATEGORIE_CARACTERISTICI_ID;
       v_category_id CATEGORIE_CARACTERISTICI.ID%TYPE;
    BEGIN
@@ -90,7 +90,7 @@ END edit_caracteristica_name;
     LOOP
       SELECT ID INTO v_category_id
         FROM  CATEGORIE_CARACTERISTICI
-        WHERE nume=new_category;
+        WHERE ID=new_category;
       
       UPDATE 
       caracteristica SET caracteristica.CATEGORIE_CARACTERISTICI_ID=v_category_id 

@@ -1,0 +1,252 @@
+--- Inserting an user
+
+  $sql = "  BEGIN
+                        edec_users_package.insertUser(:username,:password,:email,:avatar,:tip,:birth_date,:sex);
+                    END;";
+
+                $query = $db->prepare($sql);
+                try {
+                    $query->execute(
+                        array(
+                            ':username' => $_POST['registerUsername'],
+                            ':password' => $user_password_hash,
+                            ':email' => $_POST['email'],
+                            ':avatar' => $media_id,
+                            ':tip' => 1,
+                            ':birth_date' => date_to_db($_POST['birthday']),
+                            ':sex' => $_POST['gender']
+                        )
+                    );
+
+
+--- Editing an user
+
+global $db;
+
+        if (!isset($_POST)) {
+            add_error('There was an issue please contact the administrator.');
+        }
+        if ($_FILES['user_avatar']['size'])
+            $media_id = Media::handle_upload('user_avatar');
+        else
+            $media_id = $_POST['media_id'];
+        if (isset($_POST['new_pass'])) {
+            $pass = md5($_POST['new_pass']);
+        } else {
+            $pass = self::get_user_md_pass($_GET['user_id']);
+        }
+        if ($media_id) {
+            $sql = "BEGIN
+                        edec_users_package.edit_user(:v_user_id,:new_username,:new_pass,:new_email,:new_avatar,:new_type,:new_birthdate,:new_sex);
+                    END;";
+
+            $query = $db->prepare($sql);
+            try {
+                $query->execute(
+                    array(
+                        ':v_user_id' => $_GET['user_id'],
+                        ':new_username' => $_POST['username'],
+                        ':new_pass' => $pass,
+                        ':new_email' => $_POST['email'],
+                        ':new_avatar' => $media_id,
+                        ':new_type' => $_POST['user_type'],
+                        ':new_birthdate' => date_to_db($_POST['user_birthdate']),
+                        ':new_sex' =>$_POST['gender'],
+                    )
+                );
+            } catch (PDOException $e) {
+                db_exception($e);
+                return false;
+            }
+            $user_id = $_GET['user_id'];
+            self::remove_all_user_characteristics($user_id);
+            $preferences = array('loves', 'hates');
+            if ($preferences)
+                foreach ($preferences as $preference) {
+                    if ($_POST['user_' . $preference])
+                        foreach ($_POST['user_' . $preference] as $ch) {
+                            if (is_numeric($ch) && Characteristics::ch_exists($ch)) {
+                                self::add_ch_to_user($user_id, $ch, $preference);
+                            } else {
+                            }
+                        }
+                }
+            add_success("User succesfully updated");
+            return $user_id;
+        } else {
+            return false;
+        }
+        add_error("Something bad happened");
+        return false;
+
+-------- Edit product
+
+        global $db;
+
+                if (!isset($_POST)) {
+                    add_error('There was an issue please contact the administrator.');
+                }
+                if ($_FILES['upload_image']['size'])
+                    $media_id = Media::handle_upload('upload_image');
+                else
+                    $media_id = $_POST['media_id'];
+                if ($media_id) {
+                    $sql = "BEGIN
+                                edec_produse_package.edit_product(:name,:image,:id);
+                            END;";
+
+                    $query = $db->prepare($sql);
+                    try {
+                        $query->execute(
+                            array(
+                                ':name' => $_POST['product_name'],
+                                ':image' => $media_id,
+                                ':id' => $_GET['product_id']
+                            )
+                        );
+                    } catch (PDOException $e) {
+                        db_exception($e);
+                        return false;
+                    }
+                    $product_id = $_GET['product_id'];
+                    $ch_categories = Characteristics::get_ch_categories();
+                    self::remove_all_product_characteristics($product_id);
+                    if ($ch_categories)
+                        foreach ($ch_categories as $ch_category) {
+                            if (isset($_POST['ch_' . $ch_category->ID]))
+                                foreach ($_POST['ch_' . $ch_category->ID] as $ch) {
+
+                                    if (is_numeric($ch) && Characteristics::ch_exists($ch)) {
+                                        self::add_ch_to_product($product_id, $ch);
+                                    } else {
+                                        $id = Characteristics::insert_ch($ch, $ch_category->ID);
+                                        self::add_ch_to_product($product_id, $id);
+                                    }
+                                }
+                        }
+                    add_success("Product succesfully updated");
+                    return $product_id;
+                } else {
+                    add_error("The image you uploaded is too big");
+                    return false;
+                }
+                add_error("Something bad happened");
+                return false;
+
+
+--- Retrieving characteristics for display
+
+ if(isset($_GET['s'])&&$_GET['s']!='')
+        {
+            $sql = "SELECT outer.*
+  FROM (SELECT ROWNUM rn, inner.*
+          FROM (  SELECT CA.ID,CA.NAME AS CARACTERISTICA, CC.NUME AS CATEGORIE
+                    FROM CARACTERISTICA CA JOIN CATEGORIE_CARACTERISTICI CC ON CC.ID = CA.CATEGORIE_CARACTERISTICI_ID WHERE CA.NAME LIKE :s ORDER BY CA.ID) inner) outer
+ WHERE outer.rn >= :lower_limit AND outer.rn <= :upper_limit";
+        }else {
+            $sql = "SELECT outer.*
+  FROM (SELECT ROWNUM rn, inner.*
+          FROM ( SELECT CA.ID, CA.NAME AS CARACTERISTICA, CC.NUME AS CATEGORIE
+                    FROM CARACTERISTICA CA JOIN CATEGORIE_CARACTERISTICI CC ON CC.ID = CA.CATEGORIE_CARACTERISTICI_ID ORDER BY CA.ID) inner) outer
+ WHERE outer.rn >= :lower_limit AND outer.rn <= :upper_limit";
+        }
+        $query = $db->prepare($sql);
+        try {
+            if(isset($_GET['s'])&&$_GET['s']!='') {
+                $query->execute(
+                    array(
+                        ':lower_limit' => $lower_limit,
+                        ':upper_limit' => $upper_limit,
+                        ':s'=>'%'.$_GET['s'].'%'
+                    )
+                );
+            }else
+            {
+                $query->execute(
+                    array(
+                        ':lower_limit' => $lower_limit,
+                        ':upper_limit' => $upper_limit
+
+                    )
+                );
+            }
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+
+------
+
+
+----- Query characteristics for autocomplete
+
+$lowercase=strtolower($query);
+        $uppercase=strtoupper($query);
+        $capitalized=ucfirst($lowercase);
+        $sth = $db->prepare("SELECT id,name
+                                   FROM   CARACTERISTICA C
+                                   WHERE  ((C.NAME LIKE :lowercase) OR (C.NAME LIKE :uppercase) OR (C.NAME LIKE :capitalized)) AND CATEGORIE_CARACTERISTICI_ID=:category_id AND ROWNUM <= 20");
+        try {
+            /*
+            $sth->execute(array(
+                ':lowercase' => '%'.$lowercase.'%',
+                ':uppercase' => '%'.$uppercase.'%',
+                ':capitalized' => '%'.$capitalized.'%',
+                ':category_id'=>$category_id
+            ));
+            */
+            /* This is faster
+            */
+               $sth->execute(array(
+                ':lowercase' => $lowercase.'%',
+                ':uppercase' => $uppercase.'%',
+                ':capitalized' => $capitalized.'%',
+                ':category_id'=>$category_id
+            ));
+        }catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+
+
+--- Get product characteristics by category for product
+
+  $sql = "SELECT CP.CARACTERISTICA_ID FROM CARACTERISTICI_PRODUSE CP LEFT JOIN CARACTERISTICA CR ON CR.ID = CP.CARACTERISTICA_ID WHERE CP.PRODUS_ID=:product_id AND CR.CATEGORIE_CARACTERISTICI_ID=:category_id";
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':product_id' => $product_id,
+                    ':category_id' => $category_id
+                )
+            );
+
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+
+
+--- Inserting a characteristic
+
+ $sql = "BEGIN
+                        edec_caracteristici_package.insertCaracteristica(:c_name,:c_cat);
+                END;";
+
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':c_name' => $name,
+                    ':c_cat' => $category_id
+                )
+            );
+
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+
+
+------

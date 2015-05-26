@@ -10,7 +10,7 @@ class Statistics {
     public static function getMostHated(){
 
         global $db;
-        var $nr=5;
+        $nr=5;
 
         $sql = "
                 BEGIN
@@ -42,4 +42,7 @@ class Statistics {
 
     }
 
+    public static function getMostLoved(){
+        return null;
+    }
 }

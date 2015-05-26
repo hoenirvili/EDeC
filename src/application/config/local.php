@@ -1,5 +1,4 @@
 <?php
-
 define('URL', 'http://edec.ddns.net/');
 define('ADMIN_URL', 'http://edec.ddns.net/');
 define('DB_TYPE', 'oci');

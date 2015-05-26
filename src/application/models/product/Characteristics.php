@@ -373,4 +373,22 @@ class Characteristics
                 echo '<option value="' . $key . '">' . $val . '</option>';
         }
     }
+    public static function list_ch_button($user,$ch)
+    {
+        var_dump($user);
+        //var_dump()
+//        foreach($user->preferences as $user_row_preferences)
+//        {
+//          if($user_row_preferences =='user_loves')
+//              echo $user_row_preferences['user_loves']
+//
+//        }
+        foreach($user->preferences['user_loves'] as $user_loves)
+        {
+            
+        }
+
+
+
+    }
 }

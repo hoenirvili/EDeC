@@ -47,12 +47,15 @@ CREATE OR REPLACE PACKAGE edec_utils_package AS
   PROCEDURE importALLfromCSV;
   
   PROCEDURE importall_no_carac;
-  FUNCTION get_hate_stats RETURN hate_statistics_array;
-  FUNCTION get_love_stats RETURN love_statistics_array;
-  PROCEDURE show_love_stats(v_l_stat_array love_statistics_array); 
-  PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array);
+  PROCEDURE get_hate_stats(v_h_stat_array OUT hate_statistics_array);
+  PROCEDURE get_love_stats(v_l_stat_array OUT love_statistics_array);
+  PROCEDURE show_love_stats(v_l_stat_array IN love_statistics_array); 
+  PROCEDURE show_hate_stats(v_h_stat_array IN hate_statistics_array);
 END edec_utils_package;
 /
+
+
+
 
 CREATE OR REPLACE PACKAGE BODY edec_utils_package AS
   PROCEDURE exportToCSV( v_table_name IN VARCHAR2,v_filename IN VARCHAR2 )
@@ -261,7 +264,7 @@ BEGIN
     importPreferencesFromCSV;
  END importall_no_carac;
  
- FUNCTION get_hate_stats RETURN hate_statistics_array IS
+PROCEDURE get_hate_stats(v_h_stat_array OUT hate_statistics_array) IS
    CURSOR hate_cursor IS
        SELECT name , count(*) "number"
        FROM caracteristica  JOIN user_hates 
@@ -270,25 +273,30 @@ BEGIN
        GROUP BY name
        ORDER BY count(*) DESC;
     hate_rec hate_cursor%ROWTYPE;
-    v_h_stat_array hate_statistics_array:=hate_statistics_array();
-    v_h_stat hate_statistic;
+    
+    v_h_stat hate_statistic:=hate_statistic('name',0);
     it NUMBER:=0;
     v_count NUMBER;
 BEGIN
+  
+ v_h_stat_array :=hate_statistics_array();
+ 
   FOR hate_rec IN hate_cursor LOOP
     SELECT  count(*) INTO v_count
        FROM caracteristica  JOIN user_hates 
        ON caracteristica.id=user_hates.caracteristica_id
        WHERE caracteristica.name=hate_rec.name;
+    v_h_stat_array.EXTEND(1);
     v_h_stat:=hate_statistic(hate_rec.name,v_count);
+    it:=it+1;
     v_h_stat_array(it):=v_h_stat;
    
-    it:=it+1;
+   
   END LOOP;
-  RETURN v_h_stat_array;
+  
 END get_hate_stats;
 
-FUNCTION get_love_stats RETURN love_statistics_array IS
+PROCEDURE get_love_stats(v_l_stat_array OUT love_statistics_array) IS
    CURSOR love_cursor IS
        SELECT name , count(*) "number"
        FROM caracteristica  JOIN user_loves
@@ -297,34 +305,38 @@ FUNCTION get_love_stats RETURN love_statistics_array IS
        GROUP BY name
        ORDER BY count(*) DESC;
     love_rec love_cursor%ROWTYPE;
-    v_l_stat_array love_statistics_array:=love_statistics_array();
+ 
     v_l_stat love_statistic;
     it NUMBER:=0;
     v_count NUMBER;
 BEGIN
+  v_l_stat_array :=love_statistics_array();
   FOR love_rec IN love_cursor LOOP
     SELECT  count(*) INTO v_count
        FROM caracteristica  JOIN user_loves 
        ON caracteristica.id=user_loves.caracteristica_id
        WHERE caracteristica.name=love_rec.name;
+    v_L_stat_array.EXTEND(1);
     v_l_stat:=love_statistic(love_rec.name,v_count);
+    it:=it+1;
     v_l_stat_array(it):=v_l_stat;
    
-    it:=it+1;
+    
   END LOOP;
-  RETURN v_l_stat_array;
+  
 END get_love_stats;
 
-  PROCEDURE show_love_stats(v_l_stat_array love_statistics_array)IS
+PROCEDURE show_love_stats(v_l_stat_array love_statistics_array)IS
   BEGIN
     FOR i IN v_l_stat_array.FIRST .. v_l_stat_array.LAST LOOP
-      DBMS_OUTPUT.PUT_LINE(v_l_stat_array(I).C_NAME||v_l_stat_array(i).C_COUNT);
+      DBMS_OUTPUT.PUT_LINE(v_l_stat_array(I).C_NAME||' '||v_l_stat_array(i).C_COUNT);
     END LOOP;
   END show_love_stats;
-  PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array)IS
+
+PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array)IS
   BEGIN
     FOR i IN v_h_stat_array.FIRST .. v_h_stat_array.LAST LOOP
-      DBMS_OUTPUT.PUT_LINE(v_h_stat_array(I).C_NAME||v_h_stat_array(i).C_COUNT);
+      DBMS_OUTPUT.PUT_LINE(v_h_stat_array(I).C_NAME||' '||v_h_stat_array(i).C_COUNT);
     END LOOP;
   END show_hate_stats;
 END edec_utils_package;

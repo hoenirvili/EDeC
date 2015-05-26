@@ -13,13 +13,18 @@ class Statistics {
 
         $stats=array("mere"=>100,"pere"=>60);
 
-        $sql = "SELECT * FROM USERS WHERE ID>:id";
+        $sql = "DECLARE
+                    V_H_STAT_ARRAY HATE_STATISTICS_ARRAY:=HATE_STATISTICS_ARRAY();
+                BEGIN
+                    EDEC_UTILS_PACKAGE.GET_HATE_STATS(V_H_STAT_ARRAY);
+
+                END;";
 
         $query = $db->prepare($sql);
         try {
             $query->execute(
                 array(
-                    ':id' => 2
+                    ':no_stats' => 10
                 )
             );
         } catch (PDOException $e) {

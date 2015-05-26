@@ -7,33 +7,38 @@
  */
 
 class Statistics {
-    public static function get_most_loved(){
+    public static function getMostHated(){
 
         global $db;
+        var $nr=5;
 
-        $stats=array("mere"=>100,"pere"=>60);
-
-        $sql = "DECLARE
-                    V_H_STAT_ARRAY HATE_STATISTICS_ARRAY:=HATE_STATISTICS_ARRAY();
+        $sql = "
                 BEGIN
-                    EDEC_UTILS_PACKAGE.GET_HATE_STATS(V_H_STAT_ARRAY);
-
+                  :return_cursor :=  EDEC_UTILS_PACKAGE.GET_HATE_STATS(:number);
                 END;";
+        // Strip special characters to avoid ORA-06550 and PLS-00103 errors.
+        $sql = strip_special_characters($sql);
+        // Parse a query through the connection.
+        $query = oci_parse($db,$sql);
+        // Declare a return cursor for the connection.
+        $rc = oci_new_cursor($db);
+        // Bind PHP variables to the OCI output variable.
+        oci_bind_by_name($db,':return_cursor',$rc,-1,OCI_B_CURSOR);
+        // Bind PHP variables to the OCI input variable
+        oci_bind_by_name($db,':number',$nr);
 
-        $query = $db->prepare($sql);
         try {
-            $query->execute(
-                array(
-                    ':no_stats' => 10
-                )
-            );
+            // Execute the PL/SQL statement GET_HATE_STATS; reference cursor.
+            oci_execute($query);
+            oci_execute($rc);
         } catch (PDOException $e) {
             db_exception($e);
             return false;
         }
-       // $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $query->fetchAll(PDO::FETCH_OBJ);
+       //$query->fetch(PDO::FETCH_OBJ);
+
+        return $rc;
 
     }
 

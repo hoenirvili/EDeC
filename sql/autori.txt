@@ -6,3 +6,4 @@ Autori:
 	-Tutuianu Corneliu.
 
 Github repository : https://github.com/hoenirvili/EDeC.
+App link : http://edec.ddns.net (not always on ->local machine)

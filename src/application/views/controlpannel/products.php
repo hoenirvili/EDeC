@@ -15,7 +15,6 @@
                 $Lister->pagination_link=URL.'controlpannel/products';
                 $Lister->total=Products::getTotals();
                 $Lister->display_data();
-
             ?>
             </div>
         </div>

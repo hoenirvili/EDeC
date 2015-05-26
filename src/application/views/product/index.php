@@ -1,4 +1,9 @@
 <?php
+/**
+ * This is the mega array that stores the current user that is currently logged in
+ * And in this we know all the info that we need to extract and modify for
+ * different operations
+ */
 global $current_user;
 $product=new Product($_GET['id']);
 
@@ -18,14 +23,33 @@ $product=new Product($_GET['id']);
                     <h1><?php echo $product->product_name; ?></h1>
                     <div class="jumbotron product-jumbotron">
                       <?php
-                      // foreach trough the ch gategories and display all product characteristics
-                      // at each characteristic check if the current user has that characteristic or not
-                      // Based on that display a remove or add button that is linked to ajax (+,- icons)
-                      // on the ajax send the characteristic to the server add/remove it from the user
-                      // change the fronted icon the ajax response accordingly.
+                      $ch_categories = Characteristics::get_ch_categories();
+                      if ($ch_categories)
+                      foreach ($ch_categories as $ch_category) {
+                          /**
+                           * Now here we display the chategory of a product that can have
+                           * Special things lika beloging to a sort of an orgranization
+                           * that user can loves hates or not added yet to her list
+                           */
+                          echo '<span class="label label-info">'. Characteristics::get_category_name
+                              ($ch_category->ID) .'</span>';
+                          echo '<br>';
 
-                        printr($current_user);
-                        printr($product);
+                          /**
+                           * If our product has sort of components per that chategory
+                           * we must iterate and test if the username has it added or not or if he want to add it to
+                           * his list
+                           */
+                        if ($product->ch['ch_' . $ch_category->ID] != null)
+                            foreach($product->ch['ch_' . $ch_category->ID] as $ch)
+                            {
+
+                                Characteristics::list_ch_button($current_user,Characteristics::get_ch_name($ch));
+
+                            }
+                        else 'Something went wrong please conntact the administrator of the page';
+                      }
+
                     ?>
                     </div>
                 </div><!--jumbotron wrapper-->

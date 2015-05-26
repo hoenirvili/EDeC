@@ -43,9 +43,14 @@ $product=new Product($_GET['id']);
                         if ($product->ch['ch_' . $ch_category->ID] != null)
                             foreach($product->ch['ch_' . $ch_category->ID] as $ch)
                             {
-
-                                Characteristics::list_ch_button($current_user,Characteristics::get_ch_name($ch));
-
+                                /**
+                                 * We least all different option for user
+                                 * add product to fav
+                                 * echo product that he/she likes
+                                 * echo product that he/she donse't like
+                                 */
+                                //var_dump($ch);
+                                Characteristics::list_ch_button($current_user,$ch, $ch_category->ID);
                             }
                         else 'Something went wrong please conntact the administrator of the page';
                       }

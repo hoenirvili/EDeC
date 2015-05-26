@@ -256,6 +256,12 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
             v_data_nasterii := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 7);
             v_sex := REGEXP_SUBSTR(V_LINE, '[^,]+', 1, 8);
 
+            IF checkEmail(v_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+            IF checkUsername(v_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+            IF checkPassword(v_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+            IF userExistsName(v_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+            IF userExistsEmail(v_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+            
             insertUser(v_id,v_username,v_pass,v_email,TO_NUMBER(v_avatar),TO_NUMBER(v_tip),TO_DATE(v_data_nasterii,'dd-mm-yyyy'),v_sex);
             it:=it+1;
             COMMIT;
@@ -447,8 +453,11 @@ PROCEDURE edit_user_pass
       WHERE CURRENT OF update_cursor;
     END LOOP;
     EXCEPTION
-     WHEN WRONG_EMAIL_FORMAT THEN
-      raise_application_error(-20007,'Wrong email format for user '||v_user_id||' on update');
+      WHEN WRONG_PASSWORD_FORMAT THEN
+              IF LENGTH(new_pass)>32 THEN raise_application_error(-20003,'Password too long');END IF;
+              IF LENGTH(new_pass)<6 THEN raise_application_error(-20003,'Password too short');
+              ELSE raise_application_error(-20016,'Wrong password: invalid character used '||REGEXP_SUBSTR(new_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+              END IF;
 END edit_user_pass;
 
 PROCEDURE edit_user_email
@@ -548,6 +557,13 @@ END edit_user_sex;
     new_sex IN  users.sex%TYPE) IS
     
   BEGIN
+  
+    IF checkEmail(new_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+    IF checkUsername(new_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
+    IF checkPassword(new_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+    IF userExistsName(new_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+    IF userExistsEmail(new_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+            
     edit_user_username(new_username,v_user_id);
     edit_user_pass(new_pass,v_user_id);
     edit_user_email(new_email,v_user_id);
@@ -555,6 +571,24 @@ END edit_user_sex;
     edit_user_type(new_type,v_user_id);
     edit_user_birthdate(new_birthdate,v_user_id);
     edit_user_sex(new_sex,v_user_id);
+    
+     EXCEPTION
+      WHEN USER_EXISTS_NAME THEN
+        raise_application_error(-20005,'USERNAME ALREADY IN USE');
+      WHEN USER_EXISTS_EMAIL THEN
+        raise_application_error(-20004,'EMAIL ALREADY IN USE');
+      WHEN WRONG_EMAIL_FORMAT THEN
+        raise_application_error(-20001,'Wrong email format for user '||new_username);
+      WHEN WRONG_USERNAME_FORMAT THEN
+        IF LENGTH(new_username)>15 THEN raise_application_error(-20002,'Username too long');END IF;
+        IF LENGTH(new_username)<6 THEN raise_application_error(-20002,'Username too short');
+        ELSE raise_application_error(-20003,'Wrong username: invalid character used '||REGEXP_SUBSTR(new_username,'[^a-zA-Z0-9\._-]'));
+        END IF;
+      WHEN WRONG_PASSWORD_FORMAT THEN
+        IF LENGTH(new_pass)>32 THEN raise_application_error(-20003,'Password too long');END IF;
+        IF LENGTH(new_pass)<6 THEN raise_application_error(-20003,'Password too short');
+        ELSE raise_application_error(-20016,'Wrong password: invalid character used '||REGEXP_SUBSTR(new_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        END IF;
   END edit_user;
   
   PROCEDURE edit_user (
@@ -566,12 +600,26 @@ END edit_user_sex;
     new_sex IN  users.sex%TYPE) IS
     
   BEGIN
-  
+    IF checkEmail(new_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
+    IF checkPassword(new_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
+    IF userExistsEmail(new_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+            
     edit_user_pass(new_pass,v_user_id);
     edit_user_email(new_email,v_user_id);
     edit_user_avatar(new_avatar,v_user_id);
     edit_user_birthdate(new_birthdate,v_user_id);
     edit_user_sex(new_sex,v_user_id);
+    
+    EXCEPTION
+      WHEN USER_EXISTS_EMAIL THEN
+        raise_application_error(-20004,'EMAIL ALREADY IN USE');
+      WHEN WRONG_EMAIL_FORMAT THEN
+        raise_application_error(-20001,'Wrong email format for user '||v_user_id);
+      WHEN WRONG_PASSWORD_FORMAT THEN
+        IF LENGTH(new_pass)>32 THEN raise_application_error(-20003,'Password too long');END IF;
+        IF LENGTH(new_pass)<6 THEN raise_application_error(-20003,'Password too short');
+        ELSE raise_application_error(-20016,'Wrong password: invalid character used '||REGEXP_SUBSTR(new_pass,'[^a-zA-Z0-9\.\#$%^*_-]'));
+        END IF;
   END edit_user;
 
 

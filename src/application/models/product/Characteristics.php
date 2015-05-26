@@ -373,22 +373,48 @@ class Characteristics
                 echo '<option value="' . $key . '">' . $val . '</option>';
         }
     }
-    public static function list_ch_button($user,$ch)
+    public static function list_ch_button($user,$ch_product_id,$ch_category_id)
     {
-        var_dump($user);
-        //var_dump()
-//        foreach($user->preferences as $user_row_preferences)
-//        {
-//          if($user_row_preferences =='user_loves')
-//              echo $user_row_preferences['user_loves']
-//
-//        }
-        foreach($user->preferences['user_loves'] as $user_loves)
+        $love_array_length = count($user->preferences['user_loves']);
+        $hate_array_length = count($user->preferences['user_hates']);
+            /**
+             * we must take every product user loves in a object and compare it if the product
+             * characteristics matches with the user pref to insert the like template
+             * and we must make shure that the pref one coresponds to a sort of category.
+             * and vice versa on every product that user hates
+             */
+        $i = 0; $j = 0;
+
+        while( ($i < $love_array_length) || ($j < $hate_array_length) )
         {
-            
+
+            if(true === Characteristics::get_ch_row($user->preferences['user_loves'][$i]))
+            {
+
+                $love_object = Characteristics::get_ch_row($user->preferences['user_loves'][$i]);
+
+                if(($love_object->ID === $ch_product_id) && ($love_object->CATEGORIE_CARACTERISTICI_ID === $ch_category_id ))
+                 {
+                    echo '<a href="#" class="btn btn-success">' . Characteristics::get_ch_name($ch_product_id) . '</a>';
+                    echo '<br>';
+                }
+            }
+            if(true === Characteristics::get_ch_row($user->preferences['user_hates'][$j]))
+            {
+                $hate_object = Characteristics::get_ch_row($user->preferences['user_hates'][$j]);
+
+                if(($hate_object->ID === $ch_product_id) && ($hate_object->CATEGORIE_CARACTERISTICI_ID === $ch_category_id ))
+                {
+                    echo '<a href="#" class="btn btn-danger">'.Characteristics::get_ch_name($ch_product_id).'</a>';
+                    echo '<br>';
+                }
+            }
+//             {
+//                    echo '<a href="#" class="btn btn-primary">' . Characteristics::get_ch_name($ch_product_id) . '</a>';
+//                    echo '<br>';
+//                }
+            $i++;
+            $j++;
         }
-
-
-
     }
 }

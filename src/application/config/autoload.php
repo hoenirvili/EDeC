@@ -8,6 +8,7 @@ $classes = array(
     'models/core/Access',
     'models/core/Auth',
     'models/product/Searcher',
+    'models/statistics/Statistics',
     'models/core/View',
     'models/media/UploadHandler',
     'controllers/Controller',

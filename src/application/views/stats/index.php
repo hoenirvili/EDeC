@@ -1,11 +1,19 @@
 
+    
+
+<?php
+    $stats=Statistics::get_most_loved();
+    printr($stats);
+?>
+
+
 <!--Most loved caracteristics-->
 <div class="container box">
    <div class="row">
        <div class="col-md-4"></div>
        <div class="col-md-4 mlc">
             <div class="header-title-canvas">
-                <h1>Most hated caracteristics</h1>
+                <h1>Most loved caracteristics</h1>
             </div>
             <canvas id="MostLovedCaract" width="400" height="400"></canvas>
        </div>

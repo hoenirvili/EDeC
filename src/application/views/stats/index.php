@@ -1,5 +1,5 @@
 
-    
+
 
 <?php
     $stats=Statistics::get_most_loved();

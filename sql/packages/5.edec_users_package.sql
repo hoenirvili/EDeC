@@ -99,7 +99,7 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       END IF ;
     END userExistsEmail;
 
-   FUNCTION userExistsName(v_name IN users.username%TYPE) RETURN BOOLEAN IS
+  FUNCTION userExistsName(v_name IN users.username%TYPE) RETURN BOOLEAN IS
     v_count int:=0;
     BEGIN
       SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE username=v_name;
@@ -144,6 +144,31 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
       END IF;
     END checkPassword;
 
+  FUNCTION userExistsEmail(v_email IN users.email%TYPE,v_id users.id%TYPE) RETURN BOOLEAN IS
+    v_count int:=0;
+    BEGIN
+      SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE EMAIL=v_email AND id<>v_id;
+      IF V_COUNT>0
+      THEN
+        return TRUE;
+      ELSE
+        return FALSE;
+      END IF ;
+    END userExistsEmail;
+
+  FUNCTION userExistsName(v_name IN users.username%TYPE,v_id users.id%TYPE) RETURN BOOLEAN IS
+    v_count int:=0;
+    BEGIN
+      SELECT COUNT(*) INTO V_COUNT FROM USERS WHERE username=v_name AND id<>v_id;
+      IF V_COUNT>0
+      THEN
+        return TRUE;
+      ELSE
+        return FALSE;
+      END IF ;
+    END userExistsName;
+
+   
 --insereaza un user in tabela users
   PROCEDURE insertUser (
 
@@ -422,7 +447,7 @@ PROCEDURE edit_user_username
     FOR indx IN update_cursor
     LOOP
       IF checkUsername(new_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
-      IF userExistsName(new_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+      IF userExistsName(new_username,v_user_id)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
       UPDATE
       users SET users.username=new_username
       WHERE CURRENT OF update_cursor;
@@ -470,7 +495,7 @@ PROCEDURE edit_user_email
     FOR indx IN update_cursor
     LOOP
       IF checkEmail(new_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
-      IF userExistsEmail(new_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+      IF userExistsEmail(new_email,v_user_id)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
       UPDATE
       users SET users.email=new_email 
       WHERE CURRENT OF update_cursor;
@@ -561,8 +586,8 @@ END edit_user_sex;
     IF checkEmail(new_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
     IF checkUsername(new_username)=FALSE THEN RAISE WRONG_USERNAME_FORMAT;END IF;
     IF checkPassword(new_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
-    IF userExistsName(new_username)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
-    IF userExistsEmail(new_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+    IF userExistsName(new_username,v_user_id)=TRUE THEN RAISE USER_EXISTS_NAME;END IF;
+    IF userExistsEmail(new_email,v_user_id)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
             
     edit_user_username(new_username,v_user_id);
     edit_user_pass(new_pass,v_user_id);
@@ -602,7 +627,7 @@ END edit_user_sex;
   BEGIN
     IF checkEmail(new_email)=FALSE THEN RAISE WRONG_EMAIL_FORMAT;END IF;
     IF checkPassword(new_pass)=FALSE THEN RAISE WRONG_PASSWORD_FORMAT;END IF;
-    IF userExistsEmail(new_email)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
+    IF userExistsEmail(new_email,v_user_id)=TRUE THEN RAISE USER_EXISTS_EMAIL;END IF;
             
     edit_user_pass(new_pass,v_user_id);
     edit_user_email(new_email,v_user_id);

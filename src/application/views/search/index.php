@@ -1,7 +1,7 @@
 <body>
     <div class="container">
         <div class="row">
-         <h2>Search engine</h2>
+         <h2>&nbsp;</h2>
              <div id="custom-search-input">
                 <div class="input-group col-md-12">
                     <!--search -->

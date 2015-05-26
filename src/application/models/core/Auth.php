@@ -24,7 +24,8 @@ class Auth {
         // redirect user to login page
         if ( ! isset( $_SESSION['user_logged_in'] ) ) {
             Session::destroy();
-            header( 'location: ' . URL );
+            add_error('Please login to view that page.');
+            header( 'location: ' . URL.'acces' );
             // to prevent fetching views via cURL (which "ignores" the header-redirect above) we leave the application
             // the hard way, via exit().
             exit();
@@ -38,7 +39,8 @@ class Auth {
         // if user is not an admin, destroy and exit
         if ( ! isset( $_SESSION['user_logged_in'] ) || ! self::is_user_type( "admin" ) ) {
             Session::destroy();
-            header( 'location: ' . URL );
+            add_error('Please login as admin to view that page.');
+            header( 'location: ' . URL.'access' );
             // to prevent fetching views via cURL (which "ignores" the header-redirect above) we leave the application
             // the hard way, via exit().
             exit();

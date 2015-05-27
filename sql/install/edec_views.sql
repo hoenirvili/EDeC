@@ -168,3 +168,15 @@ CREATE OR REPLACE VIEW view_Stats_Love_Products AS
   JOIN user_loves ul ON car_prod.caracteristica_id=ul.caracteristica_id
   GROUP BY name
   ORDER BY Nr DESC;
+  
+CREATE OR REPLACE VIEW view_stats_products AS
+  SELECT cat_car.nume, count(*) AS Nr
+  FROM 
+  produs prod 
+  JOIN caracteristici_produse car_prod ON prod.id=car_prod.produs_id
+  JOIN caracteristica car ON car_prod.caracteristica_id=car.id
+  JOIN CATEGORIE_CARACTERISTICI cat_car ON car.CATEGORIE_CARACTERISTICI_ID=cat_car.id
+  GROUP BY cat_car.nume
+  ORDER BY Nr DESC;
+  
+  select * from view_stats_products;

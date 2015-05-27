@@ -49,13 +49,13 @@ CREATE OR REPLACE PACKAGE edec_utils_package AS
   
   PROCEDURE importall_no_carac;
  -- PROCEDURE get_hate_stats(v_h_stat_array OUT hate_statistics_array);
-  PROCEDURE get_love_stats(v_l_stat_array OUT love_statistics_array);
+ -- PROCEDURE get_love_stats(v_l_stat_array OUT love_statistics_array);
   PROCEDURE show_love_stats(v_l_stat_array IN love_statistics_array); 
   PROCEDURE show_hate_stats(v_h_stat_array IN hate_statistics_array);
   
   --USES THE VIEW_STATISTICS_HATE 
   FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
- -- FUNCTION get_hate_stats RETURN SYS_REFCURSOR;
+  FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
 END edec_utils_package;
 /
 
@@ -351,5 +351,12 @@ PROCEDURE show_hate_stats(v_h_stat_array hate_statistics_array)IS
     OPEN hate_cursor FOR SELECT * FROM view_statistics_hate WHERE ROWNUM <=car_no;
     RETURN hate_cursor;
   END get_hate_stats;
+  
+  FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR IS
+    love_cursor SYS_REFCURSOR;
+  BEGIN
+    OPEN love_cursor FOR SELECT * FROM view_statistics_love WHERE ROWNUM <=car_no;
+    RETURN love_cursor;
+  END get_love_stats;
 END edec_utils_package;
 /

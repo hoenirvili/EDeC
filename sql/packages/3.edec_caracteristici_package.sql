@@ -241,7 +241,7 @@ FUNCTION get_hate_stats(car_no IN NUMBER,v_category_name categorie_caracteristic
          RETURN hate_cursor;
     END IF;
     
-    IF((v_category_name='SUBSTANTE ALIMENTARE') OR (v_category_name='ALIMENTE') OR (v_category_name='FOOD SUBSTANCES'))THEN
+      IF((v_category_name='SUBSTANTE ALIMENTARE') OR (v_category_name='ALIMENTE') OR (v_category_name='FOOD SUBSTANCES'))THEN
         OPEN hate_cursor FOR SELECT * FROM view_Stats_Hate_SubsAlim WHERE ROWNUM <=car_no;
          RETURN hate_cursor;
     END IF;

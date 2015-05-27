@@ -74,79 +74,97 @@ CREATE OR REPLACE VIEW view_Produse_City AS
   ORDER BY p.name ASC;
    
 CREATE OR REPLACE VIEW view_Statistics_Love AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_loves ul
   ON car.id=ul.caracteristica_id
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Statistics_Hate AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_hates uh
   ON car.id=uh.caracteristica_id
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
   
 CREATE OR REPLACE VIEW view_Stats_Love_Cities AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_loves ul
   ON car.id=ul.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=4
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Stats_Hate_Cities AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_hates uh
   ON car.id=uh.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=4
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
   
 CREATE OR REPLACE VIEW view_Stats_Love_SubsNealim AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_loves ul
   ON car.id=ul.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=3
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Stats_Hate_SubsNealim AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_hates uh
   ON car.id=uh.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=3
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Stats_Love_SubsAlim AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_loves ul
   ON car.id=ul.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=2
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Stats_Hate_SubsAlim AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_hates uh
   ON car.id=uh.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=2
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Stats_Love_Org AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_loves ul
   ON car.id=ul.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=1
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
 
 CREATE OR REPLACE VIEW view_Stats_Hate_Org AS
-  SELECT car.name , count(*) "Number"
+  SELECT car.name , count(*) AS Nr
   FROM caracteristica car JOIN user_hates uh
   ON car.id=uh.caracteristica_id
   WHERE car.CATEGORIE_CARACTERISTICI_ID=1
   GROUP BY name
-  ORDER BY car.name ASC;
+  ORDER BY Nr DESC;
+
+CREATE OR REPLACE VIEW view_Stats_Hate_Products AS
+  SELECT prod.name , count(*) AS Nr
+  FROM 
+  produs prod 
+  JOIN caracteristici_produse car_prod ON prod.id=car_prod.produs_id
+  JOIN user_hates uh ON car_prod.caracteristica_id=uh.caracteristica_id
+  GROUP BY name
+  ORDER BY Nr DESC;
+
+CREATE OR REPLACE VIEW view_Stats_Love_Products AS
+  SELECT prod.name , count(*) AS Nr
+  FROM 
+  produs prod 
+  JOIN caracteristici_produse car_prod ON prod.id=car_prod.produs_id
+  JOIN user_loves ul ON car_prod.caracteristica_id=ul.caracteristica_id
+  GROUP BY name
+  ORDER BY Nr DESC;

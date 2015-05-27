@@ -18,7 +18,10 @@ CREATE OR REPLACE PACKAGE edec_produse_package IS
   PROCEDURE edit_caract_name_prod(new_name IN caracteristica.name%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE);
   PROCEDURE edit_caract_categ_prod(new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE);
   PROCEDURE edit_caract_prod(new_name IN caracteristica.name%TYPE,new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.id%TYPE,v_product_id IN produs.id%TYPE);
-        
+  
+  FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
+  FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
+  
 END edec_produse_package;
 /
 
@@ -195,8 +198,21 @@ PROCEDURE exportToCSV IS
     edec_utils_package.exportToCSV('produs','produs.csv');
   END exportToCSV;
 
+FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR IS
+    hate_cursor SYS_REFCURSOR;
+  BEGIN
+    OPEN hate_cursor FOR SELECT * FROM view_Stats_Hate_Products WHERE ROWNUM <=car_no;
+    RETURN hate_cursor;
+  END get_hate_stats;
+  
+FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR IS
+    love_cursor SYS_REFCURSOR;
+  BEGIN
+    OPEN love_cursor FOR SELECT * FROM view_Stats_Love_Products WHERE ROWNUM <=car_no;
+    RETURN love_cursor;
+  END get_love_stats;
 
-END edec_produse_package;
+END EDEC_PRODUSE_PACKAGE;
 /
 
 

@@ -31,10 +31,8 @@ $product=new Product($_GET['id']);
                            * Special things lika beloging to a sort of an orgranization
                            * that user can loves hates or not added yet to her list
                            */
-                          echo '<span class="label label-info">'. Characteristics::get_category_name
-                              ($ch_category->ID) .'</span>';
+                          echo '<span class="label label-info">'. Characteristics::get_category_name($ch_category->ID) .'</span>';
                           echo '<br>';
-
                           /**
                            * If our product has sort of components per that chategory
                            * we must iterate and test if the username has it added or not or if he want to add it to
@@ -49,7 +47,6 @@ $product=new Product($_GET['id']);
                                  * echo product that he/she likes
                                  * echo product that he/she donse't like
                                  */
-                                //var_dump($ch);
                                 Characteristics::list_ch_button($current_user,$ch, $ch_category->ID);
                             }
                         else 'Something went wrong please conntact the administrator of the page';

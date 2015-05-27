@@ -381,13 +381,7 @@ class Characteristics
              * and we must make shure that the pref one coresponds to a sort of category.
              * and vice versa on every product that user hates
              */
-
-//          $love_object = Characteristics::get_ch_row($user->preferences['user_loves'][1]);
-//          var_dump($love_object);
-//          var_dump($user);
-//          var_dump($user->preferences['user_loves']);
-//          var_dump($user->preferences['user_hates']);
-
+        $flag =0;
         $unware_ch = array
         (
             "object" => null,
@@ -402,18 +396,22 @@ class Characteristics
                 {
                     echo '<a href="#" class="btn btn-success">' . Characteristics::get_ch_name($ch_product_id) . '<span class="glyphicon glyphicon-thumbs-up"></span></a>';
                     echo '<br>';
+                    $flag = 1;
                 }
-                /**
-                 *  If we find a ch that is not loved by user we insert in our remender list
-                 * with a coresponding flag
-                 * point
-                 */
-                else
-                {
-                    $unware_ch["object"] = $love_object;
-                    $unware_ch["flags"][1] = 1;
-                }
+
         }
+
+        /**
+         *  If we find a ch that is not loved by user we insert in our remender list
+         * with a coresponding flag
+         * point
+         */
+        if( $flag === 0)
+        {
+            $unware_ch["object"] = Characteristics::get_ch_row($ch_product_id);
+            $unware_ch["flags"][1] = 1;
+        }
+
         foreach($user->preferences['user_hates'] as $hate_id)
         {
             $hate_object = Characteristics::get_ch_row($hate_id);
@@ -421,20 +419,24 @@ class Characteristics
             {
                 echo '<a href="#" class="btn btn-danger">'.Characteristics::get_ch_name($ch_product_id).'<span class="glyphicon glyphicon-thumbs-down"></span></a>';
                 echo '<br>';
+                $flag = 1;
             }
-            /**
-             * If we find a ch that is not hated by user we insert in our reminder list
-             * with a coresponding flag point
-             */
-            else
-            {
-                $unware_ch["object"] = $hate_object;
-                $unware_ch["flags"][2] = 1;
-            }
+
         }
+
+        /**
+         * If we find a ch that is not hated by user we insert in our reminder list
+         * with a coresponding flag point
+         */
+        if( $flag === 0) $unware_ch["flags"][2] = 1;
+
+        /**
+         * If the ch product is not finded in the love/hate list we need to test if the product is in the same
+         * category and echo the template of that specific ch product
+         */
         if(($unware_ch["flags"][1] === 1) && ($unware_ch["flags"][2] === 1) && $unware_ch["object"] !=null)
           {
-                if($unware_ch["object"]->ID === $ch_product_id )
+                if($unware_ch["object"]->CATEGORIE_CARACTERISTICI_ID === $ch_category_id )
                 {
                     echo '<a href="#" class="btn btn-primary">'.Characteristics::get_ch_name($ch_product_id);
                     echo '<span class="glyphicon glyphicon-ok"></span>';
@@ -443,10 +445,5 @@ class Characteristics
                     echo '<br>';
                 }
           }
-        /*Reset everything*/
-        $unware_ch["object"] =null;
-        $unware_ch["flags"][1] = 0;
-        $unware_ch["flags"][2] = 0;
-
     }
 }

@@ -11,6 +11,11 @@ CREATE OR REPLACE PACKAGE edec_caracteristici_package IS
   PROCEDURE edit_caracteristica (new_name IN caracteristica.name%TYPE,new_category IN CATEGORIE_CARACTERISTICI.NUME%TYPE,v_caracteristica_id IN caracteristica.ID%TYPE);
   PROCEDURE edit_categorie_name(new_name IN CATEGORIE_CARACTERISTICI.nume%TYPE,v_categorie_id IN CATEGORIE_CARACTERISTICI.id%TYPE);
   
+  --functions used for the statistics part
+  FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
+  FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
+  --FUNCTION get_hate_stats(car_no IN NUMBER,) RETURN SYS_REFCURSOR;
+  FUNCTION get_love_stats(car_no IN NUMBER,v_category_name categorie_caracteristici.nume%TYPE) RETURN SYS_REFCURSOR;
 END edec_caracteristici_package;
 /
 
@@ -179,7 +184,54 @@ END edit_categorie_name;
   BEGIN
     edec_utils_package.exportToCSV('caracteristica','caracteristica.csv');
   END exportToCSV;
+  
+    FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR IS
+    hate_cursor SYS_REFCURSOR;
+  BEGIN
+    OPEN hate_cursor FOR SELECT * FROM view_statistics_hate WHERE ROWNUM <=car_no;
+    RETURN hate_cursor;
+  END get_hate_stats;
+  
+  FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR IS
+    love_cursor SYS_REFCURSOR;
+  BEGIN
+    OPEN love_cursor FOR SELECT * FROM view_statistics_love WHERE ROWNUM <=car_no;
+    RETURN love_cursor;
+  END get_love_stats;
+  
+FUNCTION get_love_stats(car_no IN NUMBER,v_category_name categorie_caracteristici.nume%TYPE) RETURN SYS_REFCURSOR IS
+   love_cursor SYS_REFCURSOR;
+   WRONG_CATEGORY_NAME EXCEPTION;
+  BEGIN
+  
+    IF((v_category_name='ORGANIZATII') OR (v_category_name='ORGANIZATIONS'))THEN  
+        OPEN love_cursor FOR SELECT * FROM view_Stats_Love_Org WHERE ROWNUM <=car_no;
+         RETURN love_cursor;
+    END IF;
+    
+    IF((v_category_name='SUBSTANTE ALIMENTARE') OR (v_category_name='ALIMENTE') OR (v_category_name='FOOD SUBSTANCES'))THEN
+        OPEN love_cursor FOR SELECT * FROM view_Stats_Love_SubsAlim WHERE ROWNUM <=car_no;
+         RETURN love_cursor;
+    END IF;
+    
+    IF((v_category_name='SUBSTANTE NEALIMENTARE') OR (v_category_name='CHIMICALE') OR (v_category_name='CHEMICALS'))THEN
+        OPEN love_cursor FOR SELECT * FROM view_Stats_Love_SubsNealim WHERE ROWNUM <=car_no;
+         RETURN love_cursor;
+    END IF;
+    
+    IF((v_category_name='ORASE') OR (v_category_name='CITIES'))THEN
+        OPEN love_cursor FOR SELECT * FROM view_Stats_Love_Cities WHERE ROWNUM <=car_no;
+         RETURN love_cursor;
+    END IF;  
+    
+        RAISE WRONG_CATEGORY_NAME;
+        
+    EXCEPTION
+    WHEN WRONG_CATEGORY_NAME THEN
+    raise_application_error(-20020,'Wrong CATEGORY NAME');
+  END get_love_stats;
    
+  
 END edec_caracteristici_package;
 /
 

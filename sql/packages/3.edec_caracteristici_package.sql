@@ -232,6 +232,6 @@ FUNCTION get_love_stats(car_no IN NUMBER,v_category_name categorie_caracteristic
   END get_love_stats;
    
   
-END edec_caracteristici_package;
+END EDEC_CARACTERISTICI_PACKAGE;
 /
 

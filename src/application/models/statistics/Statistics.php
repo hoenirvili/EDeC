@@ -20,7 +20,7 @@ class Statistics {
 
         $stmt = "
                 BEGIN
-                    :return_cursor := EDEC_UTILS_PACKAGE.GET_HATE_STATS(:number_of_stats);
+                    :return_cursor := EDEC_CARACTERISTICI_PACKAGE.GET_HATE_STATS(:number_of_stats);
                 END;";
 
         $sql = oci_parse ($db->_dbh,$stmt);// Parse a query through the connection.
@@ -68,7 +68,7 @@ class Statistics {
 
         $stmt = "
                 BEGIN
-                    :return_cursor := EDEC_UTILS_PACKAGE.GET_LOVE_STATS(:number_of_stats);
+                    :return_cursor := EDEC_CARACTERISTICI_PACKAGE.GET_LOVE_STATS(:number_of_stats);
                 END;";
 
         $sql = oci_parse ($db->_dbh,$stmt);// Parse a query through the connection.

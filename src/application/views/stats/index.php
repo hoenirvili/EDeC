@@ -2,8 +2,10 @@
 
 
 <?php
-    $stats=Statistics::getMostHated();
-    printr($stats);
+    //$stats_hate=Statistics::getMostHated();
+    //printr($stats_hate);
+    $stats_love_features=Statistics::getMostLovedFeatures(10);
+    printr($stats_love_features);
 ?>
 
 

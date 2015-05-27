@@ -8,7 +8,6 @@
 Chart.defaults.global.responsive = true;
 
 
-
 var data1 = {
     labels: ["Rosii", "Castraveti", "Zahar", "Orez", "Paste"],
     datasets: [

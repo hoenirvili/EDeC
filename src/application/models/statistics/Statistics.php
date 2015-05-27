@@ -8,7 +8,7 @@
 
 class Statistics {
 
-    public static function getMostHated(){
+    public static function getMostHatedFeatures($number_of_stats){
 
         global $db;
 
@@ -23,13 +23,13 @@ class Statistics {
                     :return_cursor := EDEC_UTILS_PACKAGE.GET_HATE_STATS(:number_of_stats);
                 END;";
 
-        $sql = oci_parse ($db,$stmt);// Parse a query through the connection.
+        $sql = oci_parse ($db->_dbh,$stmt);// Parse a query through the connection.
 
-        $ret_crs = oci_new_cursor($db);// Declare a return cursor for the connection.
+        $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        $number_of_stats = 10;
+        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
-        oci_bind_by_name($sql,'return_cursor',$ret_crs,-1,OCI_B_CURSOR);
+        oci_bind_by_name($sql,':return_cursor',$ret_crs,-1,OCI_B_CURSOR);
 
         try {
             oci_execute($sql);
@@ -56,7 +56,7 @@ class Statistics {
 
     }
 
-    public static function getMostLoved(){
+    public static function getMostLovedFeatures($number_of_stats){
 
         global $db;
 
@@ -71,11 +71,11 @@ class Statistics {
                     :return_cursor := EDEC_UTILS_PACKAGE.GET_LOVE_STATS(:number_of_stats);
                 END;";
 
-        $sql = oci_parse ($db,$stmt);// Parse a query through the connection.
+        $sql = oci_parse ($db->_dbh,$stmt);// Parse a query through the connection.
 
-        $ret_crs = oci_new_cursor($db);// Declare a return cursor for the connection.
+        $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        $number_of_stats = 10;
+        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,'return_cursor',$ret_crs,-1,OCI_B_CURSOR);
 

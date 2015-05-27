@@ -2,10 +2,34 @@
 
 
 <?php
-    //$stats_hate=Statistics::getMostHated();
-    //printr($stats_hate);
-    $stats_love_features=Statistics::getMostLovedFeatures(10);
-    printr($stats_love_features);
+
+$stats_love_features_org=Statistics::getMostLovedFeaturesByCategory(4,'ORGANIZATII');
+$stats_love_features_cities=Statistics::getMostLovedFeaturesByCategory(4,'CITIES');
+$stats_love_features_foods=Statistics::getMostLovedFeaturesByCategory(4,'ALIMENTE');
+$stats_love_features_chemicals=Statistics::getMostLovedFeaturesByCategory(4,'CHEMICALS');
+
+$stats_hate_features_org=Statistics::getMostHatedFeaturesByCategory(4,'ORGANIZATIONS');
+$stats_hate_features_cities=Statistics::getMostHatedFeaturesByCategory(4,'ORASE');
+$stats_hate_features_foods=Statistics::getMostHatedFeaturesByCategory(4,'FOOD SUBSTANCES');
+$stats_hate_features_chemicals=Statistics::getMostHatedFeaturesByCategory(4,'CHIMICALE');
+
+$stats_love_features=Statistics::getMostLovedFeatures(10);
+$stats_hate_features=Statistics::getMostHatedFeatures(10);
+
+printr($stats_love_features_org);
+printr($stats_love_features_cities);
+printr($stats_love_features_foods);
+printr($stats_love_features_chemicals);
+
+printr($stats_hate_features_org);
+printr($stats_hate_features_cities);
+printr($stats_hate_features_foods);
+printr($stats_hate_features_chemicals);
+
+printr($stats_love_features);
+printr($stats_hate_features);
+
+
 ?>
 
 

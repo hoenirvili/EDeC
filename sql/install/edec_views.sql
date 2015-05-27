@@ -139,7 +139,7 @@ CREATE OR REPLACE VIEW view_Stats_Love_Org AS
   SELECT car.name , count(*) "Number"
   FROM caracteristica car JOIN user_loves ul
   ON car.id=ul.caracteristica_id
-  WHERE car.CATEGORIE_CARACTERISTICI_ID=3
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=1
   GROUP BY name
   ORDER BY car.name ASC;
 
@@ -147,6 +147,6 @@ CREATE OR REPLACE VIEW view_Stats_Hate_Org AS
   SELECT car.name , count(*) "Number"
   FROM caracteristica car JOIN user_hates uh
   ON car.id=uh.caracteristica_id
-  WHERE car.CATEGORIE_CARACTERISTICI_ID=3
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=1
   GROUP BY name
   ORDER BY car.name ASC;

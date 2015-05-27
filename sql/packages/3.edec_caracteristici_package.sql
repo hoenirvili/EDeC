@@ -14,7 +14,7 @@ CREATE OR REPLACE PACKAGE edec_caracteristici_package IS
   --functions used for the statistics part
   FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
   FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
-  --FUNCTION get_hate_stats(car_no IN NUMBER,) RETURN SYS_REFCURSOR;
+  FUNCTION get_hate_stats(car_no IN NUMBER,v_category_name categorie_caracteristici.nume%TYPE) RETURN SYS_REFCURSOR;
   FUNCTION get_love_stats(car_no IN NUMBER,v_category_name categorie_caracteristici.nume%TYPE) RETURN SYS_REFCURSOR;
 END edec_caracteristici_package;
 /
@@ -230,7 +230,39 @@ FUNCTION get_love_stats(car_no IN NUMBER,v_category_name categorie_caracteristic
     WHEN WRONG_CATEGORY_NAME THEN
     raise_application_error(-20020,'Wrong CATEGORY NAME');
   END get_love_stats;
-   
+
+FUNCTION get_hate_stats(car_no IN NUMBER,v_category_name categorie_caracteristici.nume%TYPE) RETURN SYS_REFCURSOR IS
+   hate_cursor SYS_REFCURSOR;
+   WRONG_CATEGORY_NAME EXCEPTION;
+  BEGIN
+  
+    IF((v_category_name='ORGANIZATII') OR (v_category_name='ORGANIZATIONS'))THEN  
+        OPEN hate_cursor FOR SELECT * FROM view_Stats_Hate_Org WHERE ROWNUM <=car_no;
+         RETURN hate_cursor;
+    END IF;
+    
+    IF((v_category_name='SUBSTANTE ALIMENTARE') OR (v_category_name='ALIMENTE') OR (v_category_name='FOOD SUBSTANCES'))THEN
+        OPEN hate_cursor FOR SELECT * FROM view_Stats_Hate_SubsAlim WHERE ROWNUM <=car_no;
+         RETURN hate_cursor;
+    END IF;
+    
+    IF((v_category_name='SUBSTANTE NEALIMENTARE') OR (v_category_name='CHIMICALE') OR (v_category_name='CHEMICALS'))THEN
+        OPEN hate_cursor FOR SELECT * FROM view_Stats_Hate_SubsNealim WHERE ROWNUM <=car_no;
+         RETURN hate_cursor;
+    END IF;
+    
+    IF((v_category_name='ORASE') OR (v_category_name='CITIES'))THEN
+        OPEN hate_cursor FOR SELECT * FROM view_Stats_Hate_Cities WHERE ROWNUM <=car_no;
+         RETURN hate_cursor;
+    END IF;  
+    
+        RAISE WRONG_CATEGORY_NAME;
+        
+    EXCEPTION
+    WHEN WRONG_CATEGORY_NAME THEN
+    raise_application_error(-20020,'Wrong CATEGORY NAME');
+    
+  END get_hate_stats;
   
 END EDEC_CARACTERISTICI_PACKAGE;
 /

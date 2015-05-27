@@ -86,3 +86,67 @@ CREATE OR REPLACE VIEW view_Statistics_Hate AS
   ON car.id=uh.caracteristica_id
   GROUP BY name
   ORDER BY car.name ASC;
+  
+CREATE OR REPLACE VIEW view_Stats_Love_Cities AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_loves ul
+  ON car.id=ul.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=4
+  GROUP BY name
+  ORDER BY car.name ASC;
+
+CREATE OR REPLACE VIEW view_Stats_Hate_Cities AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_hates uh
+  ON car.id=uh.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=4
+  GROUP BY name
+  ORDER BY car.name ASC;
+  
+CREATE OR REPLACE VIEW view_Stats_Love_SubsNealim AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_loves ul
+  ON car.id=ul.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=3
+  GROUP BY name
+  ORDER BY car.name ASC;
+
+CREATE OR REPLACE VIEW view_Stats_Hate_SubsNealim AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_hates uh
+  ON car.id=uh.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=3
+  GROUP BY name
+  ORDER BY car.name ASC;
+
+CREATE OR REPLACE VIEW view_Stats_Love_SubsAlim AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_loves ul
+  ON car.id=ul.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=2
+  GROUP BY name
+  ORDER BY car.name ASC;
+
+CREATE OR REPLACE VIEW view_Stats_Hate_SubsAlim AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_hates uh
+  ON car.id=uh.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=2
+  GROUP BY name
+  ORDER BY car.name ASC;
+
+CREATE OR REPLACE VIEW view_Stats_Love_Org AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_loves ul
+  ON car.id=ul.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=3
+  GROUP BY name
+  ORDER BY car.name ASC;
+
+CREATE OR REPLACE VIEW view_Stats_Hate_Org AS
+  SELECT car.name , count(*) "Number"
+  FROM caracteristica car JOIN user_hates uh
+  ON car.id=uh.caracteristica_id
+  WHERE car.CATEGORIE_CARACTERISTICI_ID=3
+  GROUP BY name
+  ORDER BY car.name ASC;

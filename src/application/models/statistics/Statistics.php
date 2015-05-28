@@ -12,12 +12,6 @@ class Statistics {
 
         global $db;
 
-      //  $db = oci_connect('edec', 'admin#522', 'localhost/XE');
-      //  if (!$db) {
-      //      $e = oci_error();
-      //      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-      //  }
-
         $stmt = "
                 BEGIN
                     :return_cursor := EDEC_CARACTERISTICI_PACKAGE.GET_HATE_STATS(:number_of_stats);
@@ -27,7 +21,6 @@ class Statistics {
 
         $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,':return_cursor',$ret_crs,-1,OCI_B_CURSOR);
 
@@ -52,20 +45,13 @@ class Statistics {
            $result[$name]=$number;
         }
 
-        return $result  ;
+        return $result;
 
     }
 
     public static function getMostLovedFeatures($number_of_stats){
 
         global $db;
-
-        //  $db = oci_connect('edec', 'admin#522', 'localhost/XE');
-        //  if (!$db) {
-        //      $e = oci_error();
-        //      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-        //  }
-
         $stmt = "
                 BEGIN
                     :return_cursor := EDEC_CARACTERISTICI_PACKAGE.GET_LOVE_STATS(:number_of_stats);
@@ -75,10 +61,8 @@ class Statistics {
 
         $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,'return_cursor',$ret_crs,-1,OCI_B_CURSOR);
-
         try {
             oci_execute($sql);
             oci_execute($ret_crs);
@@ -100,20 +84,12 @@ class Statistics {
             $result[$name]=$number;
         }
 
-        return $result  ;
-
+        return $result;
     }
 
     public static function getMostHatedFeaturesByCategory($number_of_stats,$category){
 
         global $db;
-
-        //  $db = oci_connect('edec', 'admin#522', 'localhost/XE');
-        //  if (!$db) {
-        //      $e = oci_error();
-        //      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-        //  }
-
         $stmt = "
                 BEGIN
                     :return_cursor := EDEC_CARACTERISTICI_PACKAGE.GET_HATE_STATS(:number_of_stats,:category_name);
@@ -123,7 +99,6 @@ class Statistics {
 
         $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,':category_name',$category);
         oci_bind_by_name($sql,':return_cursor',$ret_crs,-1,OCI_B_CURSOR);
@@ -148,21 +123,12 @@ class Statistics {
 
             $result[$name]=$number;
         }
-
-        return $result  ;
-
+        return $result;
     }
 
     public static function getMostLovedFeaturesByCategory($number_of_stats,$category){
 
         global $db;
-
-        //  $db = oci_connect('edec', 'admin#522', 'localhost/XE');
-        //  if (!$db) {
-        //      $e = oci_error();
-        //      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-        //  }
-
         $stmt = "
                 BEGIN
                     :return_cursor := EDEC_CARACTERISTICI_PACKAGE.GET_LOVE_STATS(:number_of_stats,:category_name);
@@ -172,7 +138,6 @@ class Statistics {
 
         $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,':category_name',$category);
         oci_bind_by_name($sql,'return_cursor',$ret_crs,-1,OCI_B_CURSOR);
@@ -198,20 +163,12 @@ class Statistics {
             $result[$name]=$number;
         }
 
-        return $result  ;
-
+        return $result;
     }
 
     public static function getMostHatedProducts($number_of_stats){
 
         global $db;
-
-        //  $db = oci_connect('edec', 'admin#522', 'localhost/XE');
-        //  if (!$db) {
-        //      $e = oci_error();
-        //      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-        //  }
-
         $stmt = "
                 BEGIN
                     :return_cursor := EDEC_PRODUSE_PACKAGE.GET_HATE_STATS(:number_of_stats);
@@ -221,7 +178,6 @@ class Statistics {
 
         $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,':return_cursor',$ret_crs,-1,OCI_B_CURSOR);
 
@@ -246,19 +202,12 @@ class Statistics {
             $result[$name]=$number;
         }
 
-        return $result  ;
-
+        return $result;
     }
 
     public static function getMostLovedProducts($number_of_stats){
 
         global $db;
-
-        //  $db = oci_connect('edec', 'admin#522', 'localhost/XE');
-        //  if (!$db) {
-        //      $e = oci_error();
-        //      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-        //  }
 
         $stmt = "
                 BEGIN
@@ -269,7 +218,6 @@ class Statistics {
 
         $ret_crs = oci_new_cursor($db->_dbh);// Declare a return cursor for the connection.
 
-        //$number_of_stats = 10;
         oci_bind_by_name($sql,':number_of_stats',$number_of_stats);
         oci_bind_by_name($sql,'return_cursor',$ret_crs,-1,OCI_B_CURSOR);
 
@@ -294,7 +242,6 @@ class Statistics {
             $result[$name]=$number;
         }
 
-        return $result  ;
-
+        return $result;
     }
 }

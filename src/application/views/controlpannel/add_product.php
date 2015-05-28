@@ -14,8 +14,8 @@
                             <div class="control-group">
                                 <label class="control-label" for="product_name">Product name</label>
                                 <div class="controls">
-                                    <input id="product_name" name="product_name" type="text" placeholder="" class=" form-control" required value="<?php echo inp_val('product_name'); ?>">
-
+                                    <input id="product_name" name="product_name" type="text" placeholder="" class="
+                                    form-control" required value="<?php echo inp_val('product_name'); ?>">s
                                 </div>
                             </div>
                             <br/>

@@ -394,8 +394,8 @@ class Characteristics
                 $love_object = Characteristics::get_ch_row($love_id);
                 if( $love_object->ID === $ch_product_id)
                 {
-                    echo '<span class="label label-success">' . Characteristics::get_ch_name($ch_product_id) .'</span>';
-                    echo '<a href="#" class=" pull-right">';
+                    echo '<span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
+                    echo '<a href="#" class=" btn btn-info button-menu-manage pull-right">';
                     echo '<span class="glyphicon glyphicon-thumbs-up"></span>';
                     echo '</a>';
                     echo '<br>';
@@ -419,8 +419,8 @@ class Characteristics
             $hate_object = Characteristics::get_ch_row($hate_id);
             if($hate_object->ID === $ch_product_id)
             {
-                echo '<span class="label label-danger">' . Characteristics::get_ch_name($ch_product_id) .'</span>';
-                echo '<a href="#" class=" pull-right">';
+                echo '<span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
+                echo '<a href="#" class=" btn btn-info button-menu-manage pull-right clearfix" style="">';
                 echo '<span class="glyphicon glyphicon-thumbs-down"></span>';
                 echo '</a>';
                 echo '<br>';
@@ -443,11 +443,9 @@ class Characteristics
           {
                 if($unware_ch["object"]->CATEGORIE_CARACTERISTICI_ID === $ch_category_id )
                 {
-                    echo '<span class="label label-primary">' . Characteristics::get_ch_name($ch_product_id) .'</span>';
-                    echo '<a href="#" class="pull-right">';
-                    echo '<span class="glyphicon glyphicon-ok"></span>';
-                    echo '<span class="glyphicon glyphicon-remove"></span>';
-                    echo '</a>';
+                    echo '<span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
+                    echo '<a href="#" class="btn btn-success pull-right button-menu-manage cleafix"><span class="glyphicon glyphicon-ok"></span></a>';
+                    echo '<a href="#" class="btn btn-warning pull-right button-menu-manage cearfix"><span class="glyphicon glyphicon-remove"></span></a>';
                     echo '<br>';
                 }
           }

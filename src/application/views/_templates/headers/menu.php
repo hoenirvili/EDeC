@@ -22,7 +22,11 @@ echo $current_page ; if(Auth::is_user_logged_in()) echo ' logged-in'; if(Auth::i
                         <a href="<?php echo URL . 'index/' ?>">Home</a>
                     </li>
                     <li <?php if ($this->checkForActiveController($filename, "about")) { echo ' class="active" '; } ?>>
-                        <a href="#" id="about">About</a>
+                        <a href="<?php
+                                if($current_page != 'homepage')
+                                    echo URL.'index/#ToAbout';
+                                else echo '#';
+                        ?>" id="about">About</a>
                     </li>
                     <?php
                         if(Auth::is_user_logged_in()){

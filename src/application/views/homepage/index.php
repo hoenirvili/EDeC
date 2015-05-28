@@ -129,8 +129,8 @@
             </div>
             <div class="navbar-text pull-left">
                 <a href="<?php echo URL . 'index' ?>"><p class="footer-title">Ethical decision for consumers</p></a>
-                <a href="https://redit.com/EDeC/"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="https://github.com/hoeni/rvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github
+                <a href="http://s1.static.gotsmile.net/images/2011/10/14/307136-10150343621894333-752779332-7758354-1368989494_131861231469.jpg"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
+                <a href="https://github.com/hoenirvili/EDeC"><i class="fa fa-github-square fa-2x"></i>www.github
                     .com/hoenirvili</a>
                 <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea
                     de informatica</a>

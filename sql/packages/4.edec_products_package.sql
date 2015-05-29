@@ -22,6 +22,8 @@ CREATE OR REPLACE PACKAGE edec_produse_package IS
   FUNCTION get_hate_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
   FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR;
   
+  FUNCTION get_hate_stats_without_car(car_no IN NUMBER,without_carac_name IN caracteristica.name%TYPE) RETURN SYS_REFCURSOR;
+  FUNCTION get_love_stats_without_car(car_no IN NUMBER,without_carac_name IN caracteristica.name%TYPE) RETURN SYS_REFCURSOR;
 END edec_produse_package;
 /
 
@@ -212,6 +214,53 @@ FUNCTION get_love_stats(car_no IN NUMBER) RETURN SYS_REFCURSOR IS
     RETURN love_cursor;
   END get_love_stats;
 
+FUNCTION get_hate_stats_without_car(car_no IN NUMBER,without_carac_name IN caracteristica.name%TYPE) RETURN SYS_REFCURSOR IS
+    hate_cursor SYS_REFCURSOR;--the result which will be returned
+  
+    v_carac_id caracteristica.id%TYPE:=-1;
+  BEGIN
+    SELECT caracteristica.id INTO v_carac_id
+    FROM caracteristica WHERE name like without_carac_name;
+     OPEN hate_cursor FOR
+                      SELECT prod.name , count(*) AS Nr
+                      FROM 
+                      produs prod 
+                      JOIN caracteristici_produse car_prod ON prod.id=car_prod.produs_id
+                      JOIN user_hates uh ON car_prod.caracteristica_id=uh.caracteristica_id
+                      WHERE car_prod.caracteristica_id not in (v_carac_id) AND ROWNUM <=car_no
+                      GROUP BY name
+                      ORDER BY Nr DESC; 
+    
+    RETURN hate_cursor;
+    EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+    raise_application_error(-20033,'INVALID FEATURE NAME GIVEN');
+    
+  END get_hate_stats_without_car;
+
+FUNCTION get_love_stats_without_car(car_no IN NUMBER,without_carac_name IN caracteristica.name%TYPE) RETURN SYS_REFCURSOR IS
+    love_cursor SYS_REFCURSOR;--the result which will be returned
+  
+    v_carac_id caracteristica.id%TYPE:=-1;
+  BEGIN
+    SELECT caracteristica.id INTO v_carac_id
+    FROM caracteristica WHERE name like without_carac_name;
+     OPEN love_cursor FOR
+                      SELECT prod.name , count(*) AS Nr
+                      FROM 
+                      produs prod 
+                      JOIN caracteristici_produse car_prod ON prod.id=car_prod.produs_id
+                      JOIN user_loves ul ON car_prod.caracteristica_id=ul.caracteristica_id
+                      WHERE car_prod.caracteristica_id not in (v_carac_id) AND ROWNUM <=car_no
+                      GROUP BY name
+                      ORDER BY Nr DESC; 
+    
+    RETURN hate_cursor;
+    EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+    raise_application_error(-20033,'INVALID FEATURE NAME GIVEN');
+    
+  END get_love_stats_without_car;
 END EDEC_PRODUSE_PACKAGE;
 /
 

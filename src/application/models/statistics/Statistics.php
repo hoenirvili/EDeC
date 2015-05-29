@@ -110,6 +110,7 @@ class Statistics {
             db_exception($e);
             return false;
         }
+        //catch app error ?!
         $result=array();
         while($row = oci_fetch_assoc($ret_crs)) {
             $name=null;
@@ -149,6 +150,7 @@ class Statistics {
             db_exception($e);
             return false;
         }
+        //catch app error ?!
         $result=array();
         while($row = oci_fetch_assoc($ret_crs)) {
             $name=null;

@@ -129,8 +129,8 @@
             </div>
             <div class="navbar-text pull-left">
                 <a href="<?php echo URL . 'index' ?>"><p class="footer-title">Ethical decision for consumers</p></a>
-                <a href="https://redit.com/EDeC/"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="https://github.com/hoeni/rvili/EDeC/"><i class="fa fa-github-square fa-2x"></i>www.github
+                <a href="http://s1.static.gotsmile.net/images/2011/10/14/307136-10150343621894333-752779332-7758354-1368989494_131861231469.jpg"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
+                <a href="https://github.com/hoenirvili/EDeC"><i class="fa fa-github-square fa-2x"></i>www.github
                     .com/hoenirvili</a>
                 <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea
                     de informatica</a>
@@ -140,67 +140,3 @@
     <!--small container-->
 </div>
 <!--the big container that includes fixed position and orientation-->
-
-
-<!--POP UP CONTACT ME-->
-<div class="modal fade" id="contact" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-horizontal" role="form">
-                <div class="modal-header">
-                    <h4>Contact us !</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="contact-name" class="col-sm-2 control-label">Name</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="contact-name" placeholder="First &Lans Name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-email" class="col-sm-2 control-label">Email</label>
-
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="contact-email"
-                                   placeholder="example@domain.com">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-message" class="col-sm-2 control-label">Message</label>
-
-                        <div class="col-sm-10">
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary contactButton">Send</button>
-                    <a class="btn btn-default contactButton" data-dismiss="modal">Close</a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!--pop UP-->
-<!-- Loading animation svg -->
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"
-     class="util-pie">
-    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-    <path d="M0 50A50 50 0 0 1 50 0L50 50L0 50" fill="#0073eb" opacity="0.5">
-        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="0.8s"
-                          repeatCount="indefinite"></animateTransform>
-    </path>
-    <path d="M50 0A50 50 0 0 1 100 50L50 50L50 0" fill="#00ff27" opacity="0.5">
-        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.6s"
-                          repeatCount="indefinite"></animateTransform>
-    </path>
-    <path d="M100 50A50 50 0 0 1 50 100L50 50L100 50" fill="#ff9400" opacity="0.5">
-        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2.4s"
-                          repeatCount="indefinite"></animateTransform>
-    </path>
-    <path d="M50 100A50 50 0 0 1 0 50L50 50L50 100" fill="#ff3c00" opacity="0.5">
-        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="3.2s"
-                          repeatCount="indefinite"></animateTransform>
-    </path>
-</svg>

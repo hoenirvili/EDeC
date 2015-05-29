@@ -20,9 +20,13 @@ class View {
                 $this->{$key} = $value;
             }
         }
-
-        // page without header and footer, for whatever reason
         require VIEWS_PATH . '_templates/headers/head.php';
+        /**
+         * we include our animated svg for every page to load
+         * @author:hoenir
+         */
+        require VIEWS_PATH. '_templates/animation/loading.php';
+
         if ($render_without_header_and_footer == true) {
             require VIEWS_PATH . $filename . '.php';
         } elseif ($header != "") {
@@ -30,16 +34,16 @@ class View {
             require VIEWS_PATH . $filename . '.php';
         } else {
             require VIEWS_PATH . $filename . '.php';
-
         }
         if ($render_without_header_and_footer != true)
             if($admin){
                 require VIEWS_PATH . '_templates/footers/footer-admin.php';
+                require VIEWS_PATH . '_templates/footers/contact.php';
             } else {
                 require VIEWS_PATH . '_templates/footers/footer.php';
+                require VIEWS_PATH . '_templates/footers/contact.php';
             }
     }
-
     /**
      * renders the feedback messages into the view
      */

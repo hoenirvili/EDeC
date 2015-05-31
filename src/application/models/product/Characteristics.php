@@ -277,8 +277,8 @@ class Characteristics
         try {
             $query->execute(
                 array(
-                    ':c_name' => $name,
-                    ':c_cat' => $category_id
+                    ':c_name' => strip_html_tags($name),
+                    ':c_cat' => strip_html_tags($category_id)
                 )
             );
         } catch (PDOException $e) {
@@ -299,9 +299,9 @@ class Characteristics
         try {
             $query->execute(
                 array(
-                    ':new_name' => $_POST['ch_name'],
-                    ':new_category' => $_POST['ch_category'],
-                    ':v_caracteristica_id' =>$_GET['characteristic_id']
+                    ':new_name' => strip_html_tags($_POST['ch_name']),
+                    ':new_category' => strip_html_tags($_POST['ch_category']),
+                    ':v_caracteristica_id' =>strip_html_tags($_GET['characteristic_id'])
                 )
             );
         } catch (PDOException $e) {

@@ -31,13 +31,13 @@ class Users
             try {
                 $query->execute(
                     array(
-                        ':v_username' => $_POST['username'],
+                        ':v_username' => strip_html_tags($_POST['username']),
                         ':v_pass' => md5($_POST['new_password']),
-                        ':v_email' => $_POST['email'],
-                        ':v_avatar' => $media_id,
-                        ':v_tip' => $_POST['user_type'],
+                        ':v_email' => strip_html_tags($_POST['email']),
+                        ':v_avatar' => strip_html_tags($media_id),
+                        ':v_tip' => strip_html_tags($_POST['user_type']),
                         ':v_data_nasterii' => date_to_db($_POST['user_birthdate']),
-                        ':v_sex' => $_POST['gender'],
+                        ':v_sex' => strip_html_tags($_POST['gender']),
                     )
                 );
             } catch (PDOException $e) {
@@ -91,14 +91,14 @@ class Users
             try {
                 $query->execute(
                     array(
-                        ':v_user_id' => $_GET['user_id'],
-                        ':new_username' => $_POST['username'],
-                        ':new_pass' => $pass,
-                        ':new_email' => $_POST['email'],
-                        ':new_avatar' => $media_id,
-                        ':new_type' => $_POST['user_type'],
-                        ':new_birthdate' => date_to_db($_POST['user_birthdate']),
-                        ':new_sex' => $_POST['gender'],
+                        ':v_user_id' => strip_html_tags($_GET['user_id']),
+                        ':new_username' => strip_html_tags($_POST['username']),
+                        ':new_pass' => strip_html_tags($pass),
+                        ':new_email' => strip_html_tags($_POST['email']),
+                        ':new_avatar' => strip_html_tags($media_id),
+                        ':new_type' => strip_html_tags($_POST['user_type']),
+                        ':new_birthdate' => strip_html_tags(date_to_db($_POST['user_birthdate'])),
+                        ':new_sex' => strip_html_tags($_POST['gender']),
                     )
                 );
             } catch (PDOException $e) {

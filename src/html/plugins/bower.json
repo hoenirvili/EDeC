@@ -22,6 +22,7 @@
   "dependencies": {
     "jquery": ">=1.6",
     "jquery-highlight": "3.2.2",
-    "chartist": "0.8.0"
+    "chartist": "0.8.0",
+    "videojs": "5.0.0-29"
   }
 }

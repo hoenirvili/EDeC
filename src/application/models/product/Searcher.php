@@ -31,6 +31,7 @@ class Searcher
         }
         else
         {
+            $query=strip_html_tags($query);
             $lowercase = strtolower($query);
             $uppercase = strtoupper($query);
             $capitalized = ucfirst($lowercase);

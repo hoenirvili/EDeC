@@ -31,7 +31,7 @@ class Products
             try {
                 $query->execute(
                     array(
-                        ':name' => $_POST['product_name'],
+                        ':name' => strip_html_tags($_POST['product_name']),
                         ':image' => $media_id
                     )
                 );
@@ -122,7 +122,7 @@ class Products
                     array(
                         ':lower_limit' => $lower_limit,
                         ':upper_limit' => $upper_limit,
-                        ':s'=>'%'.$_GET['s'].'%'
+                        ':s'=>'%'.strip_html_tags($_GET['s']).'%'
                     )
                 );
             }else
@@ -183,9 +183,9 @@ class Products
             try {
                 $query->execute(
                     array(
-                        ':name' => $_POST['product_name'],
+                        ':name' => strip_html_tags($_POST['product_name']),
                         ':image' => $media_id,
-                        ':id' => $_GET['product_id']
+                        ':id' => strip_html_tags($_GET['product_id'])
                     )
                 );
             } catch (PDOException $e) {

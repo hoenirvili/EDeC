@@ -24,7 +24,7 @@
 <script src="<?php echo URL ?>html/plugins/jasny-bootstrap/js/jasny-bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery-highlight/jquery.highlight.js"></script>
 <script src="<?php echo URL ?>html/plugins/chartist/dist/chartist.js"></script>
-
+<script src="<?php echo URL ?>html/plugins/videojs/dist/video.js"></script>
 <?php if (PRODUCTION) { ?>
     <script src="<?php echo URL ?>html/js/main.js"></script>
 <?php } else { ?>

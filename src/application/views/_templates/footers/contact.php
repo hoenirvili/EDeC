@@ -2,7 +2,7 @@
 <div class="modal fade" id="contact" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method="post" action="/thanks">
                 <div class="modal-header">
                     <h4>Contact us !</h4>
                 </div>
@@ -11,14 +11,14 @@
                         <label for="contact-name" class="col-sm-2 control-label">Name</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="contact-name" placeholder="First &Lans Name">
+                            <input type="text" name="name" class="form-control" id="contact-name" placeholder="First &Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contact-email" class="col-sm-2 control-label">Email</label>
 
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="contact-email"
+                            <input name="email" type="email" class="form-control" id="contact-email"
                                    placeholder="example@domain.com">
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         <label for="contact-message" class="col-sm-2 control-label">Message</label>
 
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="4"></textarea>
+                            <textarea class="form-control" name="message" rows="4"></textarea>
                         </div>
                     </div>
                 </div>

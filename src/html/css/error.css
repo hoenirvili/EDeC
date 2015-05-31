@@ -1,9 +1,11 @@
 /*error styleshet*/
-.error-template
-{
-    padding: 40px 15px;
+.error-template {
+    padding: 40px 0px;
     text-align: center;
+    margin-top: 110px;
+    margin-bottom: 192px;
 }
+
 .error-actions {
     margin-top:15px;
     margin-bottom:15px;

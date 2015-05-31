@@ -98,7 +98,7 @@ class Users
                         ':new_avatar' => $media_id,
                         ':new_type' => $_POST['user_type'],
                         ':new_birthdate' => date_to_db($_POST['user_birthdate']),
-                        ':new_sex' =>$_POST['gender'],
+                        ':new_sex' => $_POST['gender'],
                     )
                 );
             } catch (PDOException $e) {
@@ -364,6 +364,30 @@ class Users
 
             db_exception($e);
             return false;
+        }
+    }
+
+    public static function send_email_to_admin()
+    {
+        if (isset($_POST)) {
+        $mail = new PHPMailer;
+        $mail->IsSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                 // Specify main and backup server
+        $mail->Port = 587;                                    // Set the SMTP port
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'edec.bot@gmail.com';                // SMTP username
+        $mail->Password = 'admin#522';                  // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+        $mail->From = 'edec.bot@gmail.com';
+        $mail->FromName = 'Edec';
+        $mail->AddAddress('ionut.calara@gmail.com', 'Calara Ionut');  // Add a recipient
+
+        $mail->IsHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = 'New contact from '.$_POST['name']. ' -> '.$_POST['email'];
+        $mail->Body = $_POST['message'];
+        $mail->AltBody =$_POST['message'];
+        $mail->Send();
         }
     }
 }

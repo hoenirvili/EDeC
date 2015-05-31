@@ -12,7 +12,7 @@
                         <span class="glyphicon glyphicon-home"></span>
                         Take Me Home
                     </a>
-                    <a href="<?php echo URL.'index'?>" class="btn btn-default btn-lg contactsupport">
+                    <a href="#contact" data-toggle="modal" class="btn btn-default btn-lg contactsupport">
                         <span class="glyphicon glyphicon-envelope"></span>
                         Contact Support
                     </a>

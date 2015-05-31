@@ -406,3 +406,11 @@ footer
     border-color: transparent;
     padding: 10px 0px;
 }
+
+
+.thanks-template
+{
+    margin-top:200px;
+    text-align: center;
+    margin-bottom:250px;
+}

@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "jquery": ">=1.6",
-    "jquery-highlight": "3.2.2"
+    "jquery-highlight": "3.2.2",
+    "chartist": "0.8.0"
   }
 }

@@ -26,6 +26,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/css/controlpannel.css">
         <link rel="stylesheet" type="test/css" href="<?php echo URL ?>html/css/stats.css">
     <?php } ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/chartist/dist/chartist.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jquery.bxslider.css">
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/jasny-bootstrap/css/jasny-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/selectize/dist/css/selectize.bootstrap3.css">

@@ -14,3 +14,22 @@
 .mhc{
     margin-top: 100px;
 }
+
+.ct-chart .ct-series.ct-series-a .ct-bar, .ct-chart .ct-series.ct-series-a .ct-line, .ct-chart .ct-series.ct-series-a .ct-point, .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut
+{
+    stroke:#276BE7 !important;
+}
+.ct-chart .ct-label
+{
+    color:#fefefe !important;
+    font-size: 13px !important;
+}
+.ct-chart .ct-grid
+{
+    stroke:#fefefe !important;
+}
+.stats h3
+{
+    text-align: center;
+}
+

@@ -10,9 +10,8 @@
 <script src="<?php echo URL ?>html/plugins/selectize/dist/js/standalone/selectize.js"></script>
 <script src="<?php echo URL ?>html/plugins/jasny-bootstrap/js/jasny-bootstrap.js"></script>
 <script src="<?php echo URL ?>html/plugins/jquery-highlight/jquery.highlight.js"></script>
-<!--Chart js plugin -->
-<script src="<?php echo URL ?>html/plugins/Chart/Chart.js"></script>
-<!--main js-->
+<script src="<?php echo URL ?>html/plugins/chartist/dist/chartist.js"></script>
+
 <?php if (PRODUCTION) { ?>
     <script src="<?php echo URL ?>html/js/main.js"></script>
 <?php } else { ?>

@@ -24,6 +24,20 @@ class AjaxController extends Controller
 
     }
 
+    function add_to_loves()
+    {
+        global $current_user;
+        Users::add_ch_to_user($current_user->id,$_POST['ch_id'],'loves');
+        echo json_encode(array('status'=>1));
+    }
+
+    function add_to_hates()
+    {
+        global $current_user;
+        Users::add_ch_to_user($current_user->id,$_POST['ch_id'],'hates');
+        echo json_encode(array('status'=>1));
+    }
+
 
 
 }

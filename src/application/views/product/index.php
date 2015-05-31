@@ -31,7 +31,7 @@ $product=new Product($_GET['id']);
                            * Special things lika beloging to a sort of an orgranization
                            * that user can loves hates or not added yet to her list
                            */
-                          echo '<span class="label label-info">'. Characteristics::get_category_name($ch_category->ID) .'</span>';
+                          echo '<hr/><h3>'. Characteristics::get_category_name($ch_category->ID) .'</h3><hr/>';
                           echo '<br>';
                           /**
                            * If our product has sort of components per that chategory

@@ -13,7 +13,7 @@ class Searcher
     {
         global $db, $current_user;
         if ($query == '') {
-            $sql = "SELECT CP.PRODUS_ID ,count(*) as frequency FROM EDEC.USER_LOVES UL RIGHT JOIN EDEC.CARACTERISTICI_PRODUSE CP ON UL.CARACTERISTICA_ID=CP.CARACTERISTICA_ID WHERE UL.USER_ID=:user_id AND CP.PRODUS_ID NOT IN (SELECT CAP.PRODUS_ID FROM EDEC.USER_HATES UH RIGHT JOIN EDEC.CARACTERISTICI_PRODUSE CAP ON UH.CARACTERISTICA_ID=CAP.CARACTERISTICA_ID WHERE UH.USER_ID=:user_id_h) GROUP BY CP.PRODUS_ID ORDER BY frequency DESC";
+            $sql = "SELECT CP.PRODUS_ID ,count(*) as frequency FROM EDEC.USER_LOVES UL RIGHT JOIN EDEC.CARACTERISTICI_PRODUSE CP ON UL.CARACTERISTICA_ID=CP.CARACTERISTICA_ID WHERE UL.USER_ID=:user_id AND CP.PRODUS_ID NOT IN (SELECT CAP.PRODUS_ID FROM EDEC.USER_HATES UH RIGHT JOIN EDEC.CARACTERISTICI_PRODUSE CAP ON UH.CARACTERISTICA_ID=CAP.CARACTERISTICA_ID WHERE UH.USER_ID=:user_id_h) AND ROWNUM < 11 GROUP BY CP.PRODUS_ID ORDER BY frequency DESC";
 
             $query = $db->prepare($sql);
             try {
@@ -21,6 +21,30 @@ class Searcher
                     array(
                         ':user_id' => $current_user->ID,
                         ':user_id_h' => $current_user->ID,
+                    )
+                );
+            } catch (PDOException $e) {
+                db_exception($e);
+                return false;
+            }
+            return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        else
+        {
+            $lowercase = strtolower($query);
+            $uppercase = strtoupper($query);
+            $capitalized = ucfirst($lowercase);
+            $sql = "SELECT CP.PRODUS_ID ,count(*) as frequency FROM EDEC.USER_LOVES UL RIGHT JOIN EDEC.CARACTERISTICI_PRODUSE CP ON UL.CARACTERISTICA_ID=CP.CARACTERISTICA_ID RIGHT JOIN EDEC.PRODUS PP ON PP.ID = CP.PRODUS_ID WHERE UL.USER_ID=:user_id AND ((PP.NAME LIKE :lowercase) OR (PP.NAME LIKE :uppercase) OR (PP.NAME LIKE :capitalized)) AND CP.PRODUS_ID NOT IN (SELECT CAP.PRODUS_ID FROM EDEC.USER_HATES UH RIGHT JOIN EDEC.CARACTERISTICI_PRODUSE CAP ON UH.CARACTERISTICA_ID=CAP.CARACTERISTICA_ID WHERE UH.USER_ID=:user_id_h) GROUP BY CP.PRODUS_ID ORDER BY frequency DESC";
+            $query = $db->prepare($sql);
+
+            try {
+                $query->execute(
+                    array(
+                        ':user_id' => $current_user->ID,
+                        ':user_id_h' => $current_user->ID,
+                        ':lowercase' => '%'.$lowercase.'%',
+                        ':uppercase' => '%'.$uppercase.'%',
+                        ':capitalized' => '%'.$capitalized.'%',
                     )
                 );
             } catch (PDOException $e) {

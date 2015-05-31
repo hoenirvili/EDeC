@@ -378,7 +378,7 @@ class Characteristics
             /**
              * we must take every product user loves in a object and compare it if the product
              * characteristics matches with the user pref to insert the like template
-             * and we must make shure that the pref one coresponds to a sort of category.
+             * and we must make sure that the pref one corresponds to a sort of category.
              * and vice versa on every product that user hates
              */
         $flag =0;
@@ -394,11 +394,10 @@ class Characteristics
                 $love_object = Characteristics::get_ch_row($love_id);
                 if( $love_object->ID === $ch_product_id)
                 {
-                    echo '<span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
-                    echo '<a href="#" class=" btn btn-info button-menu-manage pull-right">';
+                    echo '<div><span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
+                    echo '<a title="Already in your love preferences" href="#" class=" btn btn-sm  btn-disabled button-menu-manage pull-right">';
                     echo '<span class="glyphicon glyphicon-thumbs-up"></span>';
-                    echo '</a>';
-                    echo '<br>';
+                    echo '</a></div>';
                     $flag = 1;
                 }
         }
@@ -419,11 +418,10 @@ class Characteristics
             $hate_object = Characteristics::get_ch_row($hate_id);
             if($hate_object->ID === $ch_product_id)
             {
-                echo '<span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
-                echo '<a href="#" class=" btn btn-info button-menu-manage pull-right clearfix" style="">';
+                echo '<div><span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
+                echo '<a href="#" title="Already in your hate preferences" class=" btn btn-sm  btn-disabled button-menu-manage pull-right clearfix" style="">';
                 echo '<span class="glyphicon glyphicon-thumbs-down"></span>';
-                echo '</a>';
-                echo '<br>';
+                echo '</a></div>';
                 $flag = 1;
             }
 
@@ -443,10 +441,9 @@ class Characteristics
           {
                 if($unware_ch["object"]->CATEGORIE_CARACTERISTICI_ID === $ch_category_id )
                 {
-                    echo '<span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
-                    echo '<a href="#" class="btn btn-success pull-right button-menu-manage cleafix"><span class="glyphicon glyphicon-ok"></span></a>';
-                    echo '<a href="#" class="btn btn-warning pull-right button-menu-manage cearfix"><span class="glyphicon glyphicon-remove"></span></a>';
-                    echo '<br>';
+                    echo '<div><span>' . Characteristics::get_ch_name($ch_product_id) .'</span>';
+                    echo '<a data-chid="'.$ch_product_id.'" href="#" class="add-ch btn btn-sm btn-success pull-right button-menu-manage cleafix"><span class="glyphicon glyphicon-ok"></span></a>';
+                    echo '<a data-chid="'.$ch_product_id.'" href="#" class="remove-ch btn btn-sm  btn-warning pull-right button-menu-manage cearfix"><span class="glyphicon glyphicon-remove"></span></a></div>';
                 }
           }
     }

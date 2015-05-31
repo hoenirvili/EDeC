@@ -11,6 +11,8 @@ function set_page_name()
     $request_path = $_SERVER['REQUEST_URI'];
     $path = explode("/", $request_path); // splitting the path
     $last = end($path);
+    $last=explode("?",$last);
+    $last=$last[0];
     if(strlen($last)==0)
     {
         $last="homepage";

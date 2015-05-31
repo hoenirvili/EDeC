@@ -312,9 +312,66 @@ class Characteristics
         return true;
     }
 
+    public static function delete_ch_from_products($ch_id)
+    {
+        global $db;
+        $sql = "DELETE FROM EDEC.CARACTERISTICI_PRODUSE WHERE CARACTERISTICA_ID = :characteristic_id";
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':characteristic_id' => $ch_id
+                )
+            );
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+        return true;
+    }
+
+    public static function delete_ch_from_user_loves($ch_id)
+    {
+        global $db;
+        $sql = "DELETE FROM EDEC.USER_LOVES WHERE CARACTERISTICA_ID = :characteristic_id";
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':characteristic_id' => $ch_id
+                )
+            );
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+        return true;
+    }
+
+    public static function delete_ch_from_user_hates($ch_id)
+    {
+        global $db;
+        $sql = "DELETE FROM EDEC.USER_HATES WHERE CARACTERISTICA_ID = :characteristic_id";
+        $query = $db->prepare($sql);
+        try {
+            $query->execute(
+                array(
+                    ':characteristic_id' => $ch_id
+                )
+            );
+        } catch (PDOException $e) {
+            db_exception($e);
+            return false;
+        }
+        return true;
+    }
+
     public static function delete_ch($id)
     {
         global $db;
+        self::delete_ch_from_products($id);
+        self::delete_ch_from_user_loves($id);
+        self::delete_ch_from_user_hates($id);
         $sql = "DELETE FROM CARACTERISTICA WHERE ID = :characteristic_id";
         $query = $db->prepare($sql);
         try {

@@ -27,6 +27,9 @@ on caracteristici_produse
 (produs_id ASC,caracteristica_id ASC)
 ;
 
+DROP INDEX CARACTERISTICI_ID_DELETE;
+CREATE INDEX CARACTERISTICI_ID_DELETE ON CARACTERISTICI_PRODUSE ("CARACTERISTICA_ID")
+
 
 
 
@@ -81,6 +84,8 @@ on user_hates
 (user_id ASC,caracteristica_id ASC)
 ;
 
+DROP INDEX USER_HATES_DELETE;
+CREATE INDEX USER_HATES_DELETE ON USER_HATES ("CARACTERISTICA_ID")
 
 
 
@@ -92,6 +97,9 @@ CREATE TABLE user_loves (
     caracteristica_id integer  NOT NULL,
     CONSTRAINT user_loves_pk PRIMARY KEY (Id)
 ) ;
+
+DROP INDEX USER_LOVES_DELETE;
+CREATE INDEX USER_LOVES_DELETE ON USER_LOVES ("CARACTERISTICA_ID")
 
 DROP INDEX user_loves_idx_1;
 CREATE INDEX user_loves_idx_1 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b1f552a81c63b5eeb9180d07da3deff9",
+    "hash": "6b832b060fb9c77e2d0e76f0ef3c3707",
     "packages": [
         {
             "name": "terah/pdooci",
@@ -52,66 +52,17 @@
             "time": "2014-12-02 03:28:30"
         },
         {
-            "name": "usmanhalalit/strana",
-            "version": "1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/usmanhalalit/strana.git",
-                "reference": "3e5e7aaa79e67d08539ba9c3cbb3d3d6e572c66e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/usmanhalalit/strana/zipball/3e5e7aaa79e67d08539ba9c3cbb3d3d6e572c66e",
-                "reference": "3e5e7aaa79e67d08539ba9c3cbb3d3d6e572c66e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "doctrine/dbal": "2.3.4",
-                "illuminate/database": "4.1.*@dev",
-                "phpunit/phpunit": "3.7.*",
-                "usmanhalalit/pixie": "1.*@dev"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Strana": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Muhammad Usman",
-                    "email": "hi@usman.it",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Pagination library for PHP, framework agnostic, with built-in adapters for Doctrine, Eloquent, Pixie and PHP Array.",
-            "homepage": "https://github.com/usmanhalalit/strana",
-            "keywords": [
-                "page",
-                "pagination",
-                "paginator"
-            ],
-            "time": "2013-11-13 18:38:22"
-        },
-        {
             "name": "yajra/laravel-pdo-via-oci8",
-            "version": "0.11.0",
+            "version": "0.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/pdo-via-oci8.git",
-                "reference": "d0e62e6abc2ca039060cfe92024e07733331edc9"
+                "reference": "72675ed544664bec43b28b9151bad6ac39ffad49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/pdo-via-oci8/zipball/d0e62e6abc2ca039060cfe92024e07733331edc9",
-                "reference": "d0e62e6abc2ca039060cfe92024e07733331edc9",
+                "url": "https://api.github.com/repos/yajra/pdo-via-oci8/zipball/72675ed544664bec43b28b9151bad6ac39ffad49",
+                "reference": "72675ed544664bec43b28b9151bad6ac39ffad49",
                 "shasum": ""
             },
             "require-dev": {
@@ -134,15 +85,13 @@
                 }
             ],
             "description": "PDO userspace driver proxying calls to PHP OCI8 driver",
-            "time": "2015-05-13 03:10:41"
+            "time": "2015-05-22 02:13:43"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "usmanhalalit/strana": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -186,3 +186,9 @@ html
 {
     margin-top:50px;
 }
+
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus
+{
+    top:0px;
+    border-bottom: 0px;
+}

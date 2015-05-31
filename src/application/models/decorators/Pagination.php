@@ -122,7 +122,7 @@ class Pagination {
                 //// add selected record
                 $arr[] = $selectedpage;
                 //// add upper array values
-                for ($i = 0; $i <= count($upper_arr) - 1; $i++)
+                for ($i = 0; $i < count($upper_arr) - 1; $i++)
                 {
                     $arr[] = $upper_arr[$i];
                 }

@@ -34,9 +34,7 @@
 {
     text-decoration: none;
     color: #df691a;
-    -webkit-transition: width 2s; /* Safari */
     transition: width 2s;
-    -moz-transform:  width 2s;
 
 }
 /********************
@@ -188,4 +186,23 @@ input[type="file"]{
 {
     border: 0;
     margin-top: 0;
+}
+
+.product-jumbotron>div
+{
+    clear:both;
+}
+.btn:hover {
+    margin-top: 0;
+    border-bottom-width: 1px;
+}
+
+.btn-disabled .glyphicon-thumbs-up
+{
+    color:#23a127;
+}
+
+.btn-disabled .glyphicon-thumbs-down
+{
+    color:#550000;
 }

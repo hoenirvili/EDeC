@@ -110,33 +110,3 @@
         </div>
     </div>
 </div>
-<!--main continer-->
-<!--footer -->
-<!--navbar-fixed-bottom -->
-<div class="navbar navbar-inverse bottom-footer footer-style navy-background " role="navigation">
-    <div class="container-fluid">
-        <div class="container">
-            <div class="navbar-text pull-right">
-                <div class="copy">&copy Copyright 2015</div>
-                <div class="copy"> Main developers:</div>
-                <p> Giulitti Salvatore Elio</p>
-
-                <p> Dorneanu Anca
-
-                <p> Calara Ionut</p>
-
-                <p> Tutuianu Cornealiu</p>
-            </div>
-            <div class="navbar-text pull-left">
-                <a href="<?php echo URL . 'index' ?>"><p class="footer-title">Ethical decision for consumers</p></a>
-                <a href="http://s1.static.gotsmile.net/images/2011/10/14/307136-10150343621894333-752779332-7758354-1368989494_131861231469.jpg"><i class="fa fa-reddit fa-2x"></i>www.redit.com</a>
-                <a href="https://github.com/hoenirvili/EDeC"><i class="fa fa-github-square fa-2x"></i>www.github
-                    .com/hoenirvili</a>
-                <a href="http://www.infoiasi.ro/bin/Main/" class="middle-flag-anchor"><i class="middle-flag"></i>Facultatea
-                    de informatica</a>
-            </div>
-        </div>
-    </div>
-    <!--small container-->
-</div>
-<!--the big container that includes fixed position and orientation-->

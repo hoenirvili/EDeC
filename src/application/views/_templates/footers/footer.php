@@ -1,3 +1,16 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                &copy; EDeC 2015. All right reserved.
+            </div>
+            <div class="col-md-6">
+                <span class="pull-right">Making decisions responsibly.</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
 <!--JQuery-->
 <script src="<?php echo URL ?>html/js/jquery/jquery-1.11.2.js"></script>
 <script src="<?php echo URL ?>html/js/jquery/jquery-2.1.3.js"></script>

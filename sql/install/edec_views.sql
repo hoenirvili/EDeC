@@ -178,5 +178,3 @@ CREATE OR REPLACE VIEW view_stats_products AS
   JOIN CATEGORIE_CARACTERISTICI cat_car ON car.CATEGORIE_CARACTERISTICI_ID=cat_car.id
   GROUP BY cat_car.nume
   ORDER BY Nr DESC;
-  
-  select * from view_stats_products;

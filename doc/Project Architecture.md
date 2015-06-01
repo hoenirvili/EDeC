@@ -1,6 +1,5 @@
 Edec
 ===================
-[view HTML](https://github.com/hoenirvili/EDeC/blob/master/Project%20Architecture.html)
 Etical decisions for consumers.
 
 ----------
@@ -43,40 +42,26 @@ In principiul Edec este compus din produse, si caracteristicile care le definesc
 >-- cele mai dezirabile
 >-- cele mai indezirabile
 
-----------------------------------
-User flow
------------------
-Procesul incepe cu inregistrarea userului pe pagina de register.
-
-```flow
-st=>start: User
-op=>operation: Inregistrare
-op1=>operation: Login
-cond=>condition: Logat cu succes?
-op2=>operation: Setare profil
-op3=>operation: Vizualizare produse pe baza setarilor
-en=>operation: Delogare
-st->op->op1->cond->op2->op3->en
-cond(yes)->op2
-cond(no)->op
-```
 Pagini
 --------------
 Url		    | Titlu
 ------------| ---
-home        | Homepage
-access      | Login & Register
-myprofile   | User Profile
-product?id  | Product page
-products    | Product list / Search
-stats       | Statistici
-users       | Admin users list
-user_add	| Admin add user
-user_edit	| Admin edit user
-a_products  | Admin products list
-product_add | Admin add product
-product_edit| Admin edit product
-404			| Not found page
+http://edec.ddns.net/                | Homepage
+http://edec.ddns.net/access          | Login & Register
+http://edec.ddns.net/dashboard       | User Profile
+http://edec.ddns.net/product/?id=352 | Product page
+http://edec.ddns.net/search          | Product list / Search
+http://edec.ddns.net/stats     | Statistici
+http://edec.ddns.net/controlpannel/users     | Admin users list
+http://edec.ddns.net/controlpannel/add_user	| Admin add user
+http://edec.ddns.net/controlpannel/edit_user?user_id=3	| Admin edit user
+http://edec.ddns.net/controlpannel/products  | Admin products list
+http://edec.ddns.net/controlpannel/add_product | Admin add product
+http://edec.ddns.net/controlpannel/edit_product?product_id=2 | Admin edit product
+http://edec.ddns.net/controlpannel/characteristics | Admin characteristics list
+http://edec.ddns.net/controlpannel/add_characteristic | Admin add characteristic 
+http://edec.ddns.net/controlpannel/edit_characteristic?characteristic_id=4 | Admin edit characteristic 
+http://edec.ddns.net/error/index		| Not found page
 
 
 -------

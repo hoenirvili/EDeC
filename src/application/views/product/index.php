@@ -55,7 +55,6 @@ $product=new Product($_GET['id']);
                     ?>
                     </div>
                 </div><!--jumbotron wrapper-->
-                <a href="#" class="pull-right missing-ingredient"> Report missing ingredient</a>
             </div><!--col-md-8-->
         </div><!--row-->
     </div><!--container-->

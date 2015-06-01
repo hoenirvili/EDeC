@@ -33,15 +33,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/selectize/dist/css/selectize.bootstrap3.css">
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>html/plugins/selectize/dist/css/selectize.default.css">
     <title>Ethic Decisions for Consummers</title>
-    <!-- pop for people who disabled javascript -->
-    <noscript>
-        For full functionality of this site it is necessary to enable JavaScript.Here are the
-        <a href="http://www.enable-javascript.com/" target="_blank">instructions how to enable JavaScript in your web
-            browser</a>.
-    </noscript>
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-

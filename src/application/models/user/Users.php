@@ -73,10 +73,12 @@ class Users
         if (!isset($_POST)) {
             add_error('There was an issue please contact the administrator.');
         }
+
         if ($_FILES['user_avatar']['size'])
             $media_id = Media::handle_upload('user_avatar');
         else
             $media_id = $_POST['media_id'];
+
         if (isset($_POST['new_pass'])) {
             $pass = md5($_POST['new_pass']);
         } else {
@@ -86,7 +88,6 @@ class Users
             $sql = "BEGIN
                         edec_users_package.edit_user(:v_user_id,:new_username,:new_pass,:new_email,:new_avatar,:new_type,:new_birthdate,:new_sex);
                     END;";
-
             $query = $db->prepare($sql);
             try {
                 $query->execute(

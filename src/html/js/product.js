@@ -23,7 +23,7 @@ $(document).ready(function() {
                                 var parent=t.parent()
                                 parent.find('a').remove();
                                 parent.append(html);
-                                alert('Succesfully added.');
+                                //alert('Succesfully added.');
                             }
                         }
                     });
@@ -52,7 +52,7 @@ $(document).ready(function() {
                         var parent=t.parent()
                         parent.find('a').remove();
                         parent.append(html);
-                        alert('Succesfully added.');
+                        //alert('Succesfully added.');
                     }
                 }
             });

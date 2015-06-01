@@ -399,6 +399,81 @@ This was connected to the issue with javascript
     color:#f3f3f4;
 
 }
+
+footer
+{
+    background-color: #4e5d6c;
+    border-color: transparent;
+    padding: 10px 0px;
+}
+
+
+.thanks-template
+{
+    margin-top:200px;
+    text-align: center;
+    margin-bottom:250px;
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 41%; /* video dimensions - height/width */
+    padding-top: 0px;
+    height: 0;
+    z-index: 1000;
+}
+
+video {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+}
+
+video.video-js {
+    z-index: 1000;
+}
+
+.video-js .vjs-controls {
+    z-index: 1002;
+}
+
+.video-js .vjs-big-play-button {
+    z-index: 1002;
+}
+
+.videoWrapper .video-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+    background: #000000;
+}
+
+.videoWrapper object,
+.videoWrapper embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    z-index: 1;
+}
+
+.vjs-spinner {
+    display: none !important;
+}
+
+.video-js img.vjs-poster {
+    height: 100% !important;
+    width: 100% !important;
+    z-index: 1;
+    max-width: 100%;
+}
 /*login pannel* style*/
 .login-panel{
     border-style: none;
@@ -484,13 +559,19 @@ This was connected to the issue with javascript
     text-align: center;
 }
 
-
-/*error styleshet*/
-.error-template
+.btn-file .form-control-feedback
 {
-    padding: 40px 15px;
-    text-align: center;
+    position:static;
+    display: inline-block;
 }
+/*error styleshet*/
+.error-template {
+    padding: 40px 0px;
+    text-align: center;
+    margin-top: 110px;
+    margin-bottom: 192px;
+}
+
 .error-actions {
     margin-top:15px;
     margin-bottom:15px;
@@ -525,8 +606,8 @@ This was connected to the issue with javascript
 **************************/
 .product{
     display: block;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 350px;
     margin-top: 25px;
 }
 .footer-product{
@@ -581,7 +662,10 @@ This was connected to the issue with javascript
 }
 
 
-
+.highlight {
+    background-color: #FFFF88;
+    color:#000000;
+}
 /*media queries*/
 @media only screen and (max-width:320px) {
         .start-button{
@@ -769,7 +853,7 @@ html
     width: 35px;
 }
 .side-nav-menu{
-    margin-top: 5g%;
+    margin-top: 5px;
     padding-left: 0;
 }
 .side-nav-menu > li {
@@ -838,10 +922,14 @@ html
     margin-top:50px;
 }
 
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus
+{
+    top:0px;
+    border-bottom: 0px;
+}
 /*product style sheet */
 .box-image-wrapper{
-    width: 250px;
-    height: 250px;
+    width: 100%;
     margin-top: 100px;
 }
 .similar-box-wrapper{
@@ -875,9 +963,7 @@ html
 {
     text-decoration: none;
     color: #df691a;
-    -webkit-transition: width 2s; /* Safari */
     transition: width 2s;
-    -moz-transform:  width 2s;
 
 }
 /********************
@@ -1031,6 +1117,24 @@ input[type="file"]{
     margin-top: 0;
 }
 
+.product-jumbotron>div
+{
+    clear:both;
+}
+.btn:hover {
+    margin-top: 0;
+    border-bottom-width: 1px;
+}
+
+.btn-disabled .glyphicon-thumbs-up
+{
+    color:#23a127;
+}
+
+.btn-disabled .glyphicon-thumbs-down
+{
+    color:#550000;
+}
 /*Stats style sheet */
 
 /**********************
@@ -1047,3 +1151,29 @@ input[type="file"]{
 .mhc{
     margin-top: 100px;
 }
+
+.ct-chart .ct-series.ct-series-a .ct-bar, .ct-chart .ct-series.ct-series-a .ct-line, .ct-chart .ct-series.ct-series-a .ct-point, .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut
+{
+    stroke:#276BE7 !important;
+}
+.ct-chart .ct-label
+{
+    color:#fefefe !important;
+    font-size: 13px !important;
+}
+.ct-chart .ct-grid
+{
+    stroke:#fefefe !important;
+}
+.stats h3
+{
+    text-align: center;
+}
+
+#products-search
+{
+    min-height: 612px;
+}
+
+
+

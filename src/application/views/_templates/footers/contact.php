@@ -8,14 +8,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="contact-name" class="col-sm-2 control-label">Name</label>
+                        <label class="col-sm-2 control-label">Name</label>
 
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control" id="contact-name" placeholder="First &Last Name">
+                            <input type="text" name="name" class="form-control" id="contact-name" placeholder="First &amp; Last Name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contact-email" class="col-sm-2 control-label">Email</label>
+                        <label class="col-sm-2 control-label">Email</label>
 
                         <div class="col-sm-10">
                             <input name="email" type="email" class="form-control" id="contact-email"
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contact-message" class="col-sm-2 control-label">Message</label>
+                        <label class="col-sm-2 control-label">Message</label>
 
                         <div class="col-sm-10">
                             <textarea class="form-control" name="message" rows="4"></textarea>

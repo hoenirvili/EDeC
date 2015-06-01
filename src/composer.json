@@ -1,7 +1,6 @@
 {
   "require": {
     "yajra/laravel-pdo-via-oci8": "~0.12",
-    "terah/pdooci": "1.0.5",
     "phpmailer/phpmailer": "v5.2.10"
   }
 }

@@ -284,100 +284,219 @@ $(document).ready(function(){
         }//fields
     });//formvalidation id
 }); //main function
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    if(sPageURL =='') return '';
+    var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+
+    return '';
+}
+
 
 $(document).ready(function() {
-    $('#myCarousel').carousel({
-        interval: 10000
-    })
+    if($('body').hasClass('search')) {
+        searched_text = getUrlParameter('s')
+        if (searched_text != '') {
+            $('body #products-search').highlight(searched_text, {
+                caseSensitive: false
+            });
+        }
+    }
+
 });
-/**
- *  Chart option config
- *  @type {boolean}
- */
-// Make our chart responsive
-
-
-Chart.defaults.global.responsive = true;
-
-
-
-var data1 = {
-    labels: ["Rosii", "Castraveti", "Zahar", "Orez", "Paste"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [110, 95, 80, 60, 43]
-        },
-        {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [28, 48, 40, 19, 21]
-        }
-    ]
-};
-
-
-if($('body').hasClass('stats')) {
-// Get context with jQuery - using jQuery's .get() method.
-    var ctx = $("#MostLovedCaract").get(0).getContext("2d");
-// This will get the first returned node in the jQuery collection.
-    var mostLovedCaract = new Chart(ctx).Bar(data1);
-}
-
-
-
-
-var data2 = {
-    labels: ["Gluten", "Brocoli", "Amidon", "Paine", "Pastarnac"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [180, 125, 88, 62, 48]
-        },
-        {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [28, 48, 40, 19, 21]
-        }
-    ]
-};
-if($('body').hasClass('stats')) {
-    var dtx = $("#MostHatedCaract").get(0).getContext("2d");
-    var mostHatedCaract = new Chart(dtx).Bar(data2);
-}
-
 $(document).ready(function() {
-    $('#caracteristics').selectize({
-        valueField: 'NAME',
+
+
+
+
+    if (jQuery('.add-ch').length) {
+        jQuery('.add-ch').on('click touchstart', function (e) {
+            e.preventDefault();
+            ch_id = jQuery(this).data('chid');
+            var t=jQuery(this);
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '/ajax/add_to_loves/',
+                        data: {
+                            ch_id: ch_id
+                        },
+                        success: function (data) {
+                            if(data['status'])
+                            {
+
+                               var html='<a href="#" class=" btn btn-sm  btn-disabled button-menu-manage pull-right"><span class="glyphicon glyphicon-thumbs-up"></span></a>';
+                                var parent=t.parent()
+                                parent.find('a').remove();
+                                parent.append(html);
+                                //alert('Succesfully added.');
+                            }
+                        }
+                    });
+
+
+        });
+    }
+
+    if (jQuery('.remove-ch').length) {
+        jQuery('.remove-ch').on('click touchstart', function (e) {
+            e.preventDefault();
+            ch_id = jQuery(this).data('chid');
+            var t=jQuery(this);
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: '/ajax/add_to_hates/',
+                data: {
+                    ch_id: ch_id
+                },
+                success: function (data) {
+                    if(data['status'])
+                    {
+
+                        var html='<a href="#" class=" btn btn-sm  btn-disabled button-menu-manage pull-right"><span class="glyphicon glyphicon-thumbs-down"></span></a>';
+                        var parent=t.parent()
+                        parent.find('a').remove();
+                        parent.append(html);
+                        //alert('Succesfully added.');
+                    }
+                }
+            });
+
+
+        });
+    }
+
+});
+
+
+function disable_buttons()
+{
+    if (jQuery('.btn-disabled').length) {
+        jQuery('.btn-disabled').on('click touchstart', function (e) {
+            e.preventDefault();
+        });
+    };
+}
+
+var options = {
+    seriesBarDistance: 10,
+    scaleMinSpace:1,
+        axisX: {
+        offset: 60
+    },
+    axisY: {
+        offset: 80,
+        onlyInteger: true,
+        scaleMinSpace: 15
+    }
+};
+var data1 = {
+    labels: jQuery("#MostLovedCaract").data('labels'),
+    series: [jQuery("#MostLovedCaract").data('values')]
+};
+var data2 = {
+    labels: jQuery("#MostHatedCaract").data('labels'),
+    series: [jQuery("#MostHatedCaract").data('values')]
+};
+var data3 = {
+    labels: jQuery("#MostLovedProducts").data('labels'),
+    series: [jQuery("#MostLovedProducts").data('values')]
+};
+var data4 = {
+    labels: jQuery("#MostHatedProducts").data('labels'),
+    series: [jQuery("#MostHatedProducts").data('values')]
+};
+var data5 = {
+    labels: jQuery("#MostLovedOrganizations").data('labels'),
+    series: [jQuery("#MostLovedOrganizations").data('values')]
+};
+
+var data6 = {
+    labels: jQuery("#MostHatedOrganizations").data('labels'),
+    series: [jQuery("#MostHatedOrganizations").data('values')]
+};
+
+
+var data7 = {
+    labels: jQuery("#MostLovedCities").data('labels'),
+    series: [jQuery("#MostLovedCities").data('values')]
+};
+
+var data8 = {
+    labels: jQuery("#MostHatedCities").data('labels'),
+    series: [jQuery("#MostHatedCities").data('values')]
+};
+
+
+var data9 = {
+    labels: jQuery("#MostLovedEdible").data('labels'),
+    series: [jQuery("#MostLovedEdible").data('values')]
+};
+
+var data10 = {
+    labels: jQuery("#MostHatedEdible").data('labels'),
+    series: [jQuery("#MostHatedEdible").data('values')]
+};
+
+
+var data11 = {
+    labels: jQuery("#MostLovedChemicals").data('labels'),
+    series: [jQuery("#MostLovedChemicals").data('values')]
+};
+
+var data12 = {
+    labels: jQuery("#MostHatedChemicals").data('labels'),
+    series: [jQuery("#MostHatedChemicals").data('values')]
+};
+
+
+
+
+if($('body').hasClass('stats')) {
+    new Chartist.Bar('#MostLovedCaract', data1,options);
+    new Chartist.Bar('#MostHatedCaract', data2,options);
+    new Chartist.Bar('#MostLovedProducts', data3,options);
+    new Chartist.Bar('#MostHatedProducts', data4,options);
+    new Chartist.Bar('#MostLovedOrganizations', data5,options);
+    new Chartist.Bar('#MostHatedOrganizations', data6,options);
+    new Chartist.Bar('#MostLovedCities', data7,options);
+    new Chartist.Bar('#MostHatedCities', data8,options);
+    new Chartist.Bar('#MostLovedEdible', data9,options);
+    new Chartist.Bar('#MostHatedEdible', data10,options);
+    new Chartist.Bar('#MostLovedChemicals', data11,options);
+    new Chartist.Bar('#MostHatedChemicals', data12,options);
+}
+
+
+
+
+$(document).ready(function () {
+
+    $('.ch').selectize({
+        valueField: 'ID',
+        /*plugins: ['remove_button','restore_on_backspace'],*/
+        plugins: ['remove_button'],
         labelField: 'NAME',
         searchField: 'NAME',
+        delimiter: ';',
+        persist: false,
         options: [],
-        create: false,
+        create: function (input) {
+            return {
+                NAME: input,
+                ID: input
+            }
+        },
         render: {
-            option: function(item, escape) {
-                console.log(item)
+            option: function (item, escape) {
                 return '<div>' +
                     '<span class="title">' +
                     '<span class="name">' + escape(item.NAME) + '</span>' +
@@ -385,20 +504,61 @@ $(document).ready(function() {
                     '</div>';
             }
         },
-        load: function(query, callback) {
-            if (!query.length>3) return callback();
+        load: function (query, callback) {
+            var category_id = this.$input.data('category_id');
+            if(!category_id)return callback();
+            if (!query.length > 3) return callback();
             $.ajax({
-                url: 'https://api.github.com/legacy/repos/search/'+ encodeURIComponent(query),
+                url: '/ajax/get_ch/?category_id='+category_id+'&query=' + encodeURIComponent(query),
                 type: 'GET',
                 dataType: "json",
-                error: function() {
+                error: function () {
                     callback();
                 },
-                success: function(res) {
-                    console.log(res);
-                    callback(res.repositories.slice(0, 10));
+                success: function (res) {
+                    callback(res.slice(0, 40));
                 }
             });
         }
     });
+
+    $('.full_ch').selectize({
+        valueField: 'ID',
+        /*plugins: ['remove_button','restore_on_backspace'],*/
+        plugins: ['remove_button'],
+        labelField: 'NAME',
+        searchField: 'NAME',
+        delimiter: ';',
+        persist: false,
+        options: [],
+        create: false,
+        render: {
+            option: function (item, escape) {
+                return '<div>' +
+                    '<span class="title">' +
+                    '<span class="name">' + escape(item.NAME) + '</span>' +
+                    '</span>' +
+                    '</div>';
+            }
+        },
+        load: function (query, callback) {
+            if (!query.length > 3) return callback();
+            $.ajax({
+                url: '/ajax/get_ch/?query=' + encodeURIComponent(query),
+                type: 'GET',
+                dataType: "json",
+                error: function () {
+                    callback();
+                },
+                success: function (res) {
+                    callback(res.slice(0, 40));
+                }
+            });
+        }
+    });
+
+
+
+
+
 });

@@ -25,7 +25,7 @@ class View {
          * we include our animated svg for every page to load
          * @author:hoenir
          */
-        require VIEWS_PATH. '_templates/animation/loading.php';
+
 
         if ($render_without_header_and_footer == true) {
             require VIEWS_PATH . $filename . '.php';
@@ -35,14 +35,10 @@ class View {
         } else {
             require VIEWS_PATH . $filename . '.php';
         }
-        if ($render_without_header_and_footer != true)
-            if($admin){
-                require VIEWS_PATH . '_templates/footers/footer-admin.php';
-                require VIEWS_PATH . '_templates/footers/contact.php';
-            } else {
-                require VIEWS_PATH . '_templates/footers/footer.php';
-                require VIEWS_PATH . '_templates/footers/contact.php';
-            }
+
+        require VIEWS_PATH . '_templates/footers/contact.php';
+        require VIEWS_PATH . '_templates/footers/footer.php';
+
     }
     /**
      * renders the feedback messages into the view

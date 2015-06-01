@@ -118,7 +118,7 @@ class Users
             $preferences = array('loves', 'hates');
             if ($preferences)
                 foreach ($preferences as $preference) {
-                    if ($_POST['user_' . $preference])
+                    if(isset($_POST['user_' . $preference]))
                         foreach ($_POST['user_' . $preference] as $ch) {
                             if (is_numeric($ch) && Characteristics::ch_exists($ch)) {
                                 self::add_ch_to_user($user_id, $ch, $preference);

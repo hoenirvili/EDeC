@@ -1,7 +1,6 @@
 # EDeC
         Ethic Decisions for Consummers
 
->[See HTML version] (http://derikon.net/edec/)
 
  - [Descriere 
 Proiect](https://github.com/hoenirvili/EDeC/blob/master/doc/EDeC-Raport.md#-1descriere-proiect)

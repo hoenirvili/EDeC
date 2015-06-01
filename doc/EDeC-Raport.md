@@ -86,12 +86,6 @@ Pentru o organizare a taskuri-lor am creat un spreadsheet.
 
 [SpreadSheet](https://docs.google.com/spreadsheets/d/1aSD-UlUJ1J87Xt5B11S6B8PxRxyz-A5sQaJck6xez-s/edit#gid=1616345261)
 
-----------------------
-Cuprins
------------------------
-
-[TOC]
-
 
 ##Componenta echipa
 

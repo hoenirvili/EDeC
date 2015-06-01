@@ -83,11 +83,6 @@ Etape implementare
 13. Deployment
 
 ----------------------
-Cuprins
------------------------
-
-[TOC]
-
 
 ##Componenta echipa
 

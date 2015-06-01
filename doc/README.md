@@ -4,16 +4,16 @@
 >[See HTML version] (http://derikon.net/edec/)
 
  - [Descriere 
-Proiect](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#-1descriere-proiect)
+Proiect](https://github.com/hoenirvili/EDeC/blob/master/doc/EDeC-Raport.md#-1descriere-proiect)
+-[Video prezentare](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#servicii)
  - [Arhitectura 
-proiectului](https://github.com/hoenirvili/EDeC/blob/master/Project%20Architecture.md#edec)
+proiectului](https://github.com/hoenirvili/EDeC/blob/master/doc/Project%20Architecture.md#pagini)
  - [Etapele dezvoltarii 
-proiectului](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#2-etapele-dezvoltarii-proiectului)
- - [Progresul 
-inregistrat](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#2-progresul-inregistrat)
+proiectului](https://github.com/hoenirvili/EDeC/blob/master/doc/EDeC-Raport.md#2-etapele-dezvoltarii-proiectului)
  - [Tehnologii 
-utilizate](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#1-tehnologii-utilizate)
- - 
-[Servicii](https://github.com/hoenirvili/EDeC/blob/master/EDeC-Raport.md#servicii)
+utilizate](https://github.com/hoenirvili/EDeC/blob/master/doc/EDeC-Raport.md#1-tehnologii-utilizate)
+ - [Etape implementare](https://github.com/hoenirvili/EDeC/blob/master/doc/Project%20Architecture.md#pagini)
  - [Componenta 
-echipa](https://github.com/hoenirvili/EDeC/blob/master/Project%20Architecture.md#componenta-echipa)
+echipa](https://github.com/hoenirvili/EDeC/blob/master/doc/Project%20Architecture.md#componenta-echipa)
+
+

@@ -131,7 +131,7 @@ html
     margin-bottom: 10px;
 }
 .link > a:hover,
-.link > a:focus,
+.link > a:focus
 {
     background-color: #245269;
 }

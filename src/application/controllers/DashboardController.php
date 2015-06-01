@@ -14,6 +14,7 @@ class DashboardController extends Controller
             global $current_user;
             $_GET['user_id']=$current_user->id;
             Users::update_user();
+            $current_user->populate_user();
             unset($_GET['user_id']);
         }
         $this->view->render("dashboard/index");

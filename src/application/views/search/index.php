@@ -1,9 +1,9 @@
-<body>
+
     <div class="container" id="products-search">
         <div class="row">
          <h2>&nbsp;</h2>
 
-            <form action="" method="GET">
+            <form method="GET">
              <div id="custom-search-input">
                 <div class="input-group col-md-12">
                     <!--search -->

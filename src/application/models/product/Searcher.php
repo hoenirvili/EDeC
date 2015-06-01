@@ -28,10 +28,8 @@ class Searcher
                 return false;
             }
             return $query->fetchAll(PDO::FETCH_OBJ);
-        }
-        else
-        {
-            $query=strip_html_tags($query);
+        } else {
+            $query = strip_html_tags($query);
             $lowercase = strtolower($query);
             $uppercase = strtoupper($query);
             $capitalized = ucfirst($lowercase);
@@ -43,9 +41,9 @@ class Searcher
                     array(
                         ':user_id' => $current_user->ID,
                         ':user_id_h' => $current_user->ID,
-                        ':lowercase' => '%'.$lowercase.'%',
-                        ':uppercase' => '%'.$uppercase.'%',
-                        ':capitalized' => '%'.$capitalized.'%',
+                        ':lowercase' => '%' . $lowercase . '%',
+                        ':uppercase' => '%' . $uppercase . '%',
+                        ':capitalized' => '%' . $capitalized . '%',
                     )
                 );
             } catch (PDOException $e) {
@@ -59,12 +57,16 @@ class Searcher
     public static function list_products($results)
     {
         self::open_row();
-        foreach ($results as $k => $result) {
-            if ($k % 4 == 0) {
-                self::close_row();
-                self::open_row();
+        if ($results) {
+            foreach ($results as $k => $result) {
+                if ($k % 4 == 0) {
+                    self::close_row();
+                    self::open_row();
+                }
+                self::display_product($result->PRODUS_ID);
             }
-            self::display_product($result->PRODUS_ID);
+        } else {
+            echo '<br/>No products seem to match your preferences, please go to your profile and add more preferences. <a class="btn btn-default" href="'.URL.'dashboard">Profile</a>';
         }
         self::close_row();
     }
@@ -76,9 +78,9 @@ class Searcher
                        <div class="product">';
         echo '           <a href="' . URL . 'product/?id=' . $product_id . '" class="img-box-wrapper">';
         echo '              <span class="label label-info lable-product-format">';
-        echo '              <p class="text-center">' . $product->product_name . '</p>';
+        echo '              <span class="text-center">' . $product->product_name . '</span>';
         echo '              </span>';
-        echo '              <img src="' . Media::get_src($product->product_image, 'medium') . '" class="img-responsive img-rounded">';
+        echo '              <img alt="'.$product->product_name.'" src="' . Media::get_src($product->product_image, 'medium') . '" class="img-responsive img-rounded">';
         echo '            </a>
                        </div>
               </div>';

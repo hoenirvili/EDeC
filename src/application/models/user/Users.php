@@ -68,7 +68,7 @@ class Users
 
     public static function update_user()
     {
-        global $db;
+        global $db,$current_user;
 
         if (!isset($_POST)) {
             add_error('There was an issue please contact the administrator.');
@@ -84,6 +84,13 @@ class Users
         } else {
             $pass = self::get_user_md_pass($_GET['user_id']);
         }
+        if($current_user->tip>1) {
+            $user_type = strip_html_tags($_POST['user_type']);
+        }
+        else
+        {
+            $user_type=1;
+        }
         if ($media_id) {
             $sql = "BEGIN
                         edec_users_package.edit_user(:v_user_id,:new_username,:new_pass,:new_email,:new_avatar,:new_type,:new_birthdate,:new_sex);
@@ -97,7 +104,7 @@ class Users
                         ':new_pass' => strip_html_tags($pass),
                         ':new_email' => strip_html_tags($_POST['email']),
                         ':new_avatar' => strip_html_tags($media_id),
-                        ':new_type' => strip_html_tags($_POST['user_type']),
+                        ':new_type' => $user_type,
                         ':new_birthdate' => strip_html_tags(date_to_db($_POST['user_birthdate'])),
                         ':new_sex' => strip_html_tags($_POST['gender']),
                     )

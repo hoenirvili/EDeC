@@ -12,7 +12,7 @@
 
                             <!-- Text input-->
                             <div class="control-group">
-                                <label class="control-label" for="product_name">User Name</label>
+                                <label class="control-label" >User Name</label>
                                 <div class="controls">
                                     <input id="username" name="username" type="text" placeholder="" class=" form-control" required value="<?php echo inp_val('username'); ?>">
 
@@ -54,7 +54,7 @@
                             </div>
                             <!-- Text input-->
                             <div class="control-group">
-                                <label class="control-label" for="product_name">Birthdate</label>
+                                <label class="control-label" >Birthdate</label>
                                 <div class="controls">
                                     <input type="text" name="user_birthdate" value="<?php inp_val('user_birthdate'); ?>"/>
 
@@ -73,7 +73,7 @@
                                 foreach($preferences as $preference){ ?>
                                     <!-- Textarea -->
                                     <div class="control-group">
-                                        <label class="control-label" for="ch">User <?php echo $preference ?></label>
+                                        <label class="control-label" >User <?php echo $preference ?></label>
                                         <div class="controls">
 
                                             <select multiple aria-multiselectable class="form-control full_ch"   name="user_<?php echo $preference ?>[]"><?php echo inp_val('user_'.$preference); ?></select>
@@ -84,7 +84,7 @@
 
                             <!-- Button -->
                             <div class="control-group">
-                                <label class="control-label" for=""></label>
+                                <label class="control-label" ></label>
                                 <div class="controls">
                                     <button type="submit" id="" name="submit" class="btn btn-primary">Add User</button>
                                 </div>

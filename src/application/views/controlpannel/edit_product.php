@@ -18,7 +18,7 @@ $product=new Product($product_id);
 
                             <!-- Text input-->
                             <div class="control-group">
-                                <label class="control-label" for="product_name">Product name</label>
+                                <label class="control-label" #clndr>Product name</label>
                                 <div class="controls">
                                     <input id="product_name" name="product_name" type="text" placeholder="" class=" form-control" required value="<?php echo inp_val('product_name'); ?>">
 
@@ -39,7 +39,7 @@ $product=new Product($product_id);
                                 foreach($ch_categories as $ch_category){ ?>
                                     <!-- Textarea -->
                                     <div class="control-group">
-                                        <label class="control-label" for="ch">Characteristics From : <?php echo $ch_category->NUME ?></label>
+                                        <label class="control-label" #clndr>Characteristics From : <?php echo $ch_category->NUME ?></label>
                                         <div class="controls">
 
                                             <select multiple aria-multiselectable class="form-control ch" data-category_id="<?php echo $ch_category->ID ?>"  name="ch_<?php echo $ch_category->ID ?>[]"><?php echo inp_val('ch_'.$ch_category->ID); ?></select>
@@ -50,7 +50,7 @@ $product=new Product($product_id);
 
                             <!-- Button -->
                             <div class="control-group">
-                                <label class="control-label" for=""></label>
+                                <label class="control-label" #clndr></label>
                                 <div class="controls">
                                     <button type="submit" id="" name="submit" class="btn btn-primary">Update product</button>
                                 </div>

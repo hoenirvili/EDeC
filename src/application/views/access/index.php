@@ -19,7 +19,7 @@
                         </p>
                         <!-- Username -->
                         <div class="form-group">
-                            <label for="InputUsername" class="control-label">Username</label>
+                            <label class="control-label">Username</label>
                             <div class="input-group">
 								<span class="input-group-addon">
 								<i class="glyphicon glyphicon-user"></i>
@@ -32,7 +32,7 @@
                             Password field empty please fill up with a valid password
                         </p>
                         <div class="form-group">
-                            <label for="exampleInputPassword1" class="control-label">Password</label>
+                            <label class="control-label">Password</label>
                             <div class="input-group">
 								<span class="input-group-addon">
 								<i class="glyphicon glyphicon-pencil"></i>
@@ -60,28 +60,28 @@
                     <form id="registerForm" enctype="multipart/form-data" class="form-group" role="form" action="<?php echo URL . 'access' ?>
 						" method="post">
                         <div class="form-group">
-                            <label for="username" class="control-label">Username</label>
-                             <input type="text" class="form-control" id="username" placeholder="Username" value="<?php inp_val('registerUsername') ?>" name="registerUsername">
+                            <label class="control-label">Username</label>
+                             <input type="text" class="form-control" id="username_register" placeholder="Username" value="<?php inp_val('registerUsername') ?>" name="registerUsername">
                             <p class="help-block">
                                 Username can contain any letters or numbers, without spaces
                             </p>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="control-label">Email</label>
+                            <label class="control-label">Email</label>
                             <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" value="<?php inp_val('email') ?>">
                             <p class="help-block">
                                 Please provide your E-mail
                             </p>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="control-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password" value="<?php inp_val('registerPassword') ?>" name="registerPassword">
+                            <label class="control-label">Password</label>
+                            <input type="password" class="form-control" id="password_register" placeholder="Password" value="<?php inp_val('registerPassword') ?>" name="registerPassword">
                             <p class="help-block">
                                 Password should be at least 6 characters
                             </p>
                         </div>
                         <div class="form-group">
-                            <label for="repeatPassword" class="control-label">Repeat password</label>
+                            <label class="control-label">Repeat password</label>
                             <input type="password" class="form-control" id="repeat-password" placeholder="Repeat password" value="<?php inp_val('repeatRegisterPassword') ?>" name="repeatRegisterPassword">
                             <p class="help-block">
                                 Please confirm password
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label class="control-label">Gender</label>
                             <div class="radio inline control-label">
-                                <label for="male">
+                                <label >
                                     <?php
                                     $checked='M';
                                     if(isset($_POST['gender']))
@@ -100,12 +100,12 @@
                                     }
                                     ?>
                                     <input  type="radio" <?php if($checked=='M') echo 'checked'; ?> name="gender" value="M"> Male </label>
-                                <label for="female">
+                                <label >
                                     <input type="radio" <?php if($checked=='F') echo 'checked'; ?> name="gender" value="F">Female </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="avatar" class="control-label">Avatar</label>
+                            <label class="control-label">Avatar</label>
                             <div class="clearfix"></div>
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px;">

@@ -28,9 +28,9 @@ CREATE OR REPLACE PACKAGE edec_users_package AS
 -- verifica daca exista userul cu numele respectiv
   FUNCTION userExistsName(v_name IN users.username%TYPE) RETURN BOOLEAN;
 --insereaza o caracteristica pt un user in tabela user loves
-  PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
+  PROCEDURE insertLove(V_user_id IN users.id%TYPE,V_carac_id IN caracteristica.id%TYPE);
 --insereaza o caracteristica pt un user in tabela user hates
-  PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
+  PROCEDURE insertHate(V_user_id IN users.id%TYPE,V_carac_id IN caracteristica.id%TYPE);
   
   PROCEDURE insertLove(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
   PROCEDURE insertHate(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE);
@@ -387,16 +387,27 @@ CREATE OR REPLACE PACKAGE BODY edec_users_package AS
 
     END insertHate;
 
-  PROCEDURE insertLove(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE)
+  PROCEDURE insertLove(V_user_id IN users.id%TYPE,V_carac_id IN caracteristica.id%TYPE)
   IS
+    v_check user_loves.id%TYPE:=-1;
+    
     BEGIN
-      INSERT INTO user_loves(user_id,caracteristica_id) VALUES (user_id,carac_id);
+      SELECT ID INTO v_check
+      FROM USER_LOVES WHERE user_id=V_user_id AND caracteristica_id=V_carac_id;
+      IF(v_check >0)THEN
+      INSERT INTO user_loves(user_id,caracteristica_id) VALUES (V_user_id,V_carac_id);
+      END IF;
     END insertLove;
 
-  PROCEDURE insertHate(user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE)
+  PROCEDURE insertHate(V_user_id IN users.id%TYPE,V_carac_id IN caracteristica.id%TYPE)
   IS
+  v_check user_loves.id%TYPE:=-1;
     BEGIN
-      INSERT INTO user_hates(user_id,caracteristica_id) VALUES (user_id,carac_id);
+     SELECT ID INTO v_check
+      FROM USER_LOVES WHERE user_id=V_user_id AND caracteristica_id=V_carac_id;
+      IF(v_check >0)THEN
+      INSERT INTO user_hates(user_id,caracteristica_id) VALUES (V_user_id,V_carac_id);
+      END IF;
     END insertHate;
 
   PROCEDURE insertLove(v_id user_hates.id%TYPE,user_id IN users.id%TYPE,carac_id IN caracteristica.id%TYPE) IS

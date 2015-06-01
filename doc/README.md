@@ -4,7 +4,7 @@
 
  - [Descriere 
 Proiect](https://github.com/hoenirvili/EDeC/blob/master/doc/EDeC-Raport.md#-1descriere-proiect)<br/>
--[Video prezentare](https://vimeo.com/129475186)<br/>
+- [Video prezentare](https://vimeo.com/129475186)<br/>
  - [Arhitectura 
 proiectului](https://github.com/hoenirvili/EDeC/blob/master/doc/Project%20Architecture.md#pagini)<br/>
  - [Etapele dezvoltarii 

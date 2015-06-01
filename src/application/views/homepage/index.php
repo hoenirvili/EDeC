@@ -31,7 +31,7 @@
         </ul>
     </div>
 </div>
-<div class="container">
+<div class="videoWrapper">
     <div class="row">
         <div class="col-md-12" id="ToAbout">
             <br/>
@@ -41,9 +41,16 @@
             </h2>
             <br/>
 
-            <div class="videoWrapper">
 
-            </div>
+                <video id="example_video_1" class="video-js vjs-default-skin"
+                       controls preload="auto"
+                       poster="<?php echo URL ?>html/vids/EDeC_First_Frame.png"
+                       data-setup='{"example_option":true}'>
+                    <source src="<?php echo URL ?>html/vids/EDeC.mp4" type='video/mp4'/>
+                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web
+                        browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                            video</a></p>
+                </video>
             <br/>
         </div>
     </div>

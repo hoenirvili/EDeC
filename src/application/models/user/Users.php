@@ -377,7 +377,7 @@ class Users
 
     public static function send_email_to_admin()
     {
-        if (isset($_POST)) {
+        if (isset($_POST)&&isset($_POST['message'])&&isset($_POST['name'])&&isset($_POST['email'])) {
         $mail = new PHPMailer;
         $mail->IsSMTP();                                      // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com';                 // Specify main and backup server

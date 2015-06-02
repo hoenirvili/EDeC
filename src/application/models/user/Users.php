@@ -160,7 +160,7 @@ class Users
     {
         global $db;
         if (isset($_GET['s']) && $_GET['s'] != '') {
-            $sql = " SELECT COUNT(*) AS C FROM USERS WHERE NAME LIKE :s";
+            $sql = " SELECT COUNT(*) AS C FROM USERS WHERE USERNAME LIKE :s";
         } else {
             $sql = " SELECT COUNT(*) AS C FROM USERS ";
         }
